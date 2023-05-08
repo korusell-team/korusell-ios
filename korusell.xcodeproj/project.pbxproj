@@ -11,6 +11,7 @@
 		25DB6CAF2A0726C400660E99 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DB6CAE2A0726C400660E99 /* ContentView.swift */; };
 		25DB6CB12A0726C600660E99 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 25DB6CB02A0726C600660E99 /* Assets.xcassets */; };
 		25DB6CB42A0726C600660E99 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 25DB6CB32A0726C600660E99 /* Preview Assets.xcassets */; };
+		25DB6CC12A07287F00660E99 /* ContactsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DB6CC02A07287F00660E99 /* ContactsScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +20,7 @@
 		25DB6CAE2A0726C400660E99 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		25DB6CB02A0726C600660E99 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		25DB6CB32A0726C600660E99 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		25DB6CC02A07287F00660E99 /* ContactsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +55,12 @@
 			children = (
 				25DB6CAC2A0726C400660E99 /* korusellApp.swift */,
 				25DB6CAE2A0726C400660E99 /* ContentView.swift */,
+				25DB6CBA2A0727FA00660E99 /* ContactsScreen */,
+				25DB6CBB2A07280D00660E99 /* PlacesScreen */,
+				25DB6CBD2A07282300660E99 /* MessagesScreen */,
+				25DB6CBC2A07281800660E99 /* FeedScreen */,
+				25DB6CBE2A07283300660E99 /* AccountScreen */,
+				25DB6CBF2A07284D00660E99 /* Shared */,
 				25DB6CB02A0726C600660E99 /* Assets.xcassets */,
 				25DB6CB22A0726C600660E99 /* Preview Content */,
 			);
@@ -65,6 +73,49 @@
 				25DB6CB32A0726C600660E99 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		25DB6CBA2A0727FA00660E99 /* ContactsScreen */ = {
+			isa = PBXGroup;
+			children = (
+				25DB6CC02A07287F00660E99 /* ContactsScreen.swift */,
+			);
+			path = ContactsScreen;
+			sourceTree = "<group>";
+		};
+		25DB6CBB2A07280D00660E99 /* PlacesScreen */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = PlacesScreen;
+			sourceTree = "<group>";
+		};
+		25DB6CBC2A07281800660E99 /* FeedScreen */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = FeedScreen;
+			sourceTree = "<group>";
+		};
+		25DB6CBD2A07282300660E99 /* MessagesScreen */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = MessagesScreen;
+			sourceTree = "<group>";
+		};
+		25DB6CBE2A07283300660E99 /* AccountScreen */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AccountScreen;
+			sourceTree = "<group>";
+		};
+		25DB6CBF2A07284D00660E99 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Shared;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,6 +188,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				25DB6CC12A07287F00660E99 /* ContactsScreen.swift in Sources */,
 				25DB6CAF2A0726C400660E99 /* ContentView.swift in Sources */,
 				25DB6CAD2A0726C400660E99 /* korusellApp.swift in Sources */,
 			);

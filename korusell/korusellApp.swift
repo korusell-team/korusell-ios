@@ -11,7 +11,7 @@ import SwiftUI
 struct korusellApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContactsScreen()
         }
     }
 }
