@@ -11,8 +11,4 @@ struct Member: Identifiable, Hashable {
     let id = UUID()
     let name: String
     let surname: String
-    
-    var description: String {
-        return self.surname + " " + self.name
-    }
 }
