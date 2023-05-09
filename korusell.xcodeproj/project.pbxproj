@@ -12,6 +12,8 @@
 		25DB6CB12A0726C600660E99 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 25DB6CB02A0726C600660E99 /* Assets.xcassets */; };
 		25DB6CB42A0726C600660E99 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 25DB6CB32A0726C600660E99 /* Preview Assets.xcassets */; };
 		25DB6CC12A07287F00660E99 /* ContactsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DB6CC02A07287F00660E99 /* ContactsScreen.swift */; };
+		25DB6CC82A0A5AC500660E99 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DB6CC72A0A5AC500660E99 /* Data.swift */; };
+		25DB6CCB2A0A5C1000660E99 /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DB6CCA2A0A5C1000660E99 /* Member.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +23,8 @@
 		25DB6CB02A0726C600660E99 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		25DB6CB32A0726C600660E99 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		25DB6CC02A07287F00660E99 /* ContactsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsScreen.swift; sourceTree = "<group>"; };
+		25DB6CC72A0A5AC500660E99 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		25DB6CCA2A0A5C1000660E99 /* Member.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,12 +59,13 @@
 			children = (
 				25DB6CAC2A0726C400660E99 /* korusellApp.swift */,
 				25DB6CAE2A0726C400660E99 /* ContentView.swift */,
-				25DB6CBA2A0727FA00660E99 /* ContactsScreen */,
-				25DB6CBB2A07280D00660E99 /* PlacesScreen */,
-				25DB6CBD2A07282300660E99 /* MessagesScreen */,
-				25DB6CBC2A07281800660E99 /* FeedScreen */,
-				25DB6CBE2A07283300660E99 /* AccountScreen */,
-				25DB6CBF2A07284D00660E99 /* Shared */,
+				25DB6CBA2A0727FA00660E99 /* Contacts */,
+				25DB6CC52A0A5A0000660E99 /* Account */,
+				25DB6CC42A0A59F900660E99 /* Feed */,
+				25DB6CC32A0A59F100660E99 /* Messages */,
+				25DB6CC22A0A59DE00660E99 /* Places */,
+				25DB6CC92A0A5BFA00660E99 /* Models */,
+				25DB6CC62A0A5A0700660E99 /* Shared */,
 				25DB6CB02A0726C600660E99 /* Assets.xcassets */,
 				25DB6CB22A0726C600660E99 /* Preview Content */,
 			);
@@ -75,47 +80,56 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		25DB6CBA2A0727FA00660E99 /* ContactsScreen */ = {
+		25DB6CBA2A0727FA00660E99 /* Contacts */ = {
 			isa = PBXGroup;
 			children = (
 				25DB6CC02A07287F00660E99 /* ContactsScreen.swift */,
 			);
-			path = ContactsScreen;
+			path = Contacts;
 			sourceTree = "<group>";
 		};
-		25DB6CBB2A07280D00660E99 /* PlacesScreen */ = {
+		25DB6CC22A0A59DE00660E99 /* Places */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = PlacesScreen;
+			name = Places;
 			sourceTree = "<group>";
 		};
-		25DB6CBC2A07281800660E99 /* FeedScreen */ = {
+		25DB6CC32A0A59F100660E99 /* Messages */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = FeedScreen;
+			name = Messages;
 			sourceTree = "<group>";
 		};
-		25DB6CBD2A07282300660E99 /* MessagesScreen */ = {
+		25DB6CC42A0A59F900660E99 /* Feed */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = MessagesScreen;
+			name = Feed;
 			sourceTree = "<group>";
 		};
-		25DB6CBE2A07283300660E99 /* AccountScreen */ = {
+		25DB6CC52A0A5A0000660E99 /* Account */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = AccountScreen;
+			name = Account;
 			sourceTree = "<group>";
 		};
-		25DB6CBF2A07284D00660E99 /* Shared */ = {
+		25DB6CC62A0A5A0700660E99 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				25DB6CC72A0A5AC500660E99 /* Data.swift */,
 			);
-			path = Shared;
+			name = Shared;
+			sourceTree = "<group>";
+		};
+		25DB6CC92A0A5BFA00660E99 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				25DB6CCA2A0A5C1000660E99 /* Member.swift */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -191,6 +205,8 @@
 				25DB6CC12A07287F00660E99 /* ContactsScreen.swift in Sources */,
 				25DB6CAF2A0726C400660E99 /* ContentView.swift in Sources */,
 				25DB6CAD2A0726C400660E99 /* korusellApp.swift in Sources */,
+				25DB6CC82A0A5AC500660E99 /* Data.swift in Sources */,
+				25DB6CCB2A0A5C1000660E99 /* Member.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
