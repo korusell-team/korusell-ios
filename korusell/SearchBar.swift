@@ -48,7 +48,7 @@ struct SearchBar: View {
                     Text("Отмена")
                 }
                 .padding(.trailing, 10)
-                .transition(.move(edge: .trailing))
+                .transition(.scale)
                 
             }
         }.animation(.easeOut, value: isEditing)

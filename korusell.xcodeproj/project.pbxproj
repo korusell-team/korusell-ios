@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		253B84E62A0A614F004FA223 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253B84E52A0A614F004FA223 /* SearchBar.swift */; };
+		253B84E82A0BA0A9004FA223 /* MemberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253B84E72A0BA0A9004FA223 /* MemberView.swift */; };
 		25DB6CAD2A0726C400660E99 /* korusellApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DB6CAC2A0726C400660E99 /* korusellApp.swift */; };
 		25DB6CAF2A0726C400660E99 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DB6CAE2A0726C400660E99 /* ContentView.swift */; };
 		25DB6CB12A0726C600660E99 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 25DB6CB02A0726C600660E99 /* Assets.xcassets */; };
@@ -19,6 +20,7 @@
 
 /* Begin PBXFileReference section */
 		253B84E52A0A614F004FA223 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		253B84E72A0BA0A9004FA223 /* MemberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberView.swift; sourceTree = "<group>"; };
 		25DB6CA92A0726C400660E99 /* korusell.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = korusell.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25DB6CAC2A0726C400660E99 /* korusellApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = korusellApp.swift; sourceTree = "<group>"; };
 		25DB6CAE2A0726C400660E99 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				25DB6CC02A07287F00660E99 /* ContactsScreen.swift */,
+				253B84E72A0BA0A9004FA223 /* MemberView.swift */,
 			);
 			path = Contacts;
 			sourceTree = "<group>";
@@ -215,6 +218,7 @@
 			files = (
 				25DB6CC12A07287F00660E99 /* ContactsScreen.swift in Sources */,
 				25DB6CAF2A0726C400660E99 /* ContentView.swift in Sources */,
+				253B84E82A0BA0A9004FA223 /* MemberView.swift in Sources */,
 				25DB6CAD2A0726C400660E99 /* korusellApp.swift in Sources */,
 				25DB6CC82A0A5AC500660E99 /* Data.swift in Sources */,
 				25DB6CCB2A0A5C1000660E99 /* Member.swift in Sources */,
