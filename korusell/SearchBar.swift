@@ -9,11 +9,11 @@ import SwiftUI
 
 struct SearchBar: View {
     @Binding var text: String
-    @FocusState private var isEditing: Bool
+    var isEditing: FocusState<Bool>.Binding
  
     var body: some View {
         HStack {
-            TextField("Поиск", text: $text)
+            TextField("Поиск", text: $text, onCommit: { print(text) })
                 .padding(7)
                 .padding(.horizontal, 25)
                 .background(Color(.systemGray6))
@@ -25,7 +25,7 @@ struct SearchBar: View {
                             .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
                             .padding(.leading, 8)
                  
-                        if isEditing && !text.isEmpty {
+                        if isEditing.wrappedValue && !text.isEmpty {
                             Button(action: {
                                 self.text = ""
                             }) {
@@ -36,14 +36,13 @@ struct SearchBar: View {
                         }
                     }
                 )
-                .padding(.horizontal, 10)
-                .focused($isEditing)
+//                .padding(.horizontal, 10)
+                .focused(isEditing)
             
-            if isEditing {
+            if isEditing.wrappedValue {
                 Button(action: {
-                    self.isEditing = false
+                    self.isEditing.wrappedValue = false
                     self.text = ""
- 
                 }) {
                     Text("Отмена")
                 }
@@ -51,12 +50,16 @@ struct SearchBar: View {
                 .transition(.scale)
                 
             }
-        }.animation(.easeOut, value: isEditing)
+        }
+        .padding(.horizontal, 20)
+        .padding(.vertical)
+        .background(Color.white)
     }
 }
 
 struct SearchBar_Previews: PreviewProvider {
     static var previews: some View {
-        SearchBar(text: .constant(""))
+        ContactsScreen()
+//        SearchBar(text: .constant(""))
     }
 }

@@ -8,33 +8,38 @@
 import SwiftUI
 
 struct ContactsScreen: View {
+    @FocusState private var isEditing: Bool
     @State var text = ""
-
+    @State var selectedCategory: Category? = nil
+    
+    let columns = [GridItem(.flexible())]
+    
     var body: some View {
         NavigationView {
-            VStack {
-                ScrollView {
-                    SearchBar(text: $text)
-                        .padding()
-                    let columns = [GridItem(.flexible()), GridItem(.flexible())]
-                    LazyVGrid(columns: columns, spacing: 8) {
-                        ForEach(filteredItem, id: \.self) { member in
-                            MemberView(member: member)
+            ScrollView(showsIndicators: false) {
+                VStack {
+                    if !isEditing {
+                        HStack(alignment: .center) {
+                            Text("Привет, \(fakeUser.name) 👋")
+                            Spacer()
+                            AvatarView(member: fakeUser)
                         }
-                    }.padding(.horizontal, 10)
+                        .padding(.horizontal, 20)
+                    }
+                    
+                    LazyVGrid(columns: columns, spacing: 0, pinnedViews: .sectionHeaders) {
+                        Section(header: SearchBar(text: $text, isEditing: $isEditing)) {
+                            CategoryListView(searchText: $text, selected: $selectedCategory)
+                                .padding(.vertical)
+                                .padding(.bottom, 10)
+                            MemberListView(searchText: $text)
+                        }
+                    }
                 }
             }
-             .navigationBarTitle("Контакты", displayMode: .large)
-        }
-    }
-    
-    
-    var filteredItem: [Member] {
-        guard !text.isEmpty else { return listOfMembers.sorted(by: { $0.surname < $1.surname}) }
-        
-        return listOfMembers.filter { item in
-            item.name.lowercased().contains(text.lowercased()) ||
-            item.surname.lowercased().contains(text.lowercased())
+            .padding(.top, 0.1)
+            .animation(.easeOut, value: isEditing)
+            .animation(.easeOut, value: selectedCategory)
         }
     }
 }

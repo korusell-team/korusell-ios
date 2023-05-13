@@ -13,4 +13,5 @@ struct Member: Identifiable, Hashable {
     let surname: String
     let nickname: String
     var image: String? = nil
+    var tags: [String] = []
 }

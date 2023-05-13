@@ -8,33 +8,60 @@
 import SwiftUI
 
 struct MemberView: View {
+    @Binding var searchText: String
+    
+    @State var marked = false
+    @State var liked = false
+    
     let member: Member
     
     var body: some View {
-        VStack {
-            Color.white
-                .frame(width: 100, height: 100)
-                .clipShape(Circle())
-                .padding()
-                .padding(.top)
-            HStack {
-                Text(member.surname)
-                Text(member.name)
+        VStack(alignment: .leading) {
+            HStack(alignment: .center, spacing: 5) {
+                AvatarView(member: member)
+                VStack(alignment: .leading) {
+                    HStack {
+                        Text(member.surname)
+                        Text(member.name)
+                    }
+                     .foregroundColor(.gray1100)
+                     .font(.body)
+                    
+                    Text("@" + member.nickname)
+                        .foregroundColor(.gray500)
+                }
+                Spacer()
+                Button(action: { self.liked.toggle() }) {
+                    Image(systemName: liked ? "heart.fill" : "heart")
+                        .resizable()
+                        .scaledToFit()
+                        .foregroundColor(liked ? .red300 : .gray600)
+                        .frame(width: 20, height: 20)
+                }.padding(.trailing, 10)
+                Button(action: { self.marked.toggle() }) {
+                    Image(systemName: marked ? "bookmark.fill" : "bookmark")
+                        .resizable()
+                        .scaledToFit()
+                        .foregroundColor(marked ? .yellow600 : .gray600)
+                        .frame(width: 20, height: 20)
+                }.padding(.trailing)
             }
-             .foregroundColor(.yellow)
-             .font(.body)
-             .padding(.bottom, 5)
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack {
+                    ForEach(member.tags, id: \.self) { tag in
+                        TagView(tag: tag, secondText: $searchText)
+                    }
+                }
+            }
+            .padding(.bottom, 3)
             
-            Text("@" + member.nickname)
-                .foregroundColor(.gray)
-                .padding(.bottom)
+            Color.gray900.frame(height: 0.5).padding(.horizontal)
         }
-            
-            
-            .frame(maxWidth: .infinity)
-            .background(Color.teal)
-            .cornerRadius(10)
-            
+        .padding(.horizontal)
+        .padding(.vertical, 3)
+        
+        .frame(maxWidth: .infinity)
+        
     }
 }
 
