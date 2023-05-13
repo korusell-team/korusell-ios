@@ -24,8 +24,8 @@ struct MemberView: View {
                         Text(member.surname)
                         Text(member.name)
                     }
-                     .foregroundColor(.gray1100)
-                     .font(.body)
+                    .foregroundColor(.gray1100)
+                    .font(.body)
                     
                     Text("@" + member.nickname)
                         .foregroundColor(.gray500)
@@ -46,10 +46,17 @@ struct MemberView: View {
                         .frame(width: 20, height: 20)
                 }.padding(.trailing)
             }
-                ScrollView(.horizontal, showsIndicators: false) {
+            ScrollView(.horizontal, showsIndicators: false) {
+                ScrollViewReader { proxy in
                     HStack {
-                    ForEach(member.tags, id: \.self) { tag in
-                        TagView(tag: tag, secondText: $searchText)
+                        ForEach(member.tags, id: \.self) { tag in
+                            TagView(tag: tag, secondText: $searchText)
+                                .id(tag)
+                        }
+                    }.onChange(of: searchText) { text in
+                        withAnimation {
+                            proxy.scrollTo(searchText, anchor: .center)
+                        }
                     }
                 }
             }

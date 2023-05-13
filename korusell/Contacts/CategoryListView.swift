@@ -57,8 +57,7 @@ struct CategoryListView: View {
                     .padding(.horizontal)
                 }
                 .frame(idealHeight: 225, maxHeight: 225, alignment: .top)
-                
-                
+                .transition(.move(edge: .leading))
             } else {
                 if !filteredCategories.isEmpty {
                     ScrollView(.horizontal, showsIndicators: false) {
@@ -72,6 +71,7 @@ struct CategoryListView: View {
                         }
                     }
                     .frame(idealHeight: 225, maxHeight: 225)
+                    .transition(.move(edge: .trailing))
                 } else {
                     Text("🙈 Список пуст...")
                         .foregroundColor(.gray900)

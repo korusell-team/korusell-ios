@@ -38,7 +38,7 @@ struct MemberListView: View {
             member.name.lowercased().contains(searchText.lowercased()) ||
             member.surname.lowercased().contains(searchText.lowercased()) ||
             !member.tags.filter { $0.lowercased().contains(searchText.lowercased()) }.isEmpty
-        }
+        }.sorted(by: { $0.surname < $1.surname})
     }
 }
 
