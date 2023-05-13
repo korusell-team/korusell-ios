@@ -28,7 +28,7 @@ struct ContactsScreen: View {
                     }
                     
                     LazyVGrid(columns: columns, spacing: 0, pinnedViews: .sectionHeaders) {
-                        Section(header: SearchBar(text: $text, isEditing: $isEditing)) {
+                        Section(header: SearchBar(text: $text, isEditing: $isEditing, selectedCategory: $selectedCategory)) {
                             CategoryListView(searchText: $text, selected: $selectedCategory)
                                 .padding(.vertical)
                                 .padding(.bottom, 10)

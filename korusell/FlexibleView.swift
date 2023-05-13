@@ -18,7 +18,7 @@ struct FlexibleView<Data: Collection, Content: View>: View where Data.Element: H
     let content: (Data.Element) -> Content
     
     var body : some View {
-        ScrollView(showsIndicators: false) {
+        ScrollView(showsIndicators: true) {
             VStack(alignment: alignment, spacing: spacing) {
                 ForEach(computeRows(), id: \.self) { rowElements in
                     HStack(spacing: spacing) {

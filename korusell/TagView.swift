@@ -13,6 +13,10 @@ struct TagView: View {
     
     var body: some View {
         Button(action: {
+             reset all
+             may be create func for resetting all search data and category
+             create observable object
+            
             self.secondText = self.secondText == tag ? "" : tag
         }) {
             Text(tag)

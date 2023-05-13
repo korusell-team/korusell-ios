@@ -10,7 +10,8 @@ import SwiftUI
 struct SearchBar: View {
     @Binding var text: String
     var isEditing: FocusState<Bool>.Binding
- 
+    @Binding var selectedCategory: Category?
+    
     var body: some View {
         HStack {
             TextField("Поиск", text: $text, onCommit: { print(text) })
@@ -43,6 +44,7 @@ struct SearchBar: View {
                 Button(action: {
                     self.isEditing.wrappedValue = false
                     self.text = ""
+                    self.selectedCategory = nil
                 }) {
                     Text("Отмена")
                 }

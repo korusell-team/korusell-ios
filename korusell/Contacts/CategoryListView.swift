@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CategoryListView: View {
+    @Namespace private var animation
     @Binding var searchText: String
     @Binding var selected: Category?
     
@@ -25,39 +26,51 @@ struct CategoryListView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
             
             if let selected {
-                VStack(alignment: .leading) {
-                    HStack {
-                        Image(selected.image)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 15, height: 15)
-                        Text(selected.name)
-                            .font(.footnote)
-                            .lineSpacing(-20)
-                            .foregroundColor(.gray800)
-                            .multilineTextAlignment(.center)
-                        Button(action: {
-                            withAnimation {
-                                self.selected = nil
-                                self.searchText = ""
-                            }
-                        }) {
-                            Image(systemName: "multiply.circle.fill")
-                                .foregroundColor(.gray)
-                                .padding(.trailing, 8)
-                        }
-                    }
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.horizontal, 30)
-                    .padding(.bottom)
+                ZStack(alignment: .topLeading) {
+                    Image(selected.image)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(maxWidth: .infinity, maxHeight: 225)
+                        .opacity(0.2)
+                        .matchedGeometryEffect(id: selected.name, in: animation)
                     
-                    FlexibleView(availableWidth: UIScreen.main.bounds.width - 30, data: selected.tags, spacing: 10, alignment: .leading) { tag in
-                        TagView(tag: tag, secondText: $searchText)
+                    VStack(alignment: .leading) {
+                        HStack {
+                            Image(selected.image)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 15, height: 15)
+                            Text(selected.name)
+                                .font(.footnote)
+                                .lineSpacing(-20)
+                                .foregroundColor(.gray800)
+                                .multilineTextAlignment(.center)
+                            Button(action: {
+                                withAnimation {
+                                    self.selected = nil
+                                    self.searchText = ""
+                                }
+                            }) {
+                                Image(systemName: "multiply.circle.fill")
+                                    .foregroundColor(.gray)
+                                    .padding(.trailing, 8)
+                            }
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.horizontal, 30)
+                        .padding(.bottom)
+
+                        FlexibleView(availableWidth: UIScreen.main.bounds.width - 30, data: selected.tags, spacing: 10, alignment: .leading) { tag in
+                            TagView(tag: tag, secondText: $searchText)
+                        }
+                        .padding(.horizontal)
                     }
-                    .padding(.horizontal)
-                }
-                .frame(idealHeight: 225, maxHeight: 225, alignment: .top)
-                .transition(.move(edge: .leading))
+                    
+//                    .transition(.move(edge: .leading))
+                }.frame(idealHeight: 225, maxHeight: 225, alignment: .top)
+                    
+                
+                
             } else {
                 if !filteredCategories.isEmpty {
                     ScrollView(.horizontal, showsIndicators: false) {
@@ -65,13 +78,14 @@ struct CategoryListView: View {
                             ForEach(filteredCategories, id: \.self) { category in
                                 HStack {
                                     CategoryView(searchText: $searchText, selected: $selected, category: category)
+                                        .matchedGeometryEffect(id: category.name, in: animation)
                                 }
                                 
                             }
                         }
                     }
                     .frame(idealHeight: 225, maxHeight: 225)
-                    .transition(.move(edge: .trailing))
+//                    .transition(.move(edge: .trailing))
                 } else {
                     Text("🙈 Список пуст...")
                         .foregroundColor(.gray900)
