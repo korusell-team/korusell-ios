@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MemberView: View {
-    @Binding var searchText: String
+    @EnvironmentObject var cc: ContactsController
     
     @State var marked = false
     @State var liked = false
@@ -49,13 +49,15 @@ struct MemberView: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 ScrollViewReader { proxy in
                     HStack {
+                        //TODO: Test it out!
+                        EmptyView().id("")
                         ForEach(member.tags, id: \.self) { tag in
-                            TagView(tag: tag, secondText: $searchText)
+                            TagView(tag: tag)
                                 .id(tag)
                         }
-                    }.onChange(of: searchText) { text in
+                    }.onChange(of: cc.text) { text in
                         withAnimation {
-                            proxy.scrollTo(searchText, anchor: .center)
+                            proxy.scrollTo(cc.text, anchor: .center)
                         }
                     }
                 }
@@ -66,9 +68,11 @@ struct MemberView: View {
         }
         .padding(.horizontal)
         .padding(.vertical, 3)
-        
         .frame(maxWidth: .infinity)
-        
+        .onAppear {
+            self.liked = member.likes.contains(where: { $0 == fakeUser.nickname })
+            self.marked = member.marks.contains(where: { $0 == fakeUser.nickname })
+        }
     }
 }
 

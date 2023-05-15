@@ -8,17 +8,15 @@
 import SwiftUI
 
 struct CategoryView: View {
-    @Binding var searchText: String
-    @Binding var selected: Category?
-    
+    @EnvironmentObject var cc: ContactsController
     var category: Category
     
     var body: some View {
         VStack(spacing: 10) {
             Button(action: {
                 withAnimation {
-                    selected = category
-                    searchText = category.name
+                    cc.selectedCategory = category
+                    cc.text = category.name
                 }
             }) {
                 Image(category.image)
@@ -42,7 +40,7 @@ struct CategoryView: View {
 
 struct CategoryView_Previews: PreviewProvider {
     static var previews: some View {
-        CategoryListView(searchText: .constant(""), selected: .constant(Category(name: "", image: "")))
+        CategoryListView()
 //        CategoryView(category: Category(name: "IT, Дизайн", image: "design"))
     }
 }

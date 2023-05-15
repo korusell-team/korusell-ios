@@ -8,13 +8,15 @@
 import SwiftUI
 
 struct SearchBar: View {
-    @Binding var text: String
+    @EnvironmentObject var cc: ContactsController
     var isEditing: FocusState<Bool>.Binding
-    @Binding var selectedCategory: Category?
     
     var body: some View {
         HStack {
-            TextField("Поиск", text: $text, onCommit: { print(text) })
+            TextField("Поиск", text: $cc.text, onCommit: {
+                // TODO: Test it out!
+                cc.selectedCategory = listOfCategories.filter { $0.name.lowercased() == cc.text.lowercased() }.first
+                })
                 .padding(7)
                 .padding(.horizontal, 25)
                 .background(Color(.systemGray6))
@@ -26,9 +28,9 @@ struct SearchBar: View {
                             .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
                             .padding(.leading, 8)
                  
-                        if isEditing.wrappedValue && !text.isEmpty {
+                        if cc.searchFocused && !cc.text.isEmpty {
                             Button(action: {
-                                self.text = ""
+                                cc.text = ""
                             }) {
                                 Image(systemName: "multiply.circle.fill")
                                     .foregroundColor(.gray)
@@ -37,14 +39,12 @@ struct SearchBar: View {
                         }
                     }
                 )
-//                .padding(.horizontal, 10)
                 .focused(isEditing)
             
             if isEditing.wrappedValue {
                 Button(action: {
-                    self.isEditing.wrappedValue = false
-                    self.text = ""
-                    self.selectedCategory = nil
+                    cc.resetState()
+                    isEditing.wrappedValue = false
                 }) {
                     Text("Отмена")
                 }

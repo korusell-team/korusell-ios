@@ -8,9 +8,8 @@
 import SwiftUI
 
 struct ContactsScreen: View {
+    @EnvironmentObject var cc: ContactsController
     @FocusState private var isEditing: Bool
-    @State var text = ""
-    @State var selectedCategory: Category? = nil
     
     let columns = [GridItem(.flexible())]
     
@@ -28,18 +27,24 @@ struct ContactsScreen: View {
                     }
                     
                     LazyVGrid(columns: columns, spacing: 0, pinnedViews: .sectionHeaders) {
-                        Section(header: SearchBar(text: $text, isEditing: $isEditing, selectedCategory: $selectedCategory)) {
-                            CategoryListView(searchText: $text, selected: $selectedCategory)
+                        Section(header: SearchBar(isEditing: $isEditing)) {
+                            CategoryListView()
                                 .padding(.vertical)
                                 .padding(.bottom, 10)
-                            MemberListView(searchText: $text)
+                            MemberListView()
                         }
                     }
                 }
             }
             .padding(.top, 0.1)
             .animation(.easeOut, value: isEditing)
-            .animation(.easeOut, value: selectedCategory)
+            .animation(.easeOut, value: cc.selectedCategory)
+            .onChange(of: isEditing) {
+                cc.searchFocused = $0
+            }
+            .onAppear {
+                self.isEditing = cc.searchFocused
+            }
         }
     }
 }

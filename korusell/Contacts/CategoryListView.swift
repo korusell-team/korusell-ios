@@ -8,9 +8,8 @@
 import SwiftUI
 
 struct CategoryListView: View {
+    @EnvironmentObject var cc: ContactsController
     @Namespace private var animation
-    @Binding var searchText: String
-    @Binding var selected: Category?
     
     let rows = [GridItem(.flexible()), GridItem(.flexible())]
     
@@ -25,7 +24,7 @@ struct CategoryListView: View {
                 .padding(.bottom)
                 .frame(maxWidth: .infinity, alignment: .leading)
             
-            if let selected {
+            if let selected = cc.selectedCategory {
                 ZStack(alignment: .topLeading) {
                     Image(selected.image)
                         .resizable()
@@ -45,12 +44,7 @@ struct CategoryListView: View {
                                 .lineSpacing(-20)
                                 .foregroundColor(.gray800)
                                 .multilineTextAlignment(.center)
-                            Button(action: {
-                                withAnimation {
-                                    self.selected = nil
-                                    self.searchText = ""
-                                }
-                            }) {
+                            Button(action: cc.resetState) {
                                 Image(systemName: "multiply.circle.fill")
                                     .foregroundColor(.gray)
                                     .padding(.trailing, 8)
@@ -61,7 +55,7 @@ struct CategoryListView: View {
                         .padding(.bottom)
 
                         FlexibleView(availableWidth: UIScreen.main.bounds.width - 30, data: selected.tags, spacing: 10, alignment: .leading) { tag in
-                            TagView(tag: tag, secondText: $searchText)
+                            TagView(tag: tag)
                         }
                         .padding(.horizontal)
                     }
@@ -72,12 +66,12 @@ struct CategoryListView: View {
                 
                 
             } else {
-                if !filteredCategories.isEmpty {
+                if !cc.filteredCategories.isEmpty {
                     ScrollView(.horizontal, showsIndicators: false) {
                         LazyHGrid(rows: rows, spacing: 0) {
-                            ForEach(filteredCategories, id: \.self) { category in
+                            ForEach(cc.filteredCategories, id: \.self) { category in
                                 HStack {
-                                    CategoryView(searchText: $searchText, selected: $selected, category: category)
+                                    CategoryView(category: category)
                                         .matchedGeometryEffect(id: category.name, in: animation)
                                 }
                                 
@@ -85,22 +79,12 @@ struct CategoryListView: View {
                         }
                     }
                     .frame(idealHeight: 225, maxHeight: 225)
-//                    .transition(.move(edge: .trailing))
                 } else {
                     Text("🙈 Список пуст...")
                         .foregroundColor(.gray900)
                         .frame(maxWidth: .infinity)
                 }
             }
-        }
-    }
-    
-    var filteredCategories: [Category] {
-        guard !searchText.isEmpty else { return listOfCategories }
-        
-        return listOfCategories.filter { category in
-            category.name.lowercased().contains(searchText.lowercased()) ||
-            !category.tags.filter { $0.lowercased().contains(searchText.lowercased()) }.isEmpty
         }
     }
 }
@@ -114,7 +98,7 @@ struct CategoriesView_Previews: PreviewProvider {
         @State var text: String = "Дизайн"
         @State var cat: Category? = nil
         var body: some View {
-            CategoryListView(searchText: $text, selected: $cat)
+            CategoryListView()
         }
     }
 }

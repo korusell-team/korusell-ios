@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MemberListView: View {
-    @Binding var searchText: String
+    @EnvironmentObject var cc: ContactsController
     
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
@@ -19,9 +19,9 @@ struct MemberListView: View {
                 .bold()
                 .padding(.horizontal, 30)
                 .padding(.bottom)
-            if !filteredMembers.isEmpty {
-                ForEach(filteredMembers, id: \.self) { member in
-                    MemberView(searchText: $searchText, member: member)
+            if !cc.filteredMembers.isEmpty {
+                ForEach(cc.filteredMembers, id: \.self) { member in
+                    MemberView(member: member)
                 }
             } else {
                 Text("🙈 Список пуст...")
@@ -29,16 +29,6 @@ struct MemberListView: View {
                     .frame(maxWidth: .infinity)
             }
         }.frame(maxWidth: .infinity)
-    }
-
-    var filteredMembers: [Member] {
-        guard !searchText.isEmpty else { return listOfMembers.sorted(by: { $0.surname < $1.surname}) }
-        
-        return listOfMembers.filter { member in
-            member.name.lowercased().contains(searchText.lowercased()) ||
-            member.surname.lowercased().contains(searchText.lowercased()) ||
-            !member.tags.filter { $0.lowercased().contains(searchText.lowercased()) }.isEmpty
-        }.sorted(by: { $0.surname < $1.surname})
     }
 }
 
@@ -51,7 +41,7 @@ struct MemberListView_Previews: PreviewProvider {
     struct Ex: View {
         @State var text: String = "с"
         var body: some View {
-            MemberListView(searchText: $text)
+            MemberListView()
         }
     }
 }

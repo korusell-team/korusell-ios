@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct korusellApp: App {
+    @StateObject var cc = ContactsController()
+    
     var body: some Scene {
         WindowGroup {
-            ContactsScreen()
+            ContactDetailsView()
+//            ContactsScreen()
+//                .environmentObject(cc)
         }
     }
 }

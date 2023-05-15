@@ -8,19 +8,19 @@
 import SwiftUI
 
 struct TagView: View {
+    @EnvironmentObject var cc: ContactsController
     var tag: String
-    @Binding var secondText: String
     
     var body: some View {
         Button(action: {
-            self.secondText = self.secondText == tag ? "" : tag
+            cc.text = cc.text == tag ? "" : tag
         }) {
             Text(tag)
                 .font(.footnote)
-                .foregroundColor(secondText == tag ? .white : .gray1000)
+                .foregroundColor(cc.text == tag ? .white : .gray1000)
                 .padding(.horizontal, 8)
                 .padding(.vertical, 5)
-                .background(secondText == tag ? Color.gray700 : Color.gray50)
+                .background(cc.text == tag ? Color.gray700 : Color.gray50)
                 .clipShape(Capsule())
         }
         

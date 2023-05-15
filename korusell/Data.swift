@@ -14,7 +14,7 @@ let listOfMembers: [Member] = [
     Member(name: "Андрей", surname: "Ким", nickname: "andrew1"),
     Member(name: "Владимир", surname: "Мун", nickname: "vladi87"),
     Member(name: "Вероника", surname: "Мун", nickname: "veronika_mun"),
-    Member(name: "David", surname: "Beckham", nickname: "david_b")
+    Member(name: "David", surname: "Beckham", nickname: "david_b", likes: ["k0jihero"], marks: ["k0jihero"])
 ]
 
 let fakeUser = Member(name: "Сергей", surname: "Ли", nickname: "k0jihero")
@@ -23,10 +23,10 @@ let fakeUser = Member(name: "Сергей", surname: "Ли", nickname: "k0jihero
 let listOfCategories: [Category] = [
     Category(name: "Дизайн", image: "design", tags: ["дизайн", "design", "UI", "UX"]),
     Category(name: "IT", image: "IT", tags: ["IT", "программирование", "приложения", "сайты", "web"]),
-    Category(name: "Фото, Видео", image: "photo", tags: ["photo", "video", "видео", "фото", "съемка", "праздник", "мероприятия"]),
+    Category(name: "Фото-Видео", image: "photo", tags: ["photo", "video", "видео", "фото", "съемка", "праздник", "мероприятия"]),
     Category(name: "Маркетинг", image: "marketing", tags: ["маркетинг", "продажи", "продвижение", "СММ", "SMM", "marketing"]),
     Category(name: "Переводы", image: "translate", tags: ["translate", "переводы", "переводчик", "корейский", "английский"]),
-    Category(name: "Здоровье, Красота", image: "health", tags: ["здоровье", "красота", "стоматология", "косметика", "тату", "парикмахер", "визажист", "маникюр", "педикюр", "зубной", "ресницы", "пластика", "гинекология", "услуги1", "здоровье1", "красота1", "стоматология1", "косметика1", "тату1", "парикмахер1", "визажист1", "маникюр1", "педикюр1", "зубной1", "ресницы1", "пластика1", "гинекология1"]),
+    Category(name: "Здоровье-Красота", image: "health", tags: ["здоровье", "красота", "стоматология", "косметика", "тату", "парикмахер", "визажист", "маникюр", "педикюр", "зубной", "ресницы", "пластика", "гинекология"]),
     Category(name: "Транспорт", image: "transport", tags: ["transport", "транспорт", "перевозки", "груз", "автомобиль", "купля", "продажа", "экспорт", "СТО", "ремонт", "тюнинг"]),
     Category(name: "Образование", image: "education", tags: ["образование", "смена", "виза", "корейский", "язык", "дизайн", "программирование", "курсы"]),
     Category(name: "Ремонт", image: "repair", tags: ["ремонт", "электроника", "техника", "дом", "квартиры", "помещение", "сантехника", "электрика"]),
