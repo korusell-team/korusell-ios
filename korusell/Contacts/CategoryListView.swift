@@ -14,7 +14,7 @@ struct CategoryListView: View {
     let rows = [GridItem(.flexible()), GridItem(.flexible())]
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 5) {
+        VStack(alignment: .center, spacing: 5) {
             Text("🔍 Категории")
                 .tracking(-1)
                 .foregroundColor(.gray1100)
@@ -22,14 +22,14 @@ struct CategoryListView: View {
                 .bold()
                 .padding(.horizontal, 30)
                 .padding(.bottom)
-                .frame(maxWidth: .infinity, alignment: .leading)
+                .frame(maxWidth: UIScreen.main.bounds.width, alignment: .leading)
             
             if let selected = cc.selectedCategory {
                 ZStack(alignment: .topLeading) {
                     Image(selected.image)
                         .resizable()
                         .scaledToFit()
-                        .frame(maxWidth: .infinity, maxHeight: 225)
+                        .frame(maxWidth: UIScreen.main.bounds.width, maxHeight: 225)
                         .opacity(0.2)
                         .matchedGeometryEffect(id: selected.name, in: animation)
                     
@@ -50,7 +50,7 @@ struct CategoryListView: View {
                                     .padding(.trailing, 8)
                             }
                         }
-                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .frame(maxWidth: UIScreen.main.bounds.width, alignment: .leading)
                         .padding(.horizontal, 30)
                         .padding(.bottom)
 
@@ -67,7 +67,7 @@ struct CategoryListView: View {
                 
             } else {
                 if !cc.filteredCategories.isEmpty {
-                    ScrollView(.horizontal, showsIndicators: false) {
+//                    ScrollView(.horizontal, showsIndicators: false) {
                         LazyHGrid(rows: rows, spacing: 0) {
                             ForEach(cc.filteredCategories, id: \.self) { category in
                                 HStack {
@@ -77,12 +77,12 @@ struct CategoryListView: View {
                                 
                             }
                         }
-                    }
+//                    }
                     .frame(idealHeight: 225, maxHeight: 225)
                 } else {
                     Text("🙈 Список пуст...")
                         .foregroundColor(.gray900)
-                        .frame(maxWidth: .infinity)
+                        .frame(maxWidth: UIScreen.main.bounds.width)
                 }
             }
         }
@@ -94,11 +94,14 @@ struct CategoriesView_Previews: PreviewProvider {
         Ex()
     }
     
+    static let cc = ContactsController()
+    
     struct Ex: View {
         @State var text: String = "Дизайн"
         @State var cat: Category? = nil
         var body: some View {
             CategoryListView()
+                .environmentObject(cc)
         }
     }
 }

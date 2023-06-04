@@ -22,25 +22,30 @@ struct CategoryView: View {
                 Image(category.image)
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 30, height: 30)
+                    .frame(width: 25, height: 25)
                     .padding()
-                    .background(Color.bg)
-                    .cornerRadius(15)
-                    .shadow(color: .gray50, radius: 3, x: 3, y: 3)
+                    .background(Color.gray100.opacity(0.5))
+                    .cornerRadius(10)
+//                    .shadow(color: .gray50, radius: 1, x: 1, y: 1)
             }
             Text(category.name)
                 .font(.footnote)
                 .lineSpacing(-20)
-                .foregroundColor(.gray800)
+                .foregroundColor(.gray900)
                 .multilineTextAlignment(.center)
-            
-        }.frame(width: 95, height: 110, alignment: .top)
+                .padding(.horizontal, 10)
+        }.frame(width: 80, height: 110, alignment: .top)
     }
 }
 
 struct CategoryView_Previews: PreviewProvider {
+    static let cc = ContactsController()
     static var previews: some View {
-        CategoryListView()
+        VStack {
+            CategoryListView()
+        }.background(Color.gray10)
+        
+            .environmentObject(cc)
 //        CategoryView(category: Category(name: "IT, Дизайн", image: "design"))
     }
 }

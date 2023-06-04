@@ -73,3 +73,9 @@ extension Color {
     static let yellow900 = Color("yellow-900")
     static let yellow1000 = Color("yellow-1000")
 }
+
+extension View {
+    func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
+        clipShape(RoundedCorner(radius: radius, corners: corners) )
+    }
+}

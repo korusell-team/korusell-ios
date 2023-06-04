@@ -15,14 +15,39 @@ struct TagView: View {
         Button(action: {
             cc.text = cc.text == tag ? "" : tag
         }) {
-            Text(tag)
+            HStack {
+                Text(tag.uppercased())
+                    .padding(.horizontal, 8)
+                    .padding(.vertical, 5)
+                    .background(cc.text == tag ? Color.gray50 : Color.clear)
+                    .clipShape(Capsule())
+                Divider()
+                    .padding(.vertical, 5)
+            }
                 .font(.footnote)
-                .foregroundColor(cc.text == tag ? .white : .gray1000)
-                .padding(.horizontal, 8)
-                .padding(.vertical, 5)
-                .background(cc.text == tag ? Color.gray700 : Color.gray50)
-                .clipShape(Capsule())
+                .foregroundColor(cc.text == tag ? .gray1100 : .gray1000)
+                .frame(height: 30)
+                
+                
         }
         
+    }
+}
+
+struct TagView_Previews: PreviewProvider {
+    static var previews: some View {
+        ScrollView(showsIndicators: false) {
+            VStack(spacing: 0) {
+                MemberView(member:
+                            Member(name: "Евгений", surname: "Хан", tags: ["тамада", "ведущий", "продюсер"]))
+                MemberView(member:
+                            Member(name: "sdf", surname: "sf", tags: ["тамада", "ведущий"]))
+                MemberView(member:
+                            Member(name: "sdf", surname: "sf", tags: ["тамада", "ведущий"]))
+                MemberView(member:
+                            Member(name: "sdf", surname: "sf", tags: ["тамада", "ведущий"]))
+            }
+        }.background(Color.bg)
+            .environmentObject(ContactsController())
     }
 }

@@ -1,17 +1,15 @@
 //
-//  Member.swift
+//  Place.swift
 //  korusell
 //
-//  Created by Sergey Lee on 2023/05/09.
+//  Created by Sergey Lee on 2023/06/04.
 //
 
 import Foundation
 
-struct Member: Identifiable, Hashable {
+struct Place: Identifiable, Hashable {
     let id = UUID()
     let name: String
-    let surname: String
-//    let nickname: String
     var image: String? = nil
     var tags: [String] = []
     var likes: [String] = []
@@ -20,4 +18,6 @@ struct Member: Identifiable, Hashable {
     var instagram: String? = nil
     var link: String? = nil
     var details: String? = nil
+    var latitude: Double? = nil
+    var longitude: Double? = nil
 }

@@ -7,18 +7,24 @@
 
 import Foundation
 
+let fakeUser = Member(name: "Сергей", surname: "Ли")
+
+
 let listOfMembers: [Member] = [
-    Member(name: "Евгений", surname: "Ким", nickname: "eugene88", tags: ["мероприятия", "ведущий", "праздники", "свадьбы", "асянди", "хангаби", "успешный успех", "тамада"]),
-    Member(name: "Сергей", surname: "Ли", nickname: "k0jihero", tags: ["IT", "программирование", "музыкант", "ios", "мобильные", "приложения"]),
-    Member(name: "Антон", surname: "Емельянов", nickname: "antonmaker", tags: ["IT", "программирование", "музыкант", "web", "сайты"]),
-    Member(name: "Андрей", surname: "Ким", nickname: "andrew1"),
-    Member(name: "Владимир", surname: "Мун", nickname: "vladi87"),
-    Member(name: "Вероника", surname: "Мун", nickname: "veronika_mun"),
-    Member(name: "David", surname: "Beckham", nickname: "david_b", likes: ["k0jihero"], marks: ["k0jihero"])
+    Member(name: "Евгений", surname: "Ким", tags: ["мероприятия", "ведущий", "праздники", "свадьбы", "асянди", "хангаби", "успешный успех", "тамада"]),
+    Member(name: "Сергей", surname: "Ли", tags: ["IT", "программирование", "музыкант", "ios", "мобильные", "приложения"]),
+    Member(name: "Антон", surname: "Емельянов", tags: ["IT", "программирование", "музыкант", "web", "сайты"]),
+    Member(name: "Андрей", surname: "Ким"),
+    Member(name: "Владимир", surname: "Мун"),
+    Member(name: "Вероника", surname: "Мун"),
+    Member(name: "David", surname: "Beckham", likes: ["k0jihero"], marks: ["k0jihero"], instagram: "https://instagram.com/koreathroughthelensofiphone?igshid=OGQ5ZDc2ODk2ZA==", details: "This is details information for David Beckham!")
 ]
 
-let fakeUser = Member(name: "Сергей", surname: "Ли", nickname: "k0jihero")
-
+let listOfPlaces: [Place] = [
+    Place(name: "Кафе Виктория", tags: ["мероприятия", "праздники", "свадьбы", "асянди", "хангаби"]),
+    Place(name: "Habsida", tags: ["IT", "программирование", "обучение"]),
+    Place(name: "СТО", tags: ["транспорт", "ремонт"]),
+]
 
 let listOfCategories: [Category] = [
     Category(name: "Дизайн", image: "design", tags: ["дизайн", "design", "UI", "UX"]),

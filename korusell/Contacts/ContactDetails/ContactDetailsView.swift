@@ -10,7 +10,7 @@ import SwiftUI
 struct ContactDetailsView: View {
     @State var offset: CGFloat = 0
     
-    var member: Member = Member(name: "Andrew", surname: "Garfield", nickname: "garfi90")
+    var member: Member = Member(name: "Andrew", surname: "Garfield")
     var body: some View {
         TrackableScrollView(.vertical, showIndicators: false, contentOffset: $offset) {
             VStack {
@@ -32,10 +32,10 @@ struct ContactDetailsView: View {
                         .foregroundColor(.gray1100)
                         .font(.title2)
                             
-                        Text("@" + member.nickname)
-                            .foregroundColor(.gray500)
-                            .shadow(color: .gray100, radius: 1, x: 1, y: 1)
-                            .padding(.bottom)
+//                        Text("@" + member.nickname)
+//                            .foregroundColor(.gray500)
+//                            .shadow(color: .gray100, radius: 1, x: 1, y: 1)
+//                            .padding(.bottom)
                         HStack(spacing: 20) {
                             VStack {
                                 Text("44")
@@ -87,7 +87,7 @@ struct ContactDetailsView: View {
                                 .background(Color.yellow400)
                                 .cornerRadius(25)
                         }
-                    }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+                    }.frame(maxWidth: UIScreen.main.bounds.width, maxHeight: .infinity, alignment: .bottom)
                 }
                 VStack {
                     HStack {

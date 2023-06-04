@@ -18,6 +18,11 @@
 		253B84F62A0F5B3E004FA223 /* MemberListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253B84F52A0F5B3E004FA223 /* MemberListView.swift */; };
 		253B84F82A0F7B00004FA223 /* FlexibleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253B84F72A0F7B00004FA223 /* FlexibleView.swift */; };
 		253B84FA2A0F7F9E004FA223 /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253B84F92A0F7F9E004FA223 /* TagView.swift */; };
+		256C97592A2C4954003DD1B4 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256C97582A2C4954003DD1B4 /* Place.swift */; };
+		256C975B2A2C4C47003DD1B4 /* PlaceListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256C975A2A2C4C47003DD1B4 /* PlaceListView.swift */; };
+		256C975D2A2C4D85003DD1B4 /* PlaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256C975C2A2C4D85003DD1B4 /* PlaceView.swift */; };
+		259338092A29E22E00C7AF1B /* RoundedCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259338082A29E22E00C7AF1B /* RoundedCorner.swift */; };
+		2593380B2A29ED8700C7AF1B /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2593380A2A29ED8700C7AF1B /* WebView.swift */; };
 		2596144A2A1233C000393712 /* ContactsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259614492A1233C000393712 /* ContactsController.swift */; };
 		2596144D2A1247D500393712 /* ContactDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2596144C2A1247D500393712 /* ContactDetailsView.swift */; };
 		2596144F2A124E5900393712 /* TrackableScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2596144E2A124E5900393712 /* TrackableScrollView.swift */; };
@@ -41,6 +46,11 @@
 		253B84F52A0F5B3E004FA223 /* MemberListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberListView.swift; sourceTree = "<group>"; };
 		253B84F72A0F7B00004FA223 /* FlexibleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexibleView.swift; sourceTree = "<group>"; };
 		253B84F92A0F7F9E004FA223 /* TagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagView.swift; sourceTree = "<group>"; };
+		256C97582A2C4954003DD1B4 /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
+		256C975A2A2C4C47003DD1B4 /* PlaceListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceListView.swift; sourceTree = "<group>"; };
+		256C975C2A2C4D85003DD1B4 /* PlaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceView.swift; sourceTree = "<group>"; };
+		259338082A29E22E00C7AF1B /* RoundedCorner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCorner.swift; sourceTree = "<group>"; };
+		2593380A2A29ED8700C7AF1B /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		259614492A1233C000393712 /* ContactsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsController.swift; sourceTree = "<group>"; };
 		2596144C2A1247D500393712 /* ContactDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailsView.swift; sourceTree = "<group>"; };
 		2596144E2A124E5900393712 /* TrackableScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackableScrollView.swift; sourceTree = "<group>"; };
@@ -129,14 +139,16 @@
 			children = (
 				2596144B2A1247B900393712 /* ContactDetails */,
 				25DB6CC02A07287F00660E99 /* ContactsScreen.swift */,
-				253B84EF2A0F18A8004FA223 /* CategoryListView.swift */,
 				253B84F12A0F18C0004FA223 /* CategoryView.swift */,
+				253B84EF2A0F18A8004FA223 /* CategoryListView.swift */,
 				253B84F52A0F5B3E004FA223 /* MemberListView.swift */,
 				253B84E72A0BA0A9004FA223 /* MemberView.swift */,
 				253B84EB2A0CF3D6004FA223 /* AvatarView.swift */,
 				253B84E52A0A614F004FA223 /* SearchBar.swift */,
 				259614492A1233C000393712 /* ContactsController.swift */,
 				253B84F92A0F7F9E004FA223 /* TagView.swift */,
+				256C975A2A2C4C47003DD1B4 /* PlaceListView.swift */,
+				256C975C2A2C4D85003DD1B4 /* PlaceView.swift */,
 			);
 			path = Contacts;
 			sourceTree = "<group>";
@@ -174,6 +186,8 @@
 			children = (
 				25DB6CC72A0A5AC500660E99 /* Data.swift */,
 				253B84E92A0C59CE004FA223 /* Extensions.swift */,
+				259338082A29E22E00C7AF1B /* RoundedCorner.swift */,
+				2593380A2A29ED8700C7AF1B /* WebView.swift */,
 			);
 			name = Shared;
 			sourceTree = "<group>";
@@ -183,6 +197,7 @@
 			children = (
 				25DB6CCA2A0A5C1000660E99 /* Member.swift */,
 				253B84F32A0F1B1A004FA223 /* Category.swift */,
+				256C97582A2C4954003DD1B4 /* Place.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -258,6 +273,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				25DB6CC12A07287F00660E99 /* ContactsScreen.swift in Sources */,
+				2593380B2A29ED8700C7AF1B /* WebView.swift in Sources */,
+				256C975D2A2C4D85003DD1B4 /* PlaceView.swift in Sources */,
 				253B84EA2A0C59CE004FA223 /* Extensions.swift in Sources */,
 				253B84F22A0F18C0004FA223 /* CategoryView.swift in Sources */,
 				253B84EE2A0D1815004FA223 /* Blur.swift in Sources */,
@@ -268,12 +285,15 @@
 				25DB6CCB2A0A5C1000660E99 /* Member.swift in Sources */,
 				2596144F2A124E5900393712 /* TrackableScrollView.swift in Sources */,
 				253B84F42A0F1B1A004FA223 /* Category.swift in Sources */,
+				256C97592A2C4954003DD1B4 /* Place.swift in Sources */,
 				253B84F82A0F7B00004FA223 /* FlexibleView.swift in Sources */,
 				253B84F62A0F5B3E004FA223 /* MemberListView.swift in Sources */,
 				253B84F02A0F18A8004FA223 /* CategoryListView.swift in Sources */,
+				256C975B2A2C4C47003DD1B4 /* PlaceListView.swift in Sources */,
 				253B84EC2A0CF3D6004FA223 /* AvatarView.swift in Sources */,
 				253B84E62A0A614F004FA223 /* SearchBar.swift in Sources */,
 				2596144D2A1247D500393712 /* ContactDetailsView.swift in Sources */,
+				259338092A29E22E00C7AF1B /* RoundedCorner.swift in Sources */,
 				253B84FA2A0F7F9E004FA223 /* TagView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

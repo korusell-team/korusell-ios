@@ -13,9 +13,9 @@ struct korusellApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContactDetailsView()
-//            ContactsScreen()
-//                .environmentObject(cc)
+//            ContactDetailsView()
+            ContactsScreen()
+                .environmentObject(cc)
         }
     }
 }

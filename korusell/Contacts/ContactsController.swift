@@ -5,7 +5,7 @@
 //  Created by Sergey Lee on 2023/05/15.
 //
 
-import Foundation
+import SwiftUI
 
 class ContactsController: ObservableObject {
     @Published var searchFocused: Bool = false
@@ -13,9 +13,11 @@ class ContactsController: ObservableObject {
     @Published var selectedCategory: Category? = nil
     
     func resetState() {
-        self.searchFocused = false
-        self.text = ""
-        self.selectedCategory = nil
+        withAnimation {
+            self.searchFocused = false
+            self.text = ""
+            self.selectedCategory = nil
+        }
     }
     
     var filteredCategories: [Category] {
@@ -35,5 +37,14 @@ class ContactsController: ObservableObject {
             member.surname.lowercased().contains(text.lowercased()) ||
             !member.tags.filter { $0.lowercased().contains(text.lowercased()) }.isEmpty
         }.sorted(by: { $0.surname < $1.surname})
+    }
+    
+    var filteredPlaces: [Place] {
+        guard !text.isEmpty else { return listOfPlaces.sorted(by: { $0.name < $1.name}) }
+        
+        return listOfPlaces.filter { place in
+            place.name.lowercased().contains(text.lowercased()) ||
+            !place.tags.filter { $0.lowercased().contains(text.lowercased()) }.isEmpty
+        }.sorted(by: { $0.name < $1.name})
     }
 }

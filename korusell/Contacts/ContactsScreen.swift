@@ -32,6 +32,8 @@ struct ContactsScreen: View {
                                 .padding(.vertical)
                                 .padding(.bottom, 10)
                             MemberListView()
+                                .padding(.bottom, 10)
+                            PlaceListView()
                         }
                     }
                 }
@@ -39,6 +41,7 @@ struct ContactsScreen: View {
             .padding(.top, 0.1)
             .animation(.easeOut, value: isEditing)
             .animation(.easeOut, value: cc.selectedCategory)
+            .background(Color.gray10)
             .onChange(of: isEditing) {
                 cc.searchFocused = $0
             }
@@ -49,11 +52,11 @@ struct ContactsScreen: View {
     }
 }
 
-
-
 struct ContactsScreen_Previews: PreviewProvider {
+    static let cc = ContactsController()
+    
     static var previews: some View {
         ContactsScreen()
-        
+            .environmentObject(cc)
     }
 }

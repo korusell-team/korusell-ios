@@ -56,9 +56,9 @@ struct AvatarView: View {
 
 struct AvatarView_Previews: PreviewProvider {
     static var previews: some View {
-        let member = Member(name: "John", surname: "Legend", nickname: "jl-oficial")
+        let member = Member(name: "John", surname: "Legend")
         AvatarView(member: member, messages: 3)
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .frame(maxWidth: UIScreen.main.bounds.width, maxHeight: .infinity)
             .background(Color.yellow)
             .previewDevice("iPhone 14 Pro")
     }

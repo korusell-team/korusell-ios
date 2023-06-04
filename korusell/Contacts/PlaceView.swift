@@ -1,13 +1,13 @@
 //
-//  MemberView.swift
+//  PlaceView.swift
 //  korusell
 //
-//  Created by Sergey Lee on 2023/05/10.
+//  Created by Sergey Lee on 2023/06/04.
 //
 
 import SwiftUI
 
-struct MemberView: View {
+struct PlaceView: View {
     @Environment(\.openURL) var openURL
     @EnvironmentObject var cc: ContactsController
     
@@ -17,17 +17,16 @@ struct MemberView: View {
     @State var isPresentWebView = false
     @State var isPresentInfo = false
     
-    let member: Member
+    let place: Place
     
     var body: some View {
         VStack {
             HStack(alignment: .center, spacing: 5) {
-                AvatarView(member: member)
+//                AvatarView(member: place)
                 
                 VStack(alignment: .leading, spacing: 0) {
                     HStack {
-                        Text(member.surname)
-                        Text(member.name)
+                        Text(place.name)
                     }
                     .foregroundColor(.gray1100)
                     .font(.body)
@@ -57,7 +56,7 @@ struct MemberView: View {
             
             VStack {
                 HStack(spacing: 20) {
-                    if let phone = member.phone {
+                    if let phone = place.phone {
                         connectButton(action: {
                             let prefix = "tel://"
                             let phoneNumberformatted = prefix + phone
@@ -74,7 +73,7 @@ struct MemberView: View {
                     }
                     
                     
-                    if let instagram = member.instagram {
+                    if let instagram = place.instagram {
                         connectButton(action: {
                             isPresentWebView.toggle()
                             //                        openURL(URL(string: "https://www.instagram.com")!)
@@ -85,19 +84,23 @@ struct MemberView: View {
                         Divider()
                     }
                     
-                    if let link = member.link {
+                    if let link = place.link {
                         connectButton(action: {
                             openURL(URL(string: link)!)
                         }, image: "ic-www")
                         Divider()
                     }
 
-                    if let details = member.details {
+                    if let details = place.details {
                         connectButton(action: {
                             isPresentInfo.toggle()
                         }, image: "ic-details")
                         .sheet(isPresented: $isPresentInfo) {
-                            ContactDetailsView()
+                            VStack {
+                                Text("Place details. Add me!")
+                                    .padding(.bottom)
+                                Text(details)
+                            }
                         }
                     }
                 }
@@ -155,7 +158,7 @@ struct MemberView: View {
                 ScrollViewReader { proxy in
                     HStack {
                         EmptyView().id("")
-                        ForEach(member.tags, id: \.self) { tag in
+                        ForEach(place.tags, id: \.self) { tag in
                             TagView(tag: tag)
                                 .id(tag)
                         }
@@ -172,27 +175,23 @@ struct MemberView: View {
     }
     
     private var anyInfoExists: Bool {
-        return member.link != nil
-        || member.details != nil
-        || member.instagram != nil
-        || member.phone != nil
+        return place.link != nil
+        || place.details != nil
+        || place.instagram != nil
+        || place.phone != nil
     }
 }
 
-struct MemberView_Previews: PreviewProvider {
+struct PlaceView_Previews: PreviewProvider {
     static var previews: some View {
         ScrollView(showsIndicators: false) {
             VStack(spacing: 0) {
-                MemberView(member:
-                            Member(name: "Евгений", surname: "Хан", tags: ["тамада", "ведущий", "продюсер"], phone: "11011012"))
-                MemberView(member:
-                            Member(name: "sdf", surname: "sf", tags: ["тамада", "ведущий"]))
-                MemberView(member:
-                            Member(name: "sdf", surname: "sf", tags: ["тамада", "ведущий"]))
-                MemberView(member:
-                            Member(name: "sdf", surname: "sf", tags: ["тамада", "ведущий"]))
+                PlaceView(place: Place(name: "Кафе Виктория", tags: ["мероприятия", "праздники", "свадьбы", "асянди", "хангаби"]))
+                PlaceView(place: Place(name: "Habsida", tags: ["IT", "программирование", "обучение"]))
+                PlaceView(place: Place(name: "СТО", tags: ["транспорт", "ремонт"]))
             }
         }.background(Color.bg)
             .environmentObject(ContactsController())
     }
 }
+

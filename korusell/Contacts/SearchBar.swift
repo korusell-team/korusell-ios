@@ -19,13 +19,13 @@ struct SearchBar: View {
                 })
                 .padding(7)
                 .padding(.horizontal, 25)
-                .background(Color(.systemGray6))
+                .background(Color.gray50)
                 .cornerRadius(8)
                 .overlay(
                     HStack {
                         Image(systemName: "magnifyingglass")
                             .foregroundColor(.gray)
-                            .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+                            .frame(minWidth: 0, maxWidth: UIScreen.main.bounds.width, alignment: .leading)
                             .padding(.leading, 8)
                  
                         if cc.searchFocused && !cc.text.isEmpty {
@@ -53,15 +53,18 @@ struct SearchBar: View {
                 
             }
         }
+        .background(Color.gray10)
         .padding(.horizontal, 20)
         .padding(.vertical)
-        .background(Color.white)
+        .background(Color.gray10)
     }
 }
 
 struct SearchBar_Previews: PreviewProvider {
+    static let cc = ContactsController()
     static var previews: some View {
         ContactsScreen()
+            .environmentObject(cc)
 //        SearchBar(text: .constant(""))
     }
 }
