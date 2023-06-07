@@ -20,8 +20,11 @@ struct AvatarView: View {
             Circle()
                 .fill(Color.gray900)
                 .frame(width: 46, height: 46)
-            Text(String(member.name.capitalized.first ?? "?"))
-                .font(.largeTitle)
+            Text(String(member.name.capitalized.first!))
+                .font(.subheadline)
+                .foregroundColor(.white)
+            + Text(String(member.surname.capitalized.first!))
+                .font(.subheadline)
                 .foregroundColor(.white)
             
             if let image {

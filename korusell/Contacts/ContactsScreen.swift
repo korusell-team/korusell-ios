@@ -27,12 +27,17 @@ struct ContactsScreen: View {
                     }
                     
                     LazyVGrid(columns: columns, spacing: 0, pinnedViews: .sectionHeaders) {
-                        Section(header: SearchBar(isEditing: $isEditing)) {
-                            CategoryListView()
-                                .padding(.vertical)
-                                .padding(.bottom, 10)
+                        Section(header:
+                                    VStack(spacing: 0) {
+                            SearchBar(isEditing: $isEditing)
+                            if isEditing {
+                                CategoryListView()
+                                    .padding(.vertical)
+                                    .background(Color.gray10)
+                            }
+                        }) {
                             MemberListView()
-                                .padding(.bottom, 10)
+                                .padding(.vertical, 10)
                             PlaceListView()
                         }
                     }
@@ -44,6 +49,11 @@ struct ContactsScreen: View {
             .background(Color.gray10)
             .onChange(of: isEditing) {
                 cc.searchFocused = $0
+            }
+            .onChange(of: cc.text) {
+                if !$0.isEmpty {
+                    isEditing = true
+                }
             }
             .onAppear {
                 self.isEditing = cc.searchFocused

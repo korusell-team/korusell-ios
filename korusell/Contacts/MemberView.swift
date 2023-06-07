@@ -32,85 +32,83 @@ struct MemberView: View {
                     .foregroundColor(.gray1100)
                     .font(.body)
                     .padding(.leading, 8)
-                    tagsView
-                }
-                
-                Spacer()
-                //                    buttonsView
-                
-                
-            }
-            //                .frame(height: 80)
-            .padding(.horizontal)
-            .padding(.top, 15)
-            //            .background(Color.white)
-            .cornerRadius(20)
-            .shadow(color: Color.gray100, radius: 3, y: 2)
-            .zIndex(2)
-            .onTapGesture {
-                withAnimation(.interpolatingSpring(stiffness: 100, damping: 10)) {
-                    if anyInfoExists {
-                        connectOpened.toggle()
-                    }
-                }
-            }
-            
-            VStack {
-                HStack(spacing: 20) {
-                    if let phone = member.phone {
-                        connectButton(action: {
-                            let prefix = "tel://"
-                            let phoneNumberformatted = prefix + phone
-                            guard let url = URL(string: phoneNumberformatted) else { return }
-                            UIApplication.shared.open(url)
-                        }, image: "ic-phone-call")
-                        Divider()
-                        connectButton(action: {
-                            let sms: String = "sms:+8210\(phone)"
-                            let strURL: String = sms.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-                            UIApplication.shared.open(URL.init(string: strURL)!, options: [:], completionHandler: nil)
-                        }, image: "ic-messages")
-                        Divider()
-                    }
                     
-                    
-                    if let instagram = member.instagram {
-                        connectButton(action: {
-                            isPresentWebView.toggle()
-                            //                        openURL(URL(string: "https://www.instagram.com")!)
-                        }, image: "ic-instagram")
-                        .sheet(isPresented: $isPresentWebView) {
-                            WebView(url: URL(string: instagram)!)
-                        }
-                        Divider()
-                    }
-                    
-                    if let link = member.link {
-                        connectButton(action: {
-                            openURL(URL(string: link)!)
-                        }, image: "ic-www")
-                        Divider()
-                    }
-
                     if let details = member.details {
-                        connectButton(action: {
-                            isPresentInfo.toggle()
-                        }, image: "ic-details")
-                        .sheet(isPresented: $isPresentInfo) {
-                            ContactDetailsView()
-                        }
+                        Text(details)
+                            .font(.footnote)
+                            .foregroundColor(.gray400)
+                            .lineLimit(2)
+                            .padding(.leading, 8)
+                            .fixedSize(horizontal: false, vertical: true)
+                            .padding(.vertical, 5)
                     }
                 }
-                .font(.largeTitle)
-                .foregroundColor(.gray600)
-                .padding(.horizontal, 30)
-                .padding(.vertical, 15)
             }
-            .frame(height: connectOpened ? 70 : 0, alignment: .bottom)
-            .opacity(connectOpened ? 1 : 0)
-            .background(Color.white)
-            .cornerRadius(20, corners: [.bottomLeft, .bottomRight])
-        }.padding(.horizontal, 10)
+            .padding(.horizontal)
+            .padding(.horizontal, 10)
+            .onTapGesture {
+                if anyInfoExists {
+                    connectOpened.toggle()
+                }
+            }
+            .sheet(isPresented: $connectOpened) {
+                VStack {
+                    AvatarView(member: member)
+                    Text(member.name + member.surname)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    tagsView
+                    HStack(spacing: 20) {
+                        if let phone = member.phone {
+                            connectButton(action: {
+                                let prefix = "tel://"
+                                let phoneNumberformatted = prefix + phone
+                                guard let url = URL(string: phoneNumberformatted) else { return }
+                                UIApplication.shared.open(url)
+                            }, image: "ic-phone-call")
+                            Divider()
+                                .frame(height: 60)
+                            connectButton(action: {
+                                let sms: String = "sms:+8210\(phone)"
+                                let strURL: String = sms.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+                                UIApplication.shared.open(URL.init(string: strURL)!, options: [:], completionHandler: nil)
+                            }, image: "ic-messages")
+                            Divider()
+                                .frame(height: 60)
+                        }
+                        
+                        
+                        if let instagram = member.instagram {
+                            connectButton(action: {
+                                isPresentWebView.toggle()
+                            }, image: "ic-instagram")
+                            .sheet(isPresented: $isPresentWebView) {
+                                WebView(url: URL(string: instagram)!)
+                            }
+                            Divider()
+                                .frame(height: 60)
+                        }
+                        
+                        if let link = member.link {
+                            connectButton(action: {
+                                openURL(URL(string: link)!)
+                            }, image: "ic-www")
+                            Divider()
+                                .frame(height: 60)
+                        }
+                    }
+                    
+                    if let details = member.details {
+                        Text("Обо мне:")
+                            .font(.body)
+                            .bold()
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                        Text(details)
+                            .font(.body)
+                    }
+                }
+                .padding(.horizontal, 20)
+            }
+        }
             .onAppear {
                 // TODO: Change to ID
 //                self.liked = member.likes.contains(where: { $0 == fakeUser.nickname })

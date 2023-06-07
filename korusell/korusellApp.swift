@@ -12,8 +12,7 @@ struct korusellApp: App {
     @StateObject var cc = ContactsController()
     
     var body: some Scene {
-        WindowGroup {
-//            ContactDetailsView()
+        WindowGroup {   
             ContactsScreen()
                 .environmentObject(cc)
         }

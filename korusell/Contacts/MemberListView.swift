@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MemberListView: View {
     @EnvironmentObject var cc: ContactsController
-    @State var collapsed = true
+    @State var collapsed = false
     
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
