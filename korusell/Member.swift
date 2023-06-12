@@ -13,7 +13,8 @@ struct Member: Identifiable, Hashable {
     let surname: String
 //    let nickname: String
     var image: String? = nil
-    var tags: [String] = []
+    var categories: [Category] = []
+//    var tags: [String] = []
     var likes: [String] = []
     var marks: [String] = []
     var phone: String? = nil

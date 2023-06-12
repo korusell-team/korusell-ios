@@ -18,28 +18,28 @@ struct MemberListView: View {
 //                    collapsed.toggle()
 //                }
 //            }) {
-            HStack {
-                Text("👨🏻‍💻 Люди")
-                    .tracking(-1)
-                    .font(.title3)
-                    .bold()
-                    .padding(.bottom)
-                Spacer()
-                
-                    Image(systemName: "chevron.down")
-                        .rotationEffect(Angle(degrees: collapsed ? 180 : 0))
-                }
-            .foregroundColor(.gray1100)
-            .padding(.horizontal, 30)
-            .contentShape(Rectangle())
-            .onTapGesture {
-                withAnimation {
-                    collapsed.toggle()
-                }
-            }
+//            HStack {
+//                Text("👨🏻‍💻 Люди")
+//                    .tracking(-1)
+//                    .font(.title3)
+//                    .bold()
+//                    .padding(.bottom)
+//                Spacer()
+//
+//                    Image(systemName: "chevron.down")
+//                        .rotationEffect(Angle(degrees: collapsed ? 180 : 0))
+//                }
+//            .foregroundColor(.gray1100)
+//            .padding(.horizontal, 30)
+//            .contentShape(Rectangle())
+//            .onTapGesture {
+//                withAnimation {
+//                    collapsed.toggle()
+//                }
+//            }
 //            }
             
-            if !collapsed {
+//            if !collapsed {
                 if !cc.filteredMembers.isEmpty {
                     ForEach(cc.filteredMembers, id: \.self) { member in
                         MemberView(member: member)
@@ -49,8 +49,8 @@ struct MemberListView: View {
                         .foregroundColor(.gray900)
                         .frame(maxWidth: UIScreen.main.bounds.width)
                 }
-            }
-        }.frame(maxWidth: UIScreen.main.bounds.width)
+//            }
+        }.frame(maxWidth: UIScreen.main.bounds.width, alignment: .leading)
     }
 }
 
