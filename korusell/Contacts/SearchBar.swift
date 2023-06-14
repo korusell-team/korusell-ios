@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SearchBar: View {
     @EnvironmentObject var cc: ContactsController
+    @Binding var searching: Bool
     var isEditing: FocusState<Bool>.Binding
     
     var body: some View {
@@ -43,8 +44,11 @@ struct SearchBar: View {
             
             if isEditing.wrappedValue {
                 Button(action: {
-                    cc.resetState()
-                    isEditing.wrappedValue = false
+                    withAnimation {
+                        cc.resetState()
+                        searching = false
+                        isEditing.wrappedValue = false
+                    }
                 }) {
                     Text("Отмена")
                 }
@@ -55,7 +59,7 @@ struct SearchBar: View {
         }
         .background(Color.gray10)
         .padding(.horizontal, 20)
-        .padding(.vertical)
+        .padding(.vertical, 10)
         .background(Color.gray10)
     }
 }

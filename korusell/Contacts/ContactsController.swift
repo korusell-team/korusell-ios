@@ -30,13 +30,34 @@ class ContactsController: ObservableObject {
     }
     
     var filteredMembers: [Member] {
-        guard !text.isEmpty else { return listOfMembers.sorted(by: { $0.surname < $1.surname}) }
+        guard selectedCategory != nil else { return listOfMembers.sorted(by: { $0.surname < $1.surname}) }
         
-        return listOfMembers.filter { member in
-            member.name.lowercased().contains(text.lowercased()) ||
-            member.surname.lowercased().contains(text.lowercased()) ||
-            !member.tags.filter { $0.lowercased().contains(text.lowercased()) }.isEmpty
-        }.sorted(by: { $0.surname < $1.surname})
+        if text.isEmpty {
+            return listOfMembers.filter { member in
+                !member.categories.filter { $0.lowercased().contains(selectedCategory!.name.lowercased()) }.isEmpty
+            }
+            .sorted(by: { $0.surname < $1.surname})
+        } else {
+            return listOfMembers.filter { member in
+                !member.categories.filter { $0.lowercased().contains(selectedCategory!.name.lowercased()) }.isEmpty
+                && !member.tags.filter { $0.lowercased().contains(text.lowercased()) }.isEmpty
+            }
+            .sorted(by: { $0.surname < $1.surname})
+        }
+        
+        
+        
+        
+        // MARK: Filter for search
+//        guard !text.isEmpty else { return listOfMembers.sorted(by: { $0.surname < $1.surname}) }
+        
+//        return listOfMembers.filter { member in
+//            member.name.lowercased().contains(text.lowercased()) ||
+//            member.surname.lowercased().contains(text.lowercased()) ||
+//            !member.tags.filter { $0.lowercased().contains(text.lowercased()) }.isEmpty
+//        }.sorted(by: { $0.surname < $1.surname})
+        
+        
     }
     
     var filteredPlaces: [Place] {

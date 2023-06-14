@@ -81,7 +81,7 @@ struct CategoryListView: View {
                     .frame(idealHeight: 225, maxHeight: 225)
                 } else {
                     Text("🙈 Список пуст...")
-                        .foregroundColor(.gray900)
+                        .foregroundColor(.gray300)
                         .frame(maxWidth: UIScreen.main.bounds.width)
                 }
             }

@@ -39,7 +39,7 @@ struct PlaceListView: View {
                     }
                 } else {
                     Text("🙈 Список пуст...")
-                        .foregroundColor(.gray900)
+                        .foregroundColor(.gray300)
                         .frame(maxWidth: UIScreen.main.bounds.width)
                 }
             }

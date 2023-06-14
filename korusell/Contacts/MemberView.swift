@@ -20,7 +20,7 @@ struct MemberView: View {
     let member: Member
     
     var body: some View {
-        VStack {
+    
             HStack(alignment: .center, spacing: 5) {
                 AvatarView(member: member)
                 
@@ -30,18 +30,19 @@ struct MemberView: View {
                         Text(member.name)
                     }
                     .foregroundColor(.gray1100)
-                    .font(.body)
+                    .font(bodyFont)
                     .padding(.leading, 8)
                     
-                    if let details = member.details {
-                        Text(details)
-                            .font(.footnote)
+                    let details = member.details
+                    let tags = member.tags.description
+                        Text(details ?? "\n")
+                            .font(footnoteFont)
                             .foregroundColor(.gray400)
                             .lineLimit(2)
                             .padding(.leading, 8)
                             .fixedSize(horizontal: false, vertical: true)
-                            .padding(.vertical, 5)
-                    }
+                            .padding(.top, 2)
+                    
                 }
             }
             .padding(.horizontal)
@@ -108,7 +109,7 @@ struct MemberView: View {
                 }
                 .padding(.horizontal, 20)
             }
-        }
+        
             .onAppear {
                 // TODO: Change to ID
 //                self.liked = member.likes.contains(where: { $0 == fakeUser.nickname })
@@ -178,19 +179,25 @@ struct MemberView: View {
 }
 
 struct MemberView_Previews: PreviewProvider {
+    static let cc = ContactsController()
+    
     static var previews: some View {
-        ScrollView(showsIndicators: false) {
-            VStack(spacing: 0) {
-                MemberView(member:
-                            Member(name: "Евгений", surname: "Хан", tags: ["тамада", "ведущий", "продюсер"], phone: "11011012"))
-                MemberView(member:
-                            Member(name: "sdf", surname: "sf", tags: ["тамада", "ведущий"]))
-                MemberView(member:
-                            Member(name: "sdf", surname: "sf", tags: ["тамада", "ведущий"]))
-                MemberView(member:
-                            Member(name: "sdf", surname: "sf", tags: ["тамада", "ведущий"]))
-            }
-        }.background(Color.bg)
-            .environmentObject(ContactsController())
+            MemberListView()
+                .environmentObject(cc)
     }
+//    static var previews: some View {
+//        ScrollView(showsIndicators: false) {
+//            VStack(spacing: 0) {
+//                MemberView(member:
+//                            Member(name: "Евгений", surname: "Хан", tags: ["тамада", "ведущий", "продюсер"], phone: "11011012"))
+//                MemberView(member:
+//                            Member(name: "sdf", surname: "sf", tags: ["тамада", "ведущий"]))
+//                MemberView(member:
+//                            Member(name: "sdf", surname: "sf", tags: ["тамада", "ведущий"]))
+//                MemberView(member:
+//                            Member(name: "sdf", surname: "sf", tags: ["тамада", "ведущий"]))
+//            }
+//        }.background(Color.bg)
+//            .environmentObject(ContactsController())
+//    }
 }

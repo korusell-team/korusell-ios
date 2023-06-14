@@ -12,45 +12,21 @@ struct MemberListView: View {
     @State var collapsed = false
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 5) {
-//            Button(action: {
-//                withAnimation {
-//                    collapsed.toggle()
-//                }
-//            }) {
-//            HStack {
-//                Text("👨🏻‍💻 Люди")
-//                    .tracking(-1)
-//                    .font(.title3)
-//                    .bold()
-//                    .padding(.bottom)
-//                Spacer()
-//
-//                    Image(systemName: "chevron.down")
-//                        .rotationEffect(Angle(degrees: collapsed ? 180 : 0))
-//                }
-//            .foregroundColor(.gray1100)
-//            .padding(.horizontal, 30)
-//            .contentShape(Rectangle())
-//            .onTapGesture {
-//                withAnimation {
-//                    collapsed.toggle()
-//                }
-//            }
-//            }
-            
-//            if !collapsed {
+//        List {
+            VStack(alignment: .leading, spacing: 0) {
                 if !cc.filteredMembers.isEmpty {
                     ForEach(cc.filteredMembers, id: \.self) { member in
                         MemberView(member: member)
+//                        Divider().frame(height: 1)
+                            .padding(.vertical, 7)
                     }
                 } else {
                     Text("🙈 Список пуст...")
-                        .foregroundColor(.gray900)
+                        .foregroundColor(.gray300)
                         .frame(maxWidth: UIScreen.main.bounds.width)
                 }
-//            }
-        }.frame(maxWidth: UIScreen.main.bounds.width, alignment: .leading)
+            }.frame(maxWidth: UIScreen.main.bounds.width, alignment: .leading)
+//        }.listStyle(.grouped)
     }
 }
 
@@ -58,7 +34,7 @@ struct MemberListView_Previews: PreviewProvider {
     static let cc = ContactsController()
     
     static var previews: some View {
-            MemberListView()
-                .environmentObject(cc)
+        MemberListView()
+            .environmentObject(cc)
     }
 }

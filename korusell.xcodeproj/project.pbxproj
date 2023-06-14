@@ -24,6 +24,7 @@
 		256C975F2A2DEA08003DD1B4 /* MemberTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256C975E2A2DEA07003DD1B4 /* MemberTestView.swift */; };
 		256C97612A372B55003DD1B4 /* Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256C97602A372B55003DD1B4 /* Design.swift */; };
 		256C97632A372EAC003DD1B4 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256C97622A372EAC003DD1B4 /* TestView.swift */; };
+		256C97652A39EC0E003DD1B4 /* CategoryTagNavi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256C97642A39EC0E003DD1B4 /* CategoryTagNavi.swift */; };
 		259338092A29E22E00C7AF1B /* RoundedCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259338082A29E22E00C7AF1B /* RoundedCorner.swift */; };
 		2593380B2A29ED8700C7AF1B /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2593380A2A29ED8700C7AF1B /* WebView.swift */; };
 		2596144A2A1233C000393712 /* ContactsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259614492A1233C000393712 /* ContactsController.swift */; };
@@ -55,6 +56,7 @@
 		256C975E2A2DEA07003DD1B4 /* MemberTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberTestView.swift; sourceTree = "<group>"; };
 		256C97602A372B55003DD1B4 /* Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Design.swift; sourceTree = "<group>"; };
 		256C97622A372EAC003DD1B4 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
+		256C97642A39EC0E003DD1B4 /* CategoryTagNavi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTagNavi.swift; sourceTree = "<group>"; };
 		259338082A29E22E00C7AF1B /* RoundedCorner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCorner.swift; sourceTree = "<group>"; };
 		2593380A2A29ED8700C7AF1B /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		259614492A1233C000393712 /* ContactsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsController.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 			children = (
 				2596144B2A1247B900393712 /* ContactDetails */,
 				25DB6CC02A07287F00660E99 /* ContactsScreen.swift */,
+				256C97642A39EC0E003DD1B4 /* CategoryTagNavi.swift */,
 				253B84F12A0F18C0004FA223 /* CategoryView.swift */,
 				253B84EF2A0F18A8004FA223 /* CategoryListView.swift */,
 				253B84F52A0F5B3E004FA223 /* MemberListView.swift */,
@@ -291,6 +294,7 @@
 				253B84E82A0BA0A9004FA223 /* MemberView.swift in Sources */,
 				25DB6CAD2A0726C400660E99 /* korusellApp.swift in Sources */,
 				256C97612A372B55003DD1B4 /* Design.swift in Sources */,
+				256C97652A39EC0E003DD1B4 /* CategoryTagNavi.swift in Sources */,
 				2596144A2A1233C000393712 /* ContactsController.swift in Sources */,
 				25DB6CC82A0A5AC500660E99 /* Data.swift in Sources */,
 				25DB6CCB2A0A5C1000660E99 /* Member.swift in Sources */,

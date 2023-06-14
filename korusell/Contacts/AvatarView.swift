@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AvatarView: View {
-    @State var image: UIImage?
+//    @State var image: UIImage?
     @State private var showSheet = false
     @State private var showAlert = false
     
@@ -19,24 +19,25 @@ struct AvatarView: View {
         ZStack {
             Circle()
                 .fill(Color.gray900)
-                .frame(width: 46, height: 46)
+                .frame(width: 55, height: 55)
             Text(String(member.name.capitalized.first!))
-                .font(.subheadline)
+                .font(title2Font)
                 .foregroundColor(.white)
             + Text(String(member.surname.capitalized.first!))
-                .font(.subheadline)
+                .font(title2Font)
                 .foregroundColor(.white)
             
-            if let image {
-                Image(uiImage: image)
+            // TODO: redo after DB
+            if let image = member.image {
+                Image(image)
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 70, height: 70)
-                    .frame(width: 46, height: 46)
+                    .frame(width: 80, height: 80)
+                    .frame(width: 55, height: 55)
                     .aspectRatio(contentMode: .fit)
                     .clipShape(Circle())
             }
-        }.frame(width: 54, height: 54)
+        }.frame(width: 55, height: 55)
          .clipShape(Circle())
          .contentShape(ContentShapeKinds.contextMenuPreview, Circle())
          .overlay(
@@ -58,12 +59,19 @@ struct AvatarView: View {
 }
 
 struct AvatarView_Previews: PreviewProvider {
+    static let cc = ContactsController()
+    
     static var previews: some View {
-        let member = Member(name: "John", surname: "Legend")
-        AvatarView(member: member, messages: 3)
-            .frame(maxWidth: UIScreen.main.bounds.width, maxHeight: .infinity)
-            .background(Color.yellow)
-            .previewDevice("iPhone 14 Pro")
+            MemberListView()
+                .environmentObject(cc)
     }
+    
+//    static var previews: some View {
+//        let member = Member(name: "John", surname: "Legend")
+//        AvatarView(member: member, messages: 3)
+//            .frame(maxWidth: UIScreen.main.bounds.width, maxHeight: .infinity)
+//            .background(Color.yellow)
+//            .previewDevice("iPhone 14 Pro")
+//    }
 }
 
