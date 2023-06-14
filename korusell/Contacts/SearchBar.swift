@@ -54,7 +54,6 @@ struct SearchBar: View {
                 }
                 .padding(.trailing, 10)
                 .transition(.scale)
-                
             }
         }
         .background(Color.gray10)
