@@ -22,7 +22,6 @@ struct PlaceView: View {
     var body: some View {
         VStack {
             HStack(alignment: .center, spacing: 5) {
-//                AvatarView(member: place)
                 
                 VStack(alignment: .leading, spacing: 0) {
                     HStack {
@@ -116,8 +115,8 @@ struct PlaceView: View {
         }.padding(.horizontal, 10)
             .onAppear {
                 // TODO: Change to ID
-//                self.liked = member.likes.contains(where: { $0 == fakeUser.nickname })
-//                self.marked = member.marks.contains(where: { $0 == fakeUser.nickname })
+//                self.liked = contact.likes.contains(where: { $0 == fakeUser.nickname })
+//                self.marked = contact.marks.contains(where: { $0 == fakeUser.nickname })
             }
     }
     

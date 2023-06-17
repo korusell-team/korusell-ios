@@ -17,12 +17,13 @@ struct TagView: View {
         }) {
             HStack {
                 Text(tag.uppercased())
+                    .font(caption2Font)
+                    .foregroundColor(.gray10)
                     .padding(.horizontal, 8)
                     .padding(.vertical, 5)
-                    .background(cc.text == tag ? Color.gray50 : Color.clear)
+                    .background(Color.gray900)
                     .clipShape(Capsule())
-                Divider()
-                    .padding(.vertical, 5)
+                
             }
                 .font(.footnote)
                 .foregroundColor(cc.text == tag ? .gray1100 : .gray1000)
@@ -35,19 +36,11 @@ struct TagView: View {
 }
 
 struct TagView_Previews: PreviewProvider {
+    static let cc = ContactsController()
     static var previews: some View {
-        ScrollView(showsIndicators: false) {
-            VStack(spacing: 0) {
-                MemberView(member:
-                            Member(name: "Евгений", surname: "Хан", tags: ["тамада", "ведущий", "продюсер"]))
-                MemberView(member:
-                            Member(name: "sdf", surname: "sf", tags: ["тамада", "ведущий"]))
-                MemberView(member:
-                            Member(name: "sdf", surname: "sf", tags: ["тамада", "ведущий"]))
-                MemberView(member:
-                            Member(name: "sdf", surname: "sf", tags: ["тамада", "ведущий"]))
-            }
-        }.background(Color.bg)
-            .environmentObject(ContactsController())
+        NavigationView {
+            ContactDetailsView(contact: listOfContacts.first(where: { $0.name == "Владимир" })!)
+                .environmentObject(cc)
+        }
     }
 }

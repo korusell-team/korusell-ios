@@ -26,7 +26,7 @@ struct ContactsScreen: View {
 //                        Section(header:
 //
 //                        ) {
-                            MemberListView()
+                            ContactListView()
                                 .padding(.vertical, 10)
 //                        }
                     }

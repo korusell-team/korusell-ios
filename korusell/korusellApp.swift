@@ -14,7 +14,6 @@ struct korusellApp: App {
     init() {
             //Use this if NavigationBarTitle is with Large Font
             UINavigationBar.appearance().largeTitleTextAttributes = [.font : UIFont(name: "AppleSDGothicNeo-SemiBold", size: 26)!]
-
             //Use this if NavigationBarTitle is with displayMode = .inline
             UINavigationBar.appearance().titleTextAttributes = [.font : UIFont(name: "AppleSDGothicNeo-SemiBold", size: 20)!]
         }

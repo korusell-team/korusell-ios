@@ -7,18 +7,18 @@
 
 import Foundation
 
-let fakeUser = Member(name: "Сергей", surname: "Ли")
+let fakeUser = Contact(name: "Сергей", surname: "Ли")
 
 
-let listOfMembers: [Member] = [
+let listOfContacts: [Contact] = [
     
-    Member(name: "Евгений", surname: "Ким", image: "evgeniy-hvan", categories: ["Мероприятия"], tags: ["мероприятия", "ведущий", "праздники", "свадьбы", "асянди", "хангаби", "успешный успех", "тамада"], phone: "01012341234", instagram: "https://instagram.com/vlog.vedushego?igshid=OGQ5ZDc2ODk2ZA==", details: "Лучший Ведущий мероприятий\nв Южной Корее!"),
-    Member(name: "Сергей", surname: "Ли", image: "sergey-lee", categories: ["IT"], tags: ["IT", "программирование", "музыкант", "ios", "мобильные", "приложения"], details: "\niOS"),
-    Member(name: "Антон", surname: "Емельянов", categories: ["IT"], tags: ["IT", "программирование", "музыкант", "web", "сайты"], details: "fullstack\ndeveloper"),
-    Member(name: "Андрей", surname: "Ким", details: "я просто рандомный чел...🤪"),
-    Member(name: "Владимир", surname: "Мун", image: "vladimir-mun", categories: ["Образование"], tags: ["Образование", "программирование", "Дизайн"], details: "Habsida. Школа программирования и дизайна. С оплатой после трудоустройства!"),
-    Member(name: "Владимир", surname: "Тен", image: "vladimir-ten", categories: ["Образование"], tags: ["корейский язык"], phone: "01012341234", instagram: "https://instagram.com/vladimirten?igshid=OGQ5ZDc2ODk2ZA==", details: "Основатель школы корейского языка 'Korean Simple' и далее длинное описание услуг которые может предоставить данный человек"),
-    Member(name: "David", surname: "Beckham", image: "david-beckham", likes: ["k0jihero"], marks: ["k0jihero"], instagram: "https://www.instagram.com/davidbeckham", details: "I'm here to check if english content displays properly..."),
+    Contact(name: "Евгений", surname: "Ким", image: "evgeniy-hvan", categories: ["Мероприятия"], tags: ["мероприятия", "ведущий", "праздники", "свадьбы", "асянди", "хангаби", "успешный успех", "тамада"], phone: "01012341234", instagram: "https://instagram.com/vlog.vedushego?igshid=OGQ5ZDc2ODk2ZA==", bio: "Лучший Ведущий мероприятий\nв Южной Корее!"),
+    Contact(name: "Сергей", surname: "Ли", image: "sergey-lee", categories: ["IT"], tags: ["IT", "программирование", "музыкант", "ios", "мобильные", "приложения"], bio: "\niOS"),
+    Contact(name: "Антон", surname: "Емельянов", categories: ["IT"], tags: ["IT", "программирование", "музыкант", "web", "сайты"], bio: "fullstack\ndeveloper"),
+    Contact(name: "Андрей", surname: "Ким", bio: "я просто рандомный чел...🤪"),
+    Contact(name: "Владимир", surname: "Мун", image: "vladimir-mun", categories: ["Образование"], tags: ["Образование", "программирование", "Дизайн"], phone: "010-1234-1234", instagram: "https://www.instagram.com/reel/Co3-k56D537/?utm_source=ig_web_copy_link&igshid=MzRlODBiNWFlZA==", link: "https://habsida.com/ru", youtube: "https://www.youtube.com/watch?v=AMS7GqqQhdc&t=8s", bio: "Habsida. Школа программирования и дизайна. С оплатой после трудоустройства!"),
+    Contact(name: "Владимир", surname: "Тен", image: "vladimir-ten", categories: ["Образование"], tags: ["корейский язык"], phone: "01012341234", instagram: "https://instagram.com/vladimirten?igshid=OGQ5ZDc2ODk2ZA==", bio: "Основатель школы корейского языка 'Korean Simple' и далее длинное описание услуг которые может предоставить данный человек"),
+    Contact(name: "David", surname: "Beckham", image: "david-beckham", likes: ["k0jihero"], marks: ["k0jihero"], instagram: "https://www.instagram.com/davidbeckham", bio: "I'm here to check if english content displays properly"),
     
 ]
 
@@ -56,7 +56,7 @@ let listOfCategories: [Category] = [
 //]
 
 /*
- Members categories:
+ Contacts categories:
     IT/Дизайн
     Фото/Видео
     Маркетинг
