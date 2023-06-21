@@ -9,31 +9,53 @@ import SwiftUI
 
 struct TagView: View {
     @EnvironmentObject var cc: ContactsController
-    var tag: String
+    let tag: String
     
     var body: some View {
+        let selected = cc.text == tag
         Button(action: {
-            cc.text = cc.text == tag ? "" : tag
-        }) {
-            HStack {
-                Text(tag.uppercased())
-                    .font(caption2Font)
-                    .foregroundColor(.gray10)
-                    .padding(.horizontal, 8)
-                    .padding(.vertical, 5)
-                    .background(Color.gray900)
-                    .clipShape(Capsule())
-                
+            withAnimation(.interpolatingSpring(stiffness: 200, damping: 20)) {
+                if selected {
+                    cc.text = ""
+                } else {
+                    cc.text = tag
+                }
             }
-                .font(.footnote)
-                .foregroundColor(cc.text == tag ? .gray1100 : .gray1000)
-                .frame(height: 30)
-                
-                
+        }) {
+            Text(tag)
+                .font(subheadFont)
+                .foregroundColor(selected ? .gray10 : .gray1000)
+                .padding(.vertical, 7)
+                .padding(.horizontal, 10)
+                .background(selected ? Color.gray900 : Color.gray50)
+                .cornerRadius(7, corners: [.topLeft, .bottomLeft])
+                .cornerRadius(20, corners: [.topRight, .bottomRight])
+                .id(tag)
         }
-        
     }
 }
+
+//struct TagView: View {
+//    @EnvironmentObject var cc: ContactsController
+//    var tag: String
+//
+//    var body: some View {
+//        Button(action: {
+//            cc.text = cc.text == tag ? "" : tag
+//        }) {
+//            Text(tag)
+//                .font(subheadFont)
+//                .foregroundColor(.gray1000)
+//                .padding(.vertical, 7)
+//                .padding(.horizontal, 10)
+//                .background(Color.gray50)
+//                .cornerRadius(20)
+//                .padding(.horizontal, 5)
+//                .id(tag)
+//            //                .frame(height: 30)
+//        }
+//    }
+//}
 
 struct TagView_Previews: PreviewProvider {
     static let cc = ContactsController()

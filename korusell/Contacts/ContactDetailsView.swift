@@ -38,19 +38,18 @@ struct ContactDetailsView: View {
                         .padding(.horizontal, 20)
                 }
                 
-                tagsView
-                    .padding(.horizontal, 20)
+
                 
-                HStack(spacing: 20) {
+                HStack(spacing: 10) {
                     if let phone = contact.phone {
-                        connectButton(image: "ic-phone-call") {
+                        connectButton(title: "звонок", image: "ic-phone-call") {
                             let prefix = "tel://"
                             let phoneNumberformatted = prefix + phone
                             guard let url = URL(string: phoneNumberformatted) else { return }
                             UIApplication.shared.open(url)
                         }
 
-                        connectButton(image: "ic-messages") {
+                        connectButton(title: "SMS", image: "ic-messages") {
                             let sms: String = "sms:+8210\(phone)"
                             let strURL: String = sms.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
                             UIApplication.shared.open(URL.init(string: strURL)!, options: [:], completionHandler: nil)
@@ -60,14 +59,21 @@ struct ContactDetailsView: View {
                     
                     
                     if let instagram = contact.instagram {
-                        connectButton(image: "ic-instagram") {
+                        connectButton(title: "instagram", image: "ic-instagram") {
                             link = instagram
                             isPresentWebView.toggle()
                         }
                     }
                     
+                    if let youtube = contact.youtube {
+                        connectButton(title: "youtube", image: "ic-youtube") {
+                            link = youtube
+                            isPresentWebView.toggle()
+                        }
+                    }
+                    
                     if let link = contact.link {
-                        connectButton(image: "ic-www") {
+                        connectButton(title: "страничка", image: "ic-www") {
                             self.link = link
                             isPresentWebView.toggle()
                         }
@@ -82,32 +88,35 @@ struct ContactDetailsView: View {
                 }
                 
                 
-                if let youtube = contact.youtube {
-                    let player = YouTubePlayer.init(
-                        source: .url(youtube),
-                        configuration:
-                                .init(allowsPictureInPictureMediaPlayback: true, language: "ru")
-                    )
-                    
-                    YouTubePlayerView(player) { state in
-                                switch state {
-                                case .idle:
-                                    ZStack {
-                                        Color.black
-                                        ProgressView()
-                                    }
-                                case .ready:
-                                    EmptyView()
-                                case .error(let error):
-                                    Text(verbatim: "YouTube player couldn't be loaded")
-                                        .foregroundColor(.white)
-                                }
-                            }
-                    .frame(height: 220)
-                    .background(Color(.systemBackground))
-                    .padding(.top, 50)
-                    .padding(.bottom, 200)
-                }
+                tagsView
+                    .padding(20)
+                
+//                if let youtube = contact.youtube {
+//                    let player = YouTubePlayer.init(
+//                        source: .url(youtube),
+//                        configuration:
+//                                .init(allowsPictureInPictureMediaPlayback: true, language: "ru")
+//                    )
+//
+//                    YouTubePlayerView(player) { state in
+//                                switch state {
+//                                case .idle:
+//                                    ZStack {
+//                                        Color.black
+//                                        ProgressView()
+//                                    }
+//                                case .ready:
+//                                    EmptyView()
+//                                case .error(let error):
+//                                    Text(verbatim: "YouTube player couldn't be loaded")
+//                                        .foregroundColor(.white)
+//                                }
+//                            }
+//                    .frame(height: 220)
+//                    .background(Color(.systemBackground))
+//                    .padding(.top, 50)
+//                    .padding(.bottom, 200)
+//                }
                 
                
                 
@@ -121,22 +130,26 @@ struct ContactDetailsView: View {
     }
     
     @ViewBuilder
-    private func connectButton(image: String, action: @escaping () -> Void) -> some View {
+    private func connectButton(title: String, image: String, action: @escaping () -> Void) -> some View {
         let size: CGFloat = 30
         Button(action: action) {
-            ZStack {
+            VStack {
                 Image(image)
                     .resizable()
                     .scaledToFit()
                     .frame(width: size, height: size)
-                    .padding(10)
+                    
+                Text(title)
+                    .tracking(-1)
+                    .font(caption2Font)
+                    
             }
-            .background(Color.white)
-            .cornerRadius(10)
-            .shadow(color: Color.gray100, radius: 6, x: 4, y: 4)
-            
-            
-                
+            .foregroundColor(.gray900)
+            .padding(.horizontal, 7)
+            .padding(.vertical, 10)
+            .frame(width: 65)
+            .background(Color.gray50)
+            .cornerRadius(10)    
         }
     }
     
@@ -166,7 +179,6 @@ struct ContactDetailsView: View {
                 HStack {
                     ForEach(contact.tags, id: \.self) { tag in
                         TagView(tag: tag)
-                            .id(tag)
                     }
                 }
             }

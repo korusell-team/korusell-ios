@@ -10,45 +10,23 @@ import SwiftUI
 struct CategoryTagNavi: View {
     @EnvironmentObject var cc: ContactsController
     @Namespace var namespace
-    @Binding var searching: Bool
-    var isEditing: FocusState<Bool>.Binding
     
     var body: some View {
         ZStack {
-            if searching {
-                SearchBar(searching: $searching, isEditing: isEditing)
-            } else {
+            let rows = [GridItem(.flexible())]
+            
                 VStack(spacing: 0) {
                     ScrollView(.horizontal, showsIndicators: false) {
                         ScrollViewReader { reader in
-                            HStack(spacing: 0) {
+                            
+                            
+                            LazyHGrid(rows: rows, alignment: .top) {
                                 ForEach(listOfCategories) { category in
-                                    let selected = cc.selectedCategory == category
-                                    Button(action: {
-                                        withAnimation(.interpolatingSpring(stiffness: 200, damping: 20)) {
-                                            if selected {
-                                                cc.selectedCategory = nil
-                                                cc.text = ""
-                                            } else {
-                                                cc.selectedCategory = category
-                                            }
-                                        }
-                                    }) {
-                                        VStack(spacing: 5) {
-                                            Text(category.name)
-                                                .foregroundColor(selected ? .gray600 : .gray400)
-                                                .scaleEffect(selected ? 1.1 : 1)
-                                                .font(selected ? bodyFont.bold() : bodyFont)
-                                        }
-                                        .padding(.vertical, 7)
-                                        .padding(.horizontal, 10)
-                                        .scaleEffect(cc.selectedCategory != nil && cc.selectedCategory != category ? 0.9 : 1)
-                                        .id(category.name)
-                                    }
+                                    CategoryTagView(category: category)
                                 }
                             }
                             .padding(.horizontal)
-                            
+                            .frame(height: 40)
                             .onChange(of: cc.selectedCategory) { category in
                                 withAnimation {
                                     if let category {
@@ -65,32 +43,13 @@ struct CategoryTagNavi: View {
                     if let category = cc.selectedCategory {
                         ScrollView(.horizontal, showsIndicators: false) {
                             ScrollViewReader { reader in
-                                HStack(spacing: 0) {
+                                LazyHGrid(rows: rows, alignment: .top) {
                                     ForEach(category.tags, id: \.self) { tag in
-                                        let selected = cc.text == tag
-                                        Button(action: {
-                                            withAnimation {
-                                                if selected {
-                                                    cc.text = ""
-                                                } else {
-                                                    cc.text = tag
-                                                }
-                                            }
-                                        }) {
-                                            VStack(spacing: 5) {
-                                                Text("#\(tag)")
-                                                    .foregroundColor(selected ? .gray600 : .gray400)
-                                                    .scaleEffect(selected ? 1.1 : 1)
-                                                    .font(selected ? bodyFont.bold() : bodyFont)
-                                            }
-                                            .padding(.vertical, 5)
-                                            .padding(.horizontal, 10)
-                                            .scaleEffect(!cc.text.isEmpty && cc.text != tag ? 0.9 : 1)
-                                            .id(tag)
-                                        }
+                                        TagView(tag: tag)
                                     }
                                 }
                                 .padding(.horizontal)
+                                .frame(height: 40)
                                 .background(Color.gray10)
                                 .onChange(of: cc.text) { text in
                                     withAnimation {
@@ -101,14 +60,84 @@ struct CategoryTagNavi: View {
                         }
                     }
                 }
-            }
         }
         .background(Color.gray10)
     }
 }
 
-//struct CategoryTagNavi_Previews: PreviewProvider {
-//    static var previews: some View {
-////        CategoryTagNavi(searching: .constant(false), isEditing: <#FocusState<Bool>.Binding#>)
+struct CategoryTagView: View {
+    @EnvironmentObject var cc: ContactsController
+    let category: Category
+    
+    var body: some View {
+        let selected = cc.selectedCategory == category
+        Button(action: {
+            withAnimation(.interpolatingSpring(stiffness: 200, damping: 20)) {
+                if selected {
+                    cc.selectedCategory = nil
+                    cc.text = ""
+                } else {
+                    cc.selectedCategory = category
+                    cc.text = ""
+                }
+            }
+        }) {
+            HStack(spacing: 5) {
+                Text(category.image)
+                    .font(subheadFont)
+//                Image(category.image)
+//                    .resizable()
+//                    .scaledToFit()
+//                    .frame(width: 18, height: 18)
+                Text(category.name)
+                    .font(subheadFont)
+            }
+            .foregroundColor(selected ? .gray10 : .gray1000)
+            .padding(.vertical, 7)
+            .padding(.horizontal, 10)
+            .background(selected ? Color.gray900 : Color.gray50)
+            .cornerRadius(7, corners: [.topLeft, .bottomLeft])
+            .cornerRadius(20, corners: [.topRight, .bottomRight])
+            .id(category.name)
+        }
+    }
+}
+
+//struct CategoryTagView: View {
+//    @EnvironmentObject var cc: ContactsController
+//    let category: Category
+//
+//    var body: some View {
+//        let selected = cc.selectedCategory == category
+//        Button(action: {
+//            withAnimation(.interpolatingSpring(stiffness: 200, damping: 20)) {
+//                if selected {
+//                    cc.selectedCategory = nil
+//                    cc.text = ""
+//                } else {
+//                    cc.selectedCategory = category
+//                }
+//            }
+//        }) {
+//            VStack(spacing: 5) {
+//                Text(category.name)
+//                    .foregroundColor(selected ? .gray600 : .gray400)
+//                    .scaleEffect(selected ? 1.1 : 1)
+//                    .font(selected ? bodyFont.bold() : bodyFont)
+//            }
+//            .padding(.vertical, 7)
+//            .padding(.horizontal, 10)
+//            .scaleEffect(cc.selectedCategory != nil && cc.selectedCategory != category ? 0.9 : 1)
+//            .id(category.name)
+//        }
 //    }
 //}
+
+struct CategoryTagNavi_Previews: PreviewProvider {
+    static let cc = ContactsController()
+    
+    static var previews: some View {
+        ContactsScreen()
+            .environmentObject(cc)
+    }
+}

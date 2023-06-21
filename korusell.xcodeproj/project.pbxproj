@@ -21,7 +21,6 @@
 		256C97592A2C4954003DD1B4 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256C97582A2C4954003DD1B4 /* Place.swift */; };
 		256C975B2A2C4C47003DD1B4 /* PlaceListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256C975A2A2C4C47003DD1B4 /* PlaceListView.swift */; };
 		256C975D2A2C4D85003DD1B4 /* PlaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256C975C2A2C4D85003DD1B4 /* PlaceView.swift */; };
-		256C975F2A2DEA08003DD1B4 /* MemberTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256C975E2A2DEA07003DD1B4 /* MemberTestView.swift */; };
 		256C97612A372B55003DD1B4 /* Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256C97602A372B55003DD1B4 /* Design.swift */; };
 		256C97632A372EAC003DD1B4 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256C97622A372EAC003DD1B4 /* TestView.swift */; };
 		256C97652A39EC0E003DD1B4 /* CategoryTagNavi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256C97642A39EC0E003DD1B4 /* CategoryTagNavi.swift */; };
@@ -54,7 +53,6 @@
 		256C97582A2C4954003DD1B4 /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		256C975A2A2C4C47003DD1B4 /* PlaceListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceListView.swift; sourceTree = "<group>"; };
 		256C975C2A2C4D85003DD1B4 /* PlaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceView.swift; sourceTree = "<group>"; };
-		256C975E2A2DEA07003DD1B4 /* MemberTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberTestView.swift; sourceTree = "<group>"; };
 		256C97602A372B55003DD1B4 /* Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Design.swift; sourceTree = "<group>"; };
 		256C97622A372EAC003DD1B4 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		256C97642A39EC0E003DD1B4 /* CategoryTagNavi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTagNavi.swift; sourceTree = "<group>"; };
@@ -92,13 +90,6 @@
 				2596144E2A124E5900393712 /* TrackableScrollView.swift */,
 			);
 			name = ExternalViews;
-			sourceTree = "<group>";
-		};
-		2596144B2A1247B900393712 /* ContactDetails */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ContactDetails;
 			sourceTree = "<group>";
 		};
 		25DB6CA02A0726C400660E99 = {
@@ -147,7 +138,6 @@
 		25DB6CBA2A0727FA00660E99 /* Contacts */ = {
 			isa = PBXGroup;
 			children = (
-				2596144B2A1247B900393712 /* ContactDetails */,
 				25DB6CC02A07287F00660E99 /* ContactsScreen.swift */,
 				256C97642A39EC0E003DD1B4 /* CategoryTagNavi.swift */,
 				253B84F12A0F18C0004FA223 /* CategoryView.swift */,
@@ -161,7 +151,6 @@
 				253B84F92A0F7F9E004FA223 /* TagView.swift */,
 				256C975A2A2C4C47003DD1B4 /* PlaceListView.swift */,
 				256C975C2A2C4D85003DD1B4 /* PlaceView.swift */,
-				256C975E2A2DEA07003DD1B4 /* MemberTestView.swift */,
 			);
 			path = Contacts;
 			sourceTree = "<group>";
@@ -294,7 +283,6 @@
 			files = (
 				25DB6CC12A07287F00660E99 /* ContactsScreen.swift in Sources */,
 				2593380B2A29ED8700C7AF1B /* WebView.swift in Sources */,
-				256C975F2A2DEA08003DD1B4 /* MemberTestView.swift in Sources */,
 				256C975D2A2C4D85003DD1B4 /* PlaceView.swift in Sources */,
 				253B84EA2A0C59CE004FA223 /* Extensions.swift in Sources */,
 				253B84F22A0F18C0004FA223 /* CategoryView.swift in Sources */,
