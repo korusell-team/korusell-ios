@@ -20,7 +20,7 @@ struct ContactDetailsView: View {
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack(spacing: 0) {
-                Color.yellow600
+                Color.gray1000
                     .frame(height: 170)
                     .offset(y: -50)
                 VStack(alignment: .leading) {
@@ -57,10 +57,12 @@ struct ContactDetailsView: View {
                     }
                     
                     
-                        categoriesView
-                            .padding(.top)
+//                        categoriesView
+                            
                         tagsView
-                    
+                        .padding(.horizontal)
+                        .padding(.horizontal, -20)
+                        .padding(.top)
                     
                     
                     
@@ -154,7 +156,7 @@ struct ContactDetailsView: View {
             }
         }
         .ignoresSafeArea()
-        .navigationBarBackButtonHidden()
+//        .navigationBarBackButtonHidden()
         // TODO: Show only after scrolling up ?
 //        .navigationTitle(false ? contact.name + " " + contact.surname : "")
 //        .navigationBarTitleDisplayMode(.inline)
@@ -207,12 +209,7 @@ struct ContactDetailsView: View {
         HStack {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
-                    ForEach(contact.categories, id: \.self) { title in
-                        if let category = listOfCategories.first(where: { $0.name.contains(title) }) {
-                            CategoryTagView(category: category)
-                                .disabled(true)
-                        }
-                    }
+                    
                 }
             }
         }
@@ -222,6 +219,12 @@ struct ContactDetailsView: View {
         HStack {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
+                    ForEach(contact.categories, id: \.self) { title in
+                        if let category = listOfCategories.first(where: { $0.name.contains(title) }) {
+                            CategoryTagView(category: category)
+                                .disabled(true)
+                        }
+                    }
                     ForEach(contact.tags, id: \.self) { tag in
                         TagView(tag: tag)
                             .disabled(true)
