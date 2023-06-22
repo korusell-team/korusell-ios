@@ -18,8 +18,6 @@ struct CategoryTagNavi: View {
                 VStack(spacing: 0) {
                     ScrollView(.horizontal, showsIndicators: false) {
                         ScrollViewReader { reader in
-                            
-                            
                             LazyHGrid(rows: rows, alignment: .top) {
                                 ForEach(listOfCategories) { category in
                                     CategoryTagView(category: category)

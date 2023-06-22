@@ -60,10 +60,9 @@ struct AvatarView: View {
 
 struct AvatarView_Previews: PreviewProvider {
     static let cc = ContactsController()
+    
     static var previews: some View {
-//        ContactDetailsView(contact: listOfContacts.first(where: { $0.name == "David" })!)
-                ContactDetailsView(contact: listOfContacts.first(where: { $0.name == "Владимир" })!)
-//        ContactDetailsView(contact: listOfContacts.first(where: { $0.name == "Андрей" })!)
+        ContactsScreen()
             .environmentObject(cc)
     }
     
@@ -73,11 +72,11 @@ struct DetailsAvatarView: View {
     let contact: Contact
 
     var body: some View {
-        let frame: CGFloat = contact.image == nil ? 100 : 150
+        let frame: CGFloat = contact.image == nil ? 70 : 100
         ZStack {
             Circle()
                 .fill(Color.gray900)
-                .frame(width: 150, height: 150)
+                .frame(width: 100, height: 100)
             Text(String(contact.name.capitalized.first!))
             + Text(String(contact.surname.capitalized.first!))
             
@@ -86,8 +85,8 @@ struct DetailsAvatarView: View {
                 Image(image)
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 190, height: 190)
-                    .frame(width: 150, height: 150)
+                    .frame(width: 130, height: 130)
+                    .frame(width: 100, height: 100)
                     .aspectRatio(contentMode: .fit)
                     .clipShape(Circle())
             }

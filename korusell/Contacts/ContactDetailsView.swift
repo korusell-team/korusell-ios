@@ -19,114 +19,145 @@ struct ContactDetailsView: View {
     
     var body: some View {
         ScrollView(showsIndicators: false) {
-            VStack {
-                DetailsAvatarView(contact: contact)
-                    .padding(.top)
-                Text(contact.name + " " + contact.surname)
-                    .font(title1Font)
-                    .foregroundColor(.gray1000)
-                    .bold()
-                    .frame(maxWidth: .infinity, alignment: .center)
-                    .padding(.bottom, 5)
-                
-                if let bio = contact.bio {
-                    Text(bio)
+            VStack(spacing: 0) {
+                Color.yellow600
+                    .frame(height: 170)
+                    .offset(y: -50)
+                VStack(alignment: .leading) {
+                    DetailsAvatarView(contact: contact)
+                        
+                    Text(contact.name + " " + contact.surname)
+                        .font(title2Font)
+                        .foregroundColor(.gray1000)
+                        .bold()
+                    
+                    Text((contact.cities.first ?? "") + ", Корея")
+                        .tracking(-1)
                         .font(bodyFont)
-                        .foregroundColor(.gray700)
-                        .lineLimit(3)
-                        .multilineTextAlignment(.center)
-                        .padding(.horizontal, 20)
-                }
-                
-
-                
-                HStack(spacing: 10) {
-                    if let phone = contact.phone {
-                        connectButton(title: "звонок", image: "ic-phone-call") {
-                            let prefix = "tel://"
-                            let phoneNumberformatted = prefix + phone
-                            guard let url = URL(string: phoneNumberformatted) else { return }
-                            UIApplication.shared.open(url)
-                        }
-
-                        connectButton(title: "SMS", image: "ic-messages") {
-                            let sms: String = "sms:+8210\(phone)"
-                            let strURL: String = sms.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-                            UIApplication.shared.open(URL.init(string: strURL)!, options: [:], completionHandler: nil)
-                        }
-
-                    }
-                    
-                    
-                    if let instagram = contact.instagram {
-                        connectButton(title: "instagram", image: "ic-instagram") {
-                            link = instagram
-                            isPresentWebView.toggle()
-                        }
-                    }
-                    
-                    if let youtube = contact.youtube {
-                        connectButton(title: "youtube", image: "ic-youtube") {
-                            link = youtube
-                            isPresentWebView.toggle()
-                        }
-                    }
+                        .foregroundColor(.gray600)
+                        .bold()
+                        .padding(.bottom, 5)
                     
                     if let link = contact.link {
-                        connectButton(title: "страничка", image: "ic-www") {
-                            self.link = link
-                            isPresentWebView.toggle()
+                        Link(destination: URL(string: link)!) {
+                            Text(link.components(separatedBy: "://")[1])
+                                .font(calloutFont)
+                                .foregroundColor(.blue400)
+                        }
+                        .padding(.bottom, 5)
+                    }
+                    
+                    if let bio = contact.bio {
+                        Text(bio)
+                            .font(calloutFont)
+                            .foregroundColor(.gray700)
+                            .lineLimit(4)
+                            .multilineTextAlignment(.leading)
+                            
+                    }
+                    
+                    
+                        categoriesView
+                            .padding(.top)
+                        tagsView
+                    
+                    
+                    
+                    
+                    
+                    
+                    HStack(spacing: 10) {
+                        Spacer()
+                        if let phone = contact.phone {
+                            connectButton(title: "звонок", image: "ic-phone-call") {
+                                let prefix = "tel://"
+                                let phoneNumberformatted = prefix + phone
+                                guard let url = URL(string: phoneNumberformatted) else { return }
+                                UIApplication.shared.open(url)
+                            }
+                            
+                            connectButton(title: "SMS", image: "ic-messages") {
+                                let sms: String = "sms:+8210\(phone)"
+                                let strURL: String = sms.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+                                UIApplication.shared.open(URL.init(string: strURL)!, options: [:], completionHandler: nil)
+                            }
+                            
+                        }
+                        
+                        
+                        //                    if let instagram = contact.instagram {
+                        //                        connectButton(title: "instagram", image: "ic-instagram") {
+                        //                            link = instagram
+                        //                            isPresentWebView.toggle()
+                        //                        }
+                        //                    }
+                        //
+                        //                    if let youtube = contact.youtube {
+                        //                        connectButton(title: "youtube", image: "ic-youtube") {
+                        //                            link = youtube
+                        //                            isPresentWebView.toggle()
+                        //                        }
+                        //                    }
+                        //
+                        //                    if let link = contact.link {
+                        //                        connectButton(title: "страничка", image: "ic-www") {
+                        //                            self.link = link
+                        //                            isPresentWebView.toggle()
+                        //                        }
+                        //                    }
+                    }
+                    .padding(.top)
+                    // TODO: ? change to item ?
+                    .sheet(isPresented: $isPresentWebView) {
+                        if let link {
+                            WebView(url: URL(string: link)!)
                         }
                     }
+                    
+                    
+                    
+                    
+                    //                if let youtube = contact.youtube {
+                    //                    let player = YouTubePlayer.init(
+                    //                        source: .url(youtube),
+                    //                        configuration:
+                    //                                .init(allowsPictureInPictureMediaPlayback: true, language: "ru")
+                    //                    )
+                    //
+                    //                    YouTubePlayerView(player) { state in
+                    //                                switch state {
+                    //                                case .idle:
+                    //                                    ZStack {
+                    //                                        Color.black
+                    //                                        ProgressView()
+                    //                                    }
+                    //                                case .ready:
+                    //                                    EmptyView()
+                    //                                case .error(let error):
+                    //                                    Text(verbatim: "YouTube player couldn't be loaded")
+                    //                                        .foregroundColor(.white)
+                    //                                }
+                    //                            }
+                    //                    .frame(height: 220)
+                    //                    .background(Color(.systemBackground))
+                    //                    .padding(.top, 50)
+                    //                    .padding(.bottom, 200)
+                    //                }
+                    
+                    
+                    
+                    Spacer()
                 }
-                .padding(.top)
-                // TODO: ? change to item ?
-                .sheet(isPresented: $isPresentWebView) {
-                    if let link {
-                        WebView(url: URL(string: link)!)
-                    }
-                }
                 
-                
-                tagsView
-                    .padding(20)
-                
-//                if let youtube = contact.youtube {
-//                    let player = YouTubePlayer.init(
-//                        source: .url(youtube),
-//                        configuration:
-//                                .init(allowsPictureInPictureMediaPlayback: true, language: "ru")
-//                    )
-//
-//                    YouTubePlayerView(player) { state in
-//                                switch state {
-//                                case .idle:
-//                                    ZStack {
-//                                        Color.black
-//                                        ProgressView()
-//                                    }
-//                                case .ready:
-//                                    EmptyView()
-//                                case .error(let error):
-//                                    Text(verbatim: "YouTube player couldn't be loaded")
-//                                        .foregroundColor(.white)
-//                                }
-//                            }
-//                    .frame(height: 220)
-//                    .background(Color(.systemBackground))
-//                    .padding(.top, 50)
-//                    .padding(.bottom, 200)
-//                }
-                
-               
-                
-                Spacer()
+                .padding(.horizontal, 20)
+                .offset(y: -70)
             }
         }
-        
+        .ignoresSafeArea()
+        .navigationBarBackButtonHidden()
         // TODO: Show only after scrolling up ?
 //        .navigationTitle(false ? contact.name + " " + contact.surname : "")
-        .navigationBarTitleDisplayMode(.inline)
+//        .navigationBarTitleDisplayMode(.inline)
     }
     
     @ViewBuilder
@@ -172,6 +203,20 @@ struct ContactDetailsView: View {
 //            }
 //        }.padding(.trailing, 10)
 //    }
+    var categoriesView: some View {
+        HStack {
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack {
+                    ForEach(contact.categories, id: \.self) { title in
+                        if let category = listOfCategories.first(where: { $0.name.contains(title) }) {
+                            CategoryTagView(category: category)
+                                .disabled(true)
+                        }
+                    }
+                }
+            }
+        }
+    }
     
     var tagsView: some View {
         HStack {
@@ -179,11 +224,11 @@ struct ContactDetailsView: View {
                 HStack {
                     ForEach(contact.tags, id: \.self) { tag in
                         TagView(tag: tag)
+                            .disabled(true)
                     }
                 }
             }
         }
-        .padding(.vertical, 3)
     }
 }
 

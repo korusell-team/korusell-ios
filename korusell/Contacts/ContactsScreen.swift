@@ -22,22 +22,24 @@ struct ContactsScreen: View {
                 // TODO: Implement List View ?
                     LazyVGrid(columns: columns, spacing: 0, pinnedViews: .sectionHeaders) {
                             ContactListView()
-                                .padding(.vertical, 10)
+                            .padding(.vertical, 10)
                     }
-                }
+            }
             }
             .navigationTitle("Контакты")
             .navigationBarTitleDisplayMode(.inline)
-            .navigationBarItems(trailing:
-                                    Button(action: {
-                withAnimation {
-                    // go to my page/ settings
-                }
+            .navigationBarItems(leading:
+                                    NavigationLink(destination: {
+                Text("🚧 в разработке...")
+            }) {
+                Image(systemName: "message")
+                    .foregroundColor(.gray900)
+            }, trailing:
+                                    NavigationLink(destination: {
+                Text("🚧 в разработке...")
             }) {
                 Image(systemName: "gear")
                     .foregroundColor(.gray900)
-//                AvatarView(contact: fakeUser)
-//                    .scaleEffect(0.7)
             }
             )
             .padding(.top, 0.1)
