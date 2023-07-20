@@ -20,7 +20,7 @@ struct korusellApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContactsScreen()
+            ContentView()
                 .environmentObject(cc)
         }
     }
