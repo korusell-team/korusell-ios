@@ -20,6 +20,7 @@ struct TagView: View {
                 } else {
                     cc.text = tag
                 }
+                cc.openAllCategories = false
             }
         }) {
             Text(tag)

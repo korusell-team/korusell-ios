@@ -12,6 +12,8 @@ class ContactsController: ObservableObject {
     @Published var text = ""
     @Published var selectedCategory: Category? = nil
     
+    @Published var openAllCategories = false
+    
     func resetState() {
         withAnimation {
             self.searchFocused = false

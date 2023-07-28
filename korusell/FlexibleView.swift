@@ -18,7 +18,7 @@ struct FlexibleView<Data: Collection, Content: View>: View where Data.Element: H
     let content: (Data.Element) -> Content
     
     var body : some View {
-        ScrollView(showsIndicators: true) {
+//        ScrollView(showsIndicators: true) {
             VStack(alignment: alignment, spacing: spacing) {
                 ForEach(computeRows(), id: \.self) { rowElements in
                     HStack(spacing: spacing) {
@@ -31,16 +31,17 @@ struct FlexibleView<Data: Collection, Content: View>: View where Data.Element: H
                         }
                     }.onAppear {
                         //MARK: defind proper dynamic height of Flexible view
-                        if computeRows().count < 3 {
+                        if computeRows().count < 5 {
                             self.count = computeRows().count
                         } else {
-                            self.count = 3
+                            self.count = 5
                         }
                     }
                 }
             }
-        }
-                .frame(maxHeight: 45 * CGFloat(count))
+//        }
+            .frame(maxHeight: 45 * CGFloat(count), alignment: .center)
+        
     }
     
     func computeRows() -> [[Data.Element]] {
@@ -80,4 +81,14 @@ extension View {
 private struct SizePreferenceKey: PreferenceKey {
     static var defaultValue: CGSize = .zero
     static func reduce(value: inout CGSize, nextValue: () -> CGSize) {}
+}
+
+
+struct FlexibleView_Previews: PreviewProvider {
+    static let cc = ContactsController()
+    
+    static var previews: some View {
+        PopCategoriesView()
+            .environmentObject(cc)
+    }
 }

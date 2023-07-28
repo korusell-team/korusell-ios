@@ -18,6 +18,7 @@
 		253B84F62A0F5B3E004FA223 /* ContactListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253B84F52A0F5B3E004FA223 /* ContactListView.swift */; };
 		253B84F82A0F7B00004FA223 /* FlexibleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253B84F72A0F7B00004FA223 /* FlexibleView.swift */; };
 		253B84FA2A0F7F9E004FA223 /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253B84F92A0F7F9E004FA223 /* TagView.swift */; };
+		256275AD2A7138B0006F0E39 /* PopupView in Frameworks */ = {isa = PBXBuildFile; productRef = 256275AC2A7138B0006F0E39 /* PopupView */; };
 		256C97592A2C4954003DD1B4 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256C97582A2C4954003DD1B4 /* Place.swift */; };
 		256C975B2A2C4C47003DD1B4 /* PlaceListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256C975A2A2C4C47003DD1B4 /* PlaceListView.swift */; };
 		256C975D2A2C4D85003DD1B4 /* PlaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256C975C2A2C4D85003DD1B4 /* PlaceView.swift */; };
@@ -30,6 +31,13 @@
 		2596144A2A1233C000393712 /* ContactsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259614492A1233C000393712 /* ContactsController.swift */; };
 		2596144D2A1247D500393712 /* ContactDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2596144C2A1247D500393712 /* ContactDetailsView.swift */; };
 		2596144F2A124E5900393712 /* TrackableScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2596144E2A124E5900393712 /* TrackableScrollView.swift */; };
+		25ADF32A2A694403009A2B73 /* PlacesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25ADF3292A694403009A2B73 /* PlacesScreen.swift */; };
+		25ADF3302A694438009A2B73 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25ADF32B2A694437009A2B73 /* MapView.swift */; };
+		25ADF3312A694438009A2B73 /* data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25ADF32C2A694437009A2B73 /* data.swift */; };
+		25ADF3322A694438009A2B73 /* ClusterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25ADF32D2A694437009A2B73 /* ClusterView.swift */; };
+		25ADF3332A694438009A2B73 /* PlacePoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25ADF32E2A694437009A2B73 /* PlacePoint.swift */; };
+		25ADF3342A694438009A2B73 /* PlaceMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25ADF32F2A694437009A2B73 /* PlaceMarker.swift */; };
+		25ADF3362A694516009A2B73 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25ADF3352A694516009A2B73 /* ContentView.swift */; };
 		25DB6CAD2A0726C400660E99 /* korusellApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DB6CAC2A0726C400660E99 /* korusellApp.swift */; };
 		25DB6CB12A0726C600660E99 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 25DB6CB02A0726C600660E99 /* Assets.xcassets */; };
 		25DB6CB42A0726C600660E99 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 25DB6CB32A0726C600660E99 /* Preview Assets.xcassets */; };
@@ -61,6 +69,13 @@
 		259614492A1233C000393712 /* ContactsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsController.swift; sourceTree = "<group>"; };
 		2596144C2A1247D500393712 /* ContactDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailsView.swift; sourceTree = "<group>"; };
 		2596144E2A124E5900393712 /* TrackableScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackableScrollView.swift; sourceTree = "<group>"; };
+		25ADF3292A694403009A2B73 /* PlacesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesScreen.swift; sourceTree = "<group>"; };
+		25ADF32B2A694437009A2B73 /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		25ADF32C2A694437009A2B73 /* data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = data.swift; path = ../../Development/xCode/MapForKoru2/MapForKoru2/data.swift; sourceTree = "<group>"; };
+		25ADF32D2A694437009A2B73 /* ClusterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClusterView.swift; sourceTree = "<group>"; };
+		25ADF32E2A694437009A2B73 /* PlacePoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlacePoint.swift; path = ../../Development/xCode/MapForKoru2/MapForKoru2/PlacePoint.swift; sourceTree = "<group>"; };
+		25ADF32F2A694437009A2B73 /* PlaceMarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceMarker.swift; sourceTree = "<group>"; };
+		25ADF3352A694516009A2B73 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		25DB6CA92A0726C400660E99 /* korusell.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = korusell.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25DB6CAC2A0726C400660E99 /* korusellApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = korusellApp.swift; sourceTree = "<group>"; };
 		25DB6CB02A0726C600660E99 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -75,6 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				256275AD2A7138B0006F0E39 /* PopupView in Frameworks */,
 				256C97682A3D5770003DD1B4 /* YouTubePlayerKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -112,11 +128,12 @@
 			isa = PBXGroup;
 			children = (
 				25DB6CAC2A0726C400660E99 /* korusellApp.swift */,
+				25ADF3352A694516009A2B73 /* ContentView.swift */,
 				25DB6CBA2A0727FA00660E99 /* Contacts */,
+				25DB6CC22A0A59DE00660E99 /* Places */,
 				25DB6CC52A0A5A0000660E99 /* Account */,
 				25DB6CC42A0A59F900660E99 /* Feed */,
 				25DB6CC32A0A59F100660E99 /* Messages */,
-				25DB6CC22A0A59DE00660E99 /* Places */,
 				25DB6CC92A0A5BFA00660E99 /* Models */,
 				25DB6CC62A0A5A0700660E99 /* Shared */,
 				253B84E42A0A6139004FA223 /* ExternalViews */,
@@ -158,6 +175,12 @@
 		25DB6CC22A0A59DE00660E99 /* Places */ = {
 			isa = PBXGroup;
 			children = (
+				25ADF3292A694403009A2B73 /* PlacesScreen.swift */,
+				25ADF32D2A694437009A2B73 /* ClusterView.swift */,
+				25ADF32B2A694437009A2B73 /* MapView.swift */,
+				25ADF32E2A694437009A2B73 /* PlacePoint.swift */,
+				25ADF32F2A694437009A2B73 /* PlaceMarker.swift */,
+				25ADF32C2A694437009A2B73 /* data.swift */,
 			);
 			name = Places;
 			sourceTree = "<group>";
@@ -223,6 +246,7 @@
 			name = korusell;
 			packageProductDependencies = (
 				256C97672A3D5770003DD1B4 /* YouTubePlayerKit */,
+				256275AC2A7138B0006F0E39 /* PopupView */,
 			);
 			productName = korusell;
 			productReference = 25DB6CA92A0726C400660E99 /* korusell.app */;
@@ -254,6 +278,7 @@
 			mainGroup = 25DB6CA02A0726C400660E99;
 			packageReferences = (
 				256C97662A3D5770003DD1B4 /* XCRemoteSwiftPackageReference "YouTubePlayerKit" */,
+				256275AB2A7138B0006F0E39 /* XCRemoteSwiftPackageReference "PopupView" */,
 			);
 			productRefGroup = 25DB6CAA2A0726C400660E99 /* Products */;
 			projectDirPath = "";
@@ -284,23 +309,30 @@
 				25DB6CC12A07287F00660E99 /* ContactsScreen.swift in Sources */,
 				2593380B2A29ED8700C7AF1B /* WebView.swift in Sources */,
 				256C975D2A2C4D85003DD1B4 /* PlaceView.swift in Sources */,
+				25ADF3322A694438009A2B73 /* ClusterView.swift in Sources */,
 				253B84EA2A0C59CE004FA223 /* Extensions.swift in Sources */,
 				253B84F22A0F18C0004FA223 /* CategoryView.swift in Sources */,
 				253B84EE2A0D1815004FA223 /* Blur.swift in Sources */,
 				253B84E82A0BA0A9004FA223 /* ContactView.swift in Sources */,
 				25DB6CAD2A0726C400660E99 /* korusellApp.swift in Sources */,
 				256C97612A372B55003DD1B4 /* Design.swift in Sources */,
+				25ADF3342A694438009A2B73 /* PlaceMarker.swift in Sources */,
 				256C97652A39EC0E003DD1B4 /* CategoryTagNavi.swift in Sources */,
 				2596144A2A1233C000393712 /* ContactsController.swift in Sources */,
 				25DB6CC82A0A5AC500660E99 /* Data.swift in Sources */,
 				25DB6CCB2A0A5C1000660E99 /* Contact.swift in Sources */,
 				2596144F2A124E5900393712 /* TrackableScrollView.swift in Sources */,
 				253B84F42A0F1B1A004FA223 /* Category.swift in Sources */,
+				25ADF3332A694438009A2B73 /* PlacePoint.swift in Sources */,
+				25ADF3312A694438009A2B73 /* data.swift in Sources */,
+				25ADF32A2A694403009A2B73 /* PlacesScreen.swift in Sources */,
 				256C97592A2C4954003DD1B4 /* Place.swift in Sources */,
 				253B84F82A0F7B00004FA223 /* FlexibleView.swift in Sources */,
 				253B84F62A0F5B3E004FA223 /* ContactListView.swift in Sources */,
+				25ADF3362A694516009A2B73 /* ContentView.swift in Sources */,
 				253B84F02A0F18A8004FA223 /* CategoryListView.swift in Sources */,
 				256C975B2A2C4C47003DD1B4 /* PlaceListView.swift in Sources */,
+				25ADF3302A694438009A2B73 /* MapView.swift in Sources */,
 				253B84EC2A0CF3D6004FA223 /* AvatarView.swift in Sources */,
 				253B84E62A0A614F004FA223 /* SearchBar.swift in Sources */,
 				2596144D2A1247D500393712 /* ContactDetailsView.swift in Sources */,
@@ -443,6 +475,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -473,6 +506,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -511,6 +545,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		256275AB2A7138B0006F0E39 /* XCRemoteSwiftPackageReference "PopupView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/exyte/PopupView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		256C97662A3D5770003DD1B4 /* XCRemoteSwiftPackageReference "YouTubePlayerKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SvenTiigi/YouTubePlayerKit.git";
@@ -522,6 +564,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		256275AC2A7138B0006F0E39 /* PopupView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 256275AB2A7138B0006F0E39 /* XCRemoteSwiftPackageReference "PopupView" */;
+			productName = PopupView;
+		};
 		256C97672A3D5770003DD1B4 /* YouTubePlayerKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 256C97662A3D5770003DD1B4 /* XCRemoteSwiftPackageReference "YouTubePlayerKit" */;
