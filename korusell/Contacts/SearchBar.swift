@@ -63,11 +63,15 @@ struct SearchBar: View {
     }
 }
 
-struct SearchBar_Previews: PreviewProvider {
-    static let cc = ContactsController()
-    static var previews: some View {
-        ContactsScreen()
-            .environmentObject(cc)
-//        SearchBar(text: .constant(""))
-    }
-}
+//struct SearchBar_Previews: PreviewProvider {
+//    static let cc = ContactsController()
+//    
+//    @FocusState var focusedField: Bool?
+//    @State var searching = false
+//    
+//    static var previews: some View {
+//        SearchBar(searching: $searching, isEditing: focusedField)
+//            .environmentObject(cc)
+////        SearchBar(text: .constant(""))
+//    }
+//}

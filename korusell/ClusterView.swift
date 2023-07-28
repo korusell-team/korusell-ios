@@ -5,6 +5,7 @@ Abstract:
 A subclass of MKAnnotationView that configures itself for representing a MKClusterAnnotation with only Place member annotations.
 */
 import MapKit
+import SwiftUI
 
 class ClusterView: MKAnnotationView {
     
@@ -25,17 +26,17 @@ class ClusterView: MKAnnotationView {
                 let renderer = UIGraphicsImageRenderer(size: CGSize(width: 40, height: 40))
                 let count = cluster.memberAnnotations.count
                 let uniCount = cluster.memberAnnotations.filter { member -> Bool in
-                    return (member as! Place).type == .cafe
+                    return (member as! PlacePoint).type == .cafe
                 }.count
                 
                 
                 image = renderer.image { _ in
                     // Fill full circle with tricycle color
-                    UIColor(named: "shopCol")?.setFill()
+                    UIColor(Color.blue200).setFill()
                     UIBezierPath(ovalIn: CGRect(x: 0, y: 0, width: 40, height: 40)).fill()
 
                     // Fill pie with unicycle color
-                    UIColor(named: "cafeCol")?.setFill()
+                    UIColor(Color.red200).setFill()
                     let piePath = UIBezierPath()
                     piePath.addArc(withCenter: CGPoint(x: 20, y: 20), radius: 20,
                                    startAngle: 0, endAngle: (CGFloat.pi * 2.0 * CGFloat(uniCount)) / CGFloat(count),

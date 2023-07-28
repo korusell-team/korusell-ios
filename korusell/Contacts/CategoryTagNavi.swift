@@ -16,25 +16,46 @@ struct CategoryTagNavi: View {
             let rows = [GridItem(.flexible())]
             
                 VStack(spacing: 0) {
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        ScrollViewReader { reader in
-                            LazyHGrid(rows: rows, alignment: .top) {
-                                ForEach(listOfCategories) { category in
-                                    CategoryTagView(category: category)
-                                }
-                            }
-                            .padding(.horizontal)
-                            .frame(height: 40)
-                            .onChange(of: cc.selectedCategory) { category in
-                                withAnimation {
-                                    if let category {
-                                        reader.scrollTo(category.name, anchor: .center)
-                                    } else {
-                                        reader.scrollTo("Дизайн", anchor: .center)
+                    ZStack(alignment: .leading) {
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            ScrollViewReader { reader in
+                                LazyHGrid(rows: rows, alignment: .center) {
+                                    ForEach(listOfCategories) { category in
+                                        CategoryTagView(category: category)
+                                            .id(category.name)
                                     }
-                                     
+                                }
+                                .padding(.leading, 30)
+                                .padding(.horizontal)
+                                .frame(height: 40)
+                                .onChange(of: cc.selectedCategory) { category in
+                                    withAnimation {
+                                        
+                                        
+                                        if let category {
+                                            cc.openAllCategories = false
+                                            
+                                            reader.scrollTo(category.name, anchor: .center)
+                                        } else {
+                                            reader.scrollTo("Дизайн", anchor: .center)
+                                        }
+                                    }
                                 }
                             }
+                        }
+                        
+                        Button(action: {
+                            cc.openAllCategories = true
+                        }) {
+                                Image(systemName: "magnifyingglass.circle.fill")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .foregroundColor(.gray900)
+                                    .frame(width: 30, height: 30)
+                                    .padding(4)
+                                    .background(Color.gray10)
+                                    .cornerRadius(30)
+                                    .padding(.horizontal, 5)
                         }
                     }
                     
@@ -96,7 +117,7 @@ struct CategoryTagView: View {
             .background(selected ? Color.gray900 : Color.gray50)
             .cornerRadius(7, corners: [.topLeft, .bottomLeft])
             .cornerRadius(20, corners: [.topRight, .bottomRight])
-            .id(category.name)
+            
         }
     }
 }

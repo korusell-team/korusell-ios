@@ -9,8 +9,9 @@ import SwiftUI
 
 struct TestView: View {
     var body: some View {
-        VStack {
-            Text("ultraLightFont")
+        ZStack {
+            Color.red.frame(width: 60, height: 50)
+                .cornerRadius(200, corners: [.topLeft, .topRight])
         }
     }
 }

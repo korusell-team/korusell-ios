@@ -3,6 +3,7 @@ A subclass of MKMarkerAnnotationView that configures itself for representing a P
 */
 import MapKit
 import UIKit
+import SwiftUI
 
 class PlaceMarker: MKMarkerAnnotationView {
 
@@ -40,11 +41,11 @@ class PlaceMarker: MKMarkerAnnotationView {
                 
                 // MARK: Markers as balloons with custom icons
                 if place.type == .cafe {
-                    markerTintColor = UIColor(named: "cafeCol")
+                    markerTintColor = UIColor(Color.red200)
                     glyphImage = UIImage(named: "cafe")
                     displayPriority = .defaultLow
                 } else {
-                    markerTintColor = UIColor(named: "shopCol")
+                    markerTintColor = UIColor(Color.blue200)
                     glyphImage = UIImage(named: "shop")
                     displayPriority = .defaultHigh
                 }

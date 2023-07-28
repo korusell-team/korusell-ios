@@ -9,7 +9,23 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        TabView {
+            ContactsScreen()
+                .tabItem {
+                    Image(systemName: "person.crop.rectangle.stack")
+                    Text("Контакты")
+                }
+            Text("🚧 здесь нужен дизайн...")
+                .tabItem {
+                    Image(systemName: "magnifyingglass")
+                    Text("Поиск")
+                }
+            PlacesScreen()
+                .tabItem {
+                    Image(systemName: "map")
+                    Text("Места")
+                }
+        }
     }
 }
 
