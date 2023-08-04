@@ -47,26 +47,18 @@ struct ContactsScreen: View {
                 .padding(.top, 0.1)
                 .animation(.easeOut, value: cc.selectedCategory)
                 .background(Color.gray10)
-//                .popup(isPresented: $cc.openAllCategories) {
-//
-//                    PopCategoriesView()
-//
-//                } customize: {
-//                    $0
-//                        .type (.toast)
-//                        .position(.center)
-////                        .dragToDismiss(true)
-////                        .closeOnTapOutside(true)
-//                        .backgroundColor(.black.opacity(0.2))
-                
-                if cc.openAllCategories {
+                .popup(isPresented: $cc.openAllCategories) {
                     PopCategoriesView()
+                } customize: {
+                    $0
+                        .type (.floater())
+                        .position(.top)
+                        .dragToDismiss(true)
+                        .closeOnTapOutside(true)
+                        .backgroundColor(.black.opacity(0.2))
                 }
             }
-            
-            
         }
-//        .background(Color.gray10)
     }
 }
 
@@ -74,47 +66,24 @@ struct PopCategoriesView: View {
     @EnvironmentObject var cc: ContactsController
     
     var body: some View {
-        ZStack {
-            Color.black.opacity(0.2)
-                .onTapGesture {
-                    cc.openAllCategories = false
-                }
             VStack(spacing: 0) {
-                TextField("Поиск", text: $cc.text, onCommit: {
-                    // TODO: Test it out!
-                    cc.selectedCategory = listOfCategories.filter { $0.name.lowercased() == cc.text.lowercased() }.first
-                    })
-                .padding()
-                .background(Color.gray10)
-                VStack(spacing: 0) {
                     Text("КАТЕГОРИИ")
                         .foregroundColor(.gray1000)
                         .font(headlineFont)
                         .bold()
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.horizontal, 22)
-                        .padding(.top)
+                        .padding(.top, 22)
                     
                     FlexibleView(availableWidth: UIScreen.main.bounds.width - 30, data: cc.filteredCategories, spacing: 10, alignment: .leading) { category in
                         CategoryTagView(category: category)
                     }
-                    if !cc.text.isEmpty {
-                        ForEach(cc.filteredCategories, id: \.self) { category in
-                            ForEach(category.tags.filter { $0.contains(cc.text) } , id: \.self) {
-                                TagView(tag: $0)
-                            }
-                        }
-                    }
-                }
-                .frame(maxWidth: .infinity)
-                .background(Blur(style: .systemUltraThinMaterialDark, intensity: 0.6))
+                    .padding(.bottom)
             }
-            
+            .frame(maxWidth: .infinity)
+            .background(Blur(style: .systemUltraThinMaterialDark, intensity: 0.6))
             .cornerRadius(30)
             .padding(.horizontal, 22)
-        }
-        .ignoresSafeArea()
-        
     }
 }
 

@@ -108,6 +108,18 @@
 			name = ExternalViews;
 			sourceTree = "<group>";
 		};
+		256275AE2A73E127006F0E39 /* _deprecated */ = {
+			isa = PBXGroup;
+			children = (
+				256C975C2A2C4D85003DD1B4 /* PlaceView.swift */,
+				256C975A2A2C4C47003DD1B4 /* PlaceListView.swift */,
+				253B84E52A0A614F004FA223 /* SearchBar.swift */,
+				253B84F12A0F18C0004FA223 /* CategoryView.swift */,
+				253B84EF2A0F18A8004FA223 /* CategoryListView.swift */,
+			);
+			path = _deprecated;
+			sourceTree = "<group>";
+		};
 		25DB6CA02A0726C400660E99 = {
 			isa = PBXGroup;
 			children = (
@@ -155,19 +167,15 @@
 		25DB6CBA2A0727FA00660E99 /* Contacts */ = {
 			isa = PBXGroup;
 			children = (
+				256275AE2A73E127006F0E39 /* _deprecated */,
 				25DB6CC02A07287F00660E99 /* ContactsScreen.swift */,
 				256C97642A39EC0E003DD1B4 /* CategoryTagNavi.swift */,
-				253B84F12A0F18C0004FA223 /* CategoryView.swift */,
-				253B84EF2A0F18A8004FA223 /* CategoryListView.swift */,
 				253B84F52A0F5B3E004FA223 /* ContactListView.swift */,
 				253B84E72A0BA0A9004FA223 /* ContactView.swift */,
-				2596144C2A1247D500393712 /* ContactDetailsView.swift */,
-				253B84EB2A0CF3D6004FA223 /* AvatarView.swift */,
-				253B84E52A0A614F004FA223 /* SearchBar.swift */,
-				259614492A1233C000393712 /* ContactsController.swift */,
 				253B84F92A0F7F9E004FA223 /* TagView.swift */,
-				256C975A2A2C4C47003DD1B4 /* PlaceListView.swift */,
-				256C975C2A2C4D85003DD1B4 /* PlaceView.swift */,
+				253B84EB2A0CF3D6004FA223 /* AvatarView.swift */,
+				2596144C2A1247D500393712 /* ContactDetailsView.swift */,
+				259614492A1233C000393712 /* ContactsController.swift */,
 			);
 			path = Contacts;
 			sourceTree = "<group>";
@@ -473,8 +481,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -504,8 +512,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (

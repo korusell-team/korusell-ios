@@ -16,6 +16,7 @@ struct CategoryTagNavi: View {
             let rows = [GridItem(.flexible())]
             
                 VStack(spacing: 0) {
+                    /// Categories list
                     ZStack(alignment: .leading) {
                         ScrollView(.horizontal, showsIndicators: false) {
                             ScrollViewReader { reader in
@@ -59,6 +60,7 @@ struct CategoryTagNavi: View {
                         }
                     }
                     
+                    /// Sub-categories list
                     if let category = cc.selectedCategory {
                         ScrollView(.horizontal, showsIndicators: false) {
                             ScrollViewReader { reader in
