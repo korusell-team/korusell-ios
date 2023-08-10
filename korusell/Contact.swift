@@ -11,15 +11,18 @@ struct Contact: Identifiable, Hashable {
     let id = UUID()
     let name: String
     let surname: String
+    var bio: String
     var cities: [String] = []
     var image: String? = nil
     var categories: [String] = []
-    var tags: [String] = []
-    var likes: [String] = []
-    var marks: [String] = []
+    var subcategories: [String] = []
     var phone: String? = nil
     var instagram: String? = nil
-    var link: String? = nil
     var youtube: String? = nil
-    var bio: String? = nil
+    var link: String? = nil
+    var telegram: String? = nil
+    var kakao: String? = nil
+    var description: String? = nil
+    /// places ids?
+    var places: [String] = []
 }

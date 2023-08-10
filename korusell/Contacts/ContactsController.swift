@@ -27,7 +27,7 @@ class ContactsController: ObservableObject {
         
         return listOfCategories.filter { category in
             category.name.lowercased().contains(text.lowercased()) ||
-            !category.tags.filter { $0.lowercased().contains(text.lowercased()) }.isEmpty
+            !category.subcategories.filter { $0.lowercased().contains(text.lowercased()) }.isEmpty
         }
     }
     
@@ -42,24 +42,10 @@ class ContactsController: ObservableObject {
         } else {
             return listOfContacts.filter { contact in
                 !contact.categories.filter { $0.lowercased().contains(selectedCategory!.name.lowercased()) }.isEmpty
-                && !contact.tags.filter { $0.lowercased().contains(text.lowercased()) }.isEmpty
+                && !contact.subcategories.filter { $0.lowercased().contains(text.lowercased()) }.isEmpty
             }
             .sorted(by: { $0.surname < $1.surname})
         }
-        
-        
-        
-        
-        // MARK: Filter for search
-//        guard !text.isEmpty else { return listOfContacts.sorted(by: { $0.surname < $1.surname}) }
-        
-//        return listOfContacts.filter { contact in
-//            contact.name.lowercased().contains(text.lowercased()) ||
-//            contact.surname.lowercased().contains(text.lowercased()) ||
-//            !contact.tags.filter { $0.lowercased().contains(text.lowercased()) }.isEmpty
-//        }.sorted(by: { $0.surname < $1.surname})
-        
-        
     }
     
     var filteredPlaces: [Place] {
@@ -67,7 +53,18 @@ class ContactsController: ObservableObject {
         
         return listOfPlaces.filter { place in
             place.name.lowercased().contains(text.lowercased()) ||
-            !place.tags.filter { $0.lowercased().contains(text.lowercased()) }.isEmpty
+            !place.subcategories.filter { $0.lowercased().contains(text.lowercased()) }.isEmpty
         }.sorted(by: { $0.name < $1.name})
     }
+    
+    
+    // MARK: Filter for search
+    //        guard !text.isEmpty else { return listOfContacts.sorted(by: { $0.surname < $1.surname}) }
+    
+    //        return listOfContacts.filter { contact in
+    //            contact.name.lowercased().contains(text.lowercased()) ||
+    //            contact.surname.lowercased().contains(text.lowercased()) ||
+    //            !contact.subcategories.filter { $0.lowercased().contains(text.lowercased()) }.isEmpty
+    //        }.sorted(by: { $0.surname < $1.surname})
+    
 }

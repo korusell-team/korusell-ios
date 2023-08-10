@@ -6,19 +6,23 @@ import UIKit
 import SwiftUI
 
 class PlaceMarker: MKMarkerAnnotationView {
-
-//    override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
-//        super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
-//        self.canShowCallout = true
-//        self.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
-//    }
-    
-   
     override var annotation: MKAnnotation? {
         willSet {
             if let place = newValue as? PlacePoint {
                 clusteringIdentifier = "place"
               
+                // MARK: Markers as balloons with custom icons
+                if place.type == .cafe {
+                    markerTintColor = UIColor(Color.red200)
+                    glyphImage = UIImage(named: "cafe")
+                    displayPriority = .defaultLow
+                } else {
+                    markerTintColor = UIColor(Color.blue200)
+                    glyphImage = UIImage(named: "shop")
+                    displayPriority = .defaultHigh
+                }
+                
+                
 //                canShowCallout = true
 //                rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
                
@@ -34,23 +38,6 @@ class PlaceMarker: MKMarkerAnnotationView {
 //                image = pinImage
 //                markerTintColor = .clear
 //                glyphImage = UIImage(named: "")
-                
-                
-                
-               
-                
-                // MARK: Markers as balloons with custom icons
-                if place.type == .cafe {
-                    markerTintColor = UIColor(Color.red200)
-                    glyphImage = UIImage(named: "cafe")
-                    displayPriority = .defaultLow
-                } else {
-                    markerTintColor = UIColor(Color.blue200)
-                    glyphImage = UIImage(named: "shop")
-                    displayPriority = .defaultHigh
-                }
-                
-                
             }
         }
     }

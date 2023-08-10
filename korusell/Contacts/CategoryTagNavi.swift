@@ -65,7 +65,7 @@ struct CategoryTagNavi: View {
                         ScrollView(.horizontal, showsIndicators: false) {
                             ScrollViewReader { reader in
                                 LazyHGrid(rows: rows, alignment: .top) {
-                                    ForEach(category.tags, id: \.self) { tag in
+                                    ForEach(category.subcategories, id: \.self) { tag in
                                         TagView(tag: tag)
                                     }
                                 }

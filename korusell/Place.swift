@@ -11,13 +11,17 @@ struct Place: Identifiable, Hashable {
     let id = UUID()
     let name: String
     var image: String? = nil
-    var tags: [String] = []
-    var likes: [String] = []
-    var marks: [String] = []
+    var cities: [String] = []
+    var categories: [String] = []
+    var subcategories: [String] = []
     var phone: String? = nil
     var instagram: String? = nil
+    var youtube: String? = nil
     var link: String? = nil
-    var details: String? = nil
+    var telegram: String? = nil
+    var kakao: String? = nil
+    var description: String? = nil
+    var owner: String
     var latitude: Double? = nil
     var longitude: Double? = nil
 }

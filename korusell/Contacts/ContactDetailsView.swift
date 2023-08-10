@@ -59,7 +59,7 @@ struct ContactDetailsView: View {
                     
 //                        categoriesView
                             
-                        tagsView
+                    subcategoriesView
                         .padding(.horizontal)
                         .padding(.horizontal, -20)
                         .padding(.top)
@@ -215,7 +215,7 @@ struct ContactDetailsView: View {
         }
     }
     
-    var tagsView: some View {
+    var subcategoriesView: some View {
         HStack {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
@@ -225,7 +225,7 @@ struct ContactDetailsView: View {
                                 .disabled(true)
                         }
                     }
-                    ForEach(contact.tags, id: \.self) { tag in
+                    ForEach(contact.subcategories, id: \.self) { tag in
                         TagView(tag: tag)
                             .disabled(true)
                     }

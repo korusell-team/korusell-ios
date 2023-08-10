@@ -11,7 +11,7 @@ struct Category: Identifiable, Hashable {
     let id = UUID()
     let name: String
     var image: String
-    var tags: [String] = []
+    var subcategories: [String] = []
 }
 
 //struct Subcategory: Equatable, Hashable {

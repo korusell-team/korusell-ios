@@ -6,8 +6,25 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct ContentView: View {
+    @AppStorage("log_Status") var status = false
+    
+    var body: some View {
+        ZStack {
+            if status {
+                SessionView()
+            } else {
+                SignInView()
+            }
+        }
+    }
+}
+
+struct SessionView: View {
+    @AppStorage("log_Status") var status = false
+
     var body: some View {
         TabView {
             ContactsScreen()
@@ -15,7 +32,21 @@ struct ContentView: View {
                     Image(systemName: "person.crop.rectangle.stack")
                     Text("Контакты")
                 }
-            Text("🚧 здесь нужен дизайн...")
+            VStack {
+                Text("🚧 здесь нужен дизайн...")
+                Button(action: {
+                    do {
+                        try Auth.auth().signOut()
+                    } catch {
+                        
+                    }
+                    
+                    withAnimation { status = false }
+                }) {
+                    Text("Выйти")
+                }
+            }
+            
                 .tabItem {
                     Image(systemName: "magnifyingglass")
                     Text("Поиск")

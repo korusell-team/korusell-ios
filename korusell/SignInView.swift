@@ -6,71 +6,66 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct SignInView: View {
     
-    @State var password = ""
     @State var phone = ""
-    @State var showPassword = false
+    @State var code = ""
+    @State var CODE = ""
+    @State var showCodeWindow = false
     
-    @FocusState private var focusedField
+    @FocusState var focusedField
+    
+    @AppStorage("log_Status") var status = false
     
     var body: some View {
-        VStack {
-            HStack {
-                Text("( 010 ) ")
-                    .foregroundColor(.gray500)
-                    .bold()
-                TextField("", text: $phone)
-                    .textContentType(.telephoneNumber)
-                    .keyboardType(.numberPad)
-                    .onChange(of: phone) { phone in
-                        switcher(phone: phone)
-                    }
-
-                Spacer()
-                
-            }
-            .padding()
-            .background(Color.white)
-            .cornerRadius(14)
-            
-            HStack {
-                if showPassword {
-                    TextField("Password", text: $password)
-                        .focused($focusedField, equals: true)
-                } else {
-                    SecureField("Password", text: $password)
-                        .focused($focusedField, equals: true)
-                        
-                }
-                Spacer()
-                Button(action: {
-                    self.showPassword.toggle()
-                }, label: {
-                    Image(systemName: showPassword ? "eye.slash" : "eye")
-                        .foregroundColor(.gray700)
-                        .opacity(password.isEmpty ? 0 : 1)
+        NavigationView {
+            VStack {
+                HStack {
+                    Text("( 010 ) ")
+                        .foregroundColor(.gray500)
+                        .bold()
+                    TextField("Номер телефона", text: $phone)
+                        .textContentType(.telephoneNumber)
+                        .keyboardType(.numberPad)
+                        .onChange(of: phone) { phone in
+                            switcher(phone: phone)
+                        }
                     
-                })
+                    
+                    
+                    Spacer()
+                    
+                }
+                .padding()
+                .background(Color.white)
+                .cornerRadius(14)
+                
+                if showCodeWindow {
+                    TextField("КОД", text: $code)
+                        .keyboardType(.numberPad)
+                        .padding()
+                        .background(Color.white)
+                        .cornerRadius(14)
+                }
+                
+                Button(action: showCodeWindow ? verifyCode : signIn) {
+                    Text(showCodeWindow ? "Отправить код" : "Войти")
+                }
+                .buttonStyle(.bordered)
+                .padding()
+
             }
-            .padding()
-            .background(Color.white)
-            .cornerRadius(14)
-            
-            Button(action: signIn) {
-                Text("Войти")
-            }
-            .buttonStyle(.bordered)
-            .padding()
+            .padding(.horizontal, 22)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(Color.gray10)
         }
-        .padding()
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color.gray10)
     }
     
     private func switcher(phone: String) {
         if phone.count == 4 {
+            // without spaces?
             self.phone = self.phone.appending(" - ")
         } else if phone.count == 6 {
             self.phone = String(self.phone.dropLast(3))
@@ -82,8 +77,41 @@ struct SignInView: View {
     }
     
     private func signIn() {
-        let properPhone = "010" + self.phone.replacingOccurrences(of: " - ", with: "")
+        // disable when you need to test with real device
+        Auth.auth().settings?.isAppVerificationDisabledForTesting = true
+        
+        let properPhone = "+8210" + self.phone.replacingOccurrences(of: " - ", with: "")
+        PhoneAuthProvider.provider().verifyPhoneNumber(properPhone, uiDelegate: nil) { CODE, error in
+            if let error {
+                print(error)
+                return
+            }
+            self.CODE = CODE ?? ""
+            print(self.CODE)
+            withAnimation {
+                self.showCodeWindow = true
+            }
+            
+        }
         print(properPhone)
+    }
+    
+    private func verifyCode() {
+        let credential = PhoneAuthProvider.provider().credential(withVerificationID: self.CODE, verificationCode: self.code)
+        
+        Auth.auth().signIn(with: credential) { (result, err) in
+            if let err {
+                print(err)
+                return
+            }
+            
+            
+            print(result)
+            
+            withAnimation {
+                self.status = true
+            }
+        }
     }
 }
 
@@ -93,4 +121,4 @@ struct SignInView_Previews: PreviewProvider {
     }
 }
 
-continue firebase auth
+//continue firebase auth

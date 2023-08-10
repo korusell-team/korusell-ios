@@ -54,7 +54,7 @@ struct CategoryListView: View {
                         .padding(.horizontal, 30)
                         .padding(.bottom)
 
-                        FlexibleView(availableWidth: UIScreen.main.bounds.width - 30, data: selected.tags, spacing: 10, alignment: .leading) { tag in
+                        FlexibleView(availableWidth: UIScreen.main.bounds.width - 30, data: selected.subcategories, spacing: 10, alignment: .leading) { tag in
                             TagView(tag: tag)
                         }
                         .padding(.horizontal)
