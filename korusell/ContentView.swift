@@ -22,6 +22,7 @@ struct ContentView: View {
     }
 }
 
+
 struct SessionView: View {
     @AppStorage("log_Status") var status = false
 
