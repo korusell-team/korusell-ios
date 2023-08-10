@@ -18,7 +18,6 @@ struct korusellApp: App {
 //        UITabBar.appearance().isTranslucent = false
         UITabBar.appearance().backgroundColor = UIColor(Color.gray10) 
         
-        
 //            //Use this if NavigationBarTitle is with Large Font
 //            UINavigationBar.appearance().largeTitleTextAttributes = [.font : UIFont(name: "AppleSDGothicNeo-SemiBold", size: 26)!]
 //            //Use this if NavigationBarTitle is with displayMode = .inline
