@@ -9,6 +9,7 @@ import SwiftUI
 import Firebase
 
 struct SignInView: View {
+    @StateObject var viewModel = OTPViewModel()
     
     @State var phone = ""
     @State var code = ""
@@ -16,7 +17,7 @@ struct SignInView: View {
     @State var showCodeWindow = false
     
     @FocusState var focusedField
-    
+    @Namespace private var animation
     @AppStorage("log_Status") var status = false
     
     var body: some View {
@@ -33,26 +34,23 @@ struct SignInView: View {
                             .onChange(of: phone) { phone in
                                 switcher(phone: phone)
                             }
-                        
-                        
-                        
+
                         Spacer()
                         
                     }
                     .padding()
                     .background(Color.white)
                     .cornerRadius(25)
+                    .matchedGeometryEffect(id: "field", in: animation)
                     
                 } else {
-                    TextField("КОД", text: $code)
-                        .keyboardType(.numberPad)
-                        .padding()
-                        .background(Color.white)
-                        .cornerRadius(25)
+                    OTPView(viewModel: viewModel, animation: animation)
+                        
                 }
                 
-                Button(action: showCodeWindow ? verifyCode : signIn) {
-                    Text(showCodeWindow ? "Отправить код" : "Получить СМС")
+                Button(action: test) {
+//                    Button(action: showCodeWindow ? verifyCode : signIn) {
+                    Text(showCodeWindow ? "Войти" : "Получить СМС")
                         .font(footnoteFont)
                         .foregroundColor(.white)
                         .padding(12)
@@ -61,12 +59,19 @@ struct SignInView: View {
                     
                 }
                 .padding()
-                
+                .disabled(!showCodeWindow && phone.count < 11)
+                .opacity(!showCodeWindow && phone.count < 11 ? 0.5 : 1)
 
             }
             .padding(.horizontal, 22)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color.bg)
+        }
+    }
+    
+    private func test() {
+        withAnimation {
+            showCodeWindow.toggle()
         }
     }
     

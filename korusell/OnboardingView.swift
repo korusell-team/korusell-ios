@@ -52,7 +52,7 @@ struct OnboardingView: View {
 
                 HStack(alignment: .center) {
                     HStack(alignment: .center, spacing: 4) {
-                        ForEach(0..<4) { index in
+                        ForEach(0..<text.count, id: \.self) { index in
                             RoundedRectangle(cornerRadius: 20)
                                 .fill(page == index ? Color.action : Color.gray200)
                                 .frame(width: 4 + (page == index ? 13 : 0), height: 4)
