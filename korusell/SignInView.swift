@@ -22,44 +22,51 @@ struct SignInView: View {
     var body: some View {
         NavigationView {
             VStack {
-                HStack {
-                    Text("( 010 ) ")
-                        .foregroundColor(.gray500)
-                        .bold()
-                    TextField("Номер телефона", text: $phone)
-                        .textContentType(.telephoneNumber)
-                        .keyboardType(.numberPad)
-                        .onChange(of: phone) { phone in
-                            switcher(phone: phone)
-                        }
+                if !showCodeWindow {
+                    HStack {
+                        Text("( 010 ) ")
+                            .foregroundColor(.gray500)
+                            .bold()
+                        TextField("Номер телефона", text: $phone)
+                            .textContentType(.telephoneNumber)
+                            .keyboardType(.numberPad)
+                            .onChange(of: phone) { phone in
+                                switcher(phone: phone)
+                            }
+                        
+                        
+                        
+                        Spacer()
+                        
+                    }
+                    .padding()
+                    .background(Color.white)
+                    .cornerRadius(25)
                     
-                    
-                    
-                    Spacer()
-                    
-                }
-                .padding()
-                .background(Color.white)
-                .cornerRadius(14)
-                
-                if showCodeWindow {
+                } else {
                     TextField("КОД", text: $code)
                         .keyboardType(.numberPad)
                         .padding()
                         .background(Color.white)
-                        .cornerRadius(14)
+                        .cornerRadius(25)
                 }
                 
                 Button(action: showCodeWindow ? verifyCode : signIn) {
-                    Text(showCodeWindow ? "Отправить код" : "Войти")
+                    Text(showCodeWindow ? "Отправить код" : "Получить СМС")
+                        .font(footnoteFont)
+                        .foregroundColor(.white)
+                        .padding(12)
+                        .background(Color.action)
+                        .cornerRadius(18)
+                    
                 }
-                .buttonStyle(.bordered)
                 .padding()
+                
 
             }
             .padding(.horizontal, 22)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(Color.gray10)
+            .background(Color.bg)
         }
     }
     

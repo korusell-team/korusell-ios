@@ -25,6 +25,27 @@ let listOfCategories: [Category] = [
     Category(name: "Ремонт", image: "🛠️", subcategories: ["🎧Электроника", "🏠Квартиры", "🛁Сантехник", "⚡️Электрик"]),
 ]
 
+enum eCategory {
+    case design
+    
+    func sub() -> [String] {
+        switch self {
+        case .design: return ["📱UI/UX", "🌐Web", "✏️Графический дизайн"]
+        }
+    }
+}
+
+enum DesignSub {
+    case ui
+    case web
+    case graphic
+    
+    
+}
+
+func test() {
+    let a: eCategory = .design
+}
 
 let listOfContacts: [Contact] = [
     Contact(name: "Евгений", surname: "Ким", bio: "Лучший Ведущий мероприятий\nв Южной Корее!", image: "evgeniy-hvan", categories: ["Мероприятия"], subcategories: ["🦸🏻‍♂️Ведущий", "🤵🏻‍♂️Тамада"], phone: "01012341234", instagram: "https://instagram.com/vlog.vedushego?igshid=OGQ5ZDc2ODk2ZA=="),
@@ -44,14 +65,14 @@ let listOfPlaces: [Place] = [
 
 var data: [PlacePoint] = [
     
-    PlacePoint(type: .cafe, address: "서울%20영등포구%20여의도동%2084-1", coordinate: CLLocationCoordinate2D(latitude:  61.19533942,   longitude: -149.9054948 ), title: "У Тани", subtitle: "America"),
-    PlacePoint(type: .cafe, coordinate: CLLocationCoordinate2D(latitude:  61.2297    ,   longitude: -149.7522    ), title: "Кошка", subtitle: "America"),
-    PlacePoint(type: .shop, coordinate: CLLocationCoordinate2D(latitude:  61.19525062,   longitude: -149.8643361 ), title: "Империя Фудс", subtitle: "America"),
-    PlacePoint(type: .shop, coordinate: CLLocationCoordinate2D(latitude:  61.13751355,   longitude: -149.8379726 ), title: "Корзинка", subtitle: "America"),
-    PlacePoint(type: .shop, coordinate: CLLocationCoordinate2D(latitude:  61.13994658,   longitude: -149.9092788 ), title: "Колобок", subtitle: "America"),
-    PlacePoint(type: .shop, coordinate: CLLocationCoordinate2D(latitude:  61.19533265,   longitude: -149.7364877 ), title: "Ханян", subtitle: "America"),
-    PlacePoint(type: .shop, coordinate: CLLocationCoordinate2D(latitude:  61.2156    ,   longitude: -149.8211    ), title: "Пекарня", subtitle: "America"),
-    PlacePoint(type: .cafe, coordinate: CLLocationCoordinate2D(latitude:  61.13806145,   longitude: -149.8445832 ), title: "Текколь", subtitle: "America"),
-    PlacePoint(type: .cafe, coordinate: CLLocationCoordinate2D(latitude:  61.176693  ,     longitude: -149.9728678), title: "Валерия", subtitle: "America"),
-    PlacePoint(type: .cafe, coordinate: CLLocationCoordinate2D(latitude:  61.14473454,   longitude: -149.8638034 ), title: "Куйлюк", subtitle: "America"),
+    PlacePoint(type: .cafe, address: "서울%20영등포구%20여의도동%2084-1", coordinate: CLLocationCoordinate2D(latitude:  61.19533942,   longitude: -149.9054948 ), title: "У Тани", bio: "America"),
+    PlacePoint(type: .cafe, coordinate: CLLocationCoordinate2D(latitude:  61.2297    ,   longitude: -149.7522    ), title: "Кошка", bio: "America"),
+    PlacePoint(type: .shop, coordinate: CLLocationCoordinate2D(latitude:  61.19525062,   longitude: -149.8643361 ), title: "Империя Фудс", bio: "America"),
+    PlacePoint(type: .shop, coordinate: CLLocationCoordinate2D(latitude:  61.13751355,   longitude: -149.8379726 ), title: "Корзинка", bio: "America"),
+    PlacePoint(type: .shop, coordinate: CLLocationCoordinate2D(latitude:  61.13994658,   longitude: -149.9092788 ), title: "Колобок", bio: "America"),
+    PlacePoint(type: .shop, coordinate: CLLocationCoordinate2D(latitude:  61.19533265,   longitude: -149.7364877 ), title: "Ханян", bio: "America"),
+    PlacePoint(type: .shop, coordinate: CLLocationCoordinate2D(latitude:  61.2156    ,   longitude: -149.8211    ), title: "Пекарня", bio: "America"),
+    PlacePoint(type: .cafe, coordinate: CLLocationCoordinate2D(latitude:  61.13806145,   longitude: -149.8445832 ), title: "Текколь", bio: "America"),
+    PlacePoint(type: .cafe, coordinate: CLLocationCoordinate2D(latitude:  61.176693  ,     longitude: -149.9728678), title: "Валерия", bio: "America"),
+    PlacePoint(type: .cafe, coordinate: CLLocationCoordinate2D(latitude:  61.14473454,   longitude: -149.8638034 ), title: "Куйлюк", bio: "America"),
 ]

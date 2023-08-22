@@ -13,8 +13,10 @@ struct korusellApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @StateObject var cc = ContactsController()
     
+    @AppStorage("appOnboarded") var appOnboarded = false
+    
     init() {
-        
+        appOnboarded = false
 //        UITabBar.appearance().isTranslucent = false
         UITabBar.appearance().backgroundColor = UIColor(Color.gray10) 
         

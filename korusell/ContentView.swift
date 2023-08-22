@@ -10,13 +10,20 @@ import Firebase
 
 struct ContentView: View {
     @AppStorage("log_Status") var status = false
+    @AppStorage("appOnboarded") var appOnboarded = false
     
     var body: some View {
         ZStack {
+            // TODO: CHange to getting session!
             if status {
                 SessionView()
             } else {
-                SignInView()
+                if appOnboarded {
+                    SignInView()
+                        .transition(.move(edge: .trailing))
+                } else {
+                    OnboardingView()
+                }
             }
         }
     }

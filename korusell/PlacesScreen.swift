@@ -46,7 +46,6 @@ struct PlacesScreen: View {
                 
             }
             .onDisappear {
-                print("Disappear")
                 selectedPlace = nil
             }
         }

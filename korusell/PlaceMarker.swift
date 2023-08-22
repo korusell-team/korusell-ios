@@ -5,6 +5,8 @@ import MapKit
 import UIKit
 import SwiftUI
 
+
+/// need to customize markers images
 class PlaceMarker: MKMarkerAnnotationView {
     override var annotation: MKAnnotation? {
         willSet {
@@ -12,15 +14,16 @@ class PlaceMarker: MKMarkerAnnotationView {
                 clusteringIdentifier = "place"
               
                 // MARK: Markers as balloons with custom icons
-                if place.type == .cafe {
-                    markerTintColor = UIColor(Color.red200)
-                    glyphImage = UIImage(named: "cafe")
-                    displayPriority = .defaultLow
-                } else {
-                    markerTintColor = UIColor(Color.blue200)
-                    glyphImage = UIImage(named: "shop")
-                    displayPriority = .defaultHigh
-                }
+                glyphImage = UIImage(named: place.type.rawValue)
+//                if place.type == .cafe {
+//                    markerTintColor = UIColor(Color.red200)
+//                    glyphImage = UIImage(named: "cafe")
+//                    displayPriority = .defaultLow
+//                } else {
+//                    markerTintColor = UIColor(Color.blue200)
+//                    glyphImage = UIImage(named: "shop")
+//                    displayPriority = .defaultHigh
+//                }
                 
                 
 //                canShowCallout = true

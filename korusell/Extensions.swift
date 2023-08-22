@@ -11,9 +11,9 @@ extension Color {
     static let bg = Color("bg")
     
     static let gray10 = Color("gray-10")
-    static let gray50 = Color("gray-50")
+//    static let gray50 = Color("gray-50")
     static let gray100 = Color("gray-100")
-    static let gray200 = Color("gray-200")
+//    static let gray200 = Color("gray-200")
     static let gray300 = Color("gray-300")
     static let gray400 = Color("gray-400")
     static let gray500 = Color("gray-500")
@@ -72,6 +72,14 @@ extension Color {
     static let yellow800 = Color("yellow-800")
     static let yellow900 = Color("yellow-900")
     static let yellow1000 = Color("yellow-1000")
+    
+    
+    static let accent = Color("accent")
+    static let accent_light = Color("accent-light")
+    static let action = Color("action")
+    static let gray50 = Color("gray50")
+    static let gray200 = Color("gray200")
+    
 }
 
 extension View {
