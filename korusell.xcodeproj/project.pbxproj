@@ -43,6 +43,9 @@
 		259EAAC12A960189006C207F /* SessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259EAAC02A960189006C207F /* SessionViewController.swift */; };
 		259EAAC42A960BAD006C207F /* GlobalSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259EAAC32A960BAD006C207F /* GlobalSearchView.swift */; };
 		259EAAC62A96318B006C207F /* PopCategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259EAAC52A96318B006C207F /* PopCategoriesView.swift */; };
+		259EAAC92A97594C006C207F /* LocationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259EAAC82A97594C006C207F /* LocationsView.swift */; };
+		259EAACB2A975AAA006C207F /* HalfSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259EAACA2A975AAA006C207F /* HalfSheet.swift */; };
+		259EAACD2A975CCC006C207F /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259EAACC2A975CCC006C207F /* City.swift */; };
 		25ADF32A2A694403009A2B73 /* PlacesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25ADF3292A694403009A2B73 /* PlacesScreen.swift */; };
 		25ADF3302A694438009A2B73 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25ADF32B2A694437009A2B73 /* MapView.swift */; };
 		25ADF3322A694438009A2B73 /* ClusterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25ADF32D2A694437009A2B73 /* ClusterView.swift */; };
@@ -91,6 +94,9 @@
 		259EAAC02A960189006C207F /* SessionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionViewController.swift; sourceTree = "<group>"; };
 		259EAAC32A960BAD006C207F /* GlobalSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalSearchView.swift; sourceTree = "<group>"; };
 		259EAAC52A96318B006C207F /* PopCategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopCategoriesView.swift; sourceTree = "<group>"; };
+		259EAAC82A97594C006C207F /* LocationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsView.swift; sourceTree = "<group>"; };
+		259EAACA2A975AAA006C207F /* HalfSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfSheet.swift; sourceTree = "<group>"; };
+		259EAACC2A975CCC006C207F /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		25ADF3292A694403009A2B73 /* PlacesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesScreen.swift; sourceTree = "<group>"; };
 		25ADF32B2A694437009A2B73 /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		25ADF32D2A694437009A2B73 /* ClusterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClusterView.swift; sourceTree = "<group>"; };
@@ -172,9 +178,11 @@
 		259EAAC72A97583F006C207F /* Elements */ = {
 			isa = PBXGroup;
 			children = (
+				253B84F92A0F7F9E004FA223 /* LabelView.swift */,
 				253B84ED2A0D1815004FA223 /* Blur.swift */,
 				253B84F72A0F7B00004FA223 /* FlexibleView.swift */,
 				2596144E2A124E5900393712 /* TrackableScrollView.swift */,
+				259EAACA2A975AAA006C207F /* HalfSheet.swift */,
 			);
 			name = Elements;
 			sourceTree = "<group>";
@@ -235,9 +243,9 @@
 				256C97642A39EC0E003DD1B4 /* LabelsView.swift */,
 				253B84F52A0F5B3E004FA223 /* ContactListView.swift */,
 				253B84E72A0BA0A9004FA223 /* ContactView.swift */,
-				253B84F92A0F7F9E004FA223 /* LabelView.swift */,
-				253B84EB2A0CF3D6004FA223 /* AvatarView.swift */,
 				2596144C2A1247D500393712 /* ContactDetailsView.swift */,
+				259EAAC82A97594C006C207F /* LocationsView.swift */,
+				253B84EB2A0CF3D6004FA223 /* AvatarView.swift */,
 				259614492A1233C000393712 /* ContactsController.swift */,
 			);
 			path = Contacts;
@@ -263,6 +271,7 @@
 				259338082A29E22E00C7AF1B /* RoundedCorner.swift */,
 				2593380A2A29ED8700C7AF1B /* WebView.swift */,
 				256C97602A372B55003DD1B4 /* Design.swift */,
+				259EAACC2A975CCC006C207F /* City.swift */,
 			);
 			name = Shared;
 			sourceTree = "<group>";
@@ -368,6 +377,7 @@
 				25ADF3322A694438009A2B73 /* ClusterView.swift in Sources */,
 				253B84EA2A0C59CE004FA223 /* Extensions.swift in Sources */,
 				253B84F22A0F18C0004FA223 /* CategoryView.swift in Sources */,
+				259EAACB2A975AAA006C207F /* HalfSheet.swift in Sources */,
 				256275B12A7D0120006F0E39 /* SignInView.swift in Sources */,
 				253B84EE2A0D1815004FA223 /* Blur.swift in Sources */,
 				253B84E82A0BA0A9004FA223 /* ContactView.swift in Sources */,
@@ -376,6 +386,7 @@
 				25ADF3342A694438009A2B73 /* PlaceMarker.swift in Sources */,
 				256C97652A39EC0E003DD1B4 /* LabelsView.swift in Sources */,
 				2548C4182A94E45300211CC0 /* OTPView.swift in Sources */,
+				259EAACD2A975CCC006C207F /* City.swift in Sources */,
 				2596144A2A1233C000393712 /* ContactsController.swift in Sources */,
 				259EAAC12A960189006C207F /* SessionViewController.swift in Sources */,
 				25DB6CC82A0A5AC500660E99 /* Data.swift in Sources */,
@@ -386,6 +397,7 @@
 				25ADF3332A694438009A2B73 /* PlacePoint.swift in Sources */,
 				25ADF32A2A694403009A2B73 /* PlacesScreen.swift in Sources */,
 				2548C4162A94B65F00211CC0 /* OnboardingView.swift in Sources */,
+				259EAAC92A97594C006C207F /* LocationsView.swift in Sources */,
 				256C97592A2C4954003DD1B4 /* Place.swift in Sources */,
 				253B84F82A0F7B00004FA223 /* FlexibleView.swift in Sources */,
 				253B84F62A0F5B3E004FA223 /* ContactListView.swift in Sources */,

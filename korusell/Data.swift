@@ -76,6 +76,16 @@ let listOfPlaces: [Place] = [
     Place(name: "СТО", subcategories: ["транспорт", "ремонт"], owner: "sad"),
 ]
 
+let cities: [City] = [
+    City(title: "Сеул"),
+    City(title: "Ансан"),
+    City(title: "Инчхон"),
+    City(title: "Хвасонг"),
+    City(title: "Пусан"),
+    City(title: "Сувон")
+]
+
+
 var data: [PlacePoint] = [
     
     PlacePoint(type: .cafe, address: "서울%20영등포구%20여의도동%2084-1", coordinate: CLLocationCoordinate2D(latitude:  61.19533942,   longitude: -149.9054948 ), title: "У Тани", bio: "America"),

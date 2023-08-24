@@ -14,7 +14,7 @@ struct LabelView: View {
     var body: some View {
         Text(title)
             .font(subheadFont)
-            .foregroundColor(isSelected ? .white : .gray900)
+            .foregroundColor(isSelected ? .gray50 : .gray900)
             .padding(.vertical, 8)
             .padding(.horizontal, 15)
             .background(isSelected ? Color.gray700 : Color.white)
