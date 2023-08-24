@@ -221,13 +221,11 @@ struct ContactDetailsView: View {
                 HStack {
                     ForEach(contact.categories, id: \.self) { title in
                         if let category = listOfCategories.first(where: { $0.name.contains(title) }) {
-                            CategoryTagView(category: category)
-                                .disabled(true)
+                            LabelView(title: category.name)
                         }
                     }
-                    ForEach(contact.subcategories, id: \.self) { tag in
-                        TagView(tag: tag)
-                            .disabled(true)
+                    ForEach(contact.subcategories, id: \.self) { text in
+                        LabelView(title: text)
                     }
                 }
             }

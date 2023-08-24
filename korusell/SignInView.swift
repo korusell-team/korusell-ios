@@ -22,46 +22,55 @@ struct SignInView: View {
     
     var body: some View {
         NavigationView {
-            VStack {
-                if !showCodeWindow {
-                    HStack {
-                        Text("( 010 ) ")
-                            .foregroundColor(.gray500)
-                            .bold()
-                        TextField("Номер телефона", text: $phone)
-                            .textContentType(.telephoneNumber)
-                            .keyboardType(.numberPad)
-                            .onChange(of: phone) { phone in
-                                switcher(phone: phone)
-                            }
-
-                        Spacer()
+            ZStack {
+                VStack {
+                    if !showCodeWindow {
+                        HStack {
+                            Text("( 010 ) ")
+                                .foregroundColor(.gray500)
+                                .bold()
+                            TextField("Номер телефона", text: $phone)
+                                .textContentType(.telephoneNumber)
+                                .keyboardType(.numberPad)
+                                .onChange(of: phone) { phone in
+                                    switcher(phone: phone)
+                                }
+                            
+                            Spacer()
+                            
+                        }
+                        .padding()
+                        .background(Color.white)
+                        .cornerRadius(25)
+                        .matchedGeometryEffect(id: "field", in: animation)
+                        
+                    } else {
+                        OTPView(viewModel: viewModel, animation: animation)
+                        
+                    }
+                    
+                    //                Button(action: test) {
+                    Button(action: showCodeWindow ? verifyCode : signIn) {
+                        Text(showCodeWindow ? "Войти" : "Получить СМС")
+                            .font(footnoteFont)
+                            .foregroundColor(.white)
+                            .padding(12)
+                            .background(Color.action)
+                            .cornerRadius(18)
                         
                     }
                     .padding()
-                    .background(Color.white)
-                    .cornerRadius(25)
-                    .matchedGeometryEffect(id: "field", in: animation)
-                    
-                } else {
-                    OTPView(viewModel: viewModel, animation: animation)
-                        
+                    .disabled(!showCodeWindow && phone.count < 11)
+                    .opacity(!showCodeWindow && phone.count < 11 ? 0.5 : 1)
                 }
                 
-                Button(action: test) {
-//                    Button(action: showCodeWindow ? verifyCode : signIn) {
-                    Text(showCodeWindow ? "Войти" : "Получить СМС")
-                        .font(footnoteFont)
-                        .foregroundColor(.white)
-                        .padding(12)
-                        .background(Color.action)
-                        .cornerRadius(18)
-                    
+                VStack {
+                    Spacer()
+                    Button(action: resend) {
+                        Text("Отправить код еще раз")
+                    }
                 }
-                .padding()
-                .disabled(!showCodeWindow && phone.count < 11)
-                .opacity(!showCodeWindow && phone.count < 11 ? 0.5 : 1)
-
+                .padding(20)
             }
             .padding(.horizontal, 22)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -108,8 +117,13 @@ struct SignInView: View {
         print(properPhone)
     }
     
+    // TODO: Create this function
+    private func resend() {
+        
+    }
+    
     private func verifyCode() {
-        let credential = PhoneAuthProvider.provider().credential(withVerificationID: self.CODE, verificationCode: self.code)
+        let credential = PhoneAuthProvider.provider().credential(withVerificationID: self.CODE, verificationCode: viewModel.otpField)
         
         Auth.auth().signIn(with: credential) { (result, err) in
             if let err {
@@ -122,6 +136,7 @@ struct SignInView: View {
             
             withAnimation {
                 self.status = true
+                
             }
         }
     }

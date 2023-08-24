@@ -57,6 +57,37 @@ class ContactsController: ObservableObject {
         }.sorted(by: { $0.name < $1.name})
     }
     
+    func selectCategory(category: Category) {
+        withAnimation(.interpolatingSpring(stiffness: 200, damping: 20)) {
+            if self.selectedCategory == category {
+                self.selectedCategory = nil
+                self.text = ""
+            } else {
+                self.selectedCategory = category
+                self.text = ""
+            }
+        }
+    }
+    
+    func thisCategorySelected(category: Category) -> Bool {
+        self.selectedCategory == category
+    }
+    
+    func selectSubcategory(text: String) {
+        let selected = self.text == text
+        withAnimation(.interpolatingSpring(stiffness: 200, damping: 20)) {
+            if selected {
+                self.text = ""
+            } else {
+                self.text = text
+            }
+            self.openAllCategories = false
+        }
+    }
+    
+    func thisSubcategorySelected(text: String) -> Bool {
+        self.text == text
+    }
     
     // MARK: Filter for search
     //        guard !text.isEmpty else { return listOfContacts.sorted(by: { $0.surname < $1.surname}) }

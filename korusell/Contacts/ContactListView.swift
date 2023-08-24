@@ -9,32 +9,42 @@ import SwiftUI
 
 struct ContactListView: View {
     @EnvironmentObject var cc: ContactsController
+    
     @State var collapsed = false
     
+    let columns = [GridItem(.flexible())]
+    
     var body: some View {
-//        List {
-            VStack(alignment: .leading, spacing: 0) {
-                if !cc.filteredContacts.isEmpty {
-                    ForEach(cc.filteredContacts, id: \.self) { contact in
-                        ContactView(contact: contact)
-//                        Divider().frame(height: 1)
-                            .padding(.vertical, 7)
+        VStack(alignment: .leading, spacing: 0) {
+            ScrollView(showsIndicators: false) {
+                LazyVGrid(columns: columns, spacing: 0, pinnedViews: .sectionHeaders) {
+                    VStack(alignment: .leading, spacing: 0) {
+                        if !cc.filteredContacts.isEmpty {
+                            ForEach(cc.filteredContacts, id: \.self) { contact in
+                                ContactView(contact: contact)
+                                    .padding(.vertical, 7)
+                            }
+                        } else {
+                            Text("🙈 Список пуст...")
+                                .foregroundColor(.gray300)
+                                .frame(maxWidth: .infinity, maxHeight: UIScreen.main.bounds.height, alignment: .center)
+                        }
                     }
-                } else {
-                    Text("🙈 Список пуст...")
-                        .foregroundColor(.gray300)
-                        .frame(maxWidth: UIScreen.main.bounds.width)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 }
-            }.frame(maxWidth: UIScreen.main.bounds.width, alignment: .leading)
-//        }.listStyle(.grouped)
+            }
+            .padding(.top, 35)
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+        .background(Color.white)
+        .cornerRadius(30, corners: [.topLeft, .topRight])
     }
 }
 
 struct ContactListView_Previews: PreviewProvider {
-    static let cc = ContactsController()
-    
     static var previews: some View {
-        ContactListView()
-            .environmentObject(cc)
+//        ContactListView()
+        ContactsScreen()
+            .environmentObject(ContactsController())
     }
 }

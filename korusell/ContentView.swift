@@ -9,6 +9,8 @@ import SwiftUI
 import Firebase
 
 struct ContentView: View {
+    @StateObject var vc = SessionViewController()
+    
     @AppStorage("log_Status") var status = false
     @AppStorage("appOnboarded") var appOnboarded = false
     
@@ -16,7 +18,7 @@ struct ContentView: View {
         ZStack {
             // TODO: CHange to getting session!
             if status {
-                SessionView()
+                SessionView().environmentObject(vc)
             } else {
                 if appOnboarded {
                     SignInView()
@@ -25,45 +27,6 @@ struct ContentView: View {
                     OnboardingView()
                 }
             }
-        }
-    }
-}
-
-
-struct SessionView: View {
-    @AppStorage("log_Status") var status = false
-
-    var body: some View {
-        TabView {
-            ContactsScreen()
-                .tabItem {
-                    Image(systemName: "person.crop.rectangle.stack")
-                    Text("Контакты")
-                }
-            VStack {
-                Text("🚧 здесь нужен дизайн...")
-                Button(action: {
-                    do {
-                        try Auth.auth().signOut()
-                    } catch {
-                        
-                    }
-                    
-                    withAnimation { status = false }
-                }) {
-                    Text("Выйти")
-                }
-            }
-            
-                .tabItem {
-                    Image(systemName: "magnifyingglass")
-                    Text("Поиск")
-                }
-            PlacesScreen()
-                .tabItem {
-                    Image(systemName: "map")
-                    Text("Места")
-                }
         }
     }
 }

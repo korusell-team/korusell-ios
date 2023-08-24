@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CategoryTagNavi: View {
+struct LabelsView: View {
     @EnvironmentObject var cc: ContactsController
     @Namespace var namespace
     
@@ -22,8 +22,10 @@ struct CategoryTagNavi: View {
                             ScrollViewReader { reader in
                                 LazyHGrid(rows: rows, alignment: .center) {
                                     ForEach(listOfCategories) { category in
-                                        CategoryTagView(category: category)
-                                            .id(category.name)
+                                        Button(action: { cc.selectCategory(category: category) }) {
+                                            LabelView(title: category.name, isSelected: cc.thisCategorySelected(category: category))
+                                        }
+                                        .id(category.name)
                                     }
                                 }
                                 .padding(.leading, 30)
@@ -31,8 +33,6 @@ struct CategoryTagNavi: View {
                                 .frame(height: 40)
                                 .onChange(of: cc.selectedCategory) { category in
                                     withAnimation {
-                                        
-                                        
                                         if let category {
                                             cc.openAllCategories = false
                                             
@@ -54,7 +54,7 @@ struct CategoryTagNavi: View {
                                     .foregroundColor(.gray900)
                                     .frame(width: 30, height: 30)
                                     .padding(4)
-                                    .background(Color.gray10)
+                                    .background(Color.bg)
                                     .cornerRadius(30)
                                     .padding(.horizontal, 5)
                         }
@@ -65,13 +65,16 @@ struct CategoryTagNavi: View {
                         ScrollView(.horizontal, showsIndicators: false) {
                             ScrollViewReader { reader in
                                 LazyHGrid(rows: rows, alignment: .top) {
-                                    ForEach(category.subcategories, id: \.self) { tag in
-                                        TagView(tag: tag)
+                                    ForEach(category.subcategories, id: \.self) { text in
+                                        Button(action: {cc.selectSubcategory(text: text) }) {
+                                            LabelView(title: text, isSelected: cc.thisSubcategorySelected(text: text))
+                                        }
+                                        .id(text)
                                     }
                                 }
                                 .padding(.horizontal)
                                 .frame(height: 40)
-                                .background(Color.gray10)
+                                .background(Color.bg)
                                 .onChange(of: cc.text) { text in
                                     withAnimation {
                                         reader.scrollTo(text, anchor: .center)
@@ -79,80 +82,13 @@ struct CategoryTagNavi: View {
                                 }
                             }
                         }
+                        .padding(.top, 7)
                     }
                 }
         }
-        .background(Color.gray10)
+        .background(Color.bg)
     }
 }
-
-struct CategoryTagView: View {
-    @EnvironmentObject var cc: ContactsController
-    let category: Category
-    
-    var body: some View {
-        let selected = cc.selectedCategory == category
-        Button(action: {
-            withAnimation(.interpolatingSpring(stiffness: 200, damping: 20)) {
-                if selected {
-                    cc.selectedCategory = nil
-                    cc.text = ""
-                } else {
-                    cc.selectedCategory = category
-                    cc.text = ""
-                }
-            }
-        }) {
-            HStack(spacing: 5) {
-                Text(category.image)
-                    .font(subheadFont)
-//                Image(category.image)
-//                    .resizable()
-//                    .scaledToFit()
-//                    .frame(width: 18, height: 18)
-                Text(category.name)
-                    .font(subheadFont)
-            }
-            .foregroundColor(selected ? .gray10 : .gray1000)
-            .padding(.vertical, 7)
-            .padding(.horizontal, 10)
-            .background(selected ? Color.gray900 : Color.gray50)
-            .cornerRadius(7, corners: [.topLeft, .bottomLeft])
-            .cornerRadius(20, corners: [.topRight, .bottomRight])
-            
-        }
-    }
-}
-
-//struct CategoryTagView: View {
-//    @EnvironmentObject var cc: ContactsController
-//    let category: Category
-//
-//    var body: some View {
-//        let selected = cc.selectedCategory == category
-//        Button(action: {
-//            withAnimation(.interpolatingSpring(stiffness: 200, damping: 20)) {
-//                if selected {
-//                    cc.selectedCategory = nil
-//                    cc.text = ""
-//                } else {
-//                    cc.selectedCategory = category
-//                }
-//            }
-//        }) {
-//            VStack(spacing: 5) {
-//                Text(category.name)
-//                    .foregroundColor(selected ? .gray600 : .gray400)
-//                    .scaleEffect(selected ? 1.1 : 1)
-//                    .font(selected ? bodyFont.bold() : bodyFont)
-//            }
-//            .padding(.vertical, 7)
-//            .padding(.horizontal, 10)
-//            .scaleEffect(cc.selectedCategory != nil && cc.selectedCategory != category ? 0.9 : 1)
-//            .id(category.name)
-//        }
-//    }
-//}
 
 struct CategoryTagNavi_Previews: PreviewProvider {
     static let cc = ContactsController()

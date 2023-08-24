@@ -30,19 +30,27 @@ struct ContactView: View {
                         Text(contact.name)
                     }
                     .foregroundColor(.gray1100)
-                    .font(bodyFont)
-                    .padding(.leading, 8)
+                    .font(title3Font)
                     
-                    Text(contact.bio ?? "\n")
-                        .font(footnoteFont)
-                        .foregroundColor(.gray400)
+                    HStack(spacing: 10) {
+                        Text(contact.categories.first ?? "")
+//                        Image(systemName: "chevron.right")
+//                            .font(footnoteFont)
+                        Text("•")
+                        Text(contact.subcategories.first ?? "")
+                    }
+                        .font(subheadFont)
+                        .foregroundColor(.gray800)
                         .lineLimit(2)
                         .multilineTextAlignment(.leading)
-                        .padding(.leading, 8)
                         .fixedSize(horizontal: false, vertical: true)
                         .padding(.top, 2)
+                        .padding(.bottom, 14)
                     
+                    
+                    Divider()
                 }
+                .padding(.leading, 8)
             }
             .padding(.horizontal)
             .padding(.horizontal, 10)
