@@ -22,12 +22,6 @@ struct ContactsScreen: View {
                         .padding(.top)
                     ContactListView()
                 }
-                .sheet(isPresented: $locationsPresented) {
-                    // TODO: add filter for contacts by city
-                    HalfSheet {
-                        LocationsView()
-                    }
-                }
                 .ignoresSafeArea(edges: .bottom)
                 .navigationTitle("Контакты")
                 .navigationBarTitleDisplayMode(.inline)
@@ -56,7 +50,6 @@ struct ContactsScreen: View {
                 )
                 .padding(.top, 0.1)
                 .animation(.easeOut, value: cc.selectedCategory)
-                
                 .background(Color.bg)
                 .popup(isPresented: $cc.openAllCategories) {
                     PopCategoriesView()
@@ -67,6 +60,16 @@ struct ContactsScreen: View {
                         .dragToDismiss(true)
                         .closeOnTapOutside(true)
                         .backgroundColor(.black.opacity(0.2))
+                }
+                .popup(isPresented: $locationsPresented) {
+                    LocationsView()
+                } customize: {
+                    $0
+                        .type(.toast)
+                        .position(.bottom)
+                        .closeOnTap(false)
+                        .closeOnTapOutside(true)
+                        .backgroundColor(.black.opacity(0.4))
                 }
             }
         }
