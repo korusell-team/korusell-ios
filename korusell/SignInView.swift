@@ -64,13 +64,15 @@ struct SignInView: View {
                     .opacity(!showCodeWindow && phone.count < 11 ? 0.5 : 1)
                 }
                 
-                VStack {
-                    Spacer()
-                    Button(action: resend) {
-                        Text("Отправить код еще раз")
+                if !showCodeWindow {
+                    VStack {
+                        Spacer()
+                        Button(action: resend) {
+                            Text("Отправить код еще раз")
+                        }
                     }
+                    .padding(20)
                 }
-                .padding(20)
             }
             .padding(.horizontal, 22)
             .frame(maxWidth: .infinity, maxHeight: .infinity)

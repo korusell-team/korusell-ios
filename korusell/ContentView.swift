@@ -25,6 +25,7 @@ struct ContentView: View {
                         .transition(.move(edge: .trailing))
                 } else {
                     OnboardingView()
+                        .transition(.move(edge: .trailing))
                 }
             }
         }

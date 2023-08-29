@@ -8,7 +8,7 @@
 import SwiftUI
 import YouTubePlayerKit
 
-struct ContactDetailsView: View {
+struct _ContactDetailsView: View {
     @Environment(\.openURL) var openURL
     @EnvironmentObject var cc: ContactsController
     
@@ -233,11 +233,11 @@ struct ContactDetailsView: View {
     }
 }
 
-struct ContactDetailsView_Previews: PreviewProvider {
+struct _ContactDetailsView_Previews: PreviewProvider {
     static let cc = ContactsController()
     static var previews: some View {
         NavigationView {
-            ContactDetailsView(contact: listOfContacts.first(where: { $0.name == "Владимир" })!)
+            _ContactDetailsView(contact: listOfContacts.first(where: { $0.name == "Владимир" })!)
                 .environmentObject(cc)
         }
     }

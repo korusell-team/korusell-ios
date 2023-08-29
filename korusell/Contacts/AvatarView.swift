@@ -28,8 +28,8 @@ struct AvatarView: View {
                 .foregroundColor(.white)
             
             // TODO: redo after DB
-            if let image = contact.image {
-                Image(image)
+            if !contact.image.isEmpty {
+                Image(contact.image.first!)
                     .resizable()
                     .scaledToFit()
                     .frame(width: 80, height: 80)
@@ -72,7 +72,7 @@ struct DetailsAvatarView: View {
     let contact: Contact
 
     var body: some View {
-        let frame: CGFloat = contact.image == nil ? 70 : 100
+        let frame: CGFloat = contact.image.isEmpty ? 70 : 100
         ZStack {
             Circle()
                 .fill(Color.gray900)
@@ -81,8 +81,8 @@ struct DetailsAvatarView: View {
             + Text(String(contact.surname.capitalized.first!))
             
             // TODO: redo after DB
-            if let image = contact.image {
-                Image(image)
+            if !contact.image.isEmpty {
+                Image(contact.image.first!)
                     .resizable()
                     .scaledToFit()
                     .frame(width: 130, height: 130)

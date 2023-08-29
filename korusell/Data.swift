@@ -8,7 +8,7 @@
 import Foundation
 import MapKit
 
-let fakeUser = Contact(name: "Сергей", surname: "Ли", bio: "\niOS", image: "sergey-lee", categories: ["IT"], subcategories: ["💻Программирование", "📱Приложения", "🍏iOS"])
+let fakeUser = Contact(name: "Сергей", surname: "Ли", bio: "\niOS", image: ["sergey-lee"], categories: ["IT"], subcategories: ["💻Программирование", "📱Приложения", "🍏iOS"])
 
 
 let listOfCategories: [Category] = [
@@ -61,13 +61,13 @@ func test() {
 }
 
 let listOfContacts: [Contact] = [
-    Contact(name: "Евгений", surname: "Ким", bio: "Лучший Ведущий мероприятий\nв Южной Корее!", image: "evgeniy-hvan", categories: ["Мероприятия"], subcategories: ["Ведущий", "Тамада"], phone: "01012341234", instagram: "https://instagram.com/vlog.vedushego?igshid=OGQ5ZDc2ODk2ZA=="),
-    Contact(name: "Сергей", surname: "Ли", bio: "\niOS", image: "sergey-lee", categories: ["IT"], subcategories: ["Программирование", "Приложения", "iOS"]),
+    Contact(name: "Евгений", surname: "Ким", bio: "Лучший Ведущий мероприятий\nв Южной Корее!", image: ["evgeniy-hvan"], categories: ["Мероприятия"], subcategories: ["Ведущий", "Тамада"], phone: "01012341234", instagram: "https://instagram.com/vlog.vedushego?igshid=OGQ5ZDc2ODk2ZA=="),
+    Contact(name: "Сергей", surname: "Ли", bio: "\niOS", image: ["sergey-lee"], categories: ["IT"], subcategories: ["Программирование", "Приложения", "iOS"]),
     Contact(name: "Антон", surname: "Емельянов", bio: "fullstack\ndeveloper", categories: ["IT"], subcategories: ["Программирование", "Сайты"]),
     Contact(name: "Андрей", surname: "Ким", bio: "я просто рандомный чел...🤪", categories: ["Переводы"], subcategories: ["Английский"]),
-    Contact(name: "Владимир", surname: "Мун", bio: "Habsida. Школа программирования и дизайна. С оплатой после трудоустройства!", cities: ["Сеул"], image: "vladimir-mun", categories: ["Образование"], subcategories: ["Дизайн", "Программирование"], phone: "010-1234-1234", instagram: "https://www.instagram.com/reel/Co3-k56D537/?utm_source=ig_web_copy_link&igshid=MzRlODBiNWFlZA==", youtube: "https://www.youtube.com/watch?v=AMS7GqqQhdc&t=8s", link: "https://habsida.com/ru"),
-    Contact(name: "Владимир", surname: "Тен", bio: "Основатель школы корейского языка 'Korean Simple' и далее длинное описание услуг которые может предоставить данный человек", image: "vladimir-ten", categories: ["Образование"], subcategories: ["Корейский язык"], phone: "01012341234", instagram: "https://instagram.com/vladimirten?igshid=OGQ5ZDc2ODk2ZA=="),
-    Contact(name: "David", surname: "Beckham", bio: "I'm here to check if english content displays properly", image: "david-beckham", categories: ["Маркетинг"], subcategories: ["Продажи"], instagram: "https://www.instagram.com/davidbeckham"),
+    Contact(name: "Владимир", surname: "Мун", bio: "Habsida. Школа программирования и дизайна. С оплатой после трудоустройства!", cities: ["Сеул"], image: ["vladimir-mun", "vladimir-mun"], categories: ["Образование"], subcategories: ["Дизайн", "Программирование"], phone: "010-1234-1234", instagram: "https://www.instagram.com/reel/Co3-k56D537/?utm_source=ig_web_copy_link&igshid=MzRlODBiNWFlZA==", youtube: "https://www.youtube.com/watch?v=AMS7GqqQhdc&t=8s", link: "https://habsida.com/ru"),
+    Contact(name: "Владимир", surname: "Тен", bio: "Основатель школы корейского языка 'Korean Simple' и далее длинное описание услуг которые может предоставить данный человек", image: ["vladimir-ten", "vladimir-ten2"], categories: ["Образование"], subcategories: ["Корейский язык"], phone: "01012341234", instagram: "https://instagram.com/vladimirten?igshid=OGQ5ZDc2ODk2ZA=="),
+    Contact(name: "David", surname: "Beckham", bio: "I'm here to check if english content displays properly", image: ["david-beckham"], categories: ["Маркетинг"], subcategories: ["Продажи"], instagram: "https://www.instagram.com/davidbeckham"),
 ]
 
 let listOfPlaces: [Place] = [

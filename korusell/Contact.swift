@@ -13,7 +13,7 @@ struct Contact: Identifiable, Hashable {
     let surname: String
     var bio: String
     var cities: [String] = []
-    var image: String? = nil
+    var image: [String] = []
     var categories: [String] = []
     var subcategories: [String] = []
     var phone: String? = nil

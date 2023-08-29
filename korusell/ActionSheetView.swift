@@ -25,12 +25,7 @@ struct ActionSheetView<Content: View>: View {
         ZStack {
             bgColor.cornerRadius(30, corners: [.topLeft, .topRight])
             VStack {
-                Color.black
-                    .opacity(0.2)
-                    .frame(width: 85, height: 6)
-                    .clipShape(Capsule())
-                    .padding(.top, 15)
-                    .padding(.bottom, 10)
+                SheetDragger()
 
                 content
                     .padding(.bottom, 30)
