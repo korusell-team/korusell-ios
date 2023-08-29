@@ -29,37 +29,39 @@ struct ContactDetailsSheet: View {
                         
                         VStack(spacing: 0) {
                             SheetDragger()
-                            VStack(alignment: .leading, spacing: 20) {
-                                HStack {
-                                    VStack(alignment: .leading, spacing: 5) {
-                                        Text(contact.name + " " + contact.surname)
-                                            .font(title2Font)
-                                        HStack {
-                                            LabelView(title: contact.categories.first ?? "", isSelected: true)
-                                            LabelView(title: contact.subcategories.first ?? "", isSelected: true)
+                            ScrollView {
+                                VStack(alignment: .leading, spacing: 20) {
+                                    HStack {
+                                        VStack(alignment: .leading, spacing: 5) {
+                                            Text(contact.name + " " + contact.surname)
+                                                .font(title2Font)
+                                            HStack {
+                                                LabelView(title: contact.categories.first ?? "", isSelected: true)
+                                                LabelView(title: contact.subcategories.first ?? "", isSelected: true)
+                                            }
+                                        }
+                                        Spacer()
+                                        Button(action: call) {
+                                            Image("ic-phone")
+                                                .resizable()
+                                                .scaledToFit()
+                                                .frame(width: 40, height: 40)
+                                        }
+                                        
+                                        Button(action: sendSMS) {
+                                            Image("ic-sms")
+                                                .resizable()
+                                                .scaledToFit()
+                                                .frame(width: 40, height: 40)
                                         }
                                     }
-                                    Spacer()
-                                    Button(action: call) {
-                                        Image("ic-phone")
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(width: 40, height: 40)
-                                    }
                                     
-                                    Button(action: sendSMS) {
-                                        Image("ic-sms")
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(width: 40, height: 40)
-                                    }
+                                    Divider()
+                                    
+                                    LabelView(title: contact.cities.first ?? "", isSelected: true)
+                                    
+                                    
                                 }
-                                
-                                Divider()
-                                
-                                LabelView(title: contact.cities.first ?? "", isSelected: true)
-                                
-                                
                             }
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .padding(.top, 13)

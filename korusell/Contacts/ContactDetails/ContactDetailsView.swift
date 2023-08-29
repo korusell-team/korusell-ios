@@ -42,7 +42,7 @@ struct ContactDetailsView: View {
                 }
                 .background(Color.white.opacity(0.01))
                 .frame(maxHeight: 390, alignment: .center)
-                .offset(y: -30)
+//                .offset(y: -30)
                 Spacer()
             }
             
