@@ -95,4 +95,15 @@ extension View {
             self
         }
     }
+    
+//    @ViewBuilder
+//    func navigationView(back: @escaping () -> Void = {}, title: LocalizedStringKey = "", backButtonHidden: Bool = false, backButtonColor: Color = Color.white) -> some View {
+//        self
+////            .background(bg.ignoresSafeArea())
+//            .navigationBarBackButtonHidden(true)
+//            .navigationBarItems(leading: BackButton(action: back, hidden: backButtonHidden, color: backButtonColor))
+//            .navigationBarTitle(Text(title).foregroundColor(.white))
+//    }
+    
+    
 }

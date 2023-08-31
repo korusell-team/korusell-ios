@@ -22,9 +22,24 @@ struct LabelView: View {
     }
 }
 
+struct SmallLabelView: View {
+    var title: String
+    
+    var body: some View {
+        Text(title)
+            .font(footnoteFont)
+            .foregroundColor(.gray50)
+            .padding(.vertical, 5)
+            .padding(.horizontal, 12)
+            .background(Color.gray700)
+            .cornerRadius(20)
+    }
+}
+
 struct SubCatLabelView_Previews: PreviewProvider {
     static var previews: some View {
-        ContactsScreen()
-            .environmentObject(ContactsController())
+        SmallLabelView(title: "sasa")
+//        ContactsScreen()
+//            .environmentObject(ContactsController())
     }
 }

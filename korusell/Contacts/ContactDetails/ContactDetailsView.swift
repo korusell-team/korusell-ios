@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ContactDetailsView: View {
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+
     @State var page: Int = 0
     
     let contact: Contact
@@ -18,11 +20,17 @@ struct ContactDetailsView: View {
                 ZStack(alignment: .bottom) {
                     TabView(selection: $page) {
                         ForEach(0..<contact.image.count, id: \.self) { index in
-                            Image(contact.image[index])
-                                .resizable()
-                                .scaledToFill()
+                            ZStack(alignment: .top) {
+                                Image(contact.image[index])
+                                    .resizable()
+                                    .scaledToFill()
+                                LinearGradient(colors: [.clear, .gray1100.opacity(0.8)], startPoint: .bottom, endPoint: .top)
+                                    .frame(height: 150)
+                            }
+                            
                                 .tag(index)
                                 .ignoresSafeArea()
+                            
                         }
                     }
                     .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
@@ -50,6 +58,8 @@ struct ContactDetailsView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity).ignoresSafeArea()
         .animation(.default, value: page)
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(leading: BackButton(action: { presentationMode.wrappedValue.dismiss() }, title: "Контакты"))
     }
 }
 

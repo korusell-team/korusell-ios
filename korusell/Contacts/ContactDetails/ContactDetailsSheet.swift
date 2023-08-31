@@ -32,35 +32,46 @@ struct ContactDetailsSheet: View {
                             ScrollView {
                                 VStack(alignment: .leading, spacing: 20) {
                                     HStack {
-                                        VStack(alignment: .leading, spacing: 5) {
-                                            Text(contact.name + " " + contact.surname)
-                                                .font(title2Font)
-                                            HStack {
-                                                LabelView(title: contact.categories.first ?? "", isSelected: true)
-                                                LabelView(title: contact.subcategories.first ?? "", isSelected: true)
-                                            }
-                                        }
+                                        Text(contact.name + " " + contact.surname)
+                                            .font(title2Font)
                                         Spacer()
                                         Button(action: call) {
                                             Image("ic-phone")
                                                 .resizable()
                                                 .scaledToFit()
-                                                .frame(width: 40, height: 40)
+                                                .frame(width: 50, height: 50)
                                         }
                                         
                                         Button(action: sendSMS) {
                                             Image("ic-sms")
                                                 .resizable()
                                                 .scaledToFit()
-                                                .frame(width: 40, height: 40)
+                                                .frame(width: 50, height: 50)
+                                        }
+                                    }
+                                    
+                                    ScrollView(.horizontal, showsIndicators: false) {
+                                        HStack {
+                                            ForEach(0..<contact.categories.count, id:\.self) { index in
+                                                SmallLabelView(title: contact.categories[index])
+                                            }
+                                            ForEach(0..<contact.subcategories.count, id:\.self) { index in
+                                                SmallLabelView(title: contact.subcategories[index])
+                                            }
                                         }
                                     }
                                     
                                     Divider()
                                     
-                                    LabelView(title: contact.cities.first ?? "", isSelected: true)
-                                    
-                                    
+                                    if !contact.cities.isEmpty {
+                                        ScrollView(.horizontal, showsIndicators: false) {
+                                            HStack {
+                                                ForEach(0..<contact.categories.count, id:\.self) { index in
+                                                    LabelView(title: contact.cities[index], isSelected: true)
+                                                }
+                                            }
+                                        }
+                                    }
                                 }
                             }
                             .frame(maxWidth: .infinity, alignment: .leading)
