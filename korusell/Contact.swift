@@ -24,5 +24,5 @@ struct Contact: Identifiable, Hashable {
     var kakao: String? = nil
     var description: String? = nil
     /// places ids?
-    var places: [String] = []
+    var places: [Place] = []
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		25174A532AA5F88C00024E1A /* SocialButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25174A522AA5F88C00024E1A /* SocialButton.swift */; };
 		253B84E62A0A614F004FA223 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253B84E52A0A614F004FA223 /* SearchBar.swift */; };
 		253B84E82A0BA0A9004FA223 /* ContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253B84E72A0BA0A9004FA223 /* ContactView.swift */; };
 		253B84EA2A0C59CE004FA223 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253B84E92A0C59CE004FA223 /* Extensions.swift */; };
@@ -64,6 +65,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		25174A522AA5F88C00024E1A /* SocialButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialButton.swift; sourceTree = "<group>"; };
 		253B84E52A0A614F004FA223 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		253B84E72A0BA0A9004FA223 /* ContactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactView.swift; sourceTree = "<group>"; };
 		253B84E92A0C59CE004FA223 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 				2596144C2A1247D500393712 /* _ContactDetailsView.swift */,
 				259EAAD22A9CC857006C207F /* ContactDetailsView.swift */,
 				259EAAD52A9DEABA006C207F /* ContactDetailsSheet.swift */,
+				25174A522AA5F88C00024E1A /* SocialButton.swift */,
 			);
 			path = ContactDetails;
 			sourceTree = "<group>";
@@ -405,6 +408,7 @@
 				2548C4182A94E45300211CC0 /* OTPView.swift in Sources */,
 				259EAACD2A975CCC006C207F /* City.swift in Sources */,
 				2596144A2A1233C000393712 /* ContactsController.swift in Sources */,
+				25174A532AA5F88C00024E1A /* SocialButton.swift in Sources */,
 				259EAAC12A960189006C207F /* SessionViewController.swift in Sources */,
 				25DB6CC82A0A5AC500660E99 /* Data.swift in Sources */,
 				259EAADB2AA09229006C207F /* BackButton.swift in Sources */,

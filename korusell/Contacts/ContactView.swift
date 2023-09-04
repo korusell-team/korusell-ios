@@ -32,18 +32,22 @@ struct ContactView: View {
                     .foregroundColor(.gray1100)
                     .font(title3Font)
                     
-                    HStack(spacing: 10) {
-                        Text(contact.categories.first ?? "")
-//                        Image(systemName: "chevron.right")
-//                            .font(footnoteFont)
-                        Text("•")
-                        Text(contact.subcategories.first ?? "")
+                    ScrollView(.horizontal) {
+                        HStack(spacing: 10) {
+                            Text(contact.categories.first ?? "")
+                            ForEach(contact.subcategories, id: \.self) { sub in
+                                Text("•")
+                                Text(sub)
+                            }
+                            
+                        }
                     }
+                    
                         .font(subheadFont)
                         .foregroundColor(.gray800)
-                        .lineLimit(2)
-                        .multilineTextAlignment(.leading)
-                        .fixedSize(horizontal: false, vertical: true)
+//                        .lineLimit(2)
+//                        .multilineTextAlignment(.leading)
+//                        .fixedSize(horizontal: false, vertical: true)
                         .padding(.top, 2)
                         .padding(.bottom, 14)
                     

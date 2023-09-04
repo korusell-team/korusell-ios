@@ -18,7 +18,7 @@ struct ContactDetailsSheet: View {
     let small: CGFloat =  UIScreen.main.bounds.height - 390 + 60
     
     var body: some View {
-        ZStack {
+        ZStack(alignment: .bottom) {
             GeometryReader { proxy -> AnyView in
                 let height = proxy.frame(in: .global).height
                 return AnyView(
@@ -72,6 +72,29 @@ struct ContactDetailsSheet: View {
                                             }
                                         }
                                     }
+                                    //TODO: set proper links prefixes and sufixes
+                                    VStack(alignment: .leading, spacing: 10) {
+                                        SocialButton(type: .kakao, title: contact.kakao)
+                                        SocialButton(type: .instagram, title: contact.instagram)
+                                        SocialButton(type: .youtube, title: contact.youtube)
+                                        SocialButton(type: .telegram, title: contact.telegram)
+                                    }
+                                    .padding(.bottom)
+                                    
+                                    VStack(alignment: .leading, spacing: 10) {
+                                        Text("О себе:")
+                                            .bold()
+                                        
+                                        Text(contact.bio)
+                                    }
+                                    .font(bodyFont)
+                                    
+                                    
+                                    if !contact.places.isEmpty {
+                                        Text("Места:")
+                                            .font(bodyFont)
+                                            .bold()
+                                    }
                                 }
                             }
                             .frame(maxWidth: .infinity, alignment: .leading)
@@ -88,18 +111,24 @@ struct ContactDetailsSheet: View {
                         }).onEnded({ value in
                             onEndDragGesture(height: height)
                         }))
-                        .onTapGesture {
-                            let maxHeight = height - small
-                            withAnimation {
-                                if !expanded {
-                                    offset = -maxHeight
-                                    lastOffset = offset
-                                    expanded.toggle()
-                                }
-                            }
-                        }
+//                        .onTapGesture {
+//                            let maxHeight = height - small - (Size.safeArea().top + Size.statusBarHeight)
+//                            withAnimation {
+//                                if !expanded {
+//                                    offset = -maxHeight
+//                                    lastOffset = offset
+//                                    expanded.toggle()
+//                                }
+//                            }
+//                        }
                 )
             }.ignoresSafeArea(.all, edges: .bottom)
+            
+            /// opacity gradient
+            LinearGradient(colors: [.clear, .white, .white, .white], startPoint: .top, endPoint: .bottom)
+                .frame(maxWidth: .infinity)
+                .frame(height: 200)
+                .contentShape(HitTestingShape())
         }
     }
     
@@ -158,3 +187,9 @@ struct ContactDetailsSheet_Previews: PreviewProvider {
 //        ContactDetailsSheet(contact: listOfContacts.first(where: { $0.name == "Владимир" })!)
     }
 }
+
+struct HitTestingShape : Shape {
+        func path(in rect: CGRect) -> Path {
+            return Path(CGRect(x: 0, y: 0, width: 0, height: 0))
+        }
+    }
