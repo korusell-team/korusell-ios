@@ -52,7 +52,6 @@
 		25ADF32A2A694403009A2B73 /* PlacesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25ADF3292A694403009A2B73 /* PlacesScreen.swift */; };
 		25ADF3302A694438009A2B73 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25ADF32B2A694437009A2B73 /* MapView.swift */; };
 		25ADF3322A694438009A2B73 /* ClusterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25ADF32D2A694437009A2B73 /* ClusterView.swift */; };
-		25ADF3332A694438009A2B73 /* PlacePoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25ADF32E2A694437009A2B73 /* PlacePoint.swift */; };
 		25ADF3342A694438009A2B73 /* PlaceMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25ADF32F2A694437009A2B73 /* PlaceMarker.swift */; };
 		25ADF3362A694516009A2B73 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25ADF3352A694516009A2B73 /* ContentView.swift */; };
 		25DB6CAD2A0726C400660E99 /* korusellApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DB6CAC2A0726C400660E99 /* korusellApp.swift */; };
@@ -62,6 +61,7 @@
 		25DB6CC82A0A5AC500660E99 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DB6CC72A0A5AC500660E99 /* Data.swift */; };
 		25DB6CCB2A0A5C1000660E99 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DB6CCA2A0A5C1000660E99 /* Contact.swift */; };
 		2B9489562AA831FF0039D5AC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2B9489552AA831FE0039D5AC /* GoogleService-Info.plist */; };
+		2B9489582AA89FE50039D5AC /* PlacePoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9489572AA89FE50039D5AC /* PlacePoint.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -107,7 +107,6 @@
 		25ADF3292A694403009A2B73 /* PlacesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesScreen.swift; sourceTree = "<group>"; };
 		25ADF32B2A694437009A2B73 /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		25ADF32D2A694437009A2B73 /* ClusterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClusterView.swift; sourceTree = "<group>"; };
-		25ADF32E2A694437009A2B73 /* PlacePoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlacePoint.swift; path = ../../Development/xCode/MapForKoru2/MapForKoru2/PlacePoint.swift; sourceTree = "<group>"; };
 		25ADF32F2A694437009A2B73 /* PlaceMarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceMarker.swift; sourceTree = "<group>"; };
 		25ADF3352A694516009A2B73 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		25DB6CA92A0726C400660E99 /* korusell.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = korusell.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -118,6 +117,7 @@
 		25DB6CC72A0A5AC500660E99 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		25DB6CCA2A0A5C1000660E99 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		2B9489552AA831FE0039D5AC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2B9489572AA89FE50039D5AC /* PlacePoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacePoint.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -277,7 +277,7 @@
 				25ADF32B2A694437009A2B73 /* MapView.swift */,
 				25ADF32D2A694437009A2B73 /* ClusterView.swift */,
 				25ADF32F2A694437009A2B73 /* PlaceMarker.swift */,
-				25ADF32E2A694437009A2B73 /* PlacePoint.swift */,
+				2B9489572AA89FE50039D5AC /* PlacePoint.swift */,
 			);
 			name = Places;
 			sourceTree = "<group>";
@@ -400,6 +400,7 @@
 				253B84EE2A0D1815004FA223 /* Blur.swift in Sources */,
 				253B84E82A0BA0A9004FA223 /* ContactView.swift in Sources */,
 				25DB6CAD2A0726C400660E99 /* korusellApp.swift in Sources */,
+				2B9489582AA89FE50039D5AC /* PlacePoint.swift in Sources */,
 				259EAAD32A9CC857006C207F /* ContactDetailsView.swift in Sources */,
 				259EAACF2A98A90D006C207F /* ActionSheetView.swift in Sources */,
 				256C97612A372B55003DD1B4 /* Design.swift in Sources */,
@@ -418,7 +419,6 @@
 				259EAAD62A9DEABA006C207F /* ContactDetailsSheet.swift in Sources */,
 				2596144F2A124E5900393712 /* TrackableScrollView.swift in Sources */,
 				253B84F42A0F1B1A004FA223 /* Category.swift in Sources */,
-				25ADF3332A694438009A2B73 /* PlacePoint.swift in Sources */,
 				25ADF32A2A694403009A2B73 /* PlacesScreen.swift in Sources */,
 				2548C4162A94B65F00211CC0 /* OnboardingView.swift in Sources */,
 				259EAAC92A97594C006C207F /* LocationsView.swift in Sources */,

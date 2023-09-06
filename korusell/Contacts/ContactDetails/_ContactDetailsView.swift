@@ -47,14 +47,14 @@ struct _ContactDetailsView: View {
                         .padding(.bottom, 5)
                     }
                     
-                    if let bio = contact.bio {
-                        Text(bio)
-                            .font(calloutFont)
-                            .foregroundColor(.gray700)
-                            .lineLimit(4)
-                            .multilineTextAlignment(.leading)
-                            
-                    }
+//                    if let bio = contact.bio {
+//                        Text(bio)
+//                            .font(calloutFont)
+//                            .foregroundColor(.gray700)
+//                            .lineLimit(4)
+//                            .multilineTextAlignment(.leading)
+//                            
+//                    }
                     
                     
 //                        categoriesView
