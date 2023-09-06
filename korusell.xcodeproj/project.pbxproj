@@ -26,7 +26,6 @@
 		256275B12A7D0120006F0E39 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256275B02A7D0120006F0E39 /* SignInView.swift */; };
 		256276022A80F00C006F0E39 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 256276012A80F00C006F0E39 /* FirebaseAuth */; };
 		256276042A80F00C006F0E39 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 256276032A80F00C006F0E39 /* FirebaseFirestore */; };
-		2562760B2A84F8F6006F0E39 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2562760A2A84F8F6006F0E39 /* GoogleService-Info.plist */; };
 		256C97592A2C4954003DD1B4 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256C97582A2C4954003DD1B4 /* Place.swift */; };
 		256C975B2A2C4C47003DD1B4 /* PlaceListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256C975A2A2C4C47003DD1B4 /* PlaceListView.swift */; };
 		256C975D2A2C4D85003DD1B4 /* PlaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256C975C2A2C4D85003DD1B4 /* PlaceView.swift */; };
@@ -62,6 +61,7 @@
 		25DB6CC12A07287F00660E99 /* ContactsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DB6CC02A07287F00660E99 /* ContactsScreen.swift */; };
 		25DB6CC82A0A5AC500660E99 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DB6CC72A0A5AC500660E99 /* Data.swift */; };
 		25DB6CCB2A0A5C1000660E99 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DB6CCA2A0A5C1000660E99 /* Contact.swift */; };
+		2B9489562AA831FF0039D5AC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2B9489552AA831FE0039D5AC /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,7 +82,6 @@
 		2548C41A2A96005700211CC0 /* SessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionView.swift; sourceTree = "<group>"; };
 		256275B02A7D0120006F0E39 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		256276072A80F114006F0E39 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2562760A2A84F8F6006F0E39 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		256C97582A2C4954003DD1B4 /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		256C975A2A2C4C47003DD1B4 /* PlaceListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceListView.swift; sourceTree = "<group>"; };
 		256C975C2A2C4D85003DD1B4 /* PlaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceView.swift; sourceTree = "<group>"; };
@@ -118,6 +117,7 @@
 		25DB6CC02A07287F00660E99 /* ContactsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsScreen.swift; sourceTree = "<group>"; };
 		25DB6CC72A0A5AC500660E99 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		25DB6CCA2A0A5C1000660E99 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
+		2B9489552AA831FE0039D5AC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -240,7 +240,7 @@
 				25DB6CB22A0726C600660E99 /* Preview Content */,
 				256C97622A372EAC003DD1B4 /* TestView.swift */,
 				256276072A80F114006F0E39 /* Info.plist */,
-				2562760A2A84F8F6006F0E39 /* GoogleService-Info.plist */,
+				2B9489552AA831FE0039D5AC /* GoogleService-Info.plist */,
 			);
 			path = korusell;
 			sourceTree = "<group>";
@@ -376,8 +376,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				25DB6CB42A0726C600660E99 /* Preview Assets.xcassets in Resources */,
+				2B9489562AA831FF0039D5AC /* GoogleService-Info.plist in Resources */,
 				25DB6CB12A0726C600660E99 /* Assets.xcassets in Resources */,
-				2562760B2A84F8F6006F0E39 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
