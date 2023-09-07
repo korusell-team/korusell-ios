@@ -29,7 +29,7 @@ struct ContactDetailsSheet: View {
                         
                         VStack(spacing: 0) {
                             SheetDragger()
-                            ScrollView {
+                            ScrollView(showsIndicators: false) {
                                 VStack(alignment: .leading, spacing: 20) {
                                     HStack {
                                         Text(contact.name + " " + contact.surname)
@@ -74,10 +74,11 @@ struct ContactDetailsSheet: View {
                                     }
                                     //TODO: set proper links prefixes and sufixes
                                     VStack(alignment: .leading, spacing: 10) {
-                                        SocialButton(type: .kakao, title: contact.kakao)
                                         SocialButton(type: .instagram, title: contact.instagram)
-                                        SocialButton(type: .youtube, title: contact.youtube)
                                         SocialButton(type: .telegram, title: contact.telegram)
+                                        SocialButton(type: .kakao, title: contact.kakao)
+                                        SocialButton(type: .youtube, title: contact.youtube)
+                                        
                                     }
                                     .padding(.bottom)
                                     
@@ -88,13 +89,35 @@ struct ContactDetailsSheet: View {
                                         Text(contact.bio)
                                     }
                                     .font(bodyFont)
-                                    
+                                    .padding(.bottom)
                                     
                                     if !contact.places.isEmpty {
                                         Text("Места:")
                                             .font(bodyFont)
                                             .bold()
+                                        
+                                        HStack {
+                                            ForEach(contact.places) { place in
+                                                VStack(alignment: .center) {
+                                                    ZStack {
+                                                        if let image = place.image {
+                                                            Image(image)
+                                                                .resizable()
+                                                                .scaledToFit()
+                                                                .cornerRadius(20)
+                                                        } else {
+                                                            RoundedRectangle(cornerRadius: 20)
+                                                                .fill(Color.gray300)
+                                                        }
+                                                    }.frame(width: 100, height: 100)
+                                                    Text(place.name)
+                                                        .lineLimit(1)
+                                                }.frame(maxWidth: 120, maxHeight: 120)
+                                            }
+                                        }
                                     }
+                                    
+                                    Spacer(minLength: 300)
                                 }
                             }
                             .frame(maxWidth: .infinity, alignment: .leading)

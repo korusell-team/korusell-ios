@@ -32,7 +32,7 @@ struct ContactView: View {
                     .foregroundColor(.gray1100)
                     .font(title3Font)
                     
-                    ScrollView(.horizontal) {
+                    ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 10) {
                             Text(contact.categories.first ?? "")
                             ForEach(contact.subcategories, id: \.self) { sub in

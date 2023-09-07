@@ -32,8 +32,10 @@ struct ContactListView: View {
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
                 }
+                Spacer(minLength: 200)
             }
             .padding(.top, 35)
+            
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
         .background(Color.white)

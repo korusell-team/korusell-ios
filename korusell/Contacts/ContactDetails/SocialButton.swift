@@ -65,14 +65,14 @@ struct SocialButton: View {
     }
     
     private var link: String {
-        var prefix = "kakao.com/?id="
+        print(type)
+        var prefix = ""
         switch type {
-        case .kakao: prefix = "kakao.com/?id="
+        case .kakao: prefix = ""
         case .instagram: prefix = "instagram.com/"
-        case .youtube: prefix = "youtube.com/"
+        case .youtube: prefix = "youtube.com/@"
         case .telegram: prefix = "t.me/"
         }
-        
         return "https://\(prefix)\(title ?? "")"
     }
 }

@@ -33,5 +33,4 @@ class PlacePoint: NSObject, MKAnnotation, Identifiable {
         self.bio = bio
         super.init()
     }
-    
 }
