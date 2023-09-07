@@ -75,7 +75,7 @@ struct LabelsView: View {
                                 .padding(.horizontal)
                                 .frame(height: 40)
                                 .background(Color.bg)
-                                .onChange(of: cc.text) { text in
+                                .onChange(of: cc.selectedSubcategory) { text in
                                     withAnimation {
                                         reader.scrollTo(text, anchor: .center)
                                     }

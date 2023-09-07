@@ -83,13 +83,13 @@ let listOfPlaces: [Place] = [
     Place(name: "СТО", subcategories: ["транспорт", "ремонт"], owner: "sad"),
 ]
 
-let cities: [City] = [
-    City(title: "Сеул"),
-    City(title: "Ансан"),
-    City(title: "Инчхон"),
-    City(title: "Хвасонг"),
-    City(title: "Пусан"),
-    City(title: "Сувон")
+let cities: [String] = [
+    "Сеул",
+    "Ансан",
+    "Инчхон",
+    "Хвасонг",
+    "Пусан",
+    "Сувон"
 ]
 
 

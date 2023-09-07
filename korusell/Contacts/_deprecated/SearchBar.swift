@@ -14,9 +14,9 @@ struct SearchBar: View {
     
     var body: some View {
         HStack {
-            TextField("Поиск", text: $cc.text, onCommit: {
+            TextField("Поиск", text: $cc.selectedSubcategory.bound, onCommit: {
                 // TODO: Test it out!
-                cc.selectedCategory = listOfCategories.filter { $0.name.lowercased() == cc.text.lowercased() }.first
+                cc.selectedCategory = listOfCategories.filter { $0.name.lowercased() == cc.selectedSubcategory.bound.lowercased() }.first
                 })
                 .padding(7)
                 .padding(.horizontal, 25)
@@ -29,9 +29,9 @@ struct SearchBar: View {
                             .frame(minWidth: 0, maxWidth: UIScreen.main.bounds.width, alignment: .leading)
                             .padding(.leading, 8)
                  
-                        if cc.searchFocused && !cc.text.isEmpty {
+                        if cc.searchFocused && !cc.selectedSubcategory.bound.isEmpty {
                             Button(action: {
-                                cc.text = ""
+                                cc.selectedSubcategory = ""
                             }) {
                                 Image(systemName: "multiply.circle.fill")
                                     .foregroundColor(.gray)
@@ -75,3 +75,23 @@ struct SearchBar: View {
 ////        SearchBar(text: .constant(""))
 //    }
 //}
+
+
+extension Optional where Wrapped == String {
+    var _bound: String? {
+        get {
+            return self
+        }
+        set {
+            self = newValue
+        }
+    }
+    public var bound: String {
+        get {
+            return _bound ?? ""
+        }
+        set {
+            _bound = newValue.isEmpty ? nil : newValue
+        }
+    }
+}

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LocationsView: View {
-    @State var selectedCity: City? = nil
+    @EnvironmentObject var cc: ContactsController
     
     var body: some View {
         ActionSheetView(topPadding: topPadding, fixedHeight: true, bgColor: .white) {
@@ -22,16 +22,16 @@ struct LocationsView: View {
                         .foregroundColor(.gray900)
                         .padding(.bottom)
                         Button(action: {
-                            self.selectedCity = nil
+                            cc.city = nil
                         }) {
-                            LabelView(title: "Вся Корея", isSelected: selectedCity == nil)
+                            LabelView(title: "Вся Корея", isSelected: cc.city == nil)
                         }
                         
-                        ForEach(cities) { city in
+                        ForEach(cities, id: \.self) { city in
                             Button(action: {
-                                self.selectedCity = city
+                                cc.city = city
                             }) {
-                                LabelView(title: city.title, isSelected: city == selectedCity)
+                                LabelView(title: city, isSelected: city == cc.city)
                             }
                         }
                     }

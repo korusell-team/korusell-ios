@@ -20,7 +20,7 @@ struct PopCategoriesView: View {
                 .padding(.horizontal, 22)
                 .padding(.top, 22)
             
-            FlexibleView(availableWidth: UIScreen.main.bounds.width - 30, data: cc.filteredCategories, spacing: 10, alignment: .leading) { category in
+            FlexibleView(availableWidth: UIScreen.main.bounds.width - 30, data: listOfCategories, spacing: 10, alignment: .leading) { category in
                 Button(action: { cc.selectCategory(category: category) }) {
                     LabelView(title: category.name, isSelected: cc.thisCategorySelected(category: category))
                 }
