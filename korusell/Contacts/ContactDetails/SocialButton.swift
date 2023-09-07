@@ -65,7 +65,6 @@ struct SocialButton: View {
     }
     
     private var link: String {
-        print(type)
         var prefix = ""
         switch type {
         case .kakao: prefix = ""

@@ -111,6 +111,7 @@ struct ContactDetailsSheet: View {
                                                         }
                                                     }.frame(width: 100, height: 100)
                                                     Text(place.name)
+                                                        .font(footnoteFont)
                                                         .lineLimit(1)
                                                 }.frame(maxWidth: 120, maxHeight: 120)
                                             }
