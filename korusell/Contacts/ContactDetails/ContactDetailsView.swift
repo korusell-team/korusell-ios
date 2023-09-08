@@ -18,23 +18,33 @@ struct ContactDetailsView: View {
         ZStack {
             VStack(spacing: 0) {
                 ZStack(alignment: .bottom) {
-                    TabView(selection: $page) {
-                        ForEach(0..<contact.image.count, id: \.self) { index in
-                            ZStack(alignment: .top) {
-                                Image(contact.image[index])
-                                    .resizable()
-                                    .scaledToFill()
-                                LinearGradient(colors: [.clear, .gray1100.opacity(0.8)], startPoint: .bottom, endPoint: .top)
-                                    .frame(height: 150)
-                            }
-                            
-                                .tag(index)
-                                .ignoresSafeArea()
-                            
+                    if contact.image.isEmpty {
+                        ZStack(alignment: .bottom) {
+                            Color.white
+                            Image("alien")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: UIScreen.main.bounds.width / 1.5)
                         }
+                    } else {
+                        TabView(selection: $page) {
+                            ForEach(0..<contact.image.count, id: \.self) { index in
+                                ZStack(alignment: .top) {
+                                    Image(contact.image[index])
+                                        .resizable()
+                                        .scaledToFill()
+                                    LinearGradient(colors: [.clear, .gray1100.opacity(0.8)], startPoint: .bottom, endPoint: .top)
+                                        .frame(height: 150)
+                                }
+                                
+                                    .tag(index)
+                                    .ignoresSafeArea()
+                                
+                            }
+                        }
+                        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                     }
-                    .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-                    
+ 
                     if contact.image.count > 1 {
                         HStack(alignment: .center, spacing: 4) {
                             ForEach(0..<contact.image.count, id: \.self) { index in
@@ -66,7 +76,7 @@ struct ContactDetailsView: View {
 struct ContactDetailsView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            ContactDetailsView(contact: listOfContacts.first(where: { $0.surname == "Тен" })!)
+            ContactDetailsView(contact: listOfContacts.last(where: { $0.surname == "Ким" })!)
         }
     }
 }

@@ -96,7 +96,9 @@ struct ContactDetailsSheet: View {
                                             .font(bodyFont)
                                             .bold()
                                         
-                                        HStack {
+                                        let columns = [GridItem(.flexible(maximum: 100)), GridItem(.flexible(maximum: 100)), GridItem(.flexible()), GridItem(.flexible())]
+                                        
+                                        LazyVGrid(columns: columns) {
                                             ForEach(contact.places) { place in
                                                 VStack(alignment: .center) {
                                                     ZStack {
@@ -109,15 +111,16 @@ struct ContactDetailsSheet: View {
                                                             RoundedRectangle(cornerRadius: 20)
                                                                 .fill(Color.gray300)
                                                         }
-                                                    }.frame(width: 100, height: 100)
+                                                    }
                                                     Text(place.name)
-                                                        .font(footnoteFont)
-                                                        .lineLimit(1)
-                                                }.frame(maxWidth: 120, maxHeight: 120)
+                                                        .multilineTextAlignment(.center)
+                                                        .font(caption1Font)
+                                                        .lineLimit(2)
+                                                }
+                                                .frame(maxHeight: 120, alignment: .top)
                                             }
                                         }
                                     }
-                                    
                                     Spacer(minLength: 300)
                                 }
                             }
@@ -207,7 +210,7 @@ struct ContactDetailsSheet: View {
 
 struct ContactDetailsSheet_Previews: PreviewProvider {
     static var previews: some View {
-        ContactDetailsView(contact: listOfContacts.first(where: { $0.name == "Владимир" })!)
+        ContactDetailsView(contact: listOfContacts.first(where: { $0.name == "Андрей" })!)
 //        ContactDetailsSheet(contact: listOfContacts.first(where: { $0.name == "Владимир" })!)
     }
 }
