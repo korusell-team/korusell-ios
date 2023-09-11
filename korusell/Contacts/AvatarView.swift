@@ -6,56 +6,64 @@
 //
 
 import SwiftUI
+import CachedAsyncImage
 
 struct AvatarView: View {
-//    @State var image: UIImage?
-    @State private var showSheet = false
-    @State private var showAlert = false
-    
     let contact: Contact
-    var messages: Int = 0
 
     var body: some View {
         ZStack {
-            Circle()
-                .fill(Color.gray900)
-                .frame(width: 55, height: 55)
-            Text(String(contact.name.capitalized.first!))
-                .font(title2Font)
-                .foregroundColor(.white)
-            + Text(String(contact.surname.capitalized.first!))
-                .font(title2Font)
-                .foregroundColor(.white)
-            
-            // TODO: redo after DB
             if !contact.image.isEmpty {
-                Image(contact.image.first!)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 80, height: 80)
+                CachedAsyncImage(url: URL(string: contact.image.first!), urlCache: .imageCache) { phase in
+                               switch phase {
+                               case .empty:
+                                   ProgressView()
+                               case .success(let image):
+                                   image.resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(maxWidth: 55, maxHeight: 55)
+                                        .transition(.scale(scale: 0.1, anchor: .center))
+                               case .failure:
+                                   Image(systemName: "photo")
+                               @unknown default:
+                                   EmptyView()
+                               }
+                           }
+//                AsyncImage(url: URL(string: contact.image.first!))
+//                Image(contact.image.first!)
+//                    .resizable()
+//                    .scaledToFit()
+//                    .frame(width: 80, height: 80)
+//                    .frame(width: 55, height: 55)
+//                    .aspectRatio(contentMode: .fit)
+//                    .clipShape(Circle())
+            } else {
+                Circle()
+                    .fill(Color.gray900)
                     .frame(width: 55, height: 55)
-                    .aspectRatio(contentMode: .fit)
-                    .clipShape(Circle())
+                Text(String(contact.name.capitalized.first!))
+                    .font(title2Font)
+                    .foregroundColor(.white)
+                + Text(String(contact.surname.capitalized.first!))
+                    .font(title2Font)
+                    .foregroundColor(.white)
             }
         }.frame(width: 55, height: 55)
          .clipShape(Circle())
          .contentShape(ContentShapeKinds.contextMenuPreview, Circle())
-         .overlay(
-            messagesView
-         )
     }
     
-    var messagesView: some View {
-        ZStack {
-            Circle()
-                .fill(Color.red)
-                .frame(width: 18, height: 18)
-            Text(String(messages))
-                .foregroundColor(.white)
-                .font(.footnote)
-        }.offset(x: 23, y: -13.5)
-         .opacity(messages > 0 ? 1 : 0)
-    }
+//    var messagesView: some View {
+//        ZStack {
+//            Circle()
+//                .fill(Color.red)
+//                .frame(width: 18, height: 18)
+//            Text(String(messages))
+//                .foregroundColor(.white)
+//                .font(.footnote)
+//        }.offset(x: 23, y: -13.5)
+//         .opacity(messages > 0 ? 1 : 0)
+//    }
 }
 
 struct AvatarView_Previews: PreviewProvider {
@@ -97,4 +105,10 @@ struct DetailsAvatarView: View {
         .clipShape(Circle())
         .contentShape(ContentShapeKinds.contextMenuPreview, Circle())
     }
+}
+
+
+extension URLCache {
+    
+    static let imageCache = URLCache(memoryCapacity: 512_000_000, diskCapacity: 10_000_000_000)
 }

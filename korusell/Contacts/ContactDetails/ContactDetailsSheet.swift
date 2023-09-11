@@ -66,7 +66,7 @@ struct ContactDetailsSheet: View {
                                     if !contact.cities.isEmpty {
                                         ScrollView(.horizontal, showsIndicators: false) {
                                             HStack {
-                                                ForEach(0..<contact.categories.count, id:\.self) { index in
+                                                ForEach(0..<contact.cities.count, id:\.self) { index in
                                                     LabelView(title: contact.cities[index], isSelected: true)
                                                 }
                                             }
@@ -91,36 +91,36 @@ struct ContactDetailsSheet: View {
                                     .font(bodyFont)
                                     .padding(.bottom)
                                     
-                                    if !contact.places.isEmpty {
-                                        Text("Места:")
-                                            .font(bodyFont)
-                                            .bold()
-                                        
-                                        let columns = [GridItem(.flexible(maximum: 100)), GridItem(.flexible(maximum: 100)), GridItem(.flexible()), GridItem(.flexible())]
-                                        
-                                        LazyVGrid(columns: columns) {
-                                            ForEach(contact.places) { place in
-                                                VStack(alignment: .center) {
-                                                    ZStack {
-                                                        if let image = place.image {
-                                                            Image(image)
-                                                                .resizable()
-                                                                .scaledToFit()
-                                                                .cornerRadius(20)
-                                                        } else {
-                                                            RoundedRectangle(cornerRadius: 20)
-                                                                .fill(Color.gray300)
-                                                        }
-                                                    }
-                                                    Text(place.name)
-                                                        .multilineTextAlignment(.center)
-                                                        .font(caption1Font)
-                                                        .lineLimit(2)
-                                                }
-                                                .frame(maxHeight: 120, alignment: .top)
-                                            }
-                                        }
-                                    }
+//                                    if !contact.places.isEmpty {
+//                                        Text("Места:")
+//                                            .font(bodyFont)
+//                                            .bold()
+//
+//                                        let columns = [GridItem(.flexible(maximum: 100)), GridItem(.flexible(maximum: 100)), GridItem(.flexible()), GridItem(.flexible())]
+//
+//                                        LazyVGrid(columns: columns) {
+//                                            ForEach(contact.places) { place in
+//                                                VStack(alignment: .center) {
+//                                                    ZStack {
+//                                                        if let image = place.image {
+//                                                            Image(image)
+//                                                                .resizable()
+//                                                                .scaledToFit()
+//                                                                .cornerRadius(20)
+//                                                        } else {
+//                                                            RoundedRectangle(cornerRadius: 20)
+//                                                                .fill(Color.gray300)
+//                                                        }
+//                                                    }
+//                                                    Text(place.name)
+//                                                        .multilineTextAlignment(.center)
+//                                                        .font(caption1Font)
+//                                                        .lineLimit(2)
+//                                                }
+//                                                .frame(maxHeight: 120, alignment: .top)
+//                                            }
+//                                        }
+//                                    }
                                     Spacer(minLength: 300)
                                 }
                             }

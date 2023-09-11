@@ -12,9 +12,10 @@ struct SignInView: View {
     @StateObject var viewModel = OTPViewModel()
     
     @State var phone = ""
-    @State var code = ""
+//    @State var code = ""
     @State var CODE = ""
     @State var showCodeWindow = false
+    @State var error: String? = nil
     
     @FocusState var focusedField
     @Namespace private var animation
@@ -35,9 +36,7 @@ struct SignInView: View {
                                 .onChange(of: phone) { phone in
                                     switcher(phone: phone)
                                 }
-                            
                             Spacer()
-                            
                         }
                         .padding()
                         .background(Color.white)
@@ -46,8 +45,19 @@ struct SignInView: View {
                         
                     } else {
                         OTPView(viewModel: viewModel, animation: animation)
-                        
                     }
+                    
+                    if let error {
+                        HStack {
+                            Text(error)
+                                .font(caption1Font)
+                                .foregroundColor(.red400)
+//                                .lineLimit(1)
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.horizontal, 25)
+                    }
+                    
                     
                     //                Button(action: test) {
                     Button(action: showCodeWindow ? verifyCode : signIn) {
@@ -57,17 +67,16 @@ struct SignInView: View {
                             .padding(12)
                             .background(Color.action)
                             .cornerRadius(18)
-                        
                     }
                     .padding()
                     .disabled(!showCodeWindow && phone.count < 11)
                     .opacity(!showCodeWindow && phone.count < 11 ? 0.5 : 1)
                 }
                 
-                if !showCodeWindow {
+                if showCodeWindow {
                     VStack {
                         Spacer()
-                        Button(action: resend) {
+                        Button(action: signIn) {
                             Text("Отправить код еще раз")
                         }
                     }
@@ -77,6 +86,21 @@ struct SignInView: View {
             .padding(.horizontal, 22)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color.bg)
+            .onChange(of: viewModel.otpField) { _ in
+                resetError()
+            }
+            .onChange(of: phone) { _ in
+               resetError()
+            }
+            .animation(.default, value: error)
+        }
+    }
+    
+    private func resetError() {
+        if error != nil {
+            
+                self.error = nil
+            
         }
     }
     
@@ -103,42 +127,42 @@ struct SignInView: View {
         // disable when you need to test with real device
         Auth.auth().settings?.isAppVerificationDisabledForTesting = true
         
+        
+        
         let properPhone = "+8210" + self.phone.replacingOccurrences(of: " - ", with: "")
         PhoneAuthProvider.provider().verifyPhoneNumber(properPhone, uiDelegate: nil) { CODE, error in
+            
+            self.CODE = CODE ?? ""
+            print("abraca")
+            print(self.CODE)
+            
             if let error {
+                self.error = error.localizedDescription
                 print(error)
                 return
             }
-            self.CODE = CODE ?? ""
-            print(self.CODE)
+          
             withAnimation {
                 self.showCodeWindow = true
             }
-            
         }
         print(properPhone)
-    }
-    
-    // TODO: Create this function
-    private func resend() {
-        
     }
     
     private func verifyCode() {
         let credential = PhoneAuthProvider.provider().credential(withVerificationID: self.CODE, verificationCode: viewModel.otpField)
         
-        Auth.auth().signIn(with: credential) { (result, err) in
-            if let err {
-                print(err)
+        Auth.auth().signIn(with: credential) { (result, error) in
+            if let error {
+                self.error = error.localizedDescription
+                print(error)
                 return
             }
-            
             
             print(result)
             
             withAnimation {
                 self.status = true
-                
             }
         }
     }

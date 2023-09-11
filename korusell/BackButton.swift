@@ -26,6 +26,7 @@ struct BackButton: View {
                     }
                 }
                 .foregroundColor(color)
+                .shadow(radius: 1, x: 1, y: 1)
             }
         }
     }

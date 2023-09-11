@@ -34,20 +34,17 @@ struct ContactView: View {
                     
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 10) {
-                            Text(contact.categories.first ?? "")
-                            ForEach(contact.subcategories, id: \.self) { sub in
-                                Text("•")
-                                Text(sub)
+                            ForEach(contact.categories, id: \.self) { cat in
+                                Text(cat)
+                                ForEach(contact.subcategories, id: \.self) { sub in
+                                    Text("•")
+                                    Text(sub)
+                                }
                             }
-                            
                         }
                     }
-                    
                         .font(subheadFont)
                         .foregroundColor(.gray800)
-//                        .lineLimit(2)
-//                        .multilineTextAlignment(.leading)
-//                        .fixedSize(horizontal: false, vertical: true)
                         .padding(.top, 2)
                         .padding(.bottom, 14)
                     

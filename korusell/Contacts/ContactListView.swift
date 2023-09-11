@@ -15,10 +15,8 @@ struct ContactListView: View {
     let columns = [GridItem(.flexible())]
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
             ScrollView(showsIndicators: false) {
-                LazyVGrid(columns: columns, spacing: 0, pinnedViews: .sectionHeaders) {
-                    VStack(alignment: .leading, spacing: 0) {
+                LazyVStack(alignment: .leading, spacing: 0) {
                         if !cc.filteredContacts.isEmpty {
                             ForEach(cc.filteredContacts, id: \.self) { contact in
                                 ContactView(contact: contact)
@@ -31,12 +29,9 @@ struct ContactListView: View {
                         }
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
-                }
                 Spacer(minLength: 200)
             }
             .padding(.top, 35)
-            
-        }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
         .background(Color.white)
         .cornerRadius(30, corners: [.topLeft, .topRight])

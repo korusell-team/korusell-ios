@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Contact: Identifiable, Hashable {
+struct Contact: Identifiable, Hashable, Decodable {
     let id = UUID()
     let name: String
     let surname: String
@@ -24,5 +24,5 @@ struct Contact: Identifiable, Hashable {
     var kakao: String? = nil
     var description: String? = nil
     /// places ids?
-    var places: [Place] = []
+//    var places: [Place] = []
 }

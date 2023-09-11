@@ -65,16 +65,18 @@ let listOfContacts: [Contact] = [
     Contact(name: "Сергей", surname: "Ли", bio: "\niOS", image: ["sergey-lee"], categories: ["IT"], subcategories: ["Программирование", "Приложения", "iOS"]),
     Contact(name: "Антон", surname: "Емельянов", bio: "fullstack\ndeveloper", categories: ["IT"], subcategories: ["Программирование", "Сайты"]),
     Contact(name: "Андрей", surname: "Ким", bio: "я просто рандомный чел...🤪", categories: ["Переводы"], subcategories: ["Английский"]),
-    Contact(name: "Владимир", surname: "Мун", bio: "Habsida. Школа программирования и дизайна. С оплатой после трудоустройства!", cities: ["Сеул"], image: ["vladimir-mun", "vladimir-mun2"], categories: ["Образование"], subcategories: ["Дизайн", "Программирование"], phone: "010-1234-1234", instagram: "munvova", link: "https://habsida.com/ru", telegram: "vladimun", places: [
-    Place(name: "Habsida School1", image: "habsida", owner: "010-1234-1234"),
-    Place(name: "Imperia Foods1", image: "imperia-foods", owner: "12341234"),
-    Place(name: "Habsida School2", image: "habsida", owner: "010-1234-1234"),
-    Place(name: "Imperia Foods2", image: "imperia-foods", owner: "12341234"),
-    Place(name: "Habsida School3", image: "habsida", owner: "010-1234-1234"),
-    Place(name: "Imperia Foods3", image: "imperia-foods", owner: "12341234"),
-    Place(name: "Habsida School4", image: "habsida", owner: "010-1234-1234"),
-    Place(name: "Imperia Foods5", image: "imperia-foods", owner: "12341234"),
-    ]),
+    Contact(name: "Владимир", surname: "Мун", bio: "Habsida. Школа программирования и дизайна. С оплатой после трудоустройства!", cities: ["Сеул"], image: ["vladimir-mun", "vladimir-mun2"], categories: ["Образование"], subcategories: ["Дизайн", "Программирование"], phone: "010-1234-1234", instagram: "munvova", link: "https://habsida.com/ru", telegram: "vladimun"
+//            places: [
+//    Place(name: "Habsida School1", image: "habsida", owner: "010-1234-1234"),
+//    Place(name: "Imperia Foods1", image: "imperia-foods", owner: "12341234"),
+//    Place(name: "Habsida School2", image: "habsida", owner: "010-1234-1234"),
+//    Place(name: "Imperia Foods2", image: "imperia-foods", owner: "12341234"),
+//    Place(name: "Habsida School3", image: "habsida", owner: "010-1234-1234"),
+//    Place(name: "Imperia Foods3", image: "imperia-foods", owner: "12341234"),
+//    Place(name: "Habsida School4", image: "habsida", owner: "010-1234-1234"),
+//    Place(name: "Imperia Foods5", image: "imperia-foods", owner: "12341234"),
+//    ]
+           ),
 
     Contact(name: "Владимир", surname: "Тен", bio: "Основатель школы корейского языка 'Korean Simple' и далее длинное описание услуг которые может предоставить данный человек", image: ["vladimir-ten", "vladimir-ten2"], categories: ["Образование"], subcategories: ["Корейский язык"], phone: "01012341234", instagram: "vladimirten", youtube: "korean_simple", telegram: "vladimir_ten", kakao: "http://qr.kakao.com/talk/hKynt3kFP0Jd_1eJ1L7vui6kY4s-"),
     
@@ -82,6 +84,24 @@ let listOfContacts: [Contact] = [
     
     Contact(name: "David", surname: "Beckham", bio: "I'm here to check if english content displays properly", image: ["david-beckham"], categories: ["Маркетинг"], subcategories: ["Продажи"], instagram: "https://www.instagram.com/davidbeckham"),
 ]
+
+class DummyData {
+    func loadJson(filename fileName: String) -> [Contact]? {
+        if let url = Bundle.main.url(forResource: fileName, withExtension: "json") {
+            do {
+                let data = try Data(contentsOf: url)
+                let decoder = JSONDecoder()
+                let jsonData = try decoder.decode([Contact].self, from: data)
+                return jsonData
+            } catch {
+                print("error:\(error)")
+            }
+        }
+        return nil
+    }
+}
+
+
 
 let listOfPlaces: [Place] = [
     Place(name: "Кафе Виктория", subcategories: ["мероприятия", "праздники", "свадьбы", "асянди", "хангаби"], owner: "sad"),

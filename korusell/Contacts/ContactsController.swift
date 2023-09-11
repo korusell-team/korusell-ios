@@ -13,8 +13,8 @@ class ContactsController: ObservableObject {
     @Published var selectedCategory: Category? = nil
     @Published var city: String? = nil
     @Published var openAllCategories = false
-    
-    
+
+    let list = DummyData().loadJson(filename: "contacts")
     
     func resetState() {
         withAnimation {
@@ -34,12 +34,20 @@ class ContactsController: ObservableObject {
     }
     
     var filteredContacts: [Contact] {
-        return listOfContacts.filter { contact in
-            ( (city != nil) ? !contact.cities.filter { $0.lowercased().contains(city!.lowercased()) }.isEmpty : true) &&
-            ( (selectedCategory != nil) ? !contact.categories.filter { $0.lowercased().contains(selectedCategory!.name.lowercased()) }.isEmpty : true) &&
-            ( (selectedSubcategory != nil) ? !contact.subcategories.filter { $0.lowercased().contains(selectedSubcategory!.lowercased()) }.isEmpty : true)
+         
+//        print(list)
+        if let list {
+            return list.filter { contact in
+                ( (city != nil) ? !contact.cities.filter { $0.lowercased().contains(city!.lowercased()) }.isEmpty : true) &&
+                ( (selectedCategory != nil) ? !contact.categories.filter { $0.lowercased().contains(selectedCategory!.name.lowercased()) }.isEmpty : true) &&
+                ( (selectedSubcategory != nil) ? !contact.subcategories.filter { $0.lowercased().contains(selectedSubcategory!.lowercased()) }.isEmpty : true)
+            }
+            .sorted(by: { $0.surname < $1.surname})
+        } else {
+            return listOfContacts
         }
-        .sorted(by: { $0.surname < $1.surname})
+        
+        
         
         
 //        if selectedSubcategory.isEmpty {

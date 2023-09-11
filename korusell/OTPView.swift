@@ -23,20 +23,15 @@ struct OTPView: View {
     }
     
     var body: some View {
-        
         VStack {
-            
             ZStack {
-                
                 HStack (spacing: spaceBetweenBoxes){
-                    
                     otpText(text: viewModel.otp1)
                     otpText(text: viewModel.otp2)
                     otpText(text: viewModel.otp3)
                     otpText(text: viewModel.otp4)
                     otpText(text: viewModel.otp5)
                     otpText(text: viewModel.otp6)
-                        
                 }
                 .matchedGeometryEffect(id: "field", in: animation)
                 
@@ -48,13 +43,11 @@ struct OTPView: View {
                     .accentColor(.clear)
                     .background(Color.clear)
                     .keyboardType(.numberPad)
-                    
             }
         }
     }
     
     private func otpText(text: String) -> some View {
-        
         return Text(text)
             .font(.title)
             .frame(width: textBoxWidth, height: textBoxHeight)
@@ -75,8 +68,8 @@ struct OTPView_Previews: PreviewProvider {
     }
 }
 
+
 class OTPViewModel: ObservableObject {
-    
     @Published var otpField = "" {
         didSet {
             guard otpField.count <= 6,

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CachedAsyncImage
 
 struct ContactDetailsView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -20,7 +21,7 @@ struct ContactDetailsView: View {
                 ZStack(alignment: .bottom) {
                     if contact.image.isEmpty {
                         ZStack(alignment: .bottom) {
-                            Color.white
+                            Color.gray50
                             Image("alien")
                                 .resizable()
                                 .scaledToFit()
@@ -29,17 +30,37 @@ struct ContactDetailsView: View {
                     } else {
                         TabView(selection: $page) {
                             ForEach(0..<contact.image.count, id: \.self) { index in
-                                ZStack(alignment: .top) {
-                                    Image(contact.image[index])
-                                        .resizable()
-                                        .scaledToFill()
-                                    LinearGradient(colors: [.clear, .gray1100.opacity(0.8)], startPoint: .bottom, endPoint: .top)
-                                        .frame(height: 150)
-                                }
+                                
+                                    CachedAsyncImage(url: URL(string: contact.image[index]), urlCache: .imageCache) { phase in
+                                                   switch phase {
+                                                   case .empty:
+                                                       ProgressView()
+                                                   case .success(let image):
+                                                       ZStack(alignment: .top) {
+                                                           image
+                                                           LinearGradient(colors: [.clear, .gray1100.opacity(0.8)], startPoint: .bottom, endPoint: .top)
+                                                               .frame(height: 150)
+                                                       }
+                                                       
+//                                                           .resizable()
+//                                                            .aspectRatio(contentMode: .fit)
+//                                                            .frame(maxWidth: 55, maxHeight: 55)
+                                                            .transition(.scale(scale: 0.1, anchor: .center))
+                                                   case .failure:
+                                                       Image(systemName: "photo")
+                                                   @unknown default:
+                                                       EmptyView()
+                                                   }
+                                               }
+                                    
+                                    
+//                                    Image(contact.image[index])
+//                                        .resizable()
+//                                        .scaledToFill()
+                                    
                                 
                                     .tag(index)
                                     .ignoresSafeArea()
-                                
                             }
                         }
                         .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
