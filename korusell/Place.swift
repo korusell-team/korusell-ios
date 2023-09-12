@@ -11,7 +11,7 @@ struct Place: Identifiable, Hashable {
     let id = UUID()
     let name: String
     var image: String? = nil
-    var cities: [String] = []
+    var city: String? = nil
     var categories: [String] = []
     var subcategories: [String] = []
     var phone: String? = nil
@@ -22,6 +22,7 @@ struct Place: Identifiable, Hashable {
     var kakao: String? = nil
     var description: String? = nil
     var owner: String
+    var address: String? = nil
     var latitude: Double? = nil
     var longitude: Double? = nil
 }
