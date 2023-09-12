@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct Category: Identifiable, Hashable {
-    let id = UUID()
+struct Category: Hashable, Codable {
+    
     let name: String
     var image: String
-    var subcategories: [String] = []
+    var subCategories: [String] = []
 }
 
 //struct Subcategory: Equatable, Hashable {

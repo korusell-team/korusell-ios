@@ -16,7 +16,7 @@ struct SearchBar: View {
         HStack {
             TextField("Поиск", text: $cc.selectedSubcategory.bound, onCommit: {
                 // TODO: Test it out!
-                cc.selectedCategory = listOfCategories.filter { $0.name.lowercased() == cc.selectedSubcategory.bound.lowercased() }.first
+//                cc.selectedCategory = listOfCategories.filter { $0.name.lowercased() == cc.selectedSubcategory.bound.lowercased() }.first
                 })
                 .padding(7)
                 .padding(.horizontal, 25)

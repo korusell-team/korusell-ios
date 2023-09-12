@@ -97,7 +97,7 @@ struct ContactDetailsView: View {
 struct ContactDetailsView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            ContactDetailsView(contact: listOfContacts.last(where: { $0.surname == "Ким" })!)
+            ContactDetailsView(contact: dummyContacts.last(where: { $0.surname == "Ким" })!)
         }
     }
 }

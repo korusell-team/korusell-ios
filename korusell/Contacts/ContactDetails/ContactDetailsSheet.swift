@@ -210,7 +210,7 @@ struct ContactDetailsSheet: View {
 
 struct ContactDetailsSheet_Previews: PreviewProvider {
     static var previews: some View {
-        ContactDetailsView(contact: listOfContacts.first(where: { $0.name == "Андрей" })!)
+        ContactDetailsView(contact: dummyContacts.first(where: { $0.name == "Андрей" })!)
 //        ContactDetailsSheet(contact: listOfContacts.first(where: { $0.name == "Владимир" })!)
     }
 }

@@ -14,7 +14,8 @@ class ContactsController: ObservableObject {
     @Published var city: String? = nil
     @Published var openAllCategories = false
 
-    let list = DummyData().loadJson(filename: "contacts")
+    let list = DummyData().loadContacts()
+    let listOfCategories = DummyData().loadCategories()
     
     func resetState() {
         withAnimation {
@@ -29,41 +30,17 @@ class ContactsController: ObservableObject {
         
         return listOfCategories.filter { category in
             category.name.lowercased().contains(selectedSubcategory!.lowercased()) ||
-            !category.subcategories.filter { $0.lowercased().contains(selectedSubcategory!.lowercased()) }.isEmpty
+            !category.subCategories.filter { $0.lowercased().contains(selectedSubcategory!.lowercased()) }.isEmpty
         }
     }
     
     var filteredContacts: [Contact] {
-         
-//        print(list)
-        if let list {
-            return list.filter { contact in
-                ( (city != nil) ? !contact.cities.filter { $0.lowercased().contains(city!.lowercased()) }.isEmpty : true) &&
-                ( (selectedCategory != nil) ? !contact.categories.filter { $0.lowercased().contains(selectedCategory!.name.lowercased()) }.isEmpty : true) &&
-                ( (selectedSubcategory != nil) ? !contact.subcategories.filter { $0.lowercased().contains(selectedSubcategory!.lowercased()) }.isEmpty : true)
-            }
-            .sorted(by: { $0.surname < $1.surname})
-        } else {
-            return listOfContacts
+        return list.filter { contact in
+            ( (city != nil) ? !contact.cities.filter { $0.lowercased().contains(city!.lowercased()) }.isEmpty : true) &&
+            ( (selectedCategory != nil) ? !contact.categories.filter { $0.lowercased().contains(selectedCategory!.name.lowercased()) }.isEmpty : true) &&
+            ( (selectedSubcategory != nil) ? !contact.subcategories.filter { $0.lowercased().contains(selectedSubcategory!.lowercased()) }.isEmpty : true)
         }
-        
-        
-        
-        
-//        if selectedSubcategory.isEmpty {
-//            return listOfContacts.filter { contact in
-//                !contact.categories.filter { $0.lowercased().contains(selectedCategory!.name.lowercased()) }.isEmpty
-//                && ( (city != nil) ? !contact.cities.filter { $0.lowercased().contains(city!.lowercased()) }.isEmpty : true)
-//            }
-//            .sorted(by: { $0.surname < $1.surname})
-//        } else {
-//            return listOfContacts.filter { contact in
-//                !contact.categories.filter { $0.lowercased().contains(selectedCategory!.name.lowercased()) }.isEmpty
-//                && !contact.subcategories.filter { $0.lowercased().contains(selectedSubcategory.lowercased()) }.isEmpty
-//                && ( (city != nil) ? !contact.cities.filter { $0.lowercased().contains(city!.lowercased()) }.isEmpty : true)
-//            }
-//            .sorted(by: { $0.surname < $1.surname})
-//        }
+        .sorted(by: { $0.surname < $1.surname})
     }
     
     var filteredPlaces: [Place] {

@@ -21,7 +21,7 @@ struct LabelsView: View {
                         ScrollView(.horizontal, showsIndicators: false) {
                             ScrollViewReader { reader in
                                 LazyHGrid(rows: rows, alignment: .center) {
-                                    ForEach(listOfCategories) { category in
+                                    ForEach(cc.listOfCategories, id: \.self.name) { category in
                                         Button(action: { cc.selectCategory(category: category) }) {
                                             LabelView(title: category.name, isSelected: cc.thisCategorySelected(category: category))
                                         }
@@ -65,7 +65,7 @@ struct LabelsView: View {
                         ScrollView(.horizontal, showsIndicators: false) {
                             ScrollViewReader { reader in
                                 LazyHGrid(rows: rows, alignment: .top) {
-                                    ForEach(category.subcategories, id: \.self) { text in
+                                    ForEach(category.subCategories, id: \.self) { text in
                                         Button(action: {cc.selectSubcategory(text: text) }) {
                                             LabelView(title: text, isSelected: cc.thisSubcategorySelected(text: text))
                                         }

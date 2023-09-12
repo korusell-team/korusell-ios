@@ -11,17 +11,17 @@ import MapKit
 let fakeUser = Contact(name: "Сергей", surname: "Ли", bio: "\niOS", image: ["sergey-lee"], categories: ["IT"], subcategories: ["💻Программирование", "📱Приложения", "🍏iOS"])
 
 
-let listOfCategories: [Category] = [
-    Category(name: "Дизайн", image: "", subcategories: ["UI/UX", "Web", "Графический дизайн"]),
-    Category(name: "IT", image: "", subcategories: ["Программирование", "Приложения", "iOS", "Android", "Сайты"]),
-    Category(name: "Образование", image: "", subcategories: ["Смена-Визы", "Корейский язык", "Дизайн", "Программирование", "Школа", "Автошкола"]),
-    Category(name: "Мероприятия", image: "", subcategories: ["Ведущий", "Тамада", "Вокалист", "Певец", "Цветы"]),
-    Category(name: "Фото-Видео", image: "", subcategories: ["Видеограф", "Фотограф", "Праздник", "Мероприятия"]),
-    Category(name: "Маркетинг", image: "", subcategories: ["Продажи", "Продвижение", "SMM"]),
-    Category(name: "Переводы", image: "", subcategories: ["Переводчик", "Корейский", "Английский"]),
-    Category(name: "Здоровье-Красота", image: "", subcategories: ["Стоматология", "Косметика", "Тату", "Парикмахер", "Визажист", "Маникюр", "Педикюр", "Ресницы", "Пластическая хирургия", "Гинекология"]),
-    Category(name: "Транспорт", image: "", subcategories: ["Перевозки", "Купля-Продажа", "Экспорт", "СТО", "Тюнинг", "Электрик"]),
-    Category(name: "Ремонт", image: "", subcategories: ["Электроника", "Квартиры", "Сантехник", "Электрик"]),
+let DummyCategories: [Category] = [
+    Category(name: "Дизайн", image: "", subCategories: ["UI/UX", "Web", "Графический дизайн"]),
+    Category(name: "IT", image: "", subCategories: ["Программирование", "Приложения", "iOS", "Android", "Сайты"]),
+    Category(name: "Образование", image: "", subCategories: ["Смена-Визы", "Корейский язык", "Дизайн", "Программирование", "Школа", "Автошкола"]),
+    Category(name: "Мероприятия", image: "", subCategories: ["Ведущий", "Тамада", "Вокалист", "Певец", "Цветы"]),
+    Category(name: "Фото-Видео", image: "", subCategories: ["Видеограф", "Фотограф", "Праздник", "Мероприятия"]),
+    Category(name: "Маркетинг", image: "", subCategories: ["Продажи", "Продвижение", "SMM"]),
+    Category(name: "Переводы", image: "", subCategories: ["Переводчик", "Корейский", "Английский"]),
+    Category(name: "Здоровье-Красота", image: "", subCategories: ["Стоматология", "Косметика", "Тату", "Парикмахер", "Визажист", "Маникюр", "Педикюр", "Ресницы", "Пластическая хирургия", "Гинекология"]),
+    Category(name: "Транспорт", image: "", subCategories: ["Перевозки", "Купля-Продажа", "Экспорт", "СТО", "Тюнинг", "Электрик"]),
+    Category(name: "Ремонт", image: "", subCategories: ["Электроника", "Квартиры", "Сантехник", "Электрик"]),
 ]
 
 
@@ -60,7 +60,7 @@ func test() {
     let a: eCategory = .design
 }
 
-let listOfContacts: [Contact] = [
+let dummyContacts: [Contact] = [
     Contact(name: "Евгений", surname: "Ким", bio: "Лучший Ведущий мероприятий\nв Южной Корее!", image: ["evgeniy-hvan"], categories: ["Мероприятия"], subcategories: ["Ведущий", "Тамада"], phone: "01012341234", instagram: "https://instagram.com/vlog.vedushego?igshid=OGQ5ZDc2ODk2ZA=="),
     Contact(name: "Сергей", surname: "Ли", bio: "\niOS", image: ["sergey-lee"], categories: ["IT"], subcategories: ["Программирование", "Приложения", "iOS"]),
     Contact(name: "Антон", surname: "Емельянов", bio: "fullstack\ndeveloper", categories: ["IT"], subcategories: ["Программирование", "Сайты"]),
@@ -86,8 +86,8 @@ let listOfContacts: [Contact] = [
 ]
 
 class DummyData {
-    func loadJson(filename fileName: String) -> [Contact]? {
-        if let url = Bundle.main.url(forResource: fileName, withExtension: "json") {
+    func loadContacts() -> [Contact] {
+        if let url = Bundle.main.url(forResource: "contacts", withExtension: "json") {
             do {
                 let data = try Data(contentsOf: url)
                 let decoder = JSONDecoder()
@@ -97,7 +97,21 @@ class DummyData {
                 print("error:\(error)")
             }
         }
-        return nil
+        return dummyContacts
+    }
+    
+    func loadCategories() -> [Category] {
+        if let url = Bundle.main.url(forResource: "categories", withExtension: "json") {
+            do {
+                let data = try Data(contentsOf: url)
+                let decoder = JSONDecoder()
+                let jsonData = try decoder.decode([Category].self, from: data)
+                return jsonData
+            } catch {
+                print("error:\(error)")
+            }
+        }
+        return DummyCategories
     }
 }
 

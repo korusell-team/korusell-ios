@@ -220,9 +220,9 @@ struct _ContactDetailsView: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
                     ForEach(contact.categories, id: \.self) { title in
-                        if let category = listOfCategories.first(where: { $0.name.contains(title) }) {
-                            LabelView(title: category.name)
-                        }
+//                        if let category = listOfCategories.first(where: { $0.name.contains(title) }) {
+//                            LabelView(title: category.name)
+//                        }
                     }
                     ForEach(contact.subcategories, id: \.self) { text in
                         LabelView(title: text)
@@ -233,12 +233,12 @@ struct _ContactDetailsView: View {
     }
 }
 
-struct _ContactDetailsView_Previews: PreviewProvider {
-    static let cc = ContactsController()
-    static var previews: some View {
-        NavigationView {
-            _ContactDetailsView(contact: listOfContacts.first(where: { $0.name == "Владимир" })!)
-                .environmentObject(cc)
-        }
-    }
-}
+//struct _ContactDetailsView_Previews: PreviewProvider {
+//    static let cc = ContactsController()
+//    static var previews: some View {
+//        NavigationView {
+//            _ContactDetailsView(contact: listOfContacts.first(where: { $0.name == "Владимир" })!)
+//                .environmentObject(cc)
+//        }
+//    }
+//}
