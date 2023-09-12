@@ -14,8 +14,9 @@ class ContactsController: ObservableObject {
     @Published var city: String? = nil
     @Published var openAllCategories = false
 
-    let list = DummyData().loadContacts()
-    let listOfCategories = DummyData().loadCategories()
+    let list = DataHelper().loadContacts()
+    let listOfCategories = DataHelper().loadCategories()
+    let listOfCities = DataHelper().loadCities()
     
     func resetState() {
         withAnimation {

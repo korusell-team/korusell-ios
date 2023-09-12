@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct City: Identifiable, Equatable {
-    let id = UUID()
-    var title: String
+struct City: Codable {
+    let ru: String
+    let en: String
+    let ko: String
 }

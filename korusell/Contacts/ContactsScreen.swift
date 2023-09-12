@@ -62,7 +62,7 @@ struct ContactsScreen: View {
                         .backgroundColor(.black.opacity(0.2))
                 }
                 .popup(isPresented: $locationsPresented) {
-                    LocationsView()
+                    CitiesView()
                 } customize: {
                     $0
                         .type(.toast)

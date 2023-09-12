@@ -8,6 +8,50 @@
 import Foundation
 import MapKit
 
+class DataHelper {
+    func loadContacts() -> [Contact] {
+        if let url = Bundle.main.url(forResource: "contacts", withExtension: "json") {
+            do {
+                let data = try Data(contentsOf: url)
+                let decoder = JSONDecoder()
+                let jsonData = try decoder.decode([Contact].self, from: data)
+                return jsonData
+            } catch {
+                print("error:\(error)")
+            }
+        }
+        return dummyContacts
+    }
+    
+    func loadCategories() -> [Category] {
+        if let url = Bundle.main.url(forResource: "categories", withExtension: "json") {
+            do {
+                let data = try Data(contentsOf: url)
+                let decoder = JSONDecoder()
+                let jsonData = try decoder.decode([Category].self, from: data)
+                return jsonData
+            } catch {
+                print("error:\(error)")
+            }
+        }
+        return DummyCategories
+    }
+    
+    func loadCities() -> [City] {
+        if let url = Bundle.main.url(forResource: "cities", withExtension: "json") {
+            do {
+                let data = try Data(contentsOf: url)
+                let decoder = JSONDecoder()
+                let jsonData = try decoder.decode([City].self, from: data)
+                return jsonData
+            } catch {
+                print("error:\(error)")
+            }
+        }
+        return dummyCities
+    }
+}
+
 let fakeUser = Contact(name: "Сергей", surname: "Ли", bio: "\niOS", image: ["sergey-lee"], categories: ["IT"], subcategories: ["💻Программирование", "📱Приложения", "🍏iOS"])
 
 
@@ -38,28 +82,6 @@ let DummyCategories: [Category] = [
 //    Category(name: "Ремонт", image: "🛠️", subcategories: ["🎧Электроника", "🏠Квартиры", "🛁Сантехник", "⚡️Электрик"]),
 //]
 
-enum eCategory {
-    case design
-    
-    func sub() -> [String] {
-        switch self {
-        case .design: return ["📱UI/UX", "🌐Web", "✏️Графический дизайн"]
-        }
-    }
-}
-
-enum DesignSub {
-    case ui
-    case web
-    case graphic
-    
-    
-}
-
-func test() {
-    let a: eCategory = .design
-}
-
 let dummyContacts: [Contact] = [
     Contact(name: "Евгений", surname: "Ким", bio: "Лучший Ведущий мероприятий\nв Южной Корее!", image: ["evgeniy-hvan"], categories: ["Мероприятия"], subcategories: ["Ведущий", "Тамада"], phone: "01012341234", instagram: "https://instagram.com/vlog.vedushego?igshid=OGQ5ZDc2ODk2ZA=="),
     Contact(name: "Сергей", surname: "Ли", bio: "\niOS", image: ["sergey-lee"], categories: ["IT"], subcategories: ["Программирование", "Приложения", "iOS"]),
@@ -85,51 +107,20 @@ let dummyContacts: [Contact] = [
     Contact(name: "David", surname: "Beckham", bio: "I'm here to check if english content displays properly", image: ["david-beckham"], categories: ["Маркетинг"], subcategories: ["Продажи"], instagram: "https://www.instagram.com/davidbeckham"),
 ]
 
-class DummyData {
-    func loadContacts() -> [Contact] {
-        if let url = Bundle.main.url(forResource: "contacts", withExtension: "json") {
-            do {
-                let data = try Data(contentsOf: url)
-                let decoder = JSONDecoder()
-                let jsonData = try decoder.decode([Contact].self, from: data)
-                return jsonData
-            } catch {
-                print("error:\(error)")
-            }
-        }
-        return dummyContacts
-    }
-    
-    func loadCategories() -> [Category] {
-        if let url = Bundle.main.url(forResource: "categories", withExtension: "json") {
-            do {
-                let data = try Data(contentsOf: url)
-                let decoder = JSONDecoder()
-                let jsonData = try decoder.decode([Category].self, from: data)
-                return jsonData
-            } catch {
-                print("error:\(error)")
-            }
-        }
-        return DummyCategories
-    }
-}
-
-
-
 let listOfPlaces: [Place] = [
     Place(name: "Кафе Виктория", subcategories: ["мероприятия", "праздники", "свадьбы", "асянди", "хангаби"], owner: "sad"),
     Place(name: "Habsida", subcategories: ["Образование", "IT", "программирование", "обучение"], owner: "sad"),
     Place(name: "СТО", subcategories: ["транспорт", "ремонт"], owner: "sad"),
 ]
 
-let cities: [String] = [
-    "Сеул",
-    "Ансан",
-    "Инчхон",
-    "Хвасонг",
-    "Пусан",
-    "Сувон"
+let dummyCities: [City] = [
+    City(ru: "Сеул", en: "Seoul", ko: "서울"),
+    City(ru: "Ансан", en: "Ansan", ko: "안산"),
+    City(ru: "Инчхон", en: "Incheon", ko: "인천"),
+    City(ru: "Сувон", en: "Suwon", ko: "수원"),
+    City(ru: "Хвасонг", en: "Hwaseong", ko: "화성"),
+    City(ru: "Пусан", en: "Seoul", ko: "서울"),
+    City(ru: "Сеул", en: "Busan", ko: "부산")
 ]
 
 

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct LocationsView: View {
+struct CitiesView: View {
     @EnvironmentObject var cc: ContactsController
     
     var body: some View {
@@ -27,11 +27,11 @@ struct LocationsView: View {
                             LabelView(title: "Вся Корея", isSelected: cc.city == nil)
                         }
                         
-                        ForEach(cities, id: \.self) { city in
+                        ForEach(cc.listOfCities, id: \.self.en) { city in
                             Button(action: {
-                                cc.city = city
+                                cc.city = city.ru
                             }) {
-                                LabelView(title: city, isSelected: city == cc.city)
+                                LabelView(title: city.ru, isSelected: city.ru == cc.city)
                             }
                         }
                     }
