@@ -76,11 +76,11 @@ struct ContactDetailsView: View {
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.horizontal, 24)
-                        .padding(.bottom, 70)
+                        .padding(.bottom, 55)
                     }
                 }
                 .background(Color.white.opacity(0.01))
-                .frame(maxHeight: 390, alignment: .center)
+                .frame(maxHeight: UIScreen.main.bounds.height * 0.45, alignment: .center)
 //                .offset(y: -30)
                 Spacer()
             }

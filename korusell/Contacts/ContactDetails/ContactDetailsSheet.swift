@@ -15,7 +15,8 @@ struct ContactDetailsSheet: View {
     
     let contact: Contact
     
-    let small: CGFloat =  UIScreen.main.bounds.height - 390 + 60
+//    let small: CGFloat =  UIScreen.main.bounds.height - 390 + 60
+    let small: CGFloat =  UIScreen.main.bounds.height * 0.6
     
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -152,10 +153,10 @@ struct ContactDetailsSheet: View {
             }.ignoresSafeArea(.all, edges: .bottom)
             
             /// opacity gradient
-            LinearGradient(colors: [.clear, .white, .white, .white], startPoint: .top, endPoint: .bottom)
-                .frame(maxWidth: .infinity)
-                .frame(height: 200)
-                .contentShape(HitTestingShape())
+//            LinearGradient(colors: [.clear, .white, .white, .white], startPoint: .top, endPoint: .bottom)
+//                .frame(maxWidth: .infinity)
+//                .frame(height: 200)
+//                .contentShape(HitTestingShape())
         }
     }
     

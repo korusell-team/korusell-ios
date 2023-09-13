@@ -71,7 +71,7 @@ struct TabBarBottomView: View {
             .frame(maxWidth: .infinity)
             .cornerRadius(20)
             .padding(25)
-            .padding(.bottom, 20)
+            .padding(.bottom, 10)
         }
         .offset(y: vc.showBottomBar ? 0 : 100)
     }
