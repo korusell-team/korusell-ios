@@ -14,9 +14,62 @@ class ContactsController: ObservableObject {
     @Published var city: String? = nil
     @Published var openAllCategories = false
 
-    let list = DataHelper().loadContacts()
-    let listOfCategories = DataHelper().loadCategories()
-    let listOfCities = DataHelper().loadCities()
+    @Published var currentUser: Contact = Contact(name: "Sergey", surname: "Lee", bio: "iOS Developer", cities: ["Ансан", "Сеул"], image: ["https://firebasestorage.googleapis.com/v0/b/inkorea-bfee4.appspot.com/o/sergey-lee.jpeg?alt=media&token=04a3e9bd-f9fc-444f-86e3-d5661a36e5e4"], categories: ["IT"], subcategories: ["iOS"], phone: "+821012341", instagram: "k0jihero", telegram: "k0jihero", kakao: "k0jihero", description: "no description")
+    @Published var contacts: [Contact] = []
+    @Published var categories: [Category] = []
+    @Published var cities: [City] = []
+    
+    init() {
+        loadContacts()
+        loadCategories()
+        loadCities()
+        print("from init")
+        print(contacts)
+    }
+    
+    
+    func loadContacts() {
+        if let url = Bundle.main.url(forResource: "contacts", withExtension: "json") {
+            do {
+                let data = try Data(contentsOf: url)
+                let decoder = JSONDecoder()
+                let contacts = try decoder.decode([Contact].self, from: data)
+                self.contacts = contacts
+                print(self.contacts)
+            } catch {
+                print("error:\(error)")
+                self.contacts = dummyContacts
+            }
+        }
+    }
+    
+    func loadCategories() {
+        if let url = Bundle.main.url(forResource: "categories", withExtension: "json") {
+            do {
+                let data = try Data(contentsOf: url)
+                let decoder = JSONDecoder()
+                let categories = try decoder.decode([Category].self, from: data)
+                self.categories = categories
+            } catch {
+                print("error:\(error)")
+                self.categories = DummyCategories
+            }
+        }
+    }
+    
+    func loadCities() {
+        if let url = Bundle.main.url(forResource: "cities", withExtension: "json") {
+            do {
+                let data = try Data(contentsOf: url)
+                let decoder = JSONDecoder()
+                let cities = try decoder.decode([City].self, from: data)
+                self.cities = cities
+            } catch {
+                print("error:\(error)")
+                return self.cities = dummyCities
+            }
+        }
+    }
     
     func resetState() {
         withAnimation {
@@ -27,16 +80,16 @@ class ContactsController: ObservableObject {
     }
     
     var filteredCategories: [Category] {
-        guard selectedSubcategory != nil else { return listOfCategories }
+        guard selectedSubcategory != nil else { return categories }
         
-        return listOfCategories.filter { category in
+        return categories.filter { category in
             category.name.lowercased().contains(selectedSubcategory!.lowercased()) ||
             !category.subCategories.filter { $0.lowercased().contains(selectedSubcategory!.lowercased()) }.isEmpty
         }
     }
     
     var filteredContacts: [Contact] {
-        return list.filter { contact in
+        return contacts.filter { contact in
             ( (city != nil) ? !contact.cities.filter { $0.lowercased().contains(city!.lowercased()) }.isEmpty : true) &&
             ( (selectedCategory != nil) ? !contact.categories.filter { $0.lowercased().contains(selectedCategory!.name.lowercased()) }.isEmpty : true) &&
             ( (selectedSubcategory != nil) ? !contact.subcategories.filter { $0.lowercased().contains(selectedSubcategory!.lowercased()) }.isEmpty : true)

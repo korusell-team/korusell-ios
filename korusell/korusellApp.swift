@@ -11,8 +11,6 @@ import Firebase
 @main
 struct korusellApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-    @StateObject var cc = ContactsController()
-    
     @AppStorage("appOnboarded") var appOnboarded = false
     
     init() {
@@ -27,7 +25,6 @@ struct korusellApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environmentObject(cc)
         }
     }
 }

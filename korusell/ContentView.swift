@@ -10,6 +10,7 @@ import Firebase
 
 struct ContentView: View {
     @StateObject var vc = SessionViewController()
+    @StateObject var cc = ContactsController()
     
     @AppStorage("log_Status") var status = false
     @AppStorage("appOnboarded") var appOnboarded = false
@@ -18,7 +19,9 @@ struct ContentView: View {
         ZStack {
             // TODO: CHange to getting session!
             if status {
-                SessionView().environmentObject(vc)
+                SessionView()
+                    .environmentObject(vc)
+                    .environmentObject(cc)
             } else {
                 if appOnboarded {
                     SignInView()

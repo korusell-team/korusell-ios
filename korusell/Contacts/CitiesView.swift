@@ -27,7 +27,7 @@ struct CitiesView: View {
                             LabelView(title: "Вся Корея", isSelected: cc.city == nil)
                         }
                         
-                        ForEach(cc.listOfCities, id: \.self.en) { city in
+                        ForEach(cc.cities, id: \.self.en) { city in
                             Button(action: {
                                 cc.city = city.ru
                             }) {

@@ -34,15 +34,8 @@ struct OnboardingView: View {
             
             VStack {
                 HStack {
-                    Button(action: {
+                    BlueButton(title: "Пропустить") {
                         appOnboarded = true
-                    }) {
-                        Text("Пропустить")
-                            .font(footnoteFont)
-                            .foregroundColor(.white)
-                            .padding(12)
-                            .background(Color.action)
-                            .cornerRadius(18)
                     }
                 }
                 .frame(maxWidth: .infinity, alignment: .trailing)

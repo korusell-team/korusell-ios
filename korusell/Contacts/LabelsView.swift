@@ -21,7 +21,7 @@ struct LabelsView: View {
                         ScrollView(.horizontal, showsIndicators: false) {
                             ScrollViewReader { reader in
                                 LazyHGrid(rows: rows, alignment: .center) {
-                                    ForEach(cc.listOfCategories, id: \.self.name) { category in
+                                    ForEach(cc.categories, id: \.self.name) { category in
                                         Button(action: { cc.selectCategory(category: category) }) {
                                             LabelView(title: category.name, isSelected: cc.thisCategorySelected(category: category))
                                         }

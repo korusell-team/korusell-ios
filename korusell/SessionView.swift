@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SessionView: View {
+    
     var body: some View {
         BottomTabBar(tabs: TabBarType.allCases.map({ $0.tabs })
         ) { index in

@@ -32,11 +32,9 @@
 		256C97612A372B55003DD1B4 /* Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256C97602A372B55003DD1B4 /* Design.swift */; };
 		256C97632A372EAC003DD1B4 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256C97622A372EAC003DD1B4 /* TestView.swift */; };
 		256C97652A39EC0E003DD1B4 /* LabelsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256C97642A39EC0E003DD1B4 /* LabelsView.swift */; };
-		256C97682A3D5770003DD1B4 /* YouTubePlayerKit in Frameworks */ = {isa = PBXBuildFile; productRef = 256C97672A3D5770003DD1B4 /* YouTubePlayerKit */; };
 		259338092A29E22E00C7AF1B /* RoundedCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259338082A29E22E00C7AF1B /* RoundedCorner.swift */; };
 		2593380B2A29ED8700C7AF1B /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2593380A2A29ED8700C7AF1B /* WebView.swift */; };
 		2596144A2A1233C000393712 /* ContactsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259614492A1233C000393712 /* ContactsController.swift */; };
-		2596144D2A1247D500393712 /* _ContactDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2596144C2A1247D500393712 /* _ContactDetailsView.swift */; };
 		2596144F2A124E5900393712 /* TrackableScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2596144E2A124E5900393712 /* TrackableScrollView.swift */; };
 		259EAAC12A960189006C207F /* SessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259EAAC02A960189006C207F /* SessionViewController.swift */; };
 		259EAAC42A960BAD006C207F /* GlobalSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259EAAC32A960BAD006C207F /* GlobalSearchView.swift */; };
@@ -62,6 +60,11 @@
 		25DB6CCB2A0A5C1000660E99 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DB6CCA2A0A5C1000660E99 /* Contact.swift */; };
 		2B0491512AB07EAE00A8F81E /* categories.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B0491502AB07EAE00A8F81E /* categories.json */; };
 		2B0491532AB0851600A8F81E /* cities.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B0491522AB0851600A8F81E /* cities.json */; };
+		2B0491552AB1DEB600A8F81E /* MyAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0491542AB1DEB600A8F81E /* MyAccountView.swift */; };
+		2B04915A2AB32B5B00A8F81E /* MyAccDetailsSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0491592AB32B5B00A8F81E /* MyAccDetailsSheet.swift */; };
+		2B04915C2AB32D2900A8F81E /* EditPhoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04915B2AB32D2900A8F81E /* EditPhoneView.swift */; };
+		2B04915E2AB48D3300A8F81E /* BlueButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04915D2AB48D3300A8F81E /* BlueButton.swift */; };
+		2B0491602AB495C000A8F81E /* EditableSocialButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04915F2AB495C000A8F81E /* EditableSocialButton.swift */; };
 		2B181D722AAF16F4001E6250 /* contacts.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B181D712AAF16F4001E6250 /* contacts.json */; };
 		2B181D752AAF1CF3001E6250 /* CachedAsyncImage in Frameworks */ = {isa = PBXBuildFile; productRef = 2B181D742AAF1CF3001E6250 /* CachedAsyncImage */; };
 		2B9489562AA831FF0039D5AC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2B9489552AA831FE0039D5AC /* GoogleService-Info.plist */; };
@@ -95,7 +98,6 @@
 		259338082A29E22E00C7AF1B /* RoundedCorner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCorner.swift; sourceTree = "<group>"; };
 		2593380A2A29ED8700C7AF1B /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		259614492A1233C000393712 /* ContactsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsController.swift; sourceTree = "<group>"; };
-		2596144C2A1247D500393712 /* _ContactDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _ContactDetailsView.swift; sourceTree = "<group>"; };
 		2596144E2A124E5900393712 /* TrackableScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackableScrollView.swift; sourceTree = "<group>"; };
 		259EAAC02A960189006C207F /* SessionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionViewController.swift; sourceTree = "<group>"; };
 		259EAAC32A960BAD006C207F /* GlobalSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalSearchView.swift; sourceTree = "<group>"; };
@@ -122,6 +124,11 @@
 		25DB6CCA2A0A5C1000660E99 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		2B0491502AB07EAE00A8F81E /* categories.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = categories.json; sourceTree = "<group>"; };
 		2B0491522AB0851600A8F81E /* cities.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = cities.json; sourceTree = "<group>"; };
+		2B0491542AB1DEB600A8F81E /* MyAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountView.swift; sourceTree = "<group>"; };
+		2B0491592AB32B5B00A8F81E /* MyAccDetailsSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccDetailsSheet.swift; sourceTree = "<group>"; };
+		2B04915B2AB32D2900A8F81E /* EditPhoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPhoneView.swift; sourceTree = "<group>"; };
+		2B04915D2AB48D3300A8F81E /* BlueButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueButton.swift; sourceTree = "<group>"; };
+		2B04915F2AB495C000A8F81E /* EditableSocialButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableSocialButton.swift; sourceTree = "<group>"; };
 		2B181D712AAF16F4001E6250 /* contacts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = contacts.json; sourceTree = "<group>"; };
 		2B9489552AA831FE0039D5AC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2B9489572AA89FE50039D5AC /* PlacePoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacePoint.swift; sourceTree = "<group>"; };
@@ -136,7 +143,6 @@
 				2B181D752AAF1CF3001E6250 /* CachedAsyncImage in Frameworks */,
 				256276042A80F00C006F0E39 /* FirebaseFirestore in Frameworks */,
 				256276022A80F00C006F0E39 /* FirebaseAuth in Frameworks */,
-				256C97682A3D5770003DD1B4 /* YouTubePlayerKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -199,6 +205,7 @@
 				259EAACE2A98A90D006C207F /* ActionSheetView.swift */,
 				259EAAD72A9DED9F006C207F /* SheetDragger.swift */,
 				259EAADA2AA09229006C207F /* BackButton.swift */,
+				2B04915D2AB48D3300A8F81E /* BlueButton.swift */,
 			);
 			name = Elements;
 			sourceTree = "<group>";
@@ -206,7 +213,6 @@
 		259EAAD42A9DEA8C006C207F /* ContactDetails */ = {
 			isa = PBXGroup;
 			children = (
-				2596144C2A1247D500393712 /* _ContactDetailsView.swift */,
 				259EAAD22A9CC857006C207F /* ContactDetailsView.swift */,
 				259EAAD52A9DEABA006C207F /* ContactDetailsSheet.swift */,
 				25174A522AA5F88C00024E1A /* SocialButton.swift */,
@@ -233,11 +239,11 @@
 		25DB6CAB2A0726C400660E99 /* korusell */ = {
 			isa = PBXGroup;
 			children = (
-				2548C4192A96001F00211CC0 /* Session */,
 				25DB6CAC2A0726C400660E99 /* korusellApp.swift */,
 				25ADF3352A694516009A2B73 /* ContentView.swift */,
 				2548C4142A94B40000211CC0 /* Onboarding */,
 				256275AF2A7D0103006F0E39 /* Auth */,
+				2548C4192A96001F00211CC0 /* Session */,
 				25DB6CBA2A0727FA00660E99 /* Contacts */,
 				259EAAC22A960B95006C207F /* Search */,
 				25DB6CC22A0A59DE00660E99 /* Places */,
@@ -265,6 +271,7 @@
 		25DB6CBA2A0727FA00660E99 /* Contacts */ = {
 			isa = PBXGroup;
 			children = (
+				2B0491562AB32B1A00A8F81E /* MyAccount */,
 				256275AE2A73E127006F0E39 /* _deprecated */,
 				25DB6CC02A07287F00660E99 /* ContactsScreen.swift */,
 				259EAAC52A96318B006C207F /* PopCategoriesView.swift */,
@@ -315,6 +322,17 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
+		2B0491562AB32B1A00A8F81E /* MyAccount */ = {
+			isa = PBXGroup;
+			children = (
+				2B0491542AB1DEB600A8F81E /* MyAccountView.swift */,
+				2B0491592AB32B5B00A8F81E /* MyAccDetailsSheet.swift */,
+				2B04915B2AB32D2900A8F81E /* EditPhoneView.swift */,
+				2B04915F2AB495C000A8F81E /* EditableSocialButton.swift */,
+			);
+			path = MyAccount;
+			sourceTree = "<group>";
+		};
 		2B181D6E2AAE1129001E6250 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -342,7 +360,6 @@
 			);
 			name = korusell;
 			packageProductDependencies = (
-				256C97672A3D5770003DD1B4 /* YouTubePlayerKit */,
 				256275AC2A7138B0006F0E39 /* PopupView */,
 				256276012A80F00C006F0E39 /* FirebaseAuth */,
 				256276032A80F00C006F0E39 /* FirebaseFirestore */,
@@ -377,7 +394,6 @@
 			);
 			mainGroup = 25DB6CA02A0726C400660E99;
 			packageReferences = (
-				256C97662A3D5770003DD1B4 /* XCRemoteSwiftPackageReference "YouTubePlayerKit" */,
 				256275AB2A7138B0006F0E39 /* XCRemoteSwiftPackageReference "PopupView" */,
 				256276002A80F00C006F0E39 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				2B181D732AAF1CF3001E6250 /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */,
@@ -415,18 +431,23 @@
 				25DB6CC12A07287F00660E99 /* ContactsScreen.swift in Sources */,
 				2593380B2A29ED8700C7AF1B /* WebView.swift in Sources */,
 				259EAAC62A96318B006C207F /* PopCategoriesView.swift in Sources */,
+				2B0491552AB1DEB600A8F81E /* MyAccountView.swift in Sources */,
 				259EAAC42A960BAD006C207F /* GlobalSearchView.swift in Sources */,
 				256C975D2A2C4D85003DD1B4 /* PlaceView.swift in Sources */,
 				25ADF3322A694438009A2B73 /* ClusterView.swift in Sources */,
 				253B84EA2A0C59CE004FA223 /* Extensions.swift in Sources */,
+				2B04915E2AB48D3300A8F81E /* BlueButton.swift in Sources */,
 				253B84F22A0F18C0004FA223 /* CategoryView.swift in Sources */,
 				256275B12A7D0120006F0E39 /* SignInView.swift in Sources */,
 				253B84EE2A0D1815004FA223 /* Blur.swift in Sources */,
 				253B84E82A0BA0A9004FA223 /* ContactView.swift in Sources */,
 				25DB6CAD2A0726C400660E99 /* korusellApp.swift in Sources */,
+				2B0491602AB495C000A8F81E /* EditableSocialButton.swift in Sources */,
 				2B9489582AA89FE50039D5AC /* PlacePoint.swift in Sources */,
+				2B04915A2AB32B5B00A8F81E /* MyAccDetailsSheet.swift in Sources */,
 				259EAAD32A9CC857006C207F /* ContactDetailsView.swift in Sources */,
 				259EAACF2A98A90D006C207F /* ActionSheetView.swift in Sources */,
+				2B04915C2AB32D2900A8F81E /* EditPhoneView.swift in Sources */,
 				256C97612A372B55003DD1B4 /* Design.swift in Sources */,
 				25ADF3342A694438009A2B73 /* PlaceMarker.swift in Sources */,
 				256C97652A39EC0E003DD1B4 /* LabelsView.swift in Sources */,
@@ -455,7 +476,6 @@
 				25ADF3302A694438009A2B73 /* MapView.swift in Sources */,
 				253B84EC2A0CF3D6004FA223 /* AvatarView.swift in Sources */,
 				253B84E62A0A614F004FA223 /* SearchBar.swift in Sources */,
-				2596144D2A1247D500393712 /* _ContactDetailsView.swift in Sources */,
 				259338092A29E22E00C7AF1B /* RoundedCorner.swift in Sources */,
 				259EAAD12A98AE4B006C207F /* ScreenHelper.swift in Sources */,
 				256C97632A372EAC003DD1B4 /* TestView.swift in Sources */,
@@ -684,14 +704,6 @@
 				minimumVersion = 9.0.0;
 			};
 		};
-		256C97662A3D5770003DD1B4 /* XCRemoteSwiftPackageReference "YouTubePlayerKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SvenTiigi/YouTubePlayerKit.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
 		2B181D732AAF1CF3001E6250 /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/lorenzofiamingo/swiftui-cached-async-image.git";
@@ -717,11 +729,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 256276002A80F00C006F0E39 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;
-		};
-		256C97672A3D5770003DD1B4 /* YouTubePlayerKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 256C97662A3D5770003DD1B4 /* XCRemoteSwiftPackageReference "YouTubePlayerKit" */;
-			productName = YouTubePlayerKit;
 		};
 		2B181D742AAF1CF3001E6250 /* CachedAsyncImage */ = {
 			isa = XCSwiftPackageProductDependency;

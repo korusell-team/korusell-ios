@@ -36,13 +36,7 @@ struct ContactsScreen: View {
                     
                     trailing:
                         NavigationLink(destination: {
-                            VStack {
-                                Spacer()
-                                Text("МОЙ АККАУНТ")
-                                    .padding(50)
-                                Text("🚧 в разработке...")
-                                Spacer()
-                            }
+                            MyAccountView()
                         }) {
                             Image(systemName: "person.circle")
                                 .foregroundColor(.gray900)

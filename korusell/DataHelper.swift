@@ -8,50 +8,6 @@
 import Foundation
 import MapKit
 
-class DataHelper {
-    func loadContacts() -> [Contact] {
-        if let url = Bundle.main.url(forResource: "contacts", withExtension: "json") {
-            do {
-                let data = try Data(contentsOf: url)
-                let decoder = JSONDecoder()
-                let jsonData = try decoder.decode([Contact].self, from: data)
-                return jsonData
-            } catch {
-                print("error:\(error)")
-            }
-        }
-        return dummyContacts
-    }
-    
-    func loadCategories() -> [Category] {
-        if let url = Bundle.main.url(forResource: "categories", withExtension: "json") {
-            do {
-                let data = try Data(contentsOf: url)
-                let decoder = JSONDecoder()
-                let jsonData = try decoder.decode([Category].self, from: data)
-                return jsonData
-            } catch {
-                print("error:\(error)")
-            }
-        }
-        return DummyCategories
-    }
-    
-    func loadCities() -> [City] {
-        if let url = Bundle.main.url(forResource: "cities", withExtension: "json") {
-            do {
-                let data = try Data(contentsOf: url)
-                let decoder = JSONDecoder()
-                let jsonData = try decoder.decode([City].self, from: data)
-                return jsonData
-            } catch {
-                print("error:\(error)")
-            }
-        }
-        return dummyCities
-    }
-}
-
 let fakeUser = Contact(name: "Сергей", surname: "Ли", bio: "\niOS", image: ["sergey-lee"], categories: ["IT"], subcategories: ["💻Программирование", "📱Приложения", "🍏iOS"])
 
 

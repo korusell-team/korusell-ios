@@ -58,19 +58,10 @@ struct SignInView: View {
                         .padding(.horizontal, 25)
                     }
                     
-                    
-                    //                Button(action: test) {
-                    Button(action: showCodeWindow ? verifyCode : signIn) {
-                        Text(showCodeWindow ? "Войти" : "Получить СМС")
-                            .font(footnoteFont)
-                            .foregroundColor(.white)
-                            .padding(12)
-                            .background(Color.action)
-                            .cornerRadius(18)
-                    }
-                    .padding()
-                    .disabled(!showCodeWindow && phone.count < 11)
-                    .opacity(!showCodeWindow && phone.count < 11 ? 0.5 : 1)
+                    BlueButton(title: showCodeWindow ? "Войти" : "Получить СМС", action: onButtonTap)
+                        .padding()
+                        .disabled(!showCodeWindow && phone.count < 11)
+                        .opacity(!showCodeWindow && phone.count < 11 ? 0.5 : 1)
                 }
                 
                 if showCodeWindow {
@@ -98,9 +89,7 @@ struct SignInView: View {
     
     private func resetError() {
         if error != nil {
-            
-                self.error = nil
-            
+            self.error = nil
         }
     }
     
@@ -121,6 +110,10 @@ struct SignInView: View {
         } else if phone.count > 11 {
             self.phone = String(self.phone.dropLast())
         }
+    }
+    
+    private func onButtonTap() {
+        showCodeWindow ? verifyCode() : signIn()
     }
     
     private func signIn() {
