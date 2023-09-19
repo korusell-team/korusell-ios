@@ -12,19 +12,22 @@ import Firebase
 struct korusellApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @AppStorage("appOnboarded") var appOnboarded = false
+    @StateObject var userManager = UserManager()
     
     init() {
-        appOnboarded = false
-//        UITabBar.appearance().isTranslucent = false
-        UITabBar.appearance().backgroundColor = UIColor(Color.gray10) 
+//        appOnboarded = false
         
+        /// UITabBar.appearance().isTranslucent = false
+        UITabBar.appearance().backgroundColor = UIColor(Color.gray10)
         /// Hides native TabBar
-           UITabBar.appearance().isHidden = true
-        }
+        UITabBar.appearance().isHidden = true
+    }
+    
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView().environmentObject(userManager)
+                .onAppear(perform: userManager.handleUser)
         }
     }
 }
@@ -33,6 +36,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         FirebaseApp.configure()
         Auth.auth().languageCode = "ru"
+        
         return true
     }
     

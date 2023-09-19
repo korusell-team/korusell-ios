@@ -10,6 +10,7 @@ import FirebaseAuth
 
 struct GlobalSearchView: View {
     @AppStorage("log_Status") var status = false
+    @EnvironmentObject var userManager: UserManager
     
     var body: some View {
         VStack {
@@ -17,6 +18,7 @@ struct GlobalSearchView: View {
             Button(action: {
                 do {
                     try Auth.auth().signOut()
+                    userManager.user = nil
                 } catch {
                     
                 }

@@ -26,8 +26,8 @@ struct ContactView: View {
                 
                 VStack(alignment: .leading, spacing: 0) {
                     HStack {
-                        Text(contact.surname)
-                        Text(contact.name)
+                        Text(contact.surname ?? "")
+                        Text(contact.name ?? "")
                     }
                     .foregroundColor(.gray1100)
                     .font(title3Font)

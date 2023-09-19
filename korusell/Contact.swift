@@ -7,22 +7,29 @@
 
 import Foundation
 
+import FirebaseFirestoreSwift
+
 struct Contact: Identifiable, Hashable, Decodable {
-    let id = UUID()
-    let name: String
-    let surname: String
-    var bio: String
+    @DocumentID var id: String?
+    var uid: String
+    var name: String?
+    var surname: String?
+    var bio: String?
     var cities: [String] = []
     var image: [String] = []
     var categories: [String] = []
     var subcategories: [String] = []
-    var phone: String? = nil
-    var instagram: String? = nil
-    var youtube: String? = nil
-    var link: String? = nil
-    var telegram: String? = nil
-    var kakao: String? = nil
-    var description: String? = nil
+    var phone: String
+    var instagram: String?
+    var youtube: String?
+    var link: String?
+    var telegram: String?
+    var kakao: String?
+    var tiktok: String?
+    var updated: Date?
+    var created: Date?
+    var isPublic: Bool?
+    
     /// places ids?
 //    var places: [Place] = []
 }

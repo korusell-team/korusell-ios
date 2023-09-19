@@ -10,15 +10,17 @@ import CachedAsyncImage
 
 struct MyAccountView: View {
     @EnvironmentObject var cc: ContactsController
+    @EnvironmentObject var userManager: UserManager
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     @State var page: Int = 0
     
     var body: some View {
+        let user = userManager.user!
         ZStack {
             VStack(spacing: 0) {
                 ZStack(alignment: .bottom) {
-                    if cc.currentUser.image.isEmpty {
+                    if user.image.isEmpty {
                         ZStack(alignment: .bottom) {
                             Color.gray50
                             Image("alien")
@@ -28,8 +30,8 @@ struct MyAccountView: View {
                         }
                     } else {
                         TabView(selection: $page) {
-                            ForEach(0..<cc.currentUser.image.count, id: \.self) { index in
-                                CachedAsyncImage(url: URL(string: cc.currentUser.image[index]), urlCache: .imageCache) { phase in
+                            ForEach(0..<user.image.count, id: \.self) { index in
+                                CachedAsyncImage(url: URL(string: user.image[index]), urlCache: .imageCache) { phase in
                                     switch phase {
                                     case .empty:
                                         ProgressView()
@@ -55,9 +57,9 @@ struct MyAccountView: View {
                         .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                     }
                     
-                    if cc.currentUser.image.count > 1 {
+                    if user.image.count > 1 {
                         HStack(alignment: .center, spacing: 4) {
-                            ForEach(0..<cc.currentUser.image.count, id: \.self) { index in
+                            ForEach(0..<user.image.count, id: \.self) { index in
                                 RoundedRectangle(cornerRadius: 20)
                                     .fill(Color.white.opacity(page == index ? 1 : 0.5))
                                     .frame(width: 4 + (page == index ? 13 : 0), height: 4)

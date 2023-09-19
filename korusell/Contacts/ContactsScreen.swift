@@ -10,6 +10,7 @@ import PopupView
 
 struct ContactsScreen: View {
     @EnvironmentObject var cc: ContactsController
+    @EnvironmentObject var userManager: UserManager
     @Namespace var namespace
     
     @State var locationsPresented = false
@@ -40,7 +41,7 @@ struct ContactsScreen: View {
                         }) {
                             Image(systemName: "person.circle")
                                 .foregroundColor(.gray900)
-                        }
+                        }.disabled(userManager.user == nil)
                 )
                 .padding(.top, 0.1)
                 .animation(.easeOut, value: cc.selectedCategory)

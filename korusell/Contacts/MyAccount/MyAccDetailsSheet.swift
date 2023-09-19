@@ -9,7 +9,7 @@ import SwiftUI
 import PopupView
 
 struct MyAccDetailsSheet: View {
-    @EnvironmentObject var cc: ContactsController
+    @EnvironmentObject var userManager: UserManager
     @GestureState var gestureOffset: CGFloat = 0
     @State var offset: CGFloat = 0
     @State var lastOffset: CGFloat = 0
@@ -19,6 +19,7 @@ struct MyAccDetailsSheet: View {
     let small: CGFloat =  UIScreen.main.bounds.height * 0.6
     
     var body: some View {
+        let user = userManager.user!
         ZStack(alignment: .bottom) {
             GeometryReader { proxy -> AnyView in
                 let height = proxy.frame(in: .global).height
@@ -33,7 +34,7 @@ struct MyAccDetailsSheet: View {
                             ScrollView(showsIndicators: false) {
                                 VStack(alignment: .leading, spacing: 20) {
                                     HStack {
-                                        Text(cc.currentUser.name + " " + cc.currentUser.surname)
+                                        Text(user.name ?? "" + " " + (user.surname ?? ""))
                                             .font(title2Font)
                                         Spacer()
                                         Button(action: {
@@ -66,32 +67,32 @@ struct MyAccDetailsSheet: View {
                                     
                                     ScrollView(.horizontal, showsIndicators: false) {
                                         HStack {
-                                            ForEach(0..<cc.currentUser.categories.count, id:\.self) { index in
-                                                SmallLabelView(title: cc.currentUser.categories[index])
+                                            ForEach(0..<user.categories.count, id:\.self) { index in
+                                                SmallLabelView(title: user.categories[index])
                                             }
-                                            ForEach(0..<cc.currentUser.subcategories.count, id:\.self) { index in
-                                                SmallLabelView(title: cc.currentUser.subcategories[index])
+                                            ForEach(0..<user.subcategories.count, id:\.self) { index in
+                                                SmallLabelView(title: user.subcategories[index])
                                             }
                                         }
                                     }
                                     
                                     Divider()
                                     
-                                    if !cc.currentUser.cities.isEmpty {
+                                    if !user.cities.isEmpty {
                                         ScrollView(.horizontal, showsIndicators: false) {
                                             HStack {
-                                                ForEach(0..<cc.currentUser.cities.count, id:\.self) { index in
-                                                    LabelView(title: cc.currentUser.cities[index], isSelected: true)
+                                                ForEach(0..<user.cities.count, id:\.self) { index in
+                                                    LabelView(title: user.cities[index], isSelected: true)
                                                 }
                                             }
                                         }
                                     }
                                     //TODO: set proper links prefixes and sufixes
                                     VStack(alignment: .leading, spacing: 10) {
-                                        EditableSocialButton(type: .instagram, title: cc.currentUser.instagram)
-                                        EditableSocialButton(type: .telegram, title: cc.currentUser.telegram)
-                                        EditableSocialButton(type: .kakao, title: cc.currentUser.kakao)
-                                        EditableSocialButton(type: .youtube, title: cc.currentUser.youtube)
+                                        EditableSocialButton(type: .instagram, title: user.instagram)
+                                        EditableSocialButton(type: .telegram, title: user.telegram)
+                                        EditableSocialButton(type: .kakao, title: user.kakao)
+                                        EditableSocialButton(type: .youtube, title: user.youtube)
                                         
                                     }
                                     .padding(.bottom)
@@ -100,7 +101,7 @@ struct MyAccDetailsSheet: View {
                                         Text("О себе:")
                                             .bold()
                                         
-                                        Text(cc.currentUser.bio)
+                                        Text(user.bio ?? "")
                                     }
                                     .font(bodyFont)
                                     .padding(.bottom)
@@ -194,20 +195,20 @@ struct MyAccDetailsSheet: View {
     }
     
     private func call() {
-        if let phone = cc.currentUser.phone {
-            let prefix = "tel://"
-            let phoneNumberformatted = prefix + phone
-            guard let url = URL(string: phoneNumberformatted) else { return }
-            UIApplication.shared.open(url)
-        }
+        guard let user = userManager.user else { return }
+        let phone = user.phone
+        let prefix = "tel://"
+        let phoneNumberformatted = prefix + phone
+        guard let url = URL(string: phoneNumberformatted) else { return }
+        UIApplication.shared.open(url)
     }
     
     private func sendSMS() {
-        if let phone = cc.currentUser.phone {
-            let sms: String = "sms:+8210\(phone)"
-            let strURL: String = sms.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-            UIApplication.shared.open(URL.init(string: strURL)!, options: [:], completionHandler: nil)
-        }
+        guard let user = userManager.user else { return }
+        let phone = user.phone
+        let sms: String = "sms:+8210\(phone)"
+        let strURL: String = sms.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        UIApplication.shared.open(URL.init(string: strURL)!, options: [:], completionHandler: nil)
     }
 }
 

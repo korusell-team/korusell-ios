@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct EditableSocialButton: View {
-    @EnvironmentObject var cc: ContactsController
+    @EnvironmentObject var userManager: UserManager
     @State var editMode: Bool = false
     
     enum socialType {
@@ -91,10 +91,10 @@ struct EditableSocialButton: View {
     private func edit() {
         if editMode {
             switch type {
-            case .kakao: cc.currentUser.kakao = textField
-            case .instagram: cc.currentUser.instagram = textField
-            case .youtube: cc.currentUser.youtube = textField
-            case .telegram: cc.currentUser.telegram = textField
+            case .kakao: userManager.user?.kakao = textField
+            case .instagram: userManager.user?.instagram = textField
+            case .youtube: userManager.user?.youtube = textField
+            case .telegram: userManager.user?.telegram = textField
             }
         }
         withAnimation {
@@ -104,10 +104,10 @@ struct EditableSocialButton: View {
     
     private func erase() {
         switch type {
-        case .kakao: cc.currentUser.kakao = nil
-        case .instagram: cc.currentUser.instagram = nil
-        case .youtube: cc.currentUser.youtube = nil
-        case .telegram: cc.currentUser.telegram = nil
+        case .kakao: userManager.user?.kakao = nil
+        case .instagram: userManager.user?.instagram = nil
+        case .youtube: userManager.user?.youtube = nil
+        case .telegram: userManager.user?.telegram = nil
         }
         withAnimation {
             textField = ""

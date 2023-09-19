@@ -33,7 +33,7 @@ struct ContactDetailsSheet: View {
                             ScrollView(showsIndicators: false) {
                                 VStack(alignment: .leading, spacing: 20) {
                                     HStack {
-                                        Text(contact.name + " " + contact.surname)
+                                        Text(contact.name ?? "" + " " + (contact.surname ?? ""))
                                             .font(title2Font)
                                         Spacer()
                                         Button(action: call) {
@@ -87,7 +87,7 @@ struct ContactDetailsSheet: View {
                                         Text("О себе:")
                                             .bold()
                                         
-                                        Text(contact.bio)
+                                        Text(contact.bio ?? "")
                                     }
                                     .font(bodyFont)
                                     .padding(.bottom)
@@ -191,20 +191,20 @@ struct ContactDetailsSheet: View {
     }
     
     private func call() {
-        if let phone = contact.phone {
+        let phone = contact.phone
             let prefix = "tel://"
             let phoneNumberformatted = prefix + phone
             guard let url = URL(string: phoneNumberformatted) else { return }
             UIApplication.shared.open(url)
-        }
+//        }
     }
     
     private func sendSMS() {
-        if let phone = contact.phone {
+        let phone = contact.phone
             let sms: String = "sms:+8210\(phone)"
             let strURL: String = sms.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
             UIApplication.shared.open(URL.init(string: strURL)!, options: [:], completionHandler: nil)
-        }
+//        }
     }
 }
 

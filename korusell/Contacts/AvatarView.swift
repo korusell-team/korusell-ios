@@ -41,10 +41,11 @@ struct AvatarView: View {
                 Circle()
                     .fill(Color.gray900)
                     .frame(width: 55, height: 55)
-                Text(String(contact.name.capitalized.first!))
+                // TODO: fix it
+                Text(String(contact.name?.capitalized.first! ?? "U"))
                     .font(title2Font)
                     .foregroundColor(.white)
-                + Text(String(contact.surname.capitalized.first!))
+                + Text(String(contact.surname?.capitalized.first! ?? "N"))
                     .font(title2Font)
                     .foregroundColor(.white)
             }
@@ -85,8 +86,9 @@ struct DetailsAvatarView: View {
             Circle()
                 .fill(Color.gray900)
                 .frame(width: 100, height: 100)
-            Text(String(contact.name.capitalized.first!))
-            + Text(String(contact.surname.capitalized.first!))
+            // TODO: fix it
+            Text(String(contact.name?.capitalized.first! ?? "U"))
+            + Text(String(contact.surname?.capitalized.first! ?? "N"))
             
             // TODO: redo after DB
             if !contact.image.isEmpty {

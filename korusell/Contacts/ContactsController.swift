@@ -14,7 +14,7 @@ class ContactsController: ObservableObject {
     @Published var city: String? = nil
     @Published var openAllCategories = false
 
-    @Published var currentUser: Contact = Contact(name: "Sergey", surname: "Lee", bio: "iOS Developer", cities: ["Ансан", "Сеул"], image: ["https://firebasestorage.googleapis.com/v0/b/inkorea-bfee4.appspot.com/o/sergey-lee.jpeg?alt=media&token=04a3e9bd-f9fc-444f-86e3-d5661a36e5e4"], categories: ["IT"], subcategories: ["iOS"], phone: "+821012341", instagram: "k0jihero", telegram: "k0jihero", kakao: "k0jihero", description: "no description")
+//    @Published var currentUser: Contact = Contact(uid: "", name: "Sergey", surname: "Lee", bio: "iOS Developer", cities: ["Ансан", "Сеул"], image: ["https://firebasestorage.googleapis.com/v0/b/inkorea-bfee4.appspot.com/o/sergey-lee.jpeg?alt=media&token=04a3e9bd-f9fc-444f-86e3-d5661a36e5e4"], categories: ["IT"], subcategories: ["iOS"], phone: "+821012341", instagram: "k0jihero", telegram: "k0jihero", kakao: "k0jihero")
     @Published var contacts: [Contact] = []
     @Published var categories: [Category] = []
     @Published var cities: [City] = []
@@ -23,10 +23,7 @@ class ContactsController: ObservableObject {
         loadContacts()
         loadCategories()
         loadCities()
-        print("from init")
-        print(contacts)
     }
-    
     
     func loadContacts() {
         if let url = Bundle.main.url(forResource: "contacts", withExtension: "json") {
@@ -94,7 +91,7 @@ class ContactsController: ObservableObject {
             ( (selectedCategory != nil) ? !contact.categories.filter { $0.lowercased().contains(selectedCategory!.name.lowercased()) }.isEmpty : true) &&
             ( (selectedSubcategory != nil) ? !contact.subcategories.filter { $0.lowercased().contains(selectedSubcategory!.lowercased()) }.isEmpty : true)
         }
-        .sorted(by: { $0.surname < $1.surname})
+        .sorted(by: { $0.surname ?? "" < $1.surname ?? ""})
     }
     
     var filteredPlaces: [Place] {

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct EditPhoneView: View {
     @FocusState var focusedField
-    @EnvironmentObject var cc: ContactsController
+    @EnvironmentObject var userManager: UserManager
     @State var phone: String = ""
     @Binding var editPhonePresented: Bool
     
@@ -35,7 +35,7 @@ struct EditPhoneView: View {
             
             BlueButton(title: "Сохранить") {
                 let properPhone = "+8210" + self.phone.replacingOccurrences(of: " - ", with: "")
-                cc.currentUser.phone = properPhone
+                userManager.user!.phone = properPhone
                 editPhonePresented = false
             }
         }
@@ -43,15 +43,17 @@ struct EditPhoneView: View {
         .padding(.vertical, 100)
         .background(Color.bg)
         .cornerRadius(30)
-        .onAppear {
-            if let myPhone = cc.currentUser.phone {
-                if myPhone.contains("+8210") {
-                    let eight = String(myPhone.suffix(8))
-                    self.phone = String(eight.prefix(4)) + " - " + String(eight.suffix(4))
-                } else {
-                    self.phone = myPhone
-                }
-            }
+        .onAppear(perform: setCurrentPhone)
+    }
+    
+    private func setCurrentPhone() {
+        guard let user = userManager.user else { return }
+        let myPhone = user.phone
+        if myPhone.contains("+8210") {
+            let eight = String(myPhone.suffix(8))
+            self.phone = String(eight.prefix(4)) + " - " + String(eight.suffix(4))
+        } else {
+            self.phone = myPhone
         }
     }
     

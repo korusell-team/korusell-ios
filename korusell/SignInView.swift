@@ -9,6 +9,7 @@ import SwiftUI
 import Firebase
 
 struct SignInView: View {
+    @EnvironmentObject var userManager: UserManager
     @StateObject var viewModel = OTPViewModel()
     
     @State var phone = ""
@@ -19,7 +20,6 @@ struct SignInView: View {
     
     @FocusState var focusedField
     @Namespace private var animation
-    @AppStorage("log_Status") var status = false
     
     var body: some View {
         NavigationView {
@@ -120,21 +120,16 @@ struct SignInView: View {
         // disable when you need to test with real device
         Auth.auth().settings?.isAppVerificationDisabledForTesting = true
         
-        
-        
         let properPhone = "+8210" + self.phone.replacingOccurrences(of: " - ", with: "")
         PhoneAuthProvider.provider().verifyPhoneNumber(properPhone, uiDelegate: nil) { CODE, error in
-            
             self.CODE = CODE ?? ""
-            print("abraca")
-            print(self.CODE)
-            
             if let error {
                 self.error = error.localizedDescription
                 print(error)
                 return
             }
-          
+            
+            print(self.CODE)
             withAnimation {
                 self.showCodeWindow = true
             }
@@ -143,19 +138,20 @@ struct SignInView: View {
     }
     
     private func verifyCode() {
+        withAnimation {
+            userManager.isLoading = true
+        }
         let credential = PhoneAuthProvider.provider().credential(withVerificationID: self.CODE, verificationCode: viewModel.otpField)
         
         Auth.auth().signIn(with: credential) { (result, error) in
             if let error {
                 self.error = error.localizedDescription
                 print(error)
+                userManager.isLoading = false
                 return
             }
-            
-            print(result)
-            
-            withAnimation {
-                self.status = true
+            DispatchQueue.main.async {
+                userManager.handleUser()
             }
         }
     }
