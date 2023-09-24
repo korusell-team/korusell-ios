@@ -46,4 +46,12 @@ class UserManager: ObservableObject {
             completion()
         }
     }
+    
+    func updateUser() {
+        if let user {
+            fb.updateUser(user: user) {
+                // hanlde
+            }
+        }
+    }
 }

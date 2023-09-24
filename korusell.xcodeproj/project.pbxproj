@@ -70,6 +70,8 @@
 		2B345B702AB85A410025BF2C /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B345B6F2AB85A410025BF2C /* UserManager.swift */; };
 		2B345B722AB85C700025BF2C /* Firebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B345B712AB85C700025BF2C /* Firebase.swift */; };
 		2B345B752AB868B80025BF2C /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2B345B742AB868B80025BF2C /* FirebaseFirestoreSwift */; };
+		2B345B772ABB0C1E0025BF2C /* CategorySelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B345B762ABB0C1E0025BF2C /* CategorySelectionView.swift */; };
+		2B345B792ABB189A0025BF2C /* CitySelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B345B782ABB189A0025BF2C /* CitySelectionView.swift */; };
 		2B9489562AA831FF0039D5AC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2B9489552AA831FE0039D5AC /* GoogleService-Info.plist */; };
 		2B9489582AA89FE50039D5AC /* PlacePoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9489572AA89FE50039D5AC /* PlacePoint.swift */; };
 /* End PBXBuildFile section */
@@ -135,6 +137,8 @@
 		2B181D712AAF16F4001E6250 /* contacts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = contacts.json; sourceTree = "<group>"; };
 		2B345B6F2AB85A410025BF2C /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		2B345B712AB85C700025BF2C /* Firebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Firebase.swift; sourceTree = "<group>"; };
+		2B345B762ABB0C1E0025BF2C /* CategorySelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySelectionView.swift; sourceTree = "<group>"; };
+		2B345B782ABB189A0025BF2C /* CitySelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitySelectionView.swift; sourceTree = "<group>"; };
 		2B9489552AA831FE0039D5AC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2B9489572AA89FE50039D5AC /* PlacePoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacePoint.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -338,6 +342,8 @@
 				2B0491592AB32B5B00A8F81E /* MyAccDetailsSheet.swift */,
 				2B04915B2AB32D2900A8F81E /* EditPhoneView.swift */,
 				2B04915F2AB495C000A8F81E /* EditableSocialButton.swift */,
+				2B345B762ABB0C1E0025BF2C /* CategorySelectionView.swift */,
+				2B345B782ABB189A0025BF2C /* CitySelectionView.swift */,
 			);
 			path = MyAccount;
 			sourceTree = "<group>";
@@ -449,10 +455,12 @@
 				2593380B2A29ED8700C7AF1B /* WebView.swift in Sources */,
 				259EAAC62A96318B006C207F /* PopCategoriesView.swift in Sources */,
 				2B0491552AB1DEB600A8F81E /* MyAccountView.swift in Sources */,
+				2B345B792ABB189A0025BF2C /* CitySelectionView.swift in Sources */,
 				259EAAC42A960BAD006C207F /* GlobalSearchView.swift in Sources */,
 				256C975D2A2C4D85003DD1B4 /* PlaceView.swift in Sources */,
 				25ADF3322A694438009A2B73 /* ClusterView.swift in Sources */,
 				253B84EA2A0C59CE004FA223 /* Extensions.swift in Sources */,
+				2B345B772ABB0C1E0025BF2C /* CategorySelectionView.swift in Sources */,
 				2B04915E2AB48D3300A8F81E /* BlueButton.swift in Sources */,
 				253B84F22A0F18C0004FA223 /* CategoryView.swift in Sources */,
 				256275B12A7D0120006F0E39 /* SignInView.swift in Sources */,

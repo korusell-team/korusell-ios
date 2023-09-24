@@ -7,6 +7,51 @@
 
 import SwiftUI
 
+extension View {
+    func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
+        clipShape(RoundedCorner(radius: radius, corners: corners) )
+    }
+    
+    @ViewBuilder
+    func applyIf<T: View>(_ condition: Bool, apply: (Self) -> T) -> some View {
+        if condition {
+            apply(self)
+        } else {
+            self
+        }
+    }
+    
+//    @ViewBuilder
+//    func navigationView(back: @escaping () -> Void = {}, title: LocalizedStringKey = "", backButtonHidden: Bool = false, backButtonColor: Color = Color.white) -> some View {
+//        self
+////            .background(bg.ignoresSafeArea())
+//            .navigationBarBackButtonHidden(true)
+//            .navigationBarItems(leading: BackButton(action: back, hidden: backButtonHidden, color: backButtonColor))
+//            .navigationBarTitle(Text(title).foregroundColor(.white))
+//    }
+    
+    
+}
+
+extension Optional where Wrapped == String {
+    var _bound: String? {
+        get {
+            return self
+        }
+        set {
+            self = newValue
+        }
+    }
+    public var bound: String {
+        get {
+            return _bound ?? ""
+        }
+        set {
+            _bound = newValue.isEmpty ? nil : newValue
+        }
+    }
+}
+
 extension Color {
     static let bg = Color("bg")
     
@@ -79,31 +124,5 @@ extension Color {
     static let action = Color("action")
     static let gray50 = Color("gray50")
     static let gray200 = Color("gray200")
-    
-}
-
-extension View {
-    func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
-        clipShape(RoundedCorner(radius: radius, corners: corners) )
-    }
-    
-    @ViewBuilder
-    func applyIf<T: View>(_ condition: Bool, apply: (Self) -> T) -> some View {
-        if condition {
-            apply(self)
-        } else {
-            self
-        }
-    }
-    
-//    @ViewBuilder
-//    func navigationView(back: @escaping () -> Void = {}, title: LocalizedStringKey = "", backButtonHidden: Bool = false, backButtonColor: Color = Color.white) -> some View {
-//        self
-////            .background(bg.ignoresSafeArea())
-//            .navigationBarBackButtonHidden(true)
-//            .navigationBarItems(leading: BackButton(action: back, hidden: backButtonHidden, color: backButtonColor))
-//            .navigationBarTitle(Text(title).foregroundColor(.white))
-//    }
-    
     
 }

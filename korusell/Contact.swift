@@ -9,7 +9,7 @@ import Foundation
 
 import FirebaseFirestoreSwift
 
-struct Contact: Identifiable, Hashable, Decodable {
+struct Contact: Identifiable, Hashable, Codable {
     @DocumentID var id: String?
     var uid: String
     var name: String?
@@ -29,6 +29,7 @@ struct Contact: Identifiable, Hashable, Decodable {
     var updated: Date?
     var created: Date?
     var isPublic: Bool?
+    var isOnline: Bool?
     
     /// places ids?
 //    var places: [Place] = []

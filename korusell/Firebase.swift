@@ -25,6 +25,7 @@ class Firebase: ObservableObject {
             } else {
                 if let document = querySnapshot!.documents.first {
                     do {
+                        // TODO: Need tests
                         let user = try document.data(as: Contact.self)
                         self.updateLastLogin(uid: user.uid) {
                             completion(user)
@@ -70,12 +71,15 @@ class Firebase: ObservableObject {
         }
     }
     
-    implement updating user for every field
-    func updateUser(uid: String, date: Date, completion: @escaping () -> Void) {
-        db.collection("users").document(uid).updateData(["updated" : Date()])
-        DispatchQueue.main.async {
-            print("Successfully updated user")
-            completion()
+    func updateUser(user: Contact, completion: @escaping () -> Void) {
+        do {
+            try db.collection("users").document(user.uid).setData(from: user)
+            DispatchQueue.main.async {
+                print("Successfully updated user")
+            }
+        } catch {
+            print(error)
         }
+        completion()
     }
 }

@@ -37,6 +37,7 @@ struct EditPhoneView: View {
                 let properPhone = "+8210" + self.phone.replacingOccurrences(of: " - ", with: "")
                 userManager.user!.phone = properPhone
                 editPhonePresented = false
+                userManager.updateUser()
             }
         }
         .frame(maxWidth: UIScreen.main.bounds.width - 60)

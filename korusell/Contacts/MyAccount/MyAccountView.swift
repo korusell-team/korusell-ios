@@ -17,8 +17,8 @@ struct MyAccountView: View {
     
     var body: some View {
         let user = userManager.user!
-        ZStack {
-            VStack(spacing: 0) {
+        VStack(spacing: 0) {
+            ScrollView(showsIndicators: false) {
                 ZStack(alignment: .bottom) {
                     if user.image.isEmpty {
                         ZStack(alignment: .bottom) {
@@ -26,7 +26,6 @@ struct MyAccountView: View {
                             Image("alien")
                                 .resizable()
                                 .scaledToFit()
-                                .frame(width: UIScreen.main.bounds.width / 1.5)
                         }
                     } else {
                         TabView(selection: $page) {
@@ -70,18 +69,20 @@ struct MyAccountView: View {
                         .padding(.bottom, 55)
                     }
                 }
+                .frame(height: Size.w(390))
                 .background(Color.white.opacity(0.01))
-                .frame(maxHeight: UIScreen.main.bounds.height * 0.45, alignment: .center)
-                //                .offset(y: -30)
-                Spacer()
+                MyAccDetailsSheet()
             }
             
-            MyAccDetailsSheet()
         }
+        
         .frame(maxWidth: .infinity, maxHeight: .infinity).ignoresSafeArea()
         .animation(.default, value: page)
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: BackButton(action: { presentationMode.wrappedValue.dismiss() }, title: "Контакты"))
+        .onChange(of: userManager.user) { _ in
+            userManager.updateUser()
+        }
     }
 }
 
