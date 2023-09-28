@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseFirestoreSwift
 
 class ContactsController: ObservableObject {
     @Published var searchFocused: Bool = false
@@ -15,30 +16,31 @@ class ContactsController: ObservableObject {
     @Published var openAllCategories = false
 
 //    @Published var currentUser: Contact = Contact(uid: "", name: "Sergey", surname: "Lee", bio: "iOS Developer", cities: ["Ансан", "Сеул"], image: ["https://firebasestorage.googleapis.com/v0/b/inkorea-bfee4.appspot.com/o/sergey-lee.jpeg?alt=media&token=04a3e9bd-f9fc-444f-86e3-d5661a36e5e4"], categories: ["IT"], subcategories: ["iOS"], phone: "+821012341", instagram: "k0jihero", telegram: "k0jihero", kakao: "k0jihero")
-    @Published var contacts: [Contact] = []
+//    @Published var contacts: [Contact] = []
     @Published var categories: [Category] = []
     @Published var cities: [City] = []
     
     init() {
-        loadContacts()
+//        loadContacts()
         loadCategories()
         loadCities()
     }
+
     
-    func loadContacts() {
-        if let url = Bundle.main.url(forResource: "contacts", withExtension: "json") {
-            do {
-                let data = try Data(contentsOf: url)
-                let decoder = JSONDecoder()
-                let contacts = try decoder.decode([Contact].self, from: data)
-                self.contacts = contacts
-                print(self.contacts)
-            } catch {
-                print("error:\(error)")
-                self.contacts = dummyContacts
-            }
-        }
-    }
+//    func loadContacts() {
+//        if let url = Bundle.main.url(forResource: "contacts", withExtension: "json") {
+//            do {
+//                let data = try Data(contentsOf: url)
+//                let decoder = JSONDecoder()
+//                let contacts = try decoder.decode([Contact].self, from: data)
+//                self.contacts = contacts
+//                print(self.contacts)
+//            } catch {
+//                print("error:\(error)")
+//                self.contacts = dummyContacts
+//            }
+//        }
+//    }
     
     func loadCategories() {
         if let url = Bundle.main.url(forResource: "categories", withExtension: "json") {
@@ -85,14 +87,14 @@ class ContactsController: ObservableObject {
         }
     }
     
-    var filteredContacts: [Contact] {
-        return contacts.filter { contact in
-            ( (city != nil) ? !contact.cities.filter { $0.lowercased().contains(city!.lowercased()) }.isEmpty : true) &&
-            ( (selectedCategory != nil) ? !contact.categories.filter { $0.lowercased().contains(selectedCategory!.name.lowercased()) }.isEmpty : true) &&
-            ( (selectedSubcategory != nil) ? !contact.subcategories.filter { $0.lowercased().contains(selectedSubcategory!.lowercased()) }.isEmpty : true)
-        }
-        .sorted(by: { $0.surname ?? "" < $1.surname ?? ""})
-    }
+//    var filteredContacts: [Contact] {
+//        return contacts.filter { contact in
+//            ( (city != nil) ? !contact.cities.filter { $0.lowercased().contains(city!.lowercased()) }.isEmpty : true) &&
+//            ( (selectedCategory != nil) ? !contact.categories.filter { $0.lowercased().contains(selectedCategory!.name.lowercased()) }.isEmpty : true) &&
+//            ( (selectedSubcategory != nil) ? !contact.subcategories.filter { $0.lowercased().contains(selectedSubcategory!.lowercased()) }.isEmpty : true)
+//        }
+//        .sorted(by: { $0.surname ?? "" < $1.surname ?? ""})
+//    }
     
     var filteredPlaces: [Place] {
         guard selectedSubcategory != nil else { return listOfPlaces.sorted(by: { $0.name < $1.name}) }

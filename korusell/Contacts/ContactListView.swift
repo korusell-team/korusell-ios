@@ -6,19 +6,19 @@
 //
 
 import SwiftUI
+import FirebaseFirestoreSwift
 
 struct ContactListView: View {
     @EnvironmentObject var cc: ContactsController
     
     @State var collapsed = false
-    
     let columns = [GridItem(.flexible())]
-    
+    @FirestoreQuery(collectionPath: "users", predicates: []) var contacts: [Contact]
     var body: some View {
             ScrollView(showsIndicators: false) {
                 LazyVStack(alignment: .leading, spacing: 0) {
-                        if !cc.filteredContacts.isEmpty {
-                            ForEach(cc.filteredContacts, id: \.self) { contact in
+                    if !contacts.isEmpty {
+                        ForEach(contacts) { contact in
                                 ContactView(contact: contact)
                                     .padding(.vertical, 7)
                             }

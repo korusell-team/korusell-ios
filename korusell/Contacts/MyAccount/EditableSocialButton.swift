@@ -40,7 +40,7 @@ struct EditableSocialButton: View {
             } else {
                 if let url = URL(string: link) {
                     Link(destination: url) {
-                        Text(textField == "" ? placeholder : "@" + textField)
+                        Text(textField == "" ? placeholder : (type == .link ? textField : "@" + textField))
                             .font(bodyFont)
                             .foregroundColor(textField == "" ? .gray200 : .gray1100)
                             .lineLimit(1)
@@ -48,27 +48,18 @@ struct EditableSocialButton: View {
                     .clipShape(Rectangle())
                     .disabled(textField == "")
                 }
-               
+                
             }
             
             
             Spacer()
             
-            if textField == "" {
-                Button(action: edit) {
-                    Image(systemName: editMode ? "checkmark.circle.fill" : "plus.circle.fill")
-                        .resizable()
-                        .foregroundColor(.green)
-                        .frame(width: 25, height: 25)
-                }
-            } else {
-                Button(action: edit) {
-                    Image(systemName: editMode ? "checkmark.circle.fill" : "pencil.circle.fill")
-                        .resizable()
-                        .foregroundColor(editMode ? .green : .action)
-                        .frame(width: 25, height: 25)
-                }
-                
+            Button(action: edit) {
+                Text(editMode ? "Сохранить" : (textField == "" ? "Добавить" : "Изменить"))
+                    .font(caption1Font)
+            }
+            
+            if editMode {
                 Button(action: erase) {
                     Image(systemName: "x.circle.fill")
                         .resizable()
@@ -76,8 +67,7 @@ struct EditableSocialButton: View {
                         .frame(width: 25, height: 25)
                 }
             }
-            
-            
+        
         }
         .onAppear {
             if let title {

@@ -34,34 +34,37 @@ struct SocialButton: View {
     var title: String? = nil
     
     var body: some View {
-        Link(destination: URL(string: link)!) {
-            HStack {
-                Image(type.image)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 30, height: 30)
-                    .padding(.trailing)
-                
-                
-                Text("@" + (title ?? type.placeholder))
-                    .font(bodyFont)
-                    .foregroundColor(.gray1100)
-                    .lineLimit(1)
-                
-                Spacer()
-                
-                ZStack {
-                    Circle()
-                        .fill(title == nil ? Color.gray200 : Color.action)
-                        .frame(width: 25, height: 25)
-                    Image(systemName: "chevron.right")
+        if title == nil {
+            EmptyView()
+        } else {
+            Link(destination: URL(string: link)!) {
+                HStack {
+                    Image(type.image)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 30, height: 30)
+                        .padding(.trailing)
+                    
+                    
+                    Text("@" + (title ?? type.placeholder))
                         .font(bodyFont)
-                        .foregroundColor(.white)
+                        .foregroundColor(.gray1100)
+                        .lineLimit(1)
+                    
+                    Spacer()
+                    
+                    ZStack {
+                        Circle()
+                            .fill(title == nil ? Color.gray200 : Color.action)
+                            .frame(width: 25, height: 25)
+                        Image(systemName: "chevron.right")
+                            .font(bodyFont)
+                            .foregroundColor(.white)
+                    }
                 }
+                .clipShape(Rectangle())
             }
-            .clipShape(Rectangle())
         }
-        .disabled(title == nil)
     }
     
     private var link: String {

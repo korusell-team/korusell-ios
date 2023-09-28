@@ -7,6 +7,7 @@
 
 import SwiftUI
 import PopupView
+import CachedAsyncImage
 
 struct MyAccDetailsSheet: View {
     @EnvironmentObject var userManager: UserManager
@@ -115,18 +116,17 @@ struct MyAccDetailsSheet: View {
                     }
                 
                 if !user.cities.isEmpty {
-                    Button(action: {
-                        citiesPresented = true
-                    }) {
-                        ScrollView(.horizontal, showsIndicators: false) {
-                            HStack {
-                                ForEach(0..<user.cities.count, id:\.self) { index in
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack {
+                            ForEach(0..<user.cities.count, id:\.self) { index in
+                                Button(action: {
+                                    citiesPresented = true
+                                }) {
                                     LabelView(title: user.cities[index], isSelected: true)
                                 }
                             }
                         }
                     }
-                    
                 } else {
                     BlueButton(title: "Выберите город", action: {
                         citiesPresented = true
@@ -161,6 +161,7 @@ struct MyAccDetailsSheet: View {
                             }
                         }) {
                             Text(editBioPresented ? "Сохранить" : "Изменить")
+                                .font(caption1Font)
                         }
                     }
                     .padding(.bottom, 10)
@@ -184,36 +185,82 @@ struct MyAccDetailsSheet: View {
                 .font(bodyFont)
                 .padding(.bottom)
                 
-                //                                    if !contact.places.isEmpty {
-                //                                        Text("Места:")
-                //                                            .font(bodyFont)
-                //                                            .bold()
-                //
-                //                                        let columns = [GridItem(.flexible(maximum: 100)), GridItem(.flexible(maximum: 100)), GridItem(.flexible()), GridItem(.flexible())]
-                //
-                //                                        LazyVGrid(columns: columns) {
-                //                                            ForEach(contact.places) { place in
-                //                                                VStack(alignment: .center) {
-                //                                                    ZStack {
-                //                                                        if let image = place.image {
-                //                                                            Image(image)
-                //                                                                .resizable()
-                //                                                                .scaledToFit()
-                //                                                                .cornerRadius(20)
-                //                                                        } else {
-                //                                                            RoundedRectangle(cornerRadius: 20)
-                //                                                                .fill(Color.gray300)
-                //                                                        }
-                //                                                    }
-                //                                                    Text(place.name)
-                //                                                        .multilineTextAlignment(.center)
-                //                                                        .font(caption1Font)
-                //                                                        .lineLimit(2)
-                //                                                }
-                //                                                .frame(maxHeight: 120, alignment: .top)
-                //                                            }
-                //                                        }
-                //                                    }
+                // TODO: listOfPlaces -> change to My places logic
+                if !listOfPlaces.isEmpty {
+                    Text("Места:")
+                        .font(bodyFont)
+                        .bold()
+                    
+                    let columns = [GridItem(.flexible(maximum: 100)), GridItem(.flexible(maximum: 100)), GridItem(.flexible()), GridItem(.flexible())]
+                    
+                    LazyVGrid(columns: columns) {
+                        VStack {
+                            Button(action: {
+                                // TODO: add new Place logic
+                            }) {
+                                ZStack {
+                                    Color.gray700
+                                    Image(systemName: "plus")
+                                        .font(title3Font)
+                                        .foregroundColor(.gray10)
+                                }
+                                .frame(width: 60, height: 60)
+                                .cornerRadius(10)
+                            }
+                            Text("Добавить\nМесто")
+                                .multilineTextAlignment(.center)
+                                .font(caption1Font)
+                                .lineLimit(2)
+                        }
+                        
+                        
+                        ForEach(listOfPlaces) { place in
+                            VStack(alignment: .center) {
+                                Button(action: {
+                                    //TODO: Open Place
+                                }) {
+                                    ZStack {
+                                        if let image = place.image {
+                                            
+                                            CachedAsyncImage(url: URL(string: image), urlCache: .imageCache) { phase in
+                                                switch phase {
+                                                case .empty:
+                                                    ProgressView()
+                                                case .success(let image):
+                                                    ZStack(alignment: .top) {
+                                                        RoundedRectangle(cornerRadius: 10)
+                                                            .fill(Color.gray100)
+                                                            .frame(width: 60, height: 60)
+                                                        image
+                                                            .resizable()
+                                                            .scaledToFit()
+                                                            .frame(width: 60, height: 60)
+                                                            .cornerRadius(10)
+                                                    }
+                                                    .transition(.scale(scale: 0.1, anchor: .center))
+                                                case .failure:
+                                                    Image(systemName: "photo")
+                                                @unknown default:
+                                                    EmptyView()
+                                                }
+                                            }
+                                        } else {
+                                            RoundedRectangle(cornerRadius: 10)
+                                                .fill(Color.gray700)
+                                                .frame(width: 60, height: 60)
+                                        }
+                                    }
+                                }
+                                
+                                Text(place.name)
+                                    .multilineTextAlignment(.center)
+                                    .font(caption1Font)
+                                    .lineLimit(2)
+                            }
+                            .frame(maxHeight: 120, alignment: .top)
+                        }
+                    }
+                }
                 Spacer(minLength: 300)
             }
             .padding(.top, 13)

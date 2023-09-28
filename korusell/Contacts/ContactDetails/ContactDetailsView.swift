@@ -10,14 +10,14 @@ import CachedAsyncImage
 
 struct ContactDetailsView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-
+    
     @State var page: Int = 0
     
     let contact: Contact
     
     var body: some View {
-        ZStack {
-            VStack(spacing: 0) {
+        VStack(spacing: 0) {
+            ScrollView(showsIndicators: false) {
                 ZStack(alignment: .bottom) {
                     if contact.image.isEmpty {
                         ZStack(alignment: .bottom) {
@@ -30,42 +30,32 @@ struct ContactDetailsView: View {
                     } else {
                         TabView(selection: $page) {
                             ForEach(0..<contact.image.count, id: \.self) { index in
-                                
-                                    CachedAsyncImage(url: URL(string: contact.image[index]), urlCache: .imageCache) { phase in
-                                                   switch phase {
-                                                   case .empty:
-                                                       ProgressView()
-                                                   case .success(let image):
-                                                       ZStack(alignment: .top) {
-                                                           image
-                                                           LinearGradient(colors: [.clear, .gray1100.opacity(0.8)], startPoint: .bottom, endPoint: .top)
-                                                               .frame(height: 150)
-                                                       }
-                                                       
-//                                                           .resizable()
-//                                                            .aspectRatio(contentMode: .fit)
-//                                                            .frame(maxWidth: 55, maxHeight: 55)
-                                                            .transition(.scale(scale: 0.1, anchor: .center))
-                                                   case .failure:
-                                                       Image(systemName: "photo")
-                                                   @unknown default:
-                                                       EmptyView()
-                                                   }
-                                               }
-                                    
-                                    
-//                                    Image(contact.image[index])
-//                                        .resizable()
-//                                        .scaledToFill()
-                                    
-                                
-                                    .tag(index)
-                                    .ignoresSafeArea()
+                                CachedAsyncImage(url: URL(string: contact.image[index]), urlCache: .imageCache) { phase in
+                                    switch phase {
+                                    case .empty:
+                                        ProgressView()
+                                    case .success(let image):
+                                        ZStack(alignment: .top) {
+                                            image
+                                                .resizable()
+                                                .scaledToFill()
+                                            LinearGradient(colors: [.clear, .gray1100.opacity(0.8)], startPoint: .bottom, endPoint: .top)
+                                                .frame(height: 150)
+                                        }
+                                        .transition(.scale(scale: 0.1, anchor: .center))
+                                    case .failure:
+                                        Image(systemName: "photo")
+                                    @unknown default:
+                                        EmptyView()
+                                    }
+                                }
+                                .tag(index)
+                                .ignoresSafeArea()
                             }
                         }
                         .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-                    }
- 
+                    } //else
+                    
                     if contact.image.count > 1 {
                         HStack(alignment: .center, spacing: 4) {
                             ForEach(0..<contact.image.count, id: \.self) { index in
@@ -79,13 +69,11 @@ struct ContactDetailsView: View {
                         .padding(.bottom, 55)
                     }
                 }
+                .frame(height: Size.w(390))
                 .background(Color.white.opacity(0.01))
-                .frame(maxHeight: UIScreen.main.bounds.height * 0.45, alignment: .center)
-//                .offset(y: -30)
-                Spacer()
+                
+                ContactDetailsSheet(contact: contact)
             }
-            
-            ContactDetailsSheet(contact: contact)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity).ignoresSafeArea()
         .animation(.default, value: page)

@@ -43,18 +43,7 @@ let dummyContacts: [Contact] = [
     Contact(uid: "", name: "Сергей", surname: "Ли", bio: "\niOS", image: ["sergey-lee"], categories: ["IT"], subcategories: ["Программирование", "Приложения", "iOS"], phone: "112331333"),
     Contact(uid: "", name: "Антон", surname: "Емельянов", bio: "fullstack\ndeveloper", categories: ["IT"], subcategories: ["Программирование", "Сайты"], phone: "112331333"),
     Contact(uid: "", name: "Андрей", surname: "Ким", bio: "я просто рандомный чел...🤪", categories: ["Переводы"], subcategories: ["Английский"], phone: "112331333"),
-    Contact(uid: "", name: "Владимир", surname: "Мун", bio: "Habsida. Школа программирования и дизайна. С оплатой после трудоустройства!", cities: ["Сеул"], image: ["vladimir-mun", "vladimir-mun2"], categories: ["Образование"], subcategories: ["Дизайн", "Программирование"], phone: "010-1234-1234", instagram: "munvova", link: "https://habsida.com/ru", telegram: "vladimun"
-//            places: [
-//    Place(name: "Habsida School1", image: "habsida", owner: "010-1234-1234"),
-//    Place(name: "Imperia Foods1", image: "imperia-foods", owner: "12341234"),
-//    Place(name: "Habsida School2", image: "habsida", owner: "010-1234-1234"),
-//    Place(name: "Imperia Foods2", image: "imperia-foods", owner: "12341234"),
-//    Place(name: "Habsida School3", image: "habsida", owner: "010-1234-1234"),
-//    Place(name: "Imperia Foods3", image: "imperia-foods", owner: "12341234"),
-//    Place(name: "Habsida School4", image: "habsida", owner: "010-1234-1234"),
-//    Place(name: "Imperia Foods5", image: "imperia-foods", owner: "12341234"),
-//    ]
-           ),
+    Contact(uid: "", name: "Владимир", surname: "Мун", bio: "Habsida. Школа программирования и дизайна. С оплатой после трудоустройства!", cities: ["Сеул"], image: ["vladimir-mun", "vladimir-mun2"], categories: ["Образование"], subcategories: ["Дизайн", "Программирование"], phone: "010-1234-1234", instagram: "munvova", link: "https://habsida.com/ru", telegram: "vladimun"),
 
     Contact(uid: "", name: "Владимир", surname: "Тен", bio: "Основатель школы корейского языка 'Korean Simple' и далее длинное описание услуг которые может предоставить данный человек", image: ["vladimir-ten", "vladimir-ten2"], categories: ["Образование"], subcategories: ["Корейский язык"], phone: "01012341234", instagram: "vladimirten", youtube: "korean_simple", telegram: "vladimir_ten", kakao: "http://qr.kakao.com/talk/hKynt3kFP0Jd_1eJ1L7vui6kY4s-"),
     
@@ -64,9 +53,9 @@ let dummyContacts: [Contact] = [
 ]
 
 let listOfPlaces: [Place] = [
-    Place(name: "Кафе Виктория", subcategories: ["мероприятия", "праздники", "свадьбы", "асянди", "хангаби"], owner: "sad"),
-    Place(name: "Habsida", subcategories: ["Образование", "IT", "программирование", "обучение"], owner: "sad"),
-    Place(name: "СТО", subcategories: ["транспорт", "ремонт"], owner: "sad"),
+    Place(name: "Кафе Виктория", image: "https://www.shuttledelivery.co.kr/uploads/_1c5541729a3513b9db5f712d8cdf26691556766796.jpg", subcategories: ["мероприятия", "праздники", "свадьбы", "асянди", "хангаби"], owner: "sad"),
+    Place(name: "Habsida", image: "https://seeklogo.com/images/D/dunkin-donuts-logo-1E269BA8F1-seeklogo.com.png", subcategories: ["Образование", "IT", "программирование", "обучение"], owner: "sad"),
+    Place(name: "СТО", image: "https://cdn.cookielaw.org/logos/94ba57b5-e5fc-4459-a91d-28bc381b6185/cbbac623-b9e1-4fa5-b22c-c59abdf87131/6956a7a6-b2b7-4930-8b81-174cb0def489/MicrosoftTeams-imagec5a4e92dea00544f64bbc54c6eab7f24841d0d022e5e883abe8838f725a633ce.png", subcategories: ["транспорт", "ремонт"], owner: "sad"),
 ]
 
 let dummyCities: [City] = [

@@ -9,9 +9,9 @@ import SwiftUI
 import Firebase
 
 struct ContentView: View {
-    @StateObject var vc = SessionViewController()
-    @StateObject var cc = ContactsController()
-    @EnvironmentObject var userManager: UserManager
+    @StateObject private var vc = SessionViewController()
+    @StateObject private var cc = ContactsController()
+    @StateObject private var userManager = UserManager()
     
 //    @AppStorage("log_Status") var status = false
     @AppStorage("appOnboarded") var appOnboarded = false
@@ -21,8 +21,7 @@ struct ContentView: View {
             if !userManager.isLoading {
                 if let user = userManager.user {
                     SessionView()
-                        .environmentObject(vc)
-                        .environmentObject(cc)
+                       
                 } else {
                     if appOnboarded {
                         SignInView()
@@ -36,11 +35,15 @@ struct ContentView: View {
                 VStack {
                     ProgressView().progressViewStyle(CircularProgressViewStyle(tint: Color.white))
                 }
-                .frame(width: 100, height: 100)
-                .background(Color.gray300)
-                .cornerRadius(25)
+                .frame(width: 50, height: 50)
+                .background(Blur(style: .systemUltraThinMaterialDark))
+                .cornerRadius(10)
             }
         }
+        .onAppear(perform: userManager.handleUser)
+        .environmentObject(userManager)
+        .environmentObject(vc)
+        .environmentObject(cc)
     }
 }
 

@@ -10,7 +10,7 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 class Firebase: ObservableObject {
-//    @FirestoreQuery(collectionPath: "users", predicates: [.where("uid", isEqualTo: "uid")]) var user: [Contact]
+//    @FirestoreQuery(collectionPath: "users", predicates: []) var users: [Contact]
     
     let db = Firestore.firestore()
     

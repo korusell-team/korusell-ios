@@ -6,10 +6,12 @@
 //
 
 import SwiftUI
+import FirebaseFirestoreSwift
 
 struct LabelsView: View {
     @EnvironmentObject var cc: ContactsController
     @Namespace var namespace
+    @FirestoreQuery(collectionPath: "categories", predicates: []) var categories: [Category]
     
     var body: some View {
         ZStack {
@@ -21,7 +23,7 @@ struct LabelsView: View {
                         ScrollView(.horizontal, showsIndicators: false) {
                             ScrollViewReader { reader in
                                 LazyHGrid(rows: rows, alignment: .center) {
-                                    ForEach(cc.categories, id: \.self.name) { category in
+                                    ForEach(categories, id: \.self.name) { category in
                                         Button(action: { cc.selectCategory(category: category) }) {
                                             LabelView(title: category.name, isSelected: cc.thisCategorySelected(category: category))
                                         }

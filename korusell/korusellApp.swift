@@ -12,7 +12,7 @@ import Firebase
 struct korusellApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @AppStorage("appOnboarded") var appOnboarded = false
-    @StateObject var userManager = UserManager()
+   
     
     init() {
 //        appOnboarded = false
@@ -26,8 +26,7 @@ struct korusellApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView().environmentObject(userManager)
-                .onAppear(perform: userManager.handleUser)
+            ContentView()
         }
     }
 }

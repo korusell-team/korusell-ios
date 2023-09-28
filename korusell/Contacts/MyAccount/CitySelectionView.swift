@@ -6,10 +6,11 @@
 //
 
 import SwiftUI
+import FirebaseFirestoreSwift
 
 struct CitySelectionView: View {
     @EnvironmentObject var userManager: UserManager
-    @EnvironmentObject var cc: ContactsController
+    @FirestoreQuery(collectionPath: "cities", predicates: []) var cities: [City]
     @Binding var isOpened: Bool
     
     var body: some View {
@@ -29,7 +30,7 @@ struct CitySelectionView: View {
                         LabelView(title: "Вся Корея", isSelected: userManager.user?.cities.contains("Вся Корея") ?? false)
                     }
                     
-                    ForEach(cc.cities, id: \.self.en) { city in
+                    ForEach(cities, id: \.self.en) { city in
                         Button(action: {
                             userManager.user?.cities = [city.ru]
                         }) {
