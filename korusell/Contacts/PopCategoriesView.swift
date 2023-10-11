@@ -22,7 +22,9 @@ struct PopCategoriesView: View {
             
             FlexibleView(availableWidth: UIScreen.main.bounds.width - 30, data: cc.categories, spacing: 10, alignment: .leading) { category in
                 Button(action: { cc.selectCategory(category: category) }) {
-                    LabelView(title: category.name, isSelected: cc.thisCategorySelected(category: category))
+                // FIXME: doesn't work
+                    EmoLabelView(title: category.name, isSelected: cc.thisCategorySelected(category: category), emo: category.image)
+//                    LabelView(title: category.name, isSelected: cc.thisCategorySelected(category: category))
                 }
             }
             

@@ -19,8 +19,10 @@ struct AvatarView: View {
                                case .empty:
                                    ProgressView()
                                case .success(let image):
-                                   image.resizable()
-                                        .aspectRatio(contentMode: .fit)
+                                   image
+                                       .resizable()
+                                       .scaledToFill()
+//                                        .aspectRatio(contentMode: .fit)
                                         .frame(maxWidth: 55, maxHeight: 55)
                                         .transition(.scale(scale: 0.1, anchor: .center))
                                case .failure:

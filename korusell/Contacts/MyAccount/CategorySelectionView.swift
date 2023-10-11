@@ -12,9 +12,9 @@ struct CategorySelectionView: View {
     @EnvironmentObject var userManager: UserManager
     @Binding var categorySelectionPresented: Bool
     @State var selectedCategory: Category? = nil
-    @State var selectedSubcategory: String? = nil
+    @State var selectedSubcategory: SubCategory? = nil
     @State var categories: [Category] = []
-    @State var subcategories: [String] = []
+    @State var subcategories: [SubCategory] = []
     
         var body: some View {
             VStack(spacing: 0) {
@@ -61,11 +61,11 @@ struct CategorySelectionView: View {
                             if let selectedCategory {
                                 userManager.user?.categories = [selectedCategory.name]
                             }
-                            userManager.user?.subcategories = [sub]
+                            userManager.user?.subcategories = [sub.title]
                             categorySelectionPresented = false
                         }
                     }) {
-                        LabelView(title: sub, isSelected: selectedSubcategory == sub)
+                        LabelView(title: sub.title, isSelected: selectedSubcategory == sub)
                     }
                 }
             }

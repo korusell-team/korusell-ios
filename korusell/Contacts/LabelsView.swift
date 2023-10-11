@@ -25,7 +25,8 @@ struct LabelsView: View {
                                 LazyHGrid(rows: rows, alignment: .center) {
                                     ForEach(categories, id: \.self.name) { category in
                                         Button(action: { cc.selectCategory(category: category) }) {
-                                            LabelView(title: category.name, isSelected: cc.thisCategorySelected(category: category))
+                                            EmoLabelView(title: category.name, isSelected: cc.thisCategorySelected(category: category), emo: category.image)
+//                                            LabelView(title: category.name, isSelected: cc.thisCategorySelected(category: category))
                                         }
                                         .id(category.name)
                                     }
@@ -40,7 +41,7 @@ struct LabelsView: View {
                                             
                                             reader.scrollTo(category.name, anchor: .center)
                                         } else {
-                                            reader.scrollTo("Дизайн", anchor: .center)
+                                            reader.scrollTo(categories.first?.name, anchor: .center)
                                         }
                                     }
                                 }
@@ -67,11 +68,12 @@ struct LabelsView: View {
                         ScrollView(.horizontal, showsIndicators: false) {
                             ScrollViewReader { reader in
                                 LazyHGrid(rows: rows, alignment: .top) {
-                                    ForEach(category.subCategories, id: \.self) { text in
-                                        Button(action: {cc.selectSubcategory(text: text) }) {
-                                            LabelView(title: text, isSelected: cc.thisSubcategorySelected(text: text))
+                                    ForEach(category.subCategories, id: \.self) { subCat in
+                                        Button(action: {cc.selectSubcategory(subCat: subCat) }) {
+                                            EmoLabelView(title: subCat.title, isSelected: cc.thisSubcategorySelected(subCat: subCat), emo: subCat.image)
+//                                            LabelView(title: subCat.title, isSelected: cc.thisSubcategorySelected(subCat: subCat))
                                         }
-                                        .id(text)
+                                        .id(subCat.title)
                                     }
                                 }
                                 .padding(.horizontal)

@@ -727,8 +727,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 9.0.0;
+				kind = exactVersion;
+				version = 10.15.0;
 			};
 		};
 		2B181D732AAF1CF3001E6250 /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */ = {

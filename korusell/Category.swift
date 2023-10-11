@@ -8,11 +8,16 @@
 import Foundation
 
 struct Category: Hashable, Codable {
-    
     let name: String
     var image: String
-    var subCategories: [String] = []
+    var subCategories: [SubCategory] = []
 }
+
+struct SubCategory: Hashable, Codable {
+    let title: String
+    var image: String
+}
+
 
 //struct Subcategory: Equatable, Hashable {
 //    let name: String

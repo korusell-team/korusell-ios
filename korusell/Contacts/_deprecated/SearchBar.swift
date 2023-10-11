@@ -14,33 +14,33 @@ struct SearchBar: View {
     
     var body: some View {
         HStack {
-            TextField("Поиск", text: $cc.selectedSubcategory.bound, onCommit: {
-                // TODO: Test it out!
-//                cc.selectedCategory = listOfCategories.filter { $0.name.lowercased() == cc.selectedSubcategory.bound.lowercased() }.first
-                })
-                .padding(7)
-                .padding(.horizontal, 25)
-                .background(Color.gray50)
-                .cornerRadius(8)
-                .overlay(
-                    HStack {
-                        Image(systemName: "magnifyingglass")
-                            .foregroundColor(.gray)
-                            .frame(minWidth: 0, maxWidth: UIScreen.main.bounds.width, alignment: .leading)
-                            .padding(.leading, 8)
-                 
-                        if cc.searchFocused && !cc.selectedSubcategory.bound.isEmpty {
-                            Button(action: {
-                                cc.selectedSubcategory = ""
-                            }) {
-                                Image(systemName: "multiply.circle.fill")
-                                    .foregroundColor(.gray)
-                                    .padding(.trailing, 8)
-                            }
-                        }
-                    }
-                )
-                .focused(isEditing)
+//            TextField("Поиск", text: $cc.selectedSubcategory.title, onCommit: {
+//                // TODO: Test it out!
+////                cc.selectedCategory = listOfCategories.filter { $0.name.lowercased() == cc.selectedSubcategory.bound.lowercased() }.first
+//                })
+//                .padding(7)
+//                .padding(.horizontal, 25)
+//                .background(Color.gray50)
+//                .cornerRadius(8)
+//                .overlay(
+//                    HStack {
+//                        Image(systemName: "magnifyingglass")
+//                            .foregroundColor(.gray)
+//                            .frame(minWidth: 0, maxWidth: UIScreen.main.bounds.width, alignment: .leading)
+//                            .padding(.leading, 8)
+//                 
+//                        if cc.searchFocused && !cc.selectedSubcategory.bound.isEmpty {
+//                            Button(action: {
+//                                cc.selectedSubcategory = ""
+//                            }) {
+//                                Image(systemName: "multiply.circle.fill")
+//                                    .foregroundColor(.gray)
+//                                    .padding(.trailing, 8)
+//                            }
+//                        }
+//                    }
+//                )
+//                .focused(isEditing)
             
             if isEditing.wrappedValue {
                 Button(action: {

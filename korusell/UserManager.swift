@@ -19,8 +19,8 @@ class UserManager: ObservableObject {
     
     func handleUser() {
         self.isLoading = true
-        let user = Auth.auth().currentUser
-        if let user = user {
+        self.authUser = Auth.auth().currentUser
+        if let user = authUser {
             let uid = user.uid
             let phone = user.phoneNumber ?? ""
             print(uid)
@@ -37,6 +37,8 @@ class UserManager: ObservableObject {
                     self.isLoading = false
                 }
             }
+        } else {
+            self.isLoading = false
         }
     }
     

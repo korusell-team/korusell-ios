@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SocialButton: View {
     enum socialType {
-        case kakao, instagram, youtube, telegram
+        case kakao, instagram, youtube, telegram, link, tiktok
         
         var image: String {
             switch self {
@@ -17,6 +17,8 @@ struct SocialButton: View {
             case .instagram: return "ic-instagram"
             case .youtube: return "ic-youtube"
             case .telegram: return "ic-telegram"
+            case .link: return "ic-link"
+            case .tiktok: return "ic-tiktok"
             }
         }
         
@@ -26,6 +28,8 @@ struct SocialButton: View {
             case .instagram: return "instagram"
             case .youtube: return "youtube"
             case .telegram: return "telegram"
+            case .link: return "сайт"
+            case .tiktok: return "tiktok"
             }
         }
     }
@@ -34,7 +38,7 @@ struct SocialButton: View {
     var title: String? = nil
     
     var body: some View {
-        if title == nil {
+        if title?.isEmpty ?? true {
             EmptyView()
         } else {
             Link(destination: URL(string: link)!) {
@@ -45,17 +49,22 @@ struct SocialButton: View {
                         .frame(width: 30, height: 30)
                         .padding(.trailing)
                     
-                    
-                    Text("@" + (title ?? type.placeholder))
-                        .font(bodyFont)
-                        .foregroundColor(.gray1100)
-                        .lineLimit(1)
+                    Group {
+                        if let title {
+                            Text(title.isEmpty ? type.placeholder : (type == .link ? title : "@" + title) )
+                        } else {
+                            Text(type.placeholder)
+                        }
+                    }
+                    .font(bodyFont)
+                    .foregroundColor(.gray1100)
+                    .lineLimit(1)
                     
                     Spacer()
                     
                     ZStack {
                         Circle()
-                            .fill(title == nil ? Color.gray200 : Color.action)
+                            .fill(title?.isEmpty ?? true ? Color.gray200 : Color.action)
                             .frame(width: 25, height: 25)
                         Image(systemName: "chevron.right")
                             .font(bodyFont)
@@ -74,6 +83,8 @@ struct SocialButton: View {
         case .instagram: prefix = "instagram.com/"
         case .youtube: prefix = "youtube.com/@"
         case .telegram: prefix = "t.me/"
+        case .link: prefix = ""
+        case .tiktok: prefix = "www.tiktok.com/@"
         }
         return "https://\(prefix)\(title ?? "")"
     }

@@ -10,7 +10,7 @@ import FirebaseFirestoreSwift
 
 class ContactsController: ObservableObject {
     @Published var searchFocused: Bool = false
-    @Published var selectedSubcategory: String? = nil
+    @Published var selectedSubcategory: SubCategory? = nil
     @Published var selectedCategory: Category? = nil
     @Published var city: String? = nil
     @Published var openAllCategories = false
@@ -51,7 +51,7 @@ class ContactsController: ObservableObject {
                 self.categories = categories
             } catch {
                 print("error:\(error)")
-                self.categories = DummyCategories
+//                self.categories = DummyCategories
             }
         }
     }
@@ -82,8 +82,8 @@ class ContactsController: ObservableObject {
         guard selectedSubcategory != nil else { return categories }
         
         return categories.filter { category in
-            category.name.lowercased().contains(selectedSubcategory!.lowercased()) ||
-            !category.subCategories.filter { $0.lowercased().contains(selectedSubcategory!.lowercased()) }.isEmpty
+            category.name.lowercased().contains(selectedSubcategory!.title.lowercased()) ||
+            !category.subCategories.filter { $0.title.lowercased().contains(selectedSubcategory!.title.lowercased()) }.isEmpty
         }
     }
     
@@ -100,8 +100,8 @@ class ContactsController: ObservableObject {
         guard selectedSubcategory != nil else { return listOfPlaces.sorted(by: { $0.name < $1.name}) }
         
         return listOfPlaces.filter { place in
-            place.name.lowercased().contains(selectedSubcategory!.lowercased()) ||
-            !place.subcategories.filter { $0.lowercased().contains(selectedSubcategory!.lowercased()) }.isEmpty
+            place.name.lowercased().contains(selectedSubcategory!.title.lowercased()) ||
+            !place.subcategories.filter { $0.lowercased().contains(selectedSubcategory!.title.lowercased()) }.isEmpty
         }.sorted(by: { $0.name < $1.name})
     }
     
@@ -121,20 +121,20 @@ class ContactsController: ObservableObject {
         self.selectedCategory == category
     }
     
-    func selectSubcategory(text: String) {
-        let selected = self.selectedSubcategory == text
+    func selectSubcategory(subCat: SubCategory) {
+        let selected = self.selectedSubcategory == subCat
         withAnimation(.interpolatingSpring(stiffness: 200, damping: 20)) {
             if selected {
                 self.selectedSubcategory = nil
             } else {
-                self.selectedSubcategory = text
+                self.selectedSubcategory = subCat
             }
             self.openAllCategories = false
         }
     }
     
-    func thisSubcategorySelected(text: String) -> Bool {
-        self.selectedSubcategory == text
+    func thisSubcategorySelected(subCat: SubCategory) -> Bool {
+        self.selectedSubcategory == subCat
     }
     
     // MARK: Filter for search

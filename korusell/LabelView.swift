@@ -7,6 +7,28 @@
 
 import SwiftUI
 
+struct EmoLabelView: View {
+    var title: String
+    var isSelected: Bool = false
+    var emo: String? = nil
+    
+    var body: some View {
+        HStack {
+            if let emo {
+                Text(emo)
+            }
+            Text(title)
+                .font(subheadFont)
+                .foregroundColor(isSelected ? .gray50 : .gray900)
+                
+        }
+        .padding(.vertical, 8)
+        .padding(.horizontal, 15)
+        .background(isSelected ? Color.gray700 : Color.white)
+        .cornerRadius(20)
+    }
+}
+
 struct LabelView: View {
     var title: String
     var isSelected: Bool = false

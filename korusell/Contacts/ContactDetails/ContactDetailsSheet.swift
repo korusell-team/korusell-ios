@@ -67,6 +67,8 @@ struct ContactDetailsSheet: View {
                 SocialButton(type: .telegram, title: contact.telegram)
                 SocialButton(type: .kakao, title: contact.kakao)
                 SocialButton(type: .youtube, title: contact.youtube)
+                SocialButton(type: .link, title: contact.link)
+                SocialButton(type: .tiktok, title: contact.tiktok)
                 
             }
             .padding(.bottom)

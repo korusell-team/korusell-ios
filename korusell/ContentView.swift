@@ -21,7 +21,6 @@ struct ContentView: View {
             if !userManager.isLoading {
                 if let user = userManager.user {
                     SessionView()
-                       
                 } else {
                     if appOnboarded {
                         SignInView()
