@@ -15,39 +15,38 @@ extension ForEach where Data.Element: Hashable, ID == Data.Element, Content: Vie
 }
 
 struct ContactDetailsSheet: View {
-    @FirestoreQuery(collectionPath: "cats") var categories: [Category]
+    @EnvironmentObject var cc: ContactsController
     @GestureState var gestureOffset: CGFloat = 0
     @State var offset: CGFloat = 0
     @State var lastOffset: CGFloat = 0
     @State var expanded: Bool = false
+    @State var maxHeight: CGFloat = 130
     
     let contact: Contact
     
-    //    let small: CGFloat =  UIScreen.main.bounds.height - 390 + 60
     let small: CGFloat =  UIScreen.main.bounds.height * 0.6
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 20) {
+        VStack(alignment: .leading, spacing: 10) {
             HStack {
-                Text((contact.name ?? "") + " " + (contact.surname ?? ""))
-                    .bold()
-                    .tracking(-0.5)
-                    .font(regular22f)
+                VStack(alignment: .leading, spacing: 5) {
+                    Text((contact.name ?? "") + " " + (contact.surname ?? ""))
+                        .tracking(-0.5)
+                        .font(semiBold22f)
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(spacing: 0) {
+                            ForEach(contact.cities, id: \.self) { city in
+                                Text(city)
+                                    .font(regular17f)
+                                    .foregroundColor(.gray800)
+                                    .padding(.trailing, 6)
+                            }
+                        }
+                    }
+                }
+             
                 Spacer()
-            }
-            
-//            if let category = categories
-//            if let category = categories.filter({ $0.id. = contains(contact.categories.first!) }).first {
-//                HStack {
-//                    LabelView(title: category.title)
-//                    ForEach(values: contact.subcategories) { subCat in
-//                        LabelView(title: subCat, emo: "")
-//                    }
-//                }
-//            }
                 
-            
-            HStack {
                 Button(action: call) {
                     Image("ic-phone")
                         .resizable()
@@ -62,18 +61,49 @@ struct ContactDetailsSheet: View {
                         .frame(width: 50, height: 50)
                 }
             }
-           
-            Divider()
-            
-            if !contact.cities.isEmpty {
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack {
-                        ForEach(0..<contact.cities.count, id:\.self) { index in
-                            LabelView(title: contact.cities[index], isSelected: true)
-                        }
+            .padding(.bottom, 5)
+
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 0) {
+                    ForEach(contact.categories, id: \.self) { cat in
+                        let category = cc.cats.filter({ $0.id == cat }).first!
+                        Text(category.title)
+                            .padding(3)
+//                            .background(category.p_id > 0 ? Color.clear : Color.gray100)
+//                            .clipShape(RoundedRectangle(cornerRadius: 25))
+                            .font(category.p_id > 0 ? light14f : semiBold16f)
+//                            .font(category.p_id > 0 ? regular13f : semiBold14f)
+                            .foregroundColor(category.p_id > 0 ? .gray600 : .gray800)
                     }
                 }
             }
+
+            Divider().padding(.vertical, 10)
+            
+            if let bio = contact.bio {
+                VStack(alignment: .leading, spacing: 5) {
+                    Text("О себе:")
+                        .bold()
+                    Text(contact.bio ?? "")
+                    
+                    HStack {
+                        Button(action: {
+                            withAnimation {
+                                self.maxHeight = maxHeight == 130 ? 400 : 130
+                            }
+                        }) {
+                            Image(systemName: "chevron.down")
+                                .rotationEffect(.degrees(maxHeight == 130 ? 0 : 180))
+                                .padding(.top, 5)
+                                .padding(.bottom, 15)
+                        }
+                        .clipShape(Circle())
+                    }.frame(maxWidth: .infinity, alignment: .top)
+                }
+                .font(regular17f)
+                .frame(maxHeight: maxHeight)
+            }
+            
             //TODO: set proper links prefixes and sufixes
             VStack(alignment: .leading, spacing: 10) {
                 SocialButton(type: .instagram, title: contact.instagram)
@@ -82,18 +112,10 @@ struct ContactDetailsSheet: View {
                 SocialButton(type: .youtube, title: contact.youtube)
                 SocialButton(type: .link, title: contact.link)
                 SocialButton(type: .tiktok, title: contact.tiktok)
-                
             }
-            .padding(.bottom)
+            .padding(.vertical)
             
-            VStack(alignment: .leading, spacing: 10) {
-                Text("О себе:")
-                    .bold()
-                
-                Text(contact.bio ?? "")
-            }
-            .font(regular17f)
-            .padding(.bottom)
+           
             
             //                                    if !contact.places.isEmpty {
             //                                        Text("Места:")
@@ -125,11 +147,12 @@ struct ContactDetailsSheet: View {
             //                                            }
             //                                        }
             //                                    }
-            Spacer(minLength: 300)
+            Spacer(minLength: 200)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(.top, 13)
         .padding(.horizontal, 24)
+
     }
     
     private func onEndDragGesture(height: CGFloat) {

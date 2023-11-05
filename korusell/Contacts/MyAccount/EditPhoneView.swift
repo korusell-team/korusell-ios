@@ -28,7 +28,7 @@ struct EditPhoneView: View {
                 Spacer()
             }
             .padding()
-            .background(Color.white)
+            .background(Color.app_white)
             .cornerRadius(25)
             .padding(.horizontal, 30)
             .padding()

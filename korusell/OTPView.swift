@@ -51,7 +51,7 @@ struct OTPView: View {
         return Text(text)
             .font(.title)
             .frame(width: textBoxWidth, height: textBoxHeight)
-            .background(Color.white)
+            .background(Color.app_white)
             .padding(paddingOfBox)
             .cornerRadius(10)
     }

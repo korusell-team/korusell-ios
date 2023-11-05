@@ -14,7 +14,7 @@ struct ActionSheetView<Content: View>: View {
     let fixedHeight: Bool
     let bgColor: Color
 
-    init(topPadding: CGFloat = 100, fixedHeight: Bool = false, bgColor: Color = .white, @ViewBuilder content: () -> Content) {
+    init(topPadding: CGFloat = 100, fixedHeight: Bool = false, bgColor: Color = .app_white, @ViewBuilder content: () -> Content) {
         self.content = content()
         self.topPadding = topPadding
         self.fixedHeight = fixedHeight

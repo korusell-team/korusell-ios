@@ -66,7 +66,7 @@ struct OnboardingView: View {
                                 .fill(Color.action)
                                 .frame(width: 34, height: 34)
                             Image(systemName: "chevron.right")
-                                .foregroundColor(.white)
+                                .foregroundColor(.app_white)
                                 .cornerRadius(50)
                         }
 

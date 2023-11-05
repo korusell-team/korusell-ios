@@ -54,7 +54,7 @@ extension Optional where Wrapped == String {
 
 extension Color {
     static let bg = Color("bg")
-    
+    static let app_white = Color("app-white")
     static let gray10 = Color("gray-10")
 //    static let gray50 = Color("gray-50")
     static let gray100 = Color("gray-100")

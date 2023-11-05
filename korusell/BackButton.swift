@@ -10,7 +10,7 @@ import SwiftUI
 struct BackButton: View {
     let action: () -> Void
     var hidden: Bool = false
-    var color: Color = Color.white
+    var color: Color = Color.app_white
     var title: String? = nil
     
     var body: some View {

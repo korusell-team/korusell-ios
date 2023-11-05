@@ -29,8 +29,14 @@ let regular13f: Font = Font.custom(appleGothicRegular, size: 13)
 let regular12f: Font = Font.custom(appleGothicRegular, size: 12)
 let regular11f: Font = Font.custom(appleGothicRegular, size: 11)
 
+let semiBold14f: Font = Font.custom(appleGothicSemiBold, size: 14)
+let semiBold16f: Font = Font.custom(appleGothicSemiBold, size: 16)
+let semiBold18f: Font = Font.custom(appleGothicSemiBold, size: 18)
+let semiBold22f: Font = Font.custom(appleGothicSemiBold, size: 22)
+
 let bold20f: Font = Font.custom(appleGothicBold, size: 20)
 let bold17f: Font = Font.custom(appleGothicBold, size: 17)
-let bold14f: Font = Font.custom(appleGothicSemiBold, size: 14)
+
+
 
 

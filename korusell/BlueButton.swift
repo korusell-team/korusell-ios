@@ -15,7 +15,7 @@ struct BlueButton: View {
         Button(action: action) {
             Text(title)
                 .font(regular13f)
-                .foregroundColor(.white)
+                .foregroundColor(.app_white)
                 .padding(12)
                 .background(Color.action)
                 .cornerRadius(18)

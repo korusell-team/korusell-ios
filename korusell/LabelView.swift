@@ -24,7 +24,7 @@ struct EmoLabelView: View {
         }
         .padding(.vertical, 8)
         .padding(.horizontal, 15)
-        .background(isSelected ? Color.gray700 : Color.white)
+        .background(isSelected ? Color.gray700 : Color.app_white)
         .cornerRadius(20)
     }
 }
@@ -39,7 +39,7 @@ struct LabelView: View {
             .foregroundColor(isSelected ? .gray50 : .gray900)
             .padding(.vertical, 8)
             .padding(.horizontal, 15)
-            .background(isSelected ? Color.gray700 : Color.white)
+            .background(isSelected ? Color.gray700 : Color.app_white)
             .cornerRadius(20)
     }
 }

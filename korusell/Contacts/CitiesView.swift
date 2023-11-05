@@ -13,7 +13,7 @@ struct CitiesView: View {
     @Binding var selectedCity: City?
     
     var body: some View {
-        ActionSheetView(topPadding: topPadding, fixedHeight: true, bgColor: .white) {
+        ActionSheetView(topPadding: topPadding, fixedHeight: true, bgColor: .app_white) {
                 ScrollView {
                     VStack(alignment: .leading) {
                         HStack {

@@ -39,7 +39,7 @@ struct SignInView: View {
                             Spacer()
                         }
                         .padding()
-                        .background(Color.white)
+                        .background(Color.app_white)
                         .cornerRadius(25)
                         .matchedGeometryEffect(id: "field", in: animation)
                         

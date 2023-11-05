@@ -58,14 +58,16 @@ struct ContactDetailsView: View {
                     } //else
                 }
                 .frame(width: UIScreen.main.bounds.width, height: Size.w(390))
-                .background(Color.white.opacity(0.01))
-                .cornerRadius(20, corners: [.bottomLeft, .bottomRight])
+                .background(Color.app_white.opacity(0.01))
+                .cornerRadius(20)
+//                .cornerRadius(20, corners: [.bottomLeft, .bottomRight])
                 
                 ContactDetailsSheet(contact: contact)
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity).ignoresSafeArea()
-        .animation(.default, value: page)
+        .background(Color.app_white)
+        
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: BackButton(action: { presentationMode.wrappedValue.dismiss() }, title: "Контакты"))
     }

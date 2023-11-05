@@ -60,7 +60,7 @@ struct MyAccountView: View {
                         HStack(alignment: .center, spacing: 4) {
                             ForEach(0..<user.image.count, id: \.self) { index in
                                 RoundedRectangle(cornerRadius: 20)
-                                    .fill(Color.white.opacity(page == index ? 1 : 0.5))
+                                    .fill(Color.app_white.opacity(page == index ? 1 : 0.5))
                                     .frame(width: 4 + (page == index ? 13 : 0), height: 4)
                             }
                         }
@@ -70,7 +70,7 @@ struct MyAccountView: View {
                     }
                 }
                 .frame(height: Size.w(390))
-                .background(Color.white.opacity(0.01))
+                .background(Color.app_white.opacity(0.01))
                 MyAccDetailsSheet()
             }
             

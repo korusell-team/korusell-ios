@@ -32,7 +32,7 @@ class ContactsController: ObservableObject {
     init() {
         print("Concatcts Controller initialization")
         self.getCats()
-//        self.getUsers()
+        self.getUsers()
     }
     
     func getCats() {

@@ -11,6 +11,7 @@ import FirebaseFirestoreSwift
 struct ContactListView: View {
     @EnvironmentObject var cc: ContactsController
     @State var collapsed = false
+    @State var selectedContact: Contact? = nil
     let columns = [GridItem(.flexible())]
     
     var body: some View {
@@ -23,29 +24,47 @@ struct ContactListView: View {
                 .foregroundColor(.gray300)
                 .frame(maxWidth: .infinity, maxHeight: UIScreen.main.bounds.height, alignment: .center)
                 .listRowSeparator(.hidden)
+                .listRowBackground(Color.app_white)
             } else if cc.contacts.isEmpty && (cc.selectedCategory != nil || cc.selectedSubcategory != nil) {
                 Text("🙈 Список пуст...")
                     .foregroundColor(.gray300)
                     .frame(maxWidth: .infinity, maxHeight: UIScreen.main.bounds.height, alignment: .center)
                     .listRowSeparator(.hidden)
+                    .listRowBackground(Color.app_white)
             } else {
                 ForEach(cc.contacts) { contact in
-                    ContactView(contact: contact)
+                    ZStack {
+                        NavigationLink(tag: contact, selection: $selectedContact, destination: {
+                            ContactDetailsView(contact: contact)
+                        }) {
+                            EmptyView()
+                        }
+                        .hidden()
+                        ContactView(contact: contact)
+                    }
+                    .listRowBackground(Color.app_white)
+                    .onTapGesture {
+                        self.selectedContact = contact
+                    }
                 }
-                Spacer(minLength: 200)
+                
+                Spacer(minLength: 100)
                     .listRowSeparator(.hidden)
+                    .listRowBackground(Color.app_white)
             }
         }
-        .listStyle(.inset)
-        .refreshable {
-            if cc.selectedCategory == nil && cc.selectedSubcategory == nil {
-                cc.getUsers()
+        
+        .listStyle(.plain)
+        .applyIf(cc.selectedCategory == nil && cc.selectedSubcategory == nil, apply: {
+            view in
+            view.refreshable {
+                    cc.getUsers()
+                print("refreshing...")
             }
-            print("Do your refresh work here")
-        }
+        })
         .padding(.top, 20)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-        .background(Color.white)
+        .background(Color.app_white)
         .cornerRadius(30, corners: [.topLeft, .topRight])
     }
 }

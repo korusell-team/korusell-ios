@@ -24,12 +24,12 @@ struct SocialButton: View {
         
         var placeholder: String {
             switch self {
-            case .kakao: return "kakao"
-            case .instagram: return "instagram"
-            case .youtube: return "youtube"
-            case .telegram: return "telegram"
-            case .link: return "сайт"
-            case .tiktok: return "tiktok"
+            case .kakao: return "KakaoTalk"
+            case .instagram: return "Instagram"
+            case .youtube: return "Youtube"
+            case .telegram: return "Telegram"
+            case .link: return "Cайт"
+            case .tiktok: return "TikTok"
             }
         }
     }
@@ -42,36 +42,35 @@ struct SocialButton: View {
             EmptyView()
         } else {
             Link(destination: URL(string: link)!) {
-                HStack {
-                    Image(type.image)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 30, height: 30)
-                        .padding(.trailing)
-                    
-                    Group {
-                        if let title {
-                            Text(title.isEmpty ? type.placeholder : (type == .link ? title : "@" + title) )
-                        } else {
-                            Text(type.placeholder)
-                        }
+                HStack(spacing: 20) {
+                    ZStack {
+                        Image(type.image)
+                            .resizable()
+                            .scaledToFit()
+                            .opacity(0.7)
                     }
-                    .font(regular17f)
-                    .foregroundColor(.gray1100)
-                    .lineLimit(1)
+                    .frame(width: 50, height: 50)
+                    
+                    VStack(alignment: .leading) {
+                        Text(type.placeholder)
+                            .foregroundColor(.gray1100)
+                            .font(semiBold18f)
+                        Group {
+                            if let title, !title.isEmpty {
+                                Text(type == .link ? title : "@" + title)
+                            }
+                        }
+                        .font(regular15f)
+                        .foregroundColor(.gray600)
+                        .lineLimit(1)
+                    }
                     
                     Spacer()
-                    
-                    ZStack {
-                        Circle()
-                            .fill(title?.isEmpty ?? true ? Color.gray200 : Color.action)
-                            .frame(width: 25, height: 25)
-                        Image(systemName: "chevron.right")
-                            .font(regular17f)
-                            .foregroundColor(.white)
-                    }
                 }
-                .clipShape(Rectangle())
+                .padding(10)
+                .background(Color.white)
+                .cornerRadius(30)
+                .shadow(color: Color.gray200.opacity(0.2), radius: 3, x: 2, y: 2)
             }
         }
     }

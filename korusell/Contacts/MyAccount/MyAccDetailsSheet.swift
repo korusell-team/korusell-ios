@@ -267,7 +267,7 @@ struct MyAccDetailsSheet: View {
             .padding(.top, 13)
             .padding(.horizontal, 24)
         }
-        .background(Color.white)
+        .background(Color.app_white)
     }
     
     private func call() {

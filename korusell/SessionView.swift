@@ -98,7 +98,7 @@ struct TabBarBottomView: View {
                         .scaledToFit()
                         .frame(width: 20, height: 20)
                 }
-                .foregroundColor(isSelected ? .white : .gray900)
+                .foregroundColor(isSelected ? .app_white : .gray900)
             }
             .frame(maxWidth: 60)
         }
