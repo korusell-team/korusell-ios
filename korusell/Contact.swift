@@ -17,8 +17,7 @@ struct Contact: Identifiable, Hashable, Codable {
     var bio: String?
     var cities: [String] = []
     var image: [String] = []
-    var categories: [String] = []
-    var subcategories: [String] = []
+    var categories: [Int] = []
     var phone: String
     var instagram: String?
     var youtube: String?

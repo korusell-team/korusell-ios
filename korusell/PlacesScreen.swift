@@ -20,7 +20,7 @@ struct PlacesScreen: View {
         .sheet(item: $selectedPlace) { place in
             VStack {
                 Text(place.title ?? "")
-                    .font(largeTitleFont)
+                    .font(regular34f)
                     .padding()
                 Text("🚧 здесь нужен дизайн...")
                 

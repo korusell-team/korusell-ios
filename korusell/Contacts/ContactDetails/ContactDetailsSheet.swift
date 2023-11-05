@@ -6,8 +6,16 @@
 //
 
 import SwiftUI
+import FirebaseFirestoreSwift
+
+extension ForEach where Data.Element: Hashable, ID == Data.Element, Content: View {
+    init(values: Data, content: @escaping (Data.Element) -> Content) {
+        self.init(values, id: \.self, content: content)
+    }
+}
 
 struct ContactDetailsSheet: View {
+    @FirestoreQuery(collectionPath: "cats") var categories: [Category]
     @GestureState var gestureOffset: CGFloat = 0
     @State var offset: CGFloat = 0
     @State var lastOffset: CGFloat = 0
@@ -22,8 +30,24 @@ struct ContactDetailsSheet: View {
         VStack(alignment: .leading, spacing: 20) {
             HStack {
                 Text((contact.name ?? "") + " " + (contact.surname ?? ""))
-                    .font(title2Font)
+                    .bold()
+                    .tracking(-0.5)
+                    .font(regular22f)
                 Spacer()
+            }
+            
+//            if let category = categories
+//            if let category = categories.filter({ $0.id. = contains(contact.categories.first!) }).first {
+//                HStack {
+//                    LabelView(title: category.title)
+//                    ForEach(values: contact.subcategories) { subCat in
+//                        LabelView(title: subCat, emo: "")
+//                    }
+//                }
+//            }
+                
+            
+            HStack {
                 Button(action: call) {
                     Image("ic-phone")
                         .resizable()
@@ -38,18 +62,7 @@ struct ContactDetailsSheet: View {
                         .frame(width: 50, height: 50)
                 }
             }
-            
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack {
-                    ForEach(0..<contact.categories.count, id:\.self) { index in
-                        SmallLabelView(title: contact.categories[index])
-                    }
-                    ForEach(0..<contact.subcategories.count, id:\.self) { index in
-                        SmallLabelView(title: contact.subcategories[index])
-                    }
-                }
-            }
-            
+           
             Divider()
             
             if !contact.cities.isEmpty {
@@ -79,7 +92,7 @@ struct ContactDetailsSheet: View {
                 
                 Text(contact.bio ?? "")
             }
-            .font(bodyFont)
+            .font(regular17f)
             .padding(.bottom)
             
             //                                    if !contact.places.isEmpty {
@@ -168,12 +181,12 @@ struct ContactDetailsSheet: View {
 }
 
 
-struct ContactDetailsSheet_Previews: PreviewProvider {
-    static var previews: some View {
-        ContactDetailsView(contact: dummyContacts.first(where: { $0.name == "Андрей" })!)
-        //        ContactDetailsSheet(contact: listOfContacts.first(where: { $0.name == "Владимир" })!)
-    }
-}
+//struct ContactDetailsSheet_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ContactDetailsView(contact: Contact(uid: "", name: "Владимир", surname: "Мун", bio: "Habsida. Школа программирования и дизайна. С оплатой после трудоустройства!", cities: ["Сеул"], image: ["vladimir-mun", "vladimir-mun2"], categories: ["Образование"], subcategories: ["Дизайн", "Программирование"], phone: "010-1234-1234", instagram: "munvova", link: "https://habsida.com/ru", telegram: "vladimun"))
+//        //        ContactDetailsSheet(contact: listOfContacts.first(where: { $0.name == "Владимир" })!)
+//    }
+//}
 
 struct HitTestingShape : Shape {
     func path(in rect: CGRect) -> Path {

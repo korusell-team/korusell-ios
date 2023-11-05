@@ -65,11 +65,10 @@ struct TabBarBottomView: View {
                 tabButton(index: 1)
                 tabButton(index: 2)
             }
-            .padding(.horizontal, 45)
+            
             .padding(.vertical, 10)
-            .background(Blur(style: .systemUltraThinMaterialDark))
-            .frame(maxWidth: .infinity)
-            .cornerRadius(20)
+            .background(Color.gray1000.opacity(0.1))
+            .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 35))
             .padding(25)
             .padding(.bottom, 10)
         }
@@ -101,7 +100,7 @@ struct TabBarBottomView: View {
                 }
                 .foregroundColor(isSelected ? .white : .gray900)
             }
-            .frame(maxWidth: .infinity)
+            .frame(maxWidth: 60)
         }
     }
 }

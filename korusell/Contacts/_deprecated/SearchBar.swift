@@ -45,7 +45,7 @@ struct SearchBar: View {
             if isEditing.wrappedValue {
                 Button(action: {
                     withAnimation {
-                        cc.resetState()
+//                        cc.resetState()
                         searching = false
                         isEditing.wrappedValue = false
                     }

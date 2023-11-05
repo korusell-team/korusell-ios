@@ -53,24 +53,13 @@ struct ContactDetailsView: View {
                                 .ignoresSafeArea()
                             }
                         }
-                        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+                        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .automatic))
+                        .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
                     } //else
-                    
-                    if contact.image.count > 1 {
-                        HStack(alignment: .center, spacing: 4) {
-                            ForEach(0..<contact.image.count, id: \.self) { index in
-                                RoundedRectangle(cornerRadius: 20)
-                                    .fill(Color.white.opacity(page == index ? 1 : 0.5))
-                                    .frame(width: 4 + (page == index ? 13 : 0), height: 4)
-                            }
-                        }
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(.horizontal, 24)
-                        .padding(.bottom, 55)
-                    }
                 }
-                .frame(height: Size.w(390))
+                .frame(width: UIScreen.main.bounds.width, height: Size.w(390))
                 .background(Color.white.opacity(0.01))
+                .cornerRadius(20, corners: [.bottomLeft, .bottomRight])
                 
                 ContactDetailsSheet(contact: contact)
             }
@@ -82,10 +71,10 @@ struct ContactDetailsView: View {
     }
 }
 
-struct ContactDetailsView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationView {
-            ContactDetailsView(contact: dummyContacts.last(where: { $0.surname == "Ким" })!)
-        }
-    }
-}
+//struct ContactDetailsView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        NavigationView {
+//            ContactDetailsView(contact: dummyContacts.last(where: { $0.surname == "Мун" })!)
+//        }
+//    }
+//}

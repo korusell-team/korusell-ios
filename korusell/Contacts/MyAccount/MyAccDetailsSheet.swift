@@ -35,24 +35,24 @@ struct MyAccDetailsSheet: View {
             VStack(alignment: .leading, spacing: 20) {
                 VStack {
                     Text("Введите Ваше имя")
-                        .font(bodyFont)
+                        .font(regular17f)
                     TextField("Имя", text: $name)
                         .textFieldStyle(.roundedBorder)
                         .onSubmit {
                             userManager.user?.name = self.name
                         }
                     Text("Введите Вашу фамилию")
-                        .font(bodyFont)
+                        .font(regular17f)
                     TextField("Фамилия", text: $surname)
                         .textFieldStyle(.roundedBorder)
                         .onSubmit {
                             userManager.user?.surname = self.surname
                         }
                     Text("Ваш номер телефона:")
-                        .font(bodyFont)
+                        .font(regular17f)
                     Text(user.phone)
                 }
-                .font(title2Font)
+                .font(regular22f)
                 .onAppear {
                     self.name = user.name ?? ""
                     self.surname = user.surname ?? ""
@@ -82,13 +82,14 @@ struct MyAccDetailsSheet: View {
                             Button(action: {
                                 categoriesPresented = true
                             }) {
-                                ForEach(0..<user.categories.count, id:\.self) { index in
-                                    SmallLabelView(title: user.categories[index])
-                                }
+                                Text("Categories")
+//                                ForEach(0..<user.categories.count, id:\.self) { index in
+//                                    SmallLabelView(title: user.categories[index])
+//                                }
                             }
-                            ForEach(0..<user.subcategories.count, id:\.self) { index in
-                                SmallLabelView(title: user.subcategories[index])
-                            }
+//                            ForEach(0..<user.subcategories.count, id:\.self) { index in
+//                                SmallLabelView(title: user.subcategories[index])
+//                            }
                         }
                     }
                     .popup(isPresented: $categoriesPresented) {
@@ -161,7 +162,7 @@ struct MyAccDetailsSheet: View {
                             }
                         }) {
                             Text(editBioPresented ? "Сохранить" : "Изменить")
-                                .font(caption1Font)
+                                .font(regular12f)
                         }
                     }
                     .padding(.bottom, 10)
@@ -182,13 +183,13 @@ struct MyAccDetailsSheet: View {
                         Text(bio)
                     }
                 }
-                .font(bodyFont)
+                .font(regular17f)
                 .padding(.bottom)
                 
                 // TODO: listOfPlaces -> change to My places logic
                 if !listOfPlaces.isEmpty {
                     Text("Места:")
-                        .font(bodyFont)
+                        .font(regular17f)
                         .bold()
                     
                     let columns = [GridItem(.flexible(maximum: 100)), GridItem(.flexible(maximum: 100)), GridItem(.flexible()), GridItem(.flexible())]
@@ -201,7 +202,7 @@ struct MyAccDetailsSheet: View {
                                 ZStack {
                                     Color.gray700
                                     Image(systemName: "plus")
-                                        .font(title3Font)
+                                        .font(regular20f)
                                         .foregroundColor(.gray10)
                                 }
                                 .frame(width: 60, height: 60)
@@ -209,7 +210,7 @@ struct MyAccDetailsSheet: View {
                             }
                             Text("Добавить\nМесто")
                                 .multilineTextAlignment(.center)
-                                .font(caption1Font)
+                                .font(regular12f)
                                 .lineLimit(2)
                         }
                         
@@ -254,7 +255,7 @@ struct MyAccDetailsSheet: View {
                                 
                                 Text(place.name)
                                     .multilineTextAlignment(.center)
-                                    .font(caption1Font)
+                                    .font(regular12f)
                                     .lineLimit(2)
                             }
                             .frame(maxHeight: 120, alignment: .top)

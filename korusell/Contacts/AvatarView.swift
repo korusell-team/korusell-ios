@@ -45,10 +45,10 @@ struct AvatarView: View {
                     .frame(width: 55, height: 55)
                 // TODO: fix it
                 Text(String(contact.name?.capitalized.first! ?? "U"))
-                    .font(title2Font)
+                    .font(regular22f)
                     .foregroundColor(.white)
                 + Text(String(contact.surname?.capitalized.first! ?? "N"))
-                    .font(title2Font)
+                    .font(regular22f)
                     .foregroundColor(.white)
             }
         }.frame(width: 55, height: 55)
@@ -103,7 +103,7 @@ struct DetailsAvatarView: View {
                     .clipShape(Circle())
             }
         }
-        .font(largeTitleFont)
+        .font(regular34f)
         .foregroundColor(.white)
         .frame(width: frame, height: frame)
         .clipShape(Circle())

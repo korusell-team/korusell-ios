@@ -7,88 +7,91 @@
 
 import SwiftUI
 import FirebaseFirestoreSwift
+import PopupView
 
 struct LabelsView: View {
+//    @FirestoreQuery(collectionPath: "cats", predicates: [.where("p_id", isLessThanOrEqualTo: 0)], animation: .bouncy) var categories: [Category]
+//    @FirestoreQuery(collectionPath: "cats", animation: .bouncy) var subCategories: [Category]
     @EnvironmentObject var cc: ContactsController
     @Namespace var namespace
-    @FirestoreQuery(collectionPath: "categories", predicates: []) var categories: [Category]
+    @Binding var popCategories: Bool
     
     var body: some View {
         ZStack {
             let rows = [GridItem(.flexible())]
             
-                VStack(spacing: 0) {
-                    /// Categories list
-                    ZStack(alignment: .leading) {
-                        ScrollView(.horizontal, showsIndicators: false) {
-                            ScrollViewReader { reader in
-                                LazyHGrid(rows: rows, alignment: .center) {
-                                    ForEach(categories, id: \.self.name) { category in
-                                        Button(action: { cc.selectCategory(category: category) }) {
-                                            EmoLabelView(title: category.name, isSelected: cc.thisCategorySelected(category: category), emo: category.image)
-//                                            LabelView(title: category.name, isSelected: cc.thisCategorySelected(category: category))
-                                        }
-                                        .id(category.name)
+            VStack(spacing: 0) {
+                /// Categories list
+                ZStack(alignment: .leading) {
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        ScrollViewReader { reader in
+                            LazyHGrid(rows: rows, alignment: .center) {
+                                ForEach(cc.categories, id: \.self.id) { category in
+                                    Button(action: {
+                                        cc.selectCategory(category: category, reader: reader)
+                                    }) {
+                                        LabelView(title: category.title, isSelected: cc.selectedCategory == category)
                                     }
-                                }
-                                .padding(.leading, 30)
-                                .padding(.horizontal)
-                                .frame(height: 40)
-                                .onChange(of: cc.selectedCategory) { category in
-                                    withAnimation {
-                                        if let category {
-                                            cc.openAllCategories = false
-                                            
-                                            reader.scrollTo(category.name, anchor: .center)
-                                        } else {
-                                            reader.scrollTo(categories.first?.name, anchor: .center)
-                                        }
-                                    }
+                                    .id(category.id)
                                 }
                             }
-                        }
-                        
-                        Button(action: {
-                            cc.openAllCategories = true
-                        }) {
-                                Image(systemName: "magnifyingglass.circle.fill")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .foregroundColor(.gray900)
-                                    .frame(width: 30, height: 30)
-                                    .padding(4)
-                                    .background(Color.bg)
-                                    .cornerRadius(30)
-                                    .padding(.horizontal, 5)
+                            .padding(.leading, 30)
+                            .padding(.horizontal)
+                            .frame(height: 40)
+                            .popup(isPresented: $popCategories) {
+                                PopCategoriesView(
+                                    popCategories: $popCategories,
+                                    selectedCategory: $cc.selectedCategory,
+                                    reader: reader)
+                            } customize: {
+                                $0
+                                    .type (.floater())
+                                    .position(.top)
+                                    .dragToDismiss(true)
+                                    .closeOnTapOutside(true)
+                                    .backgroundColor(.black.opacity(0.2))
+                            }
                         }
                     }
                     
-                    /// Sub-categories list
-                    if let category = cc.selectedCategory {
-                        ScrollView(.horizontal, showsIndicators: false) {
-                            ScrollViewReader { reader in
-                                LazyHGrid(rows: rows, alignment: .top) {
-                                    ForEach(category.subCategories, id: \.self) { subCat in
-                                        Button(action: {cc.selectSubcategory(subCat: subCat) }) {
-                                            EmoLabelView(title: subCat.title, isSelected: cc.thisSubcategorySelected(subCat: subCat), emo: subCat.image)
-//                                            LabelView(title: subCat.title, isSelected: cc.thisSubcategorySelected(subCat: subCat))
-                                        }
-                                        .id(subCat.title)
-                                    }
-                                }
-                                .padding(.horizontal)
-                                .frame(height: 40)
-                                .background(Color.bg)
-                                .onChange(of: cc.selectedSubcategory) { text in
-                                    withAnimation {
-                                        reader.scrollTo(text, anchor: .center)
-                                    }
-                                }
-                            }
-                        }
-                        .padding(.top, 7)
+                    Button(action: {
+                        popCategories = true
+                    }) {
+                        Image(systemName: "line.3.horizontal.circle.fill")
+                            .resizable()
+                            .scaledToFit()
+                            .foregroundColor(.gray900)
+                            .frame(width: 30, height: 30)
+                            .padding(4)
+                            .background(Color.bg)
+                            .cornerRadius(30)
+                            .shadow(color: Color.gray200, radius: 2, y: 2)
+                            .padding(.horizontal, 5)
                     }
                 }
+                
+                /// Sub-categories list
+                if let selectedCategory = cc.selectedCategory {
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        ScrollViewReader { reader in
+                            LazyHGrid(rows: rows, alignment: .top) {
+                                ForEach(cc.subCategories, id: \.self) { subCat in
+                                    Button(action: {
+                                        cc.selectSubCategory(subCat: subCat, reader: reader)
+                                    }) {
+                                        LabelView(title: subCat.title, isSelected: cc.selectedSubcategory == subCat)
+                                    }
+                                    .id(subCat.id)
+                                }
+                            }
+                            .padding(.horizontal)
+                            .frame(height: 40)
+                            .background(Color.bg)
+                        }
+                    }
+                    .padding(.top, 7)
+                }
+            }
         }
         .background(Color.bg)
     }

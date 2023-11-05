@@ -84,11 +84,11 @@ private struct SizePreferenceKey: PreferenceKey {
 }
 
 
-struct FlexibleView_Previews: PreviewProvider {
-    static let cc = ContactsController()
-    
-    static var previews: some View {
-        PopCategoriesView()
-            .environmentObject(cc)
-    }
-}
+//struct FlexibleView_Previews: PreviewProvider {
+//    static let cc = ContactsController()
+//    
+//    static var previews: some View {
+//        PopCategoriesView(selectedCategory: .constant(Category(name: "asd", image: "asd", subCategories: [])))
+//            .environmentObject(cc)
+//    }
+//}

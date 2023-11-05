@@ -56,7 +56,7 @@ struct SocialButton: View {
                             Text(type.placeholder)
                         }
                     }
-                    .font(bodyFont)
+                    .font(regular17f)
                     .foregroundColor(.gray1100)
                     .lineLimit(1)
                     
@@ -67,7 +67,7 @@ struct SocialButton: View {
                             .fill(title?.isEmpty ?? true ? Color.gray200 : Color.action)
                             .frame(width: 25, height: 25)
                         Image(systemName: "chevron.right")
-                            .font(bodyFont)
+                            .font(regular17f)
                             .foregroundColor(.white)
                     }
                 }

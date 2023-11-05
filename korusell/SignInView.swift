@@ -50,7 +50,7 @@ struct SignInView: View {
                     if let error {
                         HStack {
                             Text(error)
-                                .font(caption1Font)
+                                .font(regular12f)
                                 .foregroundColor(.red400)
 //                                .lineLimit(1)
                         }

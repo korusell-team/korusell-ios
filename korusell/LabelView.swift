@@ -18,7 +18,7 @@ struct EmoLabelView: View {
                 Text(emo)
             }
             Text(title)
-                .font(subheadFont)
+                .font(regular15f)
                 .foregroundColor(isSelected ? .gray50 : .gray900)
                 
         }
@@ -35,7 +35,7 @@ struct LabelView: View {
     
     var body: some View {
         Text(title)
-            .font(subheadFont)
+            .font(regular15f)
             .foregroundColor(isSelected ? .gray50 : .gray900)
             .padding(.vertical, 8)
             .padding(.horizontal, 15)
@@ -49,7 +49,7 @@ struct SmallLabelView: View {
     
     var body: some View {
         Text(title)
-            .font(footnoteFont)
+            .font(regular13f)
             .foregroundColor(.gray50)
             .padding(.vertical, 5)
             .padding(.horizontal, 12)

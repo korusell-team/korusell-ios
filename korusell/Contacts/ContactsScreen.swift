@@ -7,20 +7,25 @@
 
 import SwiftUI
 import PopupView
+import FirebaseFirestoreSwift
 
 struct ContactsScreen: View {
     @EnvironmentObject var cc: ContactsController
     @EnvironmentObject var userManager: UserManager
     @Namespace var namespace
-    
+
+    @State var popCategories = false
     @State var locationsPresented = false
     
     var body: some View {
         NavigationView {
             ZStack {
                 VStack {
-                    LabelsView()
+                    LabelsView(
+                        popCategories: $popCategories
+                    )
                         .padding(.top)
+                    
                     ContactListView()
                 }
                 .ignoresSafeArea(edges: .bottom)
@@ -46,26 +51,16 @@ struct ContactsScreen: View {
                 .padding(.top, 0.1)
                 .animation(.easeOut, value: cc.selectedCategory)
                 .background(Color.bg)
-                .popup(isPresented: $cc.openAllCategories) {
-                    PopCategoriesView()
-                } customize: {
-                    $0
-                        .type (.floater())
-                        .position(.top)
-                        .dragToDismiss(true)
-                        .closeOnTapOutside(true)
-                        .backgroundColor(.black.opacity(0.2))
-                }
-                .popup(isPresented: $locationsPresented) {
-                    CitiesView()
-                } customize: {
-                    $0
-                        .type(.toast)
-                        .position(.bottom)
-                        .closeOnTap(false)
-                        .closeOnTapOutside(true)
-                        .backgroundColor(.black.opacity(0.4))
-                }
+//                .popup(isPresented: $locationsPresented) {
+//                    CitiesView(selectedCity: $cc.selectedCity)
+//                } customize: {
+//                    $0
+//                        .type(.toast)
+//                        .position(.bottom)
+//                        .closeOnTap(false)
+//                        .closeOnTapOutside(true)
+//                        .backgroundColor(.black.opacity(0.4))
+//                }
             }
         }
     }

@@ -9,9 +9,7 @@ import SwiftUI
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
-class Firebase: ObservableObject {
-//    @FirestoreQuery(collectionPath: "users", predicates: []) var users: [Contact]
-    
+class Firebase {
     let db = Firestore.firestore()
     
     func getUserByPhone(phone: String, completion: @escaping (Contact?) -> ()) {
@@ -56,7 +54,7 @@ class Firebase: ObservableObject {
 //    }
     
     func createUser(uid: String, phone: String, completion: @escaping () -> Void) {
-        db.collection("users").document(uid).setData(["uid" : uid, "phone" : phone, "isPublic" : false, "cities": [String](), "image": [String](), "categories": [String](), "subcategories": [String](), "updated": Date(), "created": Date()])
+        db.collection("users").document(uid).setData(["uid" : uid, "phone" : phone, "isPublic" : false, "cities": [String](), "image": [String](), "categories": [Int](), "updated": Date(), "created": Date()])
         DispatchQueue.main.async {
             print("Successfully created user")
             completion()

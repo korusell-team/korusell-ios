@@ -6,9 +6,11 @@
 //
 
 import SwiftUI
+import FirebaseFirestoreSwift
 
 struct CitiesView: View {
-    @EnvironmentObject var cc: ContactsController
+    @FirestoreQuery(collectionPath: "cities") var cities: [City]
+    @Binding var selectedCity: City?
     
     var body: some View {
         ActionSheetView(topPadding: topPadding, fixedHeight: true, bgColor: .white) {
@@ -16,22 +18,22 @@ struct CitiesView: View {
                     VStack(alignment: .leading) {
                         HStack {
                             Image(systemName: "mappin.circle")
-                                .font(title2Font)
+                                .font(regular22f)
                             Text("Мое местоположение")
                         }
                         .foregroundColor(.gray900)
                         .padding(.bottom)
                         Button(action: {
-                            cc.city = nil
+                            selectedCity = nil
                         }) {
-                            LabelView(title: "Вся Корея", isSelected: cc.city == nil)
+                            LabelView(title: "Вся Корея", isSelected: selectedCity == nil)
                         }
                         
-                        ForEach(cc.cities, id: \.self.en) { city in
+                        ForEach(cities, id: \.self.en) { city in
                             Button(action: {
-                                cc.city = city.ru
+                                selectedCity = city
                             }) {
-                                LabelView(title: city.ru, isSelected: city.ru == cc.city)
+                                LabelView(title: city.ru, isSelected: city == selectedCity)
                             }
                         }
                     }

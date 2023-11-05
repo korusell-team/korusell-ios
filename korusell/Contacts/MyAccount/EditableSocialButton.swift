@@ -41,7 +41,7 @@ struct EditableSocialButton: View {
                 if let url = URL(string: link) {
                     Link(destination: url) {
                         Text(textField == "" ? placeholder : (type == .link ? textField : "@" + textField))
-                            .font(bodyFont)
+                            .font(regular17f)
                             .foregroundColor(textField == "" ? .gray200 : .gray1100)
                             .lineLimit(1)
                     }
@@ -56,7 +56,7 @@ struct EditableSocialButton: View {
             
             Button(action: edit) {
                 Text(editMode ? "Сохранить" : (textField == "" ? "Добавить" : "Изменить"))
-                    .font(caption1Font)
+                    .font(regular12f)
             }
             
             if editMode {

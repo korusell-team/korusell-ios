@@ -14,7 +14,7 @@ struct BlueButton: View {
     var body: some View {
         Button(action: action) {
             Text(title)
-                .font(footnoteFont)
+                .font(regular13f)
                 .foregroundColor(.white)
                 .padding(12)
                 .background(Color.action)

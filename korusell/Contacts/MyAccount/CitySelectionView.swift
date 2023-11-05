@@ -19,7 +19,7 @@ struct CitySelectionView: View {
                 VStack(alignment: .leading) {
                     HStack {
                         Image(systemName: "mappin.circle")
-                            .font(title2Font)
+                            .font(regular22f)
                         Text("Мое местоположение")
                     }
                     .foregroundColor(.gray900)
