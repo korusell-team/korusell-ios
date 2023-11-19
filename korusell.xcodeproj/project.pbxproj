@@ -27,8 +27,6 @@
 		256276022A80F00C006F0E39 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 256276012A80F00C006F0E39 /* FirebaseAuth */; };
 		256276042A80F00C006F0E39 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 256276032A80F00C006F0E39 /* FirebaseFirestore */; };
 		256C97592A2C4954003DD1B4 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256C97582A2C4954003DD1B4 /* Place.swift */; };
-		256C975B2A2C4C47003DD1B4 /* PlaceListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256C975A2A2C4C47003DD1B4 /* PlaceListView.swift */; };
-		256C975D2A2C4D85003DD1B4 /* PlaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256C975C2A2C4D85003DD1B4 /* PlaceView.swift */; };
 		256C97612A372B55003DD1B4 /* Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256C97602A372B55003DD1B4 /* Design.swift */; };
 		256C97632A372EAC003DD1B4 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256C97622A372EAC003DD1B4 /* TestView.swift */; };
 		256C97652A39EC0E003DD1B4 /* LabelsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256C97642A39EC0E003DD1B4 /* LabelsView.swift */; };
@@ -44,7 +42,7 @@
 		259EAACF2A98A90D006C207F /* ActionSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259EAACE2A98A90D006C207F /* ActionSheetView.swift */; };
 		259EAAD12A98AE4B006C207F /* ScreenHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259EAAD02A98AE4B006C207F /* ScreenHelper.swift */; };
 		259EAAD32A9CC857006C207F /* ContactDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259EAAD22A9CC857006C207F /* ContactDetailsView.swift */; };
-		259EAAD62A9DEABA006C207F /* ContactDetailsSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259EAAD52A9DEABA006C207F /* ContactDetailsSheet.swift */; };
+		259EAAD62A9DEABA006C207F /* ContactDetailsInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259EAAD52A9DEABA006C207F /* ContactDetailsInfo.swift */; };
 		259EAAD82A9DED9F006C207F /* SheetDragger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259EAAD72A9DED9F006C207F /* SheetDragger.swift */; };
 		259EAADB2AA09229006C207F /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259EAADA2AA09229006C207F /* BackButton.swift */; };
 		25ADF32A2A694403009A2B73 /* PlacesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25ADF3292A694403009A2B73 /* PlacesScreen.swift */; };
@@ -67,6 +65,8 @@
 		2B0491602AB495C000A8F81E /* EditableSocialButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04915F2AB495C000A8F81E /* EditableSocialButton.swift */; };
 		2B181D722AAF16F4001E6250 /* contacts.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B181D712AAF16F4001E6250 /* contacts.json */; };
 		2B181D752AAF1CF3001E6250 /* CachedAsyncImage in Frameworks */ = {isa = PBXBuildFile; productRef = 2B181D742AAF1CF3001E6250 /* CachedAsyncImage */; };
+		2B2B66B72AFA6807003195E9 /* ExpandableText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B66B62AFA6807003195E9 /* ExpandableText.swift */; };
+		2B2B66BB2AFCFE7D003195E9 /* EditContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B66BA2AFCFE7D003195E9 /* EditContactView.swift */; };
 		2B345B702AB85A410025BF2C /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B345B6F2AB85A410025BF2C /* UserManager.swift */; };
 		2B345B722AB85C700025BF2C /* Firebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B345B712AB85C700025BF2C /* Firebase.swift */; };
 		2B345B752AB868B80025BF2C /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2B345B742AB868B80025BF2C /* FirebaseFirestoreSwift */; };
@@ -95,8 +95,6 @@
 		256275B02A7D0120006F0E39 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		256276072A80F114006F0E39 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		256C97582A2C4954003DD1B4 /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
-		256C975A2A2C4C47003DD1B4 /* PlaceListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceListView.swift; sourceTree = "<group>"; };
-		256C975C2A2C4D85003DD1B4 /* PlaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceView.swift; sourceTree = "<group>"; };
 		256C97602A372B55003DD1B4 /* Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Design.swift; sourceTree = "<group>"; };
 		256C97622A372EAC003DD1B4 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		256C97642A39EC0E003DD1B4 /* LabelsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelsView.swift; sourceTree = "<group>"; };
@@ -112,7 +110,7 @@
 		259EAACE2A98A90D006C207F /* ActionSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSheetView.swift; sourceTree = "<group>"; };
 		259EAAD02A98AE4B006C207F /* ScreenHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenHelper.swift; sourceTree = "<group>"; };
 		259EAAD22A9CC857006C207F /* ContactDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailsView.swift; sourceTree = "<group>"; };
-		259EAAD52A9DEABA006C207F /* ContactDetailsSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailsSheet.swift; sourceTree = "<group>"; };
+		259EAAD52A9DEABA006C207F /* ContactDetailsInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailsInfo.swift; sourceTree = "<group>"; };
 		259EAAD72A9DED9F006C207F /* SheetDragger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetDragger.swift; sourceTree = "<group>"; };
 		259EAADA2AA09229006C207F /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
 		25ADF3292A694403009A2B73 /* PlacesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesScreen.swift; sourceTree = "<group>"; };
@@ -135,6 +133,8 @@
 		2B04915D2AB48D3300A8F81E /* BlueButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueButton.swift; sourceTree = "<group>"; };
 		2B04915F2AB495C000A8F81E /* EditableSocialButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableSocialButton.swift; sourceTree = "<group>"; };
 		2B181D712AAF16F4001E6250 /* contacts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = contacts.json; sourceTree = "<group>"; };
+		2B2B66B62AFA6807003195E9 /* ExpandableText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableText.swift; sourceTree = "<group>"; };
+		2B2B66BA2AFCFE7D003195E9 /* EditContactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditContactView.swift; sourceTree = "<group>"; };
 		2B345B6F2AB85A410025BF2C /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		2B345B712AB85C700025BF2C /* Firebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Firebase.swift; sourceTree = "<group>"; };
 		2B345B762ABB0C1E0025BF2C /* CategorySelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySelectionView.swift; sourceTree = "<group>"; };
@@ -179,9 +179,6 @@
 		256275AE2A73E127006F0E39 /* _deprecated */ = {
 			isa = PBXGroup;
 			children = (
-				256C975C2A2C4D85003DD1B4 /* PlaceView.swift */,
-				256C975A2A2C4C47003DD1B4 /* PlaceListView.swift */,
-				253B84E52A0A614F004FA223 /* SearchBar.swift */,
 				253B84F12A0F18C0004FA223 /* CategoryView.swift */,
 				253B84EF2A0F18A8004FA223 /* CategoryListView.swift */,
 			);
@@ -200,6 +197,7 @@
 		259EAAC22A960B95006C207F /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				253B84E52A0A614F004FA223 /* SearchBar.swift */,
 				259EAAC32A960BAD006C207F /* GlobalSearchView.swift */,
 			);
 			name = Search;
@@ -218,6 +216,7 @@
 				259EAAD72A9DED9F006C207F /* SheetDragger.swift */,
 				259EAADA2AA09229006C207F /* BackButton.swift */,
 				2B04915D2AB48D3300A8F81E /* BlueButton.swift */,
+				2B2B66B62AFA6807003195E9 /* ExpandableText.swift */,
 			);
 			name = Elements;
 			sourceTree = "<group>";
@@ -226,8 +225,9 @@
 			isa = PBXGroup;
 			children = (
 				259EAAD22A9CC857006C207F /* ContactDetailsView.swift */,
-				259EAAD52A9DEABA006C207F /* ContactDetailsSheet.swift */,
+				259EAAD52A9DEABA006C207F /* ContactDetailsInfo.swift */,
 				25174A522AA5F88C00024E1A /* SocialButton.swift */,
+				2B2B66BA2AFCFE7D003195E9 /* EditContactView.swift */,
 			);
 			path = ContactDetails;
 			sourceTree = "<group>";
@@ -287,10 +287,10 @@
 				2B0491562AB32B1A00A8F81E /* MyAccount */,
 				256275AE2A73E127006F0E39 /* _deprecated */,
 				25DB6CC02A07287F00660E99 /* ContactsScreen.swift */,
-				259EAAC52A96318B006C207F /* PopCategoriesView.swift */,
 				256C97642A39EC0E003DD1B4 /* LabelsView.swift */,
 				253B84F52A0F5B3E004FA223 /* ContactListView.swift */,
 				253B84E72A0BA0A9004FA223 /* ContactView.swift */,
+				259EAAC52A96318B006C207F /* PopCategoriesView.swift */,
 				259EAAD42A9DEA8C006C207F /* ContactDetails */,
 				259EAAC82A97594C006C207F /* CitiesView.swift */,
 				253B84EB2A0CF3D6004FA223 /* AvatarView.swift */,
@@ -457,7 +457,6 @@
 				2B0491552AB1DEB600A8F81E /* MyAccountView.swift in Sources */,
 				2B345B792ABB189A0025BF2C /* CitySelectionView.swift in Sources */,
 				259EAAC42A960BAD006C207F /* GlobalSearchView.swift in Sources */,
-				256C975D2A2C4D85003DD1B4 /* PlaceView.swift in Sources */,
 				25ADF3322A694438009A2B73 /* ClusterView.swift in Sources */,
 				253B84EA2A0C59CE004FA223 /* Extensions.swift in Sources */,
 				2B345B772ABB0C1E0025BF2C /* CategorySelectionView.swift in Sources */,
@@ -480,13 +479,14 @@
 				259EAACD2A975CCC006C207F /* City.swift in Sources */,
 				2596144A2A1233C000393712 /* ContactsController.swift in Sources */,
 				25174A532AA5F88C00024E1A /* SocialButton.swift in Sources */,
+				2B2B66B72AFA6807003195E9 /* ExpandableText.swift in Sources */,
 				259EAAC12A960189006C207F /* SessionViewController.swift in Sources */,
 				25DB6CC82A0A5AC500660E99 /* DataHelper.swift in Sources */,
 				259EAADB2AA09229006C207F /* BackButton.swift in Sources */,
 				259EAAD82A9DED9F006C207F /* SheetDragger.swift in Sources */,
 				2548C41B2A96005700211CC0 /* SessionView.swift in Sources */,
 				25DB6CCB2A0A5C1000660E99 /* Contact.swift in Sources */,
-				259EAAD62A9DEABA006C207F /* ContactDetailsSheet.swift in Sources */,
+				259EAAD62A9DEABA006C207F /* ContactDetailsInfo.swift in Sources */,
 				2596144F2A124E5900393712 /* TrackableScrollView.swift in Sources */,
 				253B84F42A0F1B1A004FA223 /* Category.swift in Sources */,
 				25ADF32A2A694403009A2B73 /* PlacesScreen.swift in Sources */,
@@ -498,13 +498,13 @@
 				2B345B722AB85C700025BF2C /* Firebase.swift in Sources */,
 				25ADF3362A694516009A2B73 /* ContentView.swift in Sources */,
 				253B84F02A0F18A8004FA223 /* CategoryListView.swift in Sources */,
-				256C975B2A2C4C47003DD1B4 /* PlaceListView.swift in Sources */,
 				25ADF3302A694438009A2B73 /* MapView.swift in Sources */,
 				253B84EC2A0CF3D6004FA223 /* AvatarView.swift in Sources */,
 				2B345B702AB85A410025BF2C /* UserManager.swift in Sources */,
 				253B84E62A0A614F004FA223 /* SearchBar.swift in Sources */,
 				259338092A29E22E00C7AF1B /* RoundedCorner.swift in Sources */,
 				259EAAD12A98AE4B006C207F /* ScreenHelper.swift in Sources */,
+				2B2B66BB2AFCFE7D003195E9 /* EditContactView.swift in Sources */,
 				256C97632A372EAC003DD1B4 /* TestView.swift in Sources */,
 				253B84FA2A0F7F9E004FA223 /* LabelView.swift in Sources */,
 			);

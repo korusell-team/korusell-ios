@@ -53,15 +53,14 @@ struct ContactListView: View {
                     .listRowBackground(Color.app_white)
             }
         }
-        
         .listStyle(.plain)
-        .applyIf(cc.selectedCategory == nil && cc.selectedSubcategory == nil, apply: {
-            view in
-            view.refreshable {
-                    cc.getUsers()
+        .refreshable {
+            if cc.selectedCategory == nil {
+                cc.getCats()
+                cc.getUsers()
                 print("refreshing...")
             }
-        })
+        }
         .padding(.top, 20)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
         .background(Color.app_white)

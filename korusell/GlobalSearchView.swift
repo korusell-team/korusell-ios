@@ -13,8 +13,10 @@ struct GlobalSearchView: View {
     @EnvironmentObject var userManager: UserManager
     
     var body: some View {
-        VStack {
-            Text("🚧 здесь нужен дизайн...")
+        VStack(spacing: 20) {
+            Text("🚧 🚧 🚧")
+                .font(bold30f)
+            Text("в разработке...")
             Button(action: {
                 do {
                     try Auth.auth().signOut()
@@ -28,6 +30,8 @@ struct GlobalSearchView: View {
                 Text("Выйти")
             }
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color.bg)
     }
 }
 

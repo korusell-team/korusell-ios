@@ -57,13 +57,12 @@ let listOfPlaces: [Place] = [
 ]
 
 let dummyCities: [City] = [
-    City(ru: "Сеул", en: "Seoul", ko: "서울"),
-    City(ru: "Ансан", en: "Ansan", ko: "안산"),
-    City(ru: "Инчхон", en: "Incheon", ko: "인천"),
-    City(ru: "Сувон", en: "Suwon", ko: "수원"),
-    City(ru: "Хвасонг", en: "Hwaseong", ko: "화성"),
-    City(ru: "Пусан", en: "Seoul", ko: "서울"),
-    City(ru: "Сеул", en: "Busan", ko: "부산")
+    City(id: 1, ru: "Сеул", en: "Seoul", ko: "서울"),
+    City(id: 2, ru: "Инчхон", en: "Incheon", ko: "인천"),
+    City(id: 3, ru: "Ансан", en: "Ansan", ko: "안산"),
+    City(id: 4, ru: "Сувон", en: "Suwon", ko: "수원"),
+    City(id: 6, ru: "Хвасонг", en: "Hwaseong", ko: "화성"),
+    City(id: 5, ru: "Пусан", en: "Busan", ko: "부산"),
 ]
 
 

@@ -52,6 +52,25 @@ extension Optional where Wrapped == String {
     }
 }
 
+extension Optional where Wrapped == Bool {
+    var _bound: Bool? {
+        get {
+            return self
+        }
+        set {
+            self = newValue
+        }
+    }
+    public var bound: Bool {
+        get {
+            return _bound ?? false
+        }
+        set {
+            _bound = newValue
+        }
+    }
+}
+
 extension Color {
     static let bg = Color("bg")
     static let app_white = Color("app-white")

@@ -15,20 +15,29 @@ struct Contact: Identifiable, Hashable, Codable {
     var name: String?
     var surname: String?
     var bio: String?
-    var cities: [String] = []
+    var info: String?
+    var cities: [Int] = []
     var image: [String] = []
     var categories: [Int] = []
     var phone: String
+    var updated: Date?
+    var created: Date?
+    var isPublic: Bool
+    var phoneIsAvailable: Bool?
+    var isOnline: Bool?
+    var priority: Int?
+    
     var instagram: String?
+    var threads: String?
     var youtube: String?
     var link: String?
     var telegram: String?
+    var whatsApp: String?
     var kakao: String?
     var tiktok: String?
-    var updated: Date?
-    var created: Date?
-    var isPublic: Bool?
-    var isOnline: Bool?
+    var linkedIn: String?
+    var twitter: String?
+    
     
     /// places ids?
 //    var places: [Place] = []

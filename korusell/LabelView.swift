@@ -26,6 +26,7 @@ struct EmoLabelView: View {
         .padding(.horizontal, 15)
         .background(isSelected ? Color.gray700 : Color.app_white)
         .cornerRadius(20)
+        .shadow(color: isSelected ? Color.clear : Color.gray200.opacity(0.2), radius: 2, x: 1, y: 1)
     }
 }
 

@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct City: Codable, Equatable {
+struct City: Codable, Equatable, Hashable {
+    let id: Int
     let ru: String
     let en: String
     let ko: String

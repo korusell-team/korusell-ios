@@ -11,6 +11,7 @@ import CachedAsyncImage
 
 struct MyAccDetailsSheet: View {
     @EnvironmentObject var userManager: UserManager
+    @EnvironmentObject var cc: ContactsController
     @GestureState var gestureOffset: CGFloat = 0
     @FocusState var focusedField
     
@@ -54,10 +55,10 @@ struct MyAccDetailsSheet: View {
                 }
                 .font(regular22f)
                 .onAppear {
-                    self.name = user.name ?? ""
-                    self.surname = user.surname ?? ""
-                    self.city = user.cities.first
-                    self.bio = user.bio ?? "Напишите пару строк о себе..."
+//                    self.name = user.name ?? ""
+//                    self.surname = user.surname ?? ""
+//                    self.city = user.cities.first
+//                    self.bio = user.bio ?? "Напишите пару строк о себе..."
                 }
                 
                 //                                        .popup(isPresented: $editPhonePresented) {
@@ -120,10 +121,12 @@ struct MyAccDetailsSheet: View {
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack {
                             ForEach(0..<user.cities.count, id:\.self) { index in
-                                Button(action: {
-                                    citiesPresented = true
-                                }) {
-                                    LabelView(title: user.cities[index], isSelected: true)
+                                if let city = cc.cities.first(where: { $0.id == index}) {
+                                    Button(action: {
+                                        citiesPresented = true
+                                    }) {
+                                        LabelView(title: city.ru, isSelected: true)
+                                    }
                                 }
                             }
                         }

@@ -29,7 +29,7 @@ class UserManager: ObservableObject {
             getUser(phone: phone) {
                 if self.user == nil {
                     self.fb.createUser(uid: uid, phone: phone) {
-                        self.user = Contact(uid: uid, phone: phone)
+                        self.user = Contact(uid: uid, phone: phone, isPublic: false)
                         self.isLoading = false
                     }
                 } else {

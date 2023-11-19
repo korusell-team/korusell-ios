@@ -32,6 +32,7 @@ class ContactsController: ObservableObject {
     init() {
         print("Concatcts Controller initialization")
         self.getCats()
+        self.getCities()
         self.getUsers()
     }
     
@@ -57,6 +58,27 @@ class ContactsController: ObservableObject {
             }
     }
     
+    func getCities() {
+        db
+            .collection("cities")
+            .getDocuments{ (querySnapshot, error) in
+                guard let documents = querySnapshot?.documents else {
+                    print("No cities! 🏙️")
+                    return
+                }
+                
+                self.cities = documents.compactMap { queryDocumentSnapshot -> City? in
+                    do {
+                        return try queryDocumentSnapshot.data(as: City.self)
+                    } catch {
+                        print("Error decoding document into Category object: \(error)")
+                        return nil
+                    }
+                }
+                print("Successfullly got cities 🏙️")
+            }
+    }
+    
     func getUsers() {
         db
             .collection("users")
@@ -66,7 +88,7 @@ class ContactsController: ObservableObject {
                     return
                 }
                 
-                self.users = documents.compactMap { queryDocumentSnapshot -> Contact? in
+                let users = documents.compactMap { queryDocumentSnapshot -> Contact? in
                     do {
                         return try queryDocumentSnapshot.data(as: Contact.self)
                     } catch {
@@ -75,18 +97,20 @@ class ContactsController: ObservableObject {
                     }
                 }
                 print("Successfullly got users 🤦🏻")
-                self.contacts = self.users
+                self.users = users.filter({ $0.isPublic })
+                self.contacts = self.users.shuffled().sorted(by: { $0.priority ?? 0 > $1.priority ?? 0 })
             }
     }
     
     func selectCategory(category: Category, reader: ScrollViewProxy) {
-        withAnimation(.interpolatingSpring(stiffness: 200, damping: 20)) {
+        withAnimation {
+//        withAnimation(.interpolatingSpring(stiffness: 200, damping: 20)) {
             if self.selectedCategory == category {
                 self.selectedCategory = nil
                 self.selectedSubcategory = nil
                 self.subCategories = []
                 self.contacts = self.users
-                reader.scrollTo(categories.first?.id, anchor: .center)
+                reader.scrollTo(self.categories.first?.id, anchor: .center)
             } else {
                 self.selectedCategory = category
                 self.subCategories = self.cats.filter({ $0.p_id == self.selectedCategory?.id })
@@ -115,6 +139,8 @@ class ContactsController: ObservableObject {
             }
         }
     }
+    
+    
     
 //    func filterData() {
 //        db.collection("users")

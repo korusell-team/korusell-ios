@@ -10,66 +10,133 @@ import CachedAsyncImage
 
 struct ContactDetailsView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @EnvironmentObject var userManager: UserManager
+    @EnvironmentObject var cc: ContactsController
     
+    @State var editMode: Bool = false
+    
+    @State var contact: Contact
+    @State var offset: CGFloat = 0
+    
+    var body: some View {
+        VStack(spacing: 0) {
+            TrackableScrollView(showIndicators: false, contentOffset: $offset) {
+                ContactImageView(contact: contact)
+                if editMode {
+                    EditContactView(user: $contact)
+                } else {
+                    ContactDetailsInfo(contact: contact)
+                }
+                
+            }
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity).ignoresSafeArea()
+        .background(Color.app_white)
+        .navigationBarBackButtonHidden(true)
+        .applyIf(editMode) { view in
+            view
+                .navigationBarItems(
+                    leading: Button(action: {
+                        withAnimation {
+                            if let user = userManager.user {
+                                self.contact = user
+                            }
+                            editMode = false
+                        }
+                    }) {
+                        Text("Отмена")
+                            .foregroundColor(offset > 0 ? .accentColor : .white)
+                    })
+        }
+        .applyIf(!editMode) { view in
+            view
+                .navigationBarItems(
+                    leading:
+                        Button(action: {
+                            presentationMode.wrappedValue.dismiss()
+                        }) {
+                            HStack {
+                                Image(systemName: "chevron.backward")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 10, height: 20)
+                                Text("Контакты")
+                            }
+                            .foregroundColor(offset > 0 ? .accentColor : .white)
+                        }
+                    //                        BackButton(action: { presentationMode.wrappedValue.dismiss() }, title: "Контакты")
+                )
+        }
+        .applyIf(contact.phone == userManager.user?.phone) { view in
+            view.navigationBarItems(trailing: Button(action: {
+                if editMode {
+                    userManager.user = self.contact
+                    userManager.updateUser()
+                    withAnimation {
+                        editMode = false
+                    }
+                } else {
+                    withAnimation {
+                        editMode = true
+                    }
+                }
+                
+            }) {
+                Text(editMode ? "Сохранить" : "Изменить")
+                    .foregroundColor(offset > 0 ? .accentColor : .white)
+            })
+        }
+    }
+}
+
+struct ContactImageView: View {
     @State var page: Int = 0
     
     let contact: Contact
     
     var body: some View {
-        VStack(spacing: 0) {
-            ScrollView(showsIndicators: false) {
+        ZStack(alignment: .bottom) {
+            if contact.image.isEmpty {
                 ZStack(alignment: .bottom) {
-                    if contact.image.isEmpty {
-                        ZStack(alignment: .bottom) {
-                            Color.gray50
-                            Image("alien")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: UIScreen.main.bounds.width / 1.5)
-                        }
-                    } else {
-                        TabView(selection: $page) {
-                            ForEach(0..<contact.image.count, id: \.self) { index in
-                                CachedAsyncImage(url: URL(string: contact.image[index]), urlCache: .imageCache) { phase in
-                                    switch phase {
-                                    case .empty:
-                                        ProgressView()
-                                    case .success(let image):
-                                        ZStack(alignment: .top) {
-                                            image
-                                                .resizable()
-                                                .scaledToFill()
-                                            LinearGradient(colors: [.clear, .gray1100.opacity(0.8)], startPoint: .bottom, endPoint: .top)
-                                                .frame(height: 150)
-                                        }
-                                        .transition(.scale(scale: 0.1, anchor: .center))
-                                    case .failure:
-                                        Image(systemName: "photo")
-                                    @unknown default:
-                                        EmptyView()
-                                    }
+                    Color.gray50
+                    Image("alien")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: UIScreen.main.bounds.width / 1.5)
+                }
+            } else {
+                TabView(selection: $page) {
+                    ForEach(0..<contact.image.count, id: \.self) { index in
+                        CachedAsyncImage(url: URL(string: contact.image[index]), urlCache: .imageCache) { phase in
+                            switch phase {
+                            case .empty:
+                                ProgressView()
+                            case .success(let image):
+                                ZStack(alignment: .top) {
+                                    image
+                                        .resizable()
+                                        .scaledToFill()
+                                    LinearGradient(colors: [.clear, .gray1100.opacity(0.8)], startPoint: .bottom, endPoint: .top)
+                                        .frame(height: 120)
                                 }
-                                .tag(index)
-                                .ignoresSafeArea()
+                                .transition(.scale(scale: 0.1, anchor: .center))
+                            case .failure:
+                                Image(systemName: "photo")
+                            @unknown default:
+                                EmptyView()
                             }
                         }
-                        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .automatic))
-                        .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
-                    } //else
+                        .tag(index)
+                        .ignoresSafeArea()
+                    }
                 }
-                .frame(width: UIScreen.main.bounds.width, height: Size.w(390))
-                .background(Color.app_white.opacity(0.01))
-                .cornerRadius(20)
-//                .cornerRadius(20, corners: [.bottomLeft, .bottomRight])
-                
-                ContactDetailsSheet(contact: contact)
-            }
+                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .automatic))
+                .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
+            } //else
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity).ignoresSafeArea()
-        .background(Color.app_white)
-        
-        .navigationBarBackButtonHidden(true)
-        .navigationBarItems(leading: BackButton(action: { presentationMode.wrappedValue.dismiss() }, title: "Контакты"))
+        .frame(width: UIScreen.main.bounds.width, height: Size.w(390))
+        .background(Color.app_white.opacity(0.01))
+        .cornerRadius(20)
     }
 }
 

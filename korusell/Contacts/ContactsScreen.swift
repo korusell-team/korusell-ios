@@ -15,6 +15,7 @@ struct ContactsScreen: View {
     @Namespace var namespace
 
     @State var popCategories = false
+    @State var popSubCategories = false
     @State var locationsPresented = false
     
     var body: some View {
@@ -22,9 +23,9 @@ struct ContactsScreen: View {
             ZStack {
                 VStack {
                     LabelsView(
-                        popCategories: $popCategories
-                    )
-                        .padding(.top)
+                        popCategories: $popCategories,
+                        popSubCategories: $popSubCategories
+                    ).padding(.top)
                     
                     ContactListView()
                 }
@@ -42,7 +43,11 @@ struct ContactsScreen: View {
                     
                     trailing:
                         NavigationLink(destination: {
-                            MyAccountView()
+                            if let user = userManager.user {
+                                ContactDetailsView(contact: user)
+                            } else {
+                                Text("Упс... что то пошло не так... 👾")
+                            }
                         }) {
                             Image(systemName: "person.circle")
                                 .foregroundColor(.gray900)

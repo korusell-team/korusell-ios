@@ -10,11 +10,12 @@ import FirebaseFirestoreSwift
 import PopupView
 
 struct LabelsView: View {
-//    @FirestoreQuery(collectionPath: "cats", predicates: [.where("p_id", isLessThanOrEqualTo: 0)], animation: .bouncy) var categories: [Category]
-//    @FirestoreQuery(collectionPath: "cats", animation: .bouncy) var subCategories: [Category]
+    //    @FirestoreQuery(collectionPath: "cats", predicates: [.where("p_id", isLessThanOrEqualTo: 0)], animation: .bouncy) var categories: [Category]
+    //    @FirestoreQuery(collectionPath: "cats", animation: .bouncy) var subCategories: [Category]
     @EnvironmentObject var cc: ContactsController
     @Namespace var namespace
     @Binding var popCategories: Bool
+    @Binding var popSubCategories: Bool
     
     var body: some View {
         ZStack {
@@ -22,22 +23,22 @@ struct LabelsView: View {
             
             VStack(spacing: 0) {
                 /// Categories list
-                ZStack(alignment: .leading) {
+//                ZStack(alignment: .leading) {
                     ScrollView(.horizontal, showsIndicators: false) {
                         ScrollViewReader { reader in
                             LazyHGrid(rows: rows, alignment: .center) {
+                                HambButton(isOpen: $popCategories)
                                 ForEach(cc.categories, id: \.self.id) { category in
                                     Button(action: {
                                         cc.selectCategory(category: category, reader: reader)
                                     }) {
-                                        LabelView(title: category.title, isSelected: cc.selectedCategory == category)
+                                        EmoLabelView(title: category.title, isSelected: cc.selectedCategory == category, emo: category.emoji)
                                     }
                                     .id(category.id)
                                 }
                             }
-                            .padding(.leading, 30)
                             .padding(.horizontal)
-                            .frame(height: 40)
+                            .frame(height: 46)
                             .popup(isPresented: $popCategories) {
                                 PopCategoriesView(
                                     popCategories: $popCategories,
@@ -53,47 +54,71 @@ struct LabelsView: View {
                             }
                         }
                     }
-                    
-                    Button(action: {
-                        popCategories = true
-                    }) {
-                        Image(systemName: "line.3.horizontal.circle.fill")
-                            .resizable()
-                            .scaledToFit()
-                            .foregroundColor(.gray900)
-                            .frame(width: 30, height: 30)
-                            .padding(4)
-                            .background(Color.bg)
-                            .cornerRadius(30)
-                            .shadow(color: Color.gray200, radius: 2, y: 2)
-                            .padding(.horizontal, 5)
-                    }
-                }
+                   
+//                }
+                
                 
                 /// Sub-categories list
                 if let selectedCategory = cc.selectedCategory {
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        ScrollViewReader { reader in
-                            LazyHGrid(rows: rows, alignment: .top) {
-                                ForEach(cc.subCategories, id: \.self) { subCat in
-                                    Button(action: {
-                                        cc.selectSubCategory(subCat: subCat, reader: reader)
-                                    }) {
-                                        LabelView(title: subCat.title, isSelected: cc.selectedSubcategory == subCat)
+                    ZStack(alignment: .leading) {
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            ScrollViewReader { reader in
+                                LazyHGrid(rows: rows, alignment: .top) {
+                                    HambButton(isOpen: $popSubCategories)
+                                    
+                                    ForEach(cc.subCategories, id: \.self) { subCat in
+                                        Button(action: {
+                                            cc.selectSubCategory(subCat: subCat, reader: reader)
+                                        }) {
+                                            EmoLabelView(title: subCat.title, isSelected: cc.selectedSubcategory == subCat, emo: subCat.emoji)
+                                        }
+                                        .id(subCat.id)
                                     }
-                                    .id(subCat.id)
+                                }
+                                .padding(.horizontal)
+                                .frame(height: 46)
+                                .popup(isPresented: $popSubCategories) {
+                                    PopSubCategoriesView(
+                                        popCategories: $popSubCategories,
+                                        selectedCategory: $cc.selectedSubcategory,
+                                        reader: reader)
+                                } customize: {
+                                    $0
+                                        .type (.floater())
+                                        .position(.top)
+                                        .dragToDismiss(true)
+                                        .closeOnTapOutside(true)
+                                        .backgroundColor(.black.opacity(0.2))
                                 }
                             }
-                            .padding(.horizontal)
-                            .frame(height: 40)
-                            .background(Color.bg)
                         }
+                        .padding(.top, 7)
+                        
                     }
-                    .padding(.top, 7)
                 }
             }
         }
         .background(Color.bg)
+    }
+}
+
+struct HambButton: View {
+    @Binding var isOpen: Bool
+    var body: some View {
+        Button(action: {
+            isOpen = true
+        }) {
+            Image(systemName: "line.3.horizontal")
+                .resizable()
+                .scaledToFit()
+                .foregroundColor(.gray700)
+                .frame(width: 22, height: 22)
+                .padding(7)
+                .background(Color.app_white)
+                .cornerRadius(30)
+                .shadow(color: Color.gray200.opacity(0.2), radius: 2, x: 1, y: 1)
+//                .shadow(color: Color.gray200, radius: 2, y: 2)
+        }
     }
 }
 

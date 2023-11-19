@@ -10,7 +10,7 @@ import FirebaseFirestoreSwift
 
 struct CitySelectionView: View {
     @EnvironmentObject var userManager: UserManager
-    @FirestoreQuery(collectionPath: "cities", predicates: []) var cities: [City]
+    @EnvironmentObject var cc: ContactsController
     @Binding var isOpened: Bool
     
     var body: some View {
@@ -25,16 +25,16 @@ struct CitySelectionView: View {
                     .foregroundColor(.gray900)
                     .padding(.bottom)
                     Button(action: {
-                        userManager.user?.cities = ["Вся Корея"]
+                        userManager.user?.cities = [0]
                     }) {
-                        LabelView(title: "Вся Корея", isSelected: userManager.user?.cities.contains("Вся Корея") ?? false)
+                        LabelView(title: "Вся Корея", isSelected: userManager.user?.cities.contains(0) ?? false)
                     }
                     
-                    ForEach(cities, id: \.self.en) { city in
+                    ForEach(cc.cities, id: \.self.id) { city in
                         Button(action: {
-                            userManager.user?.cities = [city.ru]
+                            userManager.user?.cities = [city.id]
                         }) {
-                            LabelView(title: city.ru, isSelected: userManager.user?.cities.contains(city.ru) ?? false)
+                            LabelView(title: city.ru, isSelected: userManager.user?.cities.contains(city.id) ?? false)
                         }
                     }
                 }

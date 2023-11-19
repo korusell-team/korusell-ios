@@ -11,6 +11,7 @@ struct Category: Hashable, Codable {
     let id: Int
     let title: String
     let p_id: Int
+    let emoji: String
 }
 
 //struct Category: Hashable, Codable {
