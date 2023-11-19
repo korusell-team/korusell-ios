@@ -115,7 +115,7 @@ class ContactsController: ObservableObject {
                 self.selectedCategory = category
                 self.subCategories = self.cats.filter({ $0.p_id == self.selectedCategory?.id })
                 self.selectedSubcategory = nil
-                self.contacts = self.users.filter({ $0.categories.contains(category.id) })
+                self.contacts = self.users.filter({ $0.categories.contains(where: { $0.divider() == category.id.divider() }) })
                 reader.scrollTo(category.id, anchor: .center)
             }
         }
@@ -250,4 +250,10 @@ class ContactsController: ObservableObject {
     //            !contact.subcategories.filter { $0.lowercased().contains(text.lowercased()) }.isEmpty
     //        }.sorted(by: { $0.surname < $1.surname})
     
+}
+///  simple function for comparing sub category and category
+extension Int {
+    func divider() -> Int {
+        return self / 100
+    }
 }
