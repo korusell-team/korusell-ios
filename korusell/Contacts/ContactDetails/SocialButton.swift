@@ -130,13 +130,6 @@ struct SocialButton: View {
     }
 }
 
-//struct SocialButton_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SocialButton(type: .kakao)
-//    }
-//}
-
-
 struct SocialButtonView: View {
     let type: socialType
     var title: String? = nil
@@ -157,7 +150,7 @@ struct SocialButtonView: View {
                     .font(semiBold18f)
                 Group {
                     if let title, !title.isEmpty {
-                        Text(type == .link ? title : "@" + title)
+                        Text((type == .link || type == .whatsApp) ? title : "@" + title)
                     }
                 }
                 .font(regular15f)

@@ -71,6 +71,7 @@ struct PopSubCategoriesView: View {
                     EmoLabelView(title: category.title, isSelected: selectedCategory == category, emo: category.emoji)
                 }
             }
+            .padding(.bottom, 20)
         }
         .padding()
         .frame(maxWidth: .infinity)

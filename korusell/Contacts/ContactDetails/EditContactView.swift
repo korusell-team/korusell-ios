@@ -19,7 +19,7 @@ struct EditContactView: View {
     @State var citiesPresented: Bool = false
     
     @Binding var user: Contact
-
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 30) {
             Text("* Обязательное поле")
@@ -27,32 +27,14 @@ struct EditContactView: View {
                 .padding(.vertical, 30)
             
             Toggle(isOn: $user.isPublic) {
-                HStack {
-                    Text(user.isPublic ? "🐵" : "🙈")
-                        .font(bold30f)
-                        .padding(.trailing, 10)
-                    Text("Публичный аккаунт")
-                        .font(regular17f)
-                }
+                Text("Сделать аккаунт публичным")
+                    .font(regular17f)
             }
-            .padding(.vertical, 7)
-            .padding(.horizontal, 7)
-            .background(Color.clear)
-            .cornerRadius(5)
             
             Toggle(isOn: $user.phoneIsAvailable.bound) {
-                HStack {
-                    Text(user.phoneIsAvailable.bound ? "🐵" : "🙈")
-                        .font(bold30f)
-                        .padding(.trailing, 10)
-                    Text("Номер телефона")
-                        .font(regular17f)
-                }
+                Text("Показать номер телефона")
+                    .font(regular17f)
             }
-            .padding(.vertical, 7)
-            .padding(.horizontal, 7)
-            .background(Color.clear)
-            .cornerRadius(5)
             
             AccTextField(title: "Имя*", binding: $user.name.bound, textLimit: 20)
             AccTextField(title: "Фамилия*", binding: $user.surname.bound, textLimit: 20)
@@ -62,10 +44,130 @@ struct EditContactView: View {
             
             AccTextField(title: "Заголовок*", placeholder: "Пару слов, туда - сюда", binding: $user.bio.bound, textLimit: 80)
             
+            EditInfoView(info: $user.info)
+            
+            SocialEditView(user: $user)
             
             Spacer().frame(height: 200)
         }
         .padding(.horizontal, 16)
+    }
+}
+
+struct SocialEditView: View {
+    @Binding var user: Contact
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            ForEach(socialType.allCases) { type in
+                EditSocialButton(type: type, contact: $user)
+            }
+        }
+        .padding(.vertical)
+    }
+}
+
+struct EditSocialButton: View {
+    let type: socialType
+    @Binding var contact: Contact
+    
+    var body: some View {
+        let title: String? = {
+            switch type {
+            case .kakao: return contact.kakao
+            case .instagram: return contact.instagram
+            case .youtube: return contact.youtube
+            case .telegram: return contact.telegram
+            case .link: return contact.link
+            case .tiktok: return contact.tiktok
+            case .linkedIn: return contact.linkedIn
+            case .threads: return contact.threads
+            case .twitter: return contact.twitter
+            case .whatsApp: return contact.whatsApp
+            }
+        }()
+        
+        let textField: TextField = {
+            switch type {
+            case .kakao: TextField("", text: $contact.kakao.bound)
+            case .instagram: TextField("", text: $contact.instagram.bound)
+            case .youtube: TextField("", text: $contact.youtube.bound)
+            case .telegram: TextField("", text: $contact.telegram.bound)
+            case .link: TextField("", text: $contact.link.bound)
+            case .tiktok: TextField("", text: $contact.tiktok.bound)
+            case .linkedIn: TextField("", text: $contact.linkedIn.bound)
+            case .threads: TextField("", text: $contact.threads.bound)
+            case .twitter: TextField("", text: $contact.twitter.bound)
+            case .whatsApp: TextField("", text: $contact.whatsApp.bound)
+            }
+            
+        }()
+        
+        HStack(spacing: 20) {
+            Image(type.image)
+                .resizable()
+                .scaledToFit()
+                .opacity((title == nil || title == "") ? 0.3 : 0.7)
+                .frame(width: 50, height: 50)
+            
+            VStack(alignment: .leading) {
+                Text(type.placeholder)
+                    .foregroundColor(.gray600)
+                    .font(regular17f)
+                
+                textField
+                    .autocorrectionDisabled()
+                    .textInputAutocapitalization(.never)
+                    .foregroundColor(.gray1100)
+                    .font(semiBold18f)
+            }
+            Spacer()
+            
+        }
+        .padding(10)
+        .background(Color.white)
+        .cornerRadius(30)
+        .shadow(color: Color.gray200.opacity(0.2), radius: 3, x: 2, y: 2)
+        .contentShape(ContentShapeKinds.contextMenuPreview, RoundedRectangle(cornerRadius: 30))
+    }
+}
+
+
+
+struct EditInfoView: View {
+    @Binding var info: String?
+    var textLimit: Int = 800
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 3) {
+            Text("О себе:")
+                .font(regular17f)
+            ZStack {
+                TextEditor(text: $info.bound)
+                //                .focused($focusedField, equals: true)
+                Text(info.bound).opacity(0).padding(8)
+            }
+            
+            .padding(.horizontal, 10)
+            .padding(.vertical, 5)
+            .background(Color.white)
+            .overlay(
+                RoundedRectangle(cornerRadius: 4)
+                    .stroke(Color.gray200, lineWidth: 0.2)
+            )
+            .font(regular17f)
+            .onChange(of: info.bound) { newValue in
+                info = newValue.count > textLimit ? String(newValue.prefix(textLimit)) : newValue
+            }
+            
+            HStack {
+                Text("\(info?.count ?? 0)/\(textLimit)")
+                    .font(regular15f)
+                    .foregroundColor(.gray600)
+            }
+            .frame(maxWidth: .infinity, alignment: .trailing)
+            .padding(.horizontal, 5)
+        }
     }
 }
 
@@ -97,7 +199,6 @@ struct AccTextField: View {
                 .frame(maxWidth: .infinity, alignment: .trailing)
                 .padding(.horizontal, 5)
             }
-            
         }
     }
 }
@@ -125,14 +226,9 @@ struct CityEditView: View {
                 citiesPresented = true
             }) {
                 Text("Выбрать город")
-                    .font(regular17f)
-                    .foregroundColor(.gray900)
-                    .padding(.vertical, 8)
-                    .padding(.horizontal, 15)
-                    .background(Color.app_white)
-                    .cornerRadius(20)
-                    .shadow(color: Color.gray200.opacity(0.2), radius: 2, x: 1, y: 1)
             }
+            .buttonStyle(.bordered)
+            
             .popup(isPresented: $citiesPresented) {
                 PopCitiesView(user: $user, popCities: $citiesPresented)
             } customize: {
@@ -167,9 +263,9 @@ struct CategoryEditView: View {
                             .padding(.vertical, 7)
                             .padding(.horizontal, 10)
                             .overlay(
-                                        Capsule(style: .continuous)
-                                                .stroke(Color.gray200, lineWidth: 1)
-                                    )
+                                Capsule(style: .continuous)
+                                    .stroke(Color.gray200, lineWidth: 1)
+                            )
                             .clipShape(RoundedRectangle(cornerRadius: 25))
                             .padding(.vertical, 4)
                     }
@@ -181,14 +277,9 @@ struct CategoryEditView: View {
                 categoriesPresented = true
             }) {
                 Text("Выбрать категорию")
-                    .font(regular17f)
-                    .foregroundColor(.gray900)
-                    .padding(.vertical, 8)
-                    .padding(.horizontal, 15)
-                    .background(Color.app_white)
-                    .cornerRadius(20)
-                    .shadow(color: Color.gray200.opacity(0.2), radius: 2, x: 1, y: 1)
             }
+            .buttonStyle(.bordered)
+            
             .popup(isPresented: $categoriesPresented) {
                 EditCategoriesView(popCategories: $categoriesPresented, selectedCategories: $user.categories)
             } customize: {

@@ -21,6 +21,8 @@ struct korusellApp: App {
         UITabBar.appearance().backgroundColor = UIColor(Color.gray10)
         /// Hides native TabBar
         UITabBar.appearance().isHidden = true
+        /// Hides TextFieldBackground
+//        UITextView.appearance().backgroundColor = .clear
     }
     
     

@@ -35,7 +35,8 @@ public struct ExpandableText: View {
         ZStack(alignment: .bottomTrailing){
             Group {
                 if #available(iOS 15.0, *) {
-                    Text(markdownText) + Text(expand ? "\n" : "")
+                                        /// need more tests
+                    Text(markdownText) + Text("\n")
                 } else {
                     Text(text)
                 }

@@ -68,7 +68,8 @@ struct ContactDetailsView: View {
                 )
         }
         .applyIf(contact.phone == userManager.user?.phone) { view in
-            view.navigationBarItems(trailing: Button(action: {
+            view.navigationBarItems(trailing:
+                                        Button(action: {
                 if editMode {
                     userManager.user = self.contact
                     userManager.updateUser()
@@ -84,7 +85,10 @@ struct ContactDetailsView: View {
             }) {
                 Text(editMode ? "Сохранить" : "Изменить")
                     .foregroundColor(offset > 0 ? .accentColor : .white)
-            })
+            }
+                .opacity(editMode && userManager.user == contact ? 0.5 : 1)
+                .disabled(editMode && userManager.user == contact)
+            )
         }
     }
 }

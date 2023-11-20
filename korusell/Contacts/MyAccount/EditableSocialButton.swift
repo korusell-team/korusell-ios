@@ -48,9 +48,7 @@ struct EditableSocialButton: View {
                     .clipShape(Rectangle())
                     .disabled(textField == "")
                 }
-                
             }
-            
             
             Spacer()
             
