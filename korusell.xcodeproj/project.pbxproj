@@ -67,8 +67,13 @@
 		2B181D752AAF1CF3001E6250 /* CachedAsyncImage in Frameworks */ = {isa = PBXBuildFile; productRef = 2B181D742AAF1CF3001E6250 /* CachedAsyncImage */; };
 		2B2B66B72AFA6807003195E9 /* ExpandableText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B66B62AFA6807003195E9 /* ExpandableText.swift */; };
 		2B2B66BB2AFCFE7D003195E9 /* EditContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B66BA2AFCFE7D003195E9 /* EditContactView.swift */; };
+		2B2B66BD2B0B84BF003195E9 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 2B2B66BC2B0B84BF003195E9 /* FirebaseStorage */; };
+		2B2B66BF2B0B866F003195E9 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B66BE2B0B866E003195E9 /* StorageManager.swift */; };
+		2B2B66C12B0CB89A003195E9 /* ContactImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B66C02B0CB89A003195E9 /* ContactImageView.swift */; };
+		2B2B66C32B0CB8DC003195E9 /* EditContactImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B66C22B0CB8DB003195E9 /* EditContactImageView.swift */; };
+		2B2B66C52B0CC6CB003195E9 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B66C42B0CC6CB003195E9 /* ImagePicker.swift */; };
 		2B345B702AB85A410025BF2C /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B345B6F2AB85A410025BF2C /* UserManager.swift */; };
-		2B345B722AB85C700025BF2C /* Firebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B345B712AB85C700025BF2C /* Firebase.swift */; };
+		2B345B722AB85C700025BF2C /* FirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B345B712AB85C700025BF2C /* FirestoreManager.swift */; };
 		2B345B752AB868B80025BF2C /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2B345B742AB868B80025BF2C /* FirebaseFirestoreSwift */; };
 		2B345B772ABB0C1E0025BF2C /* CategorySelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B345B762ABB0C1E0025BF2C /* CategorySelectionView.swift */; };
 		2B345B792ABB189A0025BF2C /* CitySelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B345B782ABB189A0025BF2C /* CitySelectionView.swift */; };
@@ -135,8 +140,12 @@
 		2B181D712AAF16F4001E6250 /* contacts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = contacts.json; sourceTree = "<group>"; };
 		2B2B66B62AFA6807003195E9 /* ExpandableText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableText.swift; sourceTree = "<group>"; };
 		2B2B66BA2AFCFE7D003195E9 /* EditContactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditContactView.swift; sourceTree = "<group>"; };
+		2B2B66BE2B0B866E003195E9 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
+		2B2B66C02B0CB89A003195E9 /* ContactImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactImageView.swift; sourceTree = "<group>"; };
+		2B2B66C22B0CB8DB003195E9 /* EditContactImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditContactImageView.swift; sourceTree = "<group>"; };
+		2B2B66C42B0CC6CB003195E9 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		2B345B6F2AB85A410025BF2C /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
-		2B345B712AB85C700025BF2C /* Firebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Firebase.swift; sourceTree = "<group>"; };
+		2B345B712AB85C700025BF2C /* FirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManager.swift; sourceTree = "<group>"; };
 		2B345B762ABB0C1E0025BF2C /* CategorySelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySelectionView.swift; sourceTree = "<group>"; };
 		2B345B782ABB189A0025BF2C /* CitySelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitySelectionView.swift; sourceTree = "<group>"; };
 		2B9489552AA831FE0039D5AC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -153,6 +162,7 @@
 				2B181D752AAF1CF3001E6250 /* CachedAsyncImage in Frameworks */,
 				256276042A80F00C006F0E39 /* FirebaseFirestore in Frameworks */,
 				256276022A80F00C006F0E39 /* FirebaseAuth in Frameworks */,
+				2B2B66BD2B0B84BF003195E9 /* FirebaseStorage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -217,6 +227,7 @@
 				259EAADA2AA09229006C207F /* BackButton.swift */,
 				2B04915D2AB48D3300A8F81E /* BlueButton.swift */,
 				2B2B66B62AFA6807003195E9 /* ExpandableText.swift */,
+				2B2B66C42B0CC6CB003195E9 /* ImagePicker.swift */,
 			);
 			name = Elements;
 			sourceTree = "<group>";
@@ -225,8 +236,10 @@
 			isa = PBXGroup;
 			children = (
 				259EAAD22A9CC857006C207F /* ContactDetailsView.swift */,
+				2B2B66C02B0CB89A003195E9 /* ContactImageView.swift */,
 				259EAAD52A9DEABA006C207F /* ContactDetailsInfo.swift */,
 				25174A522AA5F88C00024E1A /* SocialButton.swift */,
+				2B2B66C22B0CB8DB003195E9 /* EditContactImageView.swift */,
 				2B2B66BA2AFCFE7D003195E9 /* EditContactView.swift */,
 			);
 			path = ContactDetails;
@@ -314,8 +327,9 @@
 		25DB6CC62A0A5A0700660E99 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				2B345B712AB85C700025BF2C /* Firebase.swift */,
 				2B345B6F2AB85A410025BF2C /* UserManager.swift */,
+				2B345B712AB85C700025BF2C /* FirestoreManager.swift */,
+				2B2B66BE2B0B866E003195E9 /* StorageManager.swift */,
 				25DB6CC72A0A5AC500660E99 /* DataHelper.swift */,
 				253B84E92A0C59CE004FA223 /* Extensions.swift */,
 				256C97602A372B55003DD1B4 /* Design.swift */,
@@ -387,6 +401,7 @@
 				256276032A80F00C006F0E39 /* FirebaseFirestore */,
 				2B181D742AAF1CF3001E6250 /* CachedAsyncImage */,
 				2B345B742AB868B80025BF2C /* FirebaseFirestoreSwift */,
+				2B2B66BC2B0B84BF003195E9 /* FirebaseStorage */,
 			);
 			productName = korusell;
 			productReference = 25DB6CA92A0726C400660E99 /* korusell.app */;
@@ -460,6 +475,7 @@
 				25ADF3322A694438009A2B73 /* ClusterView.swift in Sources */,
 				253B84EA2A0C59CE004FA223 /* Extensions.swift in Sources */,
 				2B345B772ABB0C1E0025BF2C /* CategorySelectionView.swift in Sources */,
+				2B2B66BF2B0B866F003195E9 /* StorageManager.swift in Sources */,
 				2B04915E2AB48D3300A8F81E /* BlueButton.swift in Sources */,
 				253B84F22A0F18C0004FA223 /* CategoryView.swift in Sources */,
 				256275B12A7D0120006F0E39 /* SignInView.swift in Sources */,
@@ -477,6 +493,7 @@
 				256C97652A39EC0E003DD1B4 /* LabelsView.swift in Sources */,
 				2548C4182A94E45300211CC0 /* OTPView.swift in Sources */,
 				259EAACD2A975CCC006C207F /* City.swift in Sources */,
+				2B2B66C32B0CB8DC003195E9 /* EditContactImageView.swift in Sources */,
 				2596144A2A1233C000393712 /* ContactsController.swift in Sources */,
 				25174A532AA5F88C00024E1A /* SocialButton.swift in Sources */,
 				2B2B66B72AFA6807003195E9 /* ExpandableText.swift in Sources */,
@@ -495,16 +512,18 @@
 				256C97592A2C4954003DD1B4 /* Place.swift in Sources */,
 				253B84F82A0F7B00004FA223 /* FlexibleView.swift in Sources */,
 				253B84F62A0F5B3E004FA223 /* ContactListView.swift in Sources */,
-				2B345B722AB85C700025BF2C /* Firebase.swift in Sources */,
+				2B345B722AB85C700025BF2C /* FirestoreManager.swift in Sources */,
 				25ADF3362A694516009A2B73 /* ContentView.swift in Sources */,
 				253B84F02A0F18A8004FA223 /* CategoryListView.swift in Sources */,
 				25ADF3302A694438009A2B73 /* MapView.swift in Sources */,
+				2B2B66C12B0CB89A003195E9 /* ContactImageView.swift in Sources */,
 				253B84EC2A0CF3D6004FA223 /* AvatarView.swift in Sources */,
 				2B345B702AB85A410025BF2C /* UserManager.swift in Sources */,
 				253B84E62A0A614F004FA223 /* SearchBar.swift in Sources */,
 				259338092A29E22E00C7AF1B /* RoundedCorner.swift in Sources */,
 				259EAAD12A98AE4B006C207F /* ScreenHelper.swift in Sources */,
 				2B2B66BB2AFCFE7D003195E9 /* EditContactView.swift in Sources */,
+				2B2B66C52B0CC6CB003195E9 /* ImagePicker.swift in Sources */,
 				256C97632A372EAC003DD1B4 /* TestView.swift in Sources */,
 				253B84FA2A0F7F9E004FA223 /* LabelView.swift in Sources */,
 			);
@@ -761,6 +780,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2B181D732AAF1CF3001E6250 /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */;
 			productName = CachedAsyncImage;
+		};
+		2B2B66BC2B0B84BF003195E9 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 256276002A80F00C006F0E39 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
 		};
 		2B345B742AB868B80025BF2C /* FirebaseFirestoreSwift */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -9,7 +9,7 @@ import SwiftUI
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
-class Firebase {
+class FirestoreManager {
     let db = Firestore.firestore()
     
     func getUserByPhone(phone: String, completion: @escaping (Contact?) -> ()) {

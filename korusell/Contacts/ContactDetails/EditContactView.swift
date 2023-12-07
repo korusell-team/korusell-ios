@@ -7,6 +7,8 @@
 
 import SwiftUI
 import PopupView
+import PhotosUI
+import CachedAsyncImage
 
 struct EditContactView: View {
     @EnvironmentObject var userManager: UserManager
@@ -19,9 +21,11 @@ struct EditContactView: View {
     @State var citiesPresented: Bool = false
     
     @Binding var user: Contact
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: 30) {
+  
+
             Text("* Обязательное поле")
                 .font(regular15f)
                 .padding(.vertical, 30)
@@ -100,7 +104,6 @@ struct EditSocialButton: View {
             case .twitter: TextField("", text: $contact.twitter.bound)
             case .whatsApp: TextField("", text: $contact.whatsApp.bound)
             }
-            
         }()
         
         HStack(spacing: 20) {
@@ -122,7 +125,6 @@ struct EditSocialButton: View {
                     .font(semiBold18f)
             }
             Spacer()
-            
         }
         .padding(10)
         .background(Color.white)

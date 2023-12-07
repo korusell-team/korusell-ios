@@ -15,7 +15,7 @@ class UserManager: ObservableObject {
     @Published var isLoading: Bool = false
     
     let db = Firestore.firestore()
-    let fb = Firebase()
+    let fs = FirestoreManager()
     
     func handleUser() {
         self.isLoading = true
@@ -28,7 +28,7 @@ class UserManager: ObservableObject {
             
             getUser(phone: phone) {
                 if self.user == nil {
-                    self.fb.createUser(uid: uid, phone: phone) {
+                    self.fs.createUser(uid: uid, phone: phone) {
                         self.user = Contact(uid: uid, phone: phone, isPublic: false)
                         self.isLoading = false
                     }
@@ -43,7 +43,7 @@ class UserManager: ObservableObject {
     }
     
     func getUser(phone: String, completion: @escaping () -> ()) {
-        fb.getUserByPhone(phone: phone) { user in
+        fs.getUserByPhone(phone: phone) { user in
             self.user = user
             completion()
         }
@@ -51,7 +51,7 @@ class UserManager: ObservableObject {
     
     func updateUser() {
         if let user {
-            fb.updateUser(user: user) {
+            fs.updateUser(user: user) {
                 // hanlde
             }
         }

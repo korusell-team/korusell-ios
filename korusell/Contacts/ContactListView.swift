@@ -35,7 +35,7 @@ struct ContactListView: View {
                 ForEach(cc.contacts) { contact in
                     ZStack {
                         NavigationLink(tag: contact, selection: $selectedContact, destination: {
-                            ContactDetailsView(contact: contact)
+                            ContactDetailsView(user: contact)
                         }) {
                             EmptyView()
                         }

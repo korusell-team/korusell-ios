@@ -44,7 +44,7 @@ struct ContactsScreen: View {
                     trailing:
                         NavigationLink(destination: {
                             if let user = userManager.user {
-                                ContactDetailsView(contact: user)
+                                ContactDetailsView(user: user)
                             } else {
                                 Text("Упс... что то пошло не так... 👾")
                             }
