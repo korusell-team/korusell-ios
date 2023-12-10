@@ -93,7 +93,7 @@ struct TabBarBottomView: View {
     @ViewBuilder
     func tabButton(index: Int) -> some View {
         let item = tabs[index].0
-        let title = tabs[index].1
+//        let title = tabs[index].1
         
         Button {
             if vc.selectedIndex == index {

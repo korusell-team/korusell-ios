@@ -126,7 +126,7 @@ class ContactsController: ObservableObject {
             if self.selectedSubcategory == subCat {
                 self.selectedSubcategory = nil
                 if let selectedCategory {
-                    self.contacts = self.users.filter({ $0.categories.contains(selectedCategory.id) })
+                    self.contacts = self.users.filter({ $0.categories.contains(where: { $0.divider() == subCat.id.divider() }) })
                     /// never gonna happen ?
                 } else {
                     self.contacts = self.users
