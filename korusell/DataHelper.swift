@@ -8,7 +8,16 @@
 import Foundation
 import MapKit
 
-//let fakeUser = Contact(uid: "", name: "Сергей", surname: "Ли", bio: "\niOS", image: ["sergey-lee"], categories: ["IT"], subcategories: ["💻Программирование", "📱Приложения", "🍏iOS"], phone: "12312333")
+let dummyUser = Contact(
+    uid: "jFw6tzSYiJNxkCL3kDXT8zUXMyw2",
+    name: "Сергей",
+    surname: "Ли",
+    bio: "\niOS",
+    cities: [1,2,3,4,5],
+    image: ["https://firebasestorage.googleapis.com:443/v0/b/inkorea-bfee4.appspot.com/o/avatars%2FjFw6tzSYiJNxkCL3kDXT8zUXMyw2%2F106C775A-04ED-4B07-91E6-FFB233904284.jpeg?alt=media&token=a0516a74-3abf-405f-82b8-afc0bcf4b465"],
+    categories: [901,902,101],
+    phone: "+821083872508",
+    isPublic: true)
 
 
 //let DummyCategories: [Category] = [

@@ -82,7 +82,7 @@ struct ContactDetailsInfo: View {
 
             Divider().padding(.vertical, 10)
             
-            if let info = contact.info {
+            if let info = contact.info, contact.info != "" {
                 VStack(alignment: .leading, spacing: 6) {
                     Text("О себе:")
                         .bold()

@@ -80,6 +80,7 @@
 		2B9489562AA831FF0039D5AC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2B9489552AA831FE0039D5AC /* GoogleService-Info.plist */; };
 		2B9489582AA89FE50039D5AC /* PlacePoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9489572AA89FE50039D5AC /* PlacePoint.swift */; };
 		2BD124902B25609A004C4772 /* LoadingElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD1248F2B25609A004C4772 /* LoadingElement.swift */; };
+		2BD124922B25A4D1004C4772 /* MenuLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD124912B25A4D1004C4772 /* MenuLabelView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -152,6 +153,7 @@
 		2B9489552AA831FE0039D5AC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2B9489572AA89FE50039D5AC /* PlacePoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacePoint.swift; sourceTree = "<group>"; };
 		2BD1248F2B25609A004C4772 /* LoadingElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingElement.swift; sourceTree = "<group>"; };
+		2BD124912B25A4D1004C4772 /* MenuLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuLabelView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -337,6 +339,7 @@
 				253B84E92A0C59CE004FA223 /* Extensions.swift */,
 				256C97602A372B55003DD1B4 /* Design.swift */,
 				259EAAD02A98AE4B006C207F /* ScreenHelper.swift */,
+				2BD124912B25A4D1004C4772 /* MenuLabelView.swift */,
 			);
 			name = Shared;
 			sourceTree = "<group>";
@@ -507,6 +510,7 @@
 				2548C41B2A96005700211CC0 /* SessionView.swift in Sources */,
 				25DB6CCB2A0A5C1000660E99 /* Contact.swift in Sources */,
 				259EAAD62A9DEABA006C207F /* ContactDetailsInfo.swift in Sources */,
+				2BD124922B25A4D1004C4772 /* MenuLabelView.swift in Sources */,
 				2596144F2A124E5900393712 /* TrackableScrollView.swift in Sources */,
 				253B84F42A0F1B1A004FA223 /* Category.swift in Sources */,
 				2BD124902B25609A004C4772 /* LoadingElement.swift in Sources */,

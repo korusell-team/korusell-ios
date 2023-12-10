@@ -20,19 +20,26 @@ struct ContactDetailsView: View {
     @State var image: UIImage?
     @State var isLoading: Bool = false
     @State var url: URL? = nil
+    @Namespace private var animation
     
     var body: some View {
         VStack(spacing: 0) {
             ZStack {
-                TrackableScrollView(showIndicators: false, contentOffset: $offset) {
-                    if editMode {
-                        EditContactImageView(user: $user, image: $image, url: $url)
+                if editMode {
+                    Form {
+                        Section(header:
+                            EditContactImageView(user: $user, image: $image, url: $url, animation: animation)
+                        ) {}.textCase(nil)
+                        
                         EditContactView(user: $user)
-                    } else {
-                        ContactImageView(contact: user)
+                    }
+                } else {
+                    TrackableScrollView(showIndicators: false, contentOffset: $offset) {
+                        ContactImageView(contact: user, animation: animation)
                         ContactDetailsInfo(contact: user)
                     }
                 }
+                
                 if isLoading {
                     LoadingElement()
                 }
@@ -57,7 +64,7 @@ struct ContactDetailsView: View {
                         }
                     }) {
                         Text("Отмена")
-                            .foregroundColor(offset > 0 ? .accentColor : .white)
+                            .foregroundColor((offset > 0 || editMode) ? .accentColor : .white)
                     })
         }
         .applyIf(!editMode) { view in
@@ -74,7 +81,7 @@ struct ContactDetailsView: View {
                                     .frame(width: 10, height: 20)
                                 Text("Контакты")
                             }
-                            .foregroundColor(offset > 0 ? .accentColor : .white)
+                            .foregroundColor((offset > 0 || editMode) ? .accentColor : .white)
                         }
                     //                        BackButton(action: { presentationMode.wrappedValue.dismiss() }, title: "Контакты")
                 )
@@ -98,8 +105,8 @@ struct ContactDetailsView: View {
                     }
                 }
             }) {
-                Text(editMode ? "Сохранить" : "Изменить")
-                    .foregroundColor(offset > 0 ? .accentColor : .white)
+                Text(editMode ? "Готово" : "Изменить")
+                    .foregroundColor((offset > 0 || editMode) ? .accentColor : .white)
             }
                 .disabled(editMode && userManager.user == user && self.image == nil)
             )

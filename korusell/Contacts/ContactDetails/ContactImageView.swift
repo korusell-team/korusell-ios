@@ -12,6 +12,7 @@ struct ContactImageView: View {
     @State var page: Int = 0
     
     let contact: Contact
+    let animation: Namespace.ID
     
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -36,10 +37,10 @@ struct ContactImageView: View {
                                     image
                                         .resizable()
                                         .scaledToFill()
+                                        .matchedGeometryEffect(id: "avatar", in: animation)
                                     LinearGradient(colors: [.clear, .gray1100.opacity(0.8)], startPoint: .bottom, endPoint: .top)
                                         .frame(height: 120)
                                 }
-                                .transition(.scale(scale: 0.1, anchor: .center))
                             case .failure:
                                 Image(systemName: "photo")
                             @unknown default:

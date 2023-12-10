@@ -15,16 +15,16 @@ enum socialType: String, CaseIterable, Identifiable {
     
     var image: String {
         switch self {
-        case .kakao: return "ic-kakao"
         case .instagram: return "ic-instagram"
-        case .youtube: return "ic-youtube"
         case .telegram: return "ic-telegram"
+        case .youtube: return "ic-youtube"
         case .link: return "ic-link"
         case .tiktok: return "ic-tiktok"
+        case .kakao: return "ic-kakao"
+        case .whatsApp: return "ic-whatsapp"
         case .linkedIn: return "ic-linkedin"
         case .threads: return "ic-threads"
         case .twitter: return "ic-twitter"
-        case .whatsApp: return "ic-whatsapp"
         }
     }
     

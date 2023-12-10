@@ -15,10 +15,10 @@ struct EditContactImageView: View {
     @Binding var url: URL?
     
     @State var showImagePicker: Bool = false
+    let animation: Namespace.ID
     
     var body: some View {
         VStack {
-            ZStack(alignment: .bottom) {
                 ZStack(alignment: .top) {
                     if let image {
                         Image(uiImage: image)
@@ -34,6 +34,7 @@ struct EditContactImageView: View {
                                     image
                                         .resizable()
                                         .scaledToFill()
+                                        .matchedGeometryEffect(id: "avatar", in: animation)
                                 }
                             case .failure:
                                 ZStack {
@@ -45,23 +46,43 @@ struct EditContactImageView: View {
                         }
                         .ignoresSafeArea()
                     } ///else
-                    LinearGradient(colors: [.clear, .gray1100.opacity(0.8)], startPoint: .bottom, endPoint: .top)
-                        .frame(height: 120)
+                }
+            
+            .frame(width: Size.w(190), height: Size.w(190), alignment: .top)
+            .background(Color.app_white.opacity(0.01))
+            .cornerRadius(300)
+        
+//            .overlay(
+//                Image(systemName: "pencil.circle")
+//                    .resizable()
+//                    .scaledToFit()
+//                    .foregroundColor(.gray1000)
+//                    .frame(width: Size.w(30), height: Size.w(30))
+//                    .padding(4)
+//                    .background(Color.app_white)
+//                    .clipShape(Circle())
+//                    .shadow(radius: 1)
+//                    .padding(Size.w(10)), alignment: .bottomTrailing
+//            )
+            .onTapGesture {
+                showImagePicker = true
+            }
+            .sheet(isPresented: $showImagePicker) {
+                if user.id != nil {
+                    ImagePicker(
+                        image: $image)
                 }
             }
-            .frame(width: UIScreen.main.bounds.width, height: Size.w(390), alignment: .top)
-            .background(Color.app_white.opacity(0.01))
-            .cornerRadius(20)
+            .padding(.top, Size.safeArea().top + Size.w(40))
             
             HStack {
                 Button(action: {
                     showImagePicker = true
                 }) {
-                    Text("Изменить фото")
+                    Text("Выбрать фотографию")
                 }
-                .buttonStyle(.bordered)
                 .sheet(isPresented: $showImagePicker) {
-                    if let id = user.id {
+                    if user.id != nil {
                         ImagePicker(
                             image: $image)
                     }
@@ -73,5 +94,5 @@ struct EditContactImageView: View {
 }
 
 //#Preview {
-//    ContactImageView()
+//    return EditContactImageView(user: .constant(dummyUser), image: .constant(UIImage(named: "sergey-lee")), url: .constant(URL(string: "")), animation: animation)
 //}
