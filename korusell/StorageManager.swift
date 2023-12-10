@@ -11,45 +11,39 @@ import FirebaseStorage
 final class StorageManager {
     static let shared = StorageManager()
     private init() {}
-    
-//    private let storage = Storage.storage().reference()
-    
-//    func saveImage(data: Data) async throws -> (path: String, name: String) {
-//        let meta = StorageMetadata()
-//        meta.contentType = "image/jpeg"
-//        
-//        let path = "\(UUID().uuidString).jpg"
-//        let returnedMetaData = try await storage.child(path).putDataAsync(data, metadata: meta)
-//        
-//        guard let returnedPath = returnedMetaData.path, let returnedName = returnedMetaData.name else {
-//            throw URLError(.badServerResponse)
-//        }
-//        
-//        return (returnedPath, returnedName)
-//    }
+
     private func storage(dir: String, uid: String) -> StorageReference {
         Storage.storage().reference().child(dir).child(uid)
     }
     
-    func getUrlForImage(dir: String, uid: String, path: String) async throws -> URL {
+    func getPathForImage(path: String) -> StorageReference {
+        Storage.storage().reference(withPath: path)
+    }
+    
+    func getUrlForImage(dir: String, uid: String, path: String, small: Bool? = false) async throws -> URL {
         try await storage(dir: dir, uid: uid).child(path).downloadURL()
     }
     
-    func getData(dir: String, uid: String, path: String) async throws -> Data {
-        try await storage(dir: dir, uid: uid).child(path).data(maxSize: 3 * 1024 * 1024)
+//    func getData(dir: String, uid: String, path: String) async throws -> Data {
+//        try await storage(dir: dir, uid: uid).child(path).data(maxSize: 3 * 1024 * 1024)
+//    }
+    
+    func deleteImage(path: String) async throws {
+        try await getPathForImage(path: path).delete()
     }
     
     func saveProfileImage(image: UIImage, directory: String, uid: String) async throws -> (path: String, name: String, pathSmall: String, nameSmall: String)  {
        
         let path = storage(dir: directory, uid: uid).child("\(UUID().uuidString).jpeg")
-        let smallPath = storage(dir: directory, uid: uid).child("\(UUID().uuidString)-small.jpeg")
+        let smallPath = storage(dir: directory, uid: uid).child("\(UUID().uuidString).jpeg")
         
         // Resize the image to 200px in height with a custom extension
         let resizedImage = resizeImage(image: image, targetSize: CGSize(width: 1024, height: 1024))
+        let resizedSmallImage = resizeImage(image: image, targetSize: CGSize(width: 256, height: 256))
 
         // Convert the image into JPEG and compress the quality to reduce its size (from 0 to 1)
         let data = resizedImage!.jpegData(compressionQuality: 0.5)
-        let smallData = resizedImage!.jpegData(compressionQuality: 0.1)
+        let smallData = resizedSmallImage!.jpegData(compressionQuality: 0.5)
         let meta = StorageMetadata()
         meta.contentType = "image/jpeg"
         

@@ -18,6 +18,9 @@ struct Contact: Identifiable, Hashable, Codable {
     var info: String?
     var cities: [Int] = []
     var image: [String] = []
+    var imagePath: [String] = []
+    var smallImage: String?
+    var smallImagePath: String?
     var categories: [Int] = []
     var phone: String
     var updated: Date?

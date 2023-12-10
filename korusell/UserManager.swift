@@ -25,7 +25,7 @@ class UserManager: ObservableObject {
             let phone = user.phoneNumber ?? ""
             print(uid)
             print(phone)
-            
+            // TODO: Test it out!
             getUser(phone: phone) {
                 if self.user == nil {
                     self.fs.createUser(uid: uid, phone: phone) {
@@ -54,6 +54,34 @@ class UserManager: ObservableObject {
             fs.updateUser(user: user) {
                 // hanlde
             }
+        }
+    }
+    
+    func save(image: UIImage?, user: Contact) async throws {
+        do {
+            var savingUser = user
+            if let image = image, let id = savingUser.id {
+                /// deleting old images before saving new ones
+                if let path = savingUser.imagePath.first {
+                    try await StorageManager.shared.deleteImage(path: path)
+                }
+                if let path = savingUser.smallImagePath {
+                    try await StorageManager.shared.deleteImage(path: path)
+                }
+                let result = try await StorageManager.shared.saveProfileImage(image: image, directory: "avatars", uid: id)
+                let url = try await StorageManager.shared.getUrlForImage(dir: "avatars", uid: id, path: result.name)
+                let smallUrl = try await StorageManager.shared.getUrlForImage(dir: "avatars", uid: id, path: result.nameSmall)
+                /// change it for multiple images. If we delete some images we also should delete paths and urls for these images
+                savingUser.image = [url.absoluteString]
+                savingUser.smallImage = smallUrl.absoluteString
+                savingUser.imagePath = [result.path]
+                savingUser.smallImagePath = result.pathSmall
+                print("Image successfully saved!")
+            }
+            self.user = savingUser
+            self.updateUser()
+        } catch {
+            print(error.localizedDescription)
         }
     }
 }

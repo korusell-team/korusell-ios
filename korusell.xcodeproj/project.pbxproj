@@ -79,6 +79,7 @@
 		2B345B792ABB189A0025BF2C /* CitySelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B345B782ABB189A0025BF2C /* CitySelectionView.swift */; };
 		2B9489562AA831FF0039D5AC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2B9489552AA831FE0039D5AC /* GoogleService-Info.plist */; };
 		2B9489582AA89FE50039D5AC /* PlacePoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9489572AA89FE50039D5AC /* PlacePoint.swift */; };
+		2BD124902B25609A004C4772 /* LoadingElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD1248F2B25609A004C4772 /* LoadingElement.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -150,6 +151,7 @@
 		2B345B782ABB189A0025BF2C /* CitySelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitySelectionView.swift; sourceTree = "<group>"; };
 		2B9489552AA831FE0039D5AC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2B9489572AA89FE50039D5AC /* PlacePoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacePoint.swift; sourceTree = "<group>"; };
+		2BD1248F2B25609A004C4772 /* LoadingElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingElement.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -228,6 +230,7 @@
 				2B04915D2AB48D3300A8F81E /* BlueButton.swift */,
 				2B2B66B62AFA6807003195E9 /* ExpandableText.swift */,
 				2B2B66C42B0CC6CB003195E9 /* ImagePicker.swift */,
+				2BD1248F2B25609A004C4772 /* LoadingElement.swift */,
 			);
 			name = Elements;
 			sourceTree = "<group>";
@@ -506,6 +509,7 @@
 				259EAAD62A9DEABA006C207F /* ContactDetailsInfo.swift in Sources */,
 				2596144F2A124E5900393712 /* TrackableScrollView.swift in Sources */,
 				253B84F42A0F1B1A004FA223 /* Category.swift in Sources */,
+				2BD124902B25609A004C4772 /* LoadingElement.swift in Sources */,
 				25ADF32A2A694403009A2B73 /* PlacesScreen.swift in Sources */,
 				2548C4162A94B65F00211CC0 /* OnboardingView.swift in Sources */,
 				259EAAC92A97594C006C207F /* CitiesView.swift in Sources */,

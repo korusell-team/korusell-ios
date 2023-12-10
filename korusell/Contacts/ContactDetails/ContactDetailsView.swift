@@ -34,7 +34,7 @@ struct ContactDetailsView: View {
                     }
                 }
                 if isLoading {
-                    ProgressView()
+                    LoadingElement()
                 }
             }
         }
@@ -83,40 +83,26 @@ struct ContactDetailsView: View {
             view.navigationBarItems(trailing:
                                         Button(action: {
                 if editMode {
-                    save()
+                    Task {
+                        self.isLoading = true
+                        try await userManager.save(image: image, user: user)
+                        cc.getUsers()
+                        withAnimation {
+                            self.isLoading = false
+                            editMode = false
+                        }
+                    }
                 } else {
                     withAnimation {
                         editMode = true
                     }
                 }
-                
             }) {
                 Text(editMode ? "Сохранить" : "Изменить")
                     .foregroundColor(offset > 0 ? .accentColor : .white)
             }
                 .disabled(editMode && userManager.user == user && self.image == nil)
             )
-        }
-    }
-    
-    private func save() {
-        Task {
-            self.isLoading = true
-            if let image = image, let id = user.id {
-                implement multiple qualities images
-                let result = try await StorageManager.shared.saveProfileImage(image: image, directory: "avatars", uid: id)
-                print(result.path)
-                let url = try await StorageManager.shared.getUrlForImage(dir: "avatars", uid: id, path: result.name)
-                print(url.absoluteString)
-                self.user.image = [url.absoluteString]
-            }
-            userManager.user = self.user
-            userManager.updateUser()
-            cc.getUsers()
-            self.isLoading = false
-            withAnimation {
-                editMode = false
-            }
         }
     }
 }

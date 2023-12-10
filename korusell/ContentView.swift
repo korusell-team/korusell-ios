@@ -19,12 +19,7 @@ struct ContentView: View {
     var body: some View {
         ZStack {
             if userManager.isLoading {
-                VStack {
-                    ProgressView().progressViewStyle(CircularProgressViewStyle(tint: Color.white))
-                }
-                .frame(width: 50, height: 50)
-                .background(Blur(style: .systemUltraThinMaterialDark))
-                .cornerRadius(10)
+                LoadingElement()
             } else if !appOnboarded {
                 OnboardingView()
                     .transition(.move(edge: .trailing))

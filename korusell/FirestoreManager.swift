@@ -54,7 +54,17 @@ class FirestoreManager {
 //    }
     
     func createUser(uid: String, phone: String, completion: @escaping () -> Void) {
-        db.collection("users").document(uid).setData(["uid" : uid, "phone" : phone, "isPublic" : false, "cities": [String](), "image": [String](), "categories": [Int](), "updated": Date(), "created": Date()])
+        db.collection("users").document(uid).setData([
+            "uid" : uid,
+            "phone" : phone,
+            "isPublic" : false,
+            "cities": [String](),
+            "image": [String](),
+            "imagePath": [String](),
+            "categories": [Int](),
+            "updated": Date(),
+            "created": Date()
+        ])
         DispatchQueue.main.async {
             print("Successfully created user")
             completion()

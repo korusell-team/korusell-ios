@@ -14,7 +14,8 @@ struct AvatarView: View {
     var body: some View {
         ZStack {
             if !contact.image.isEmpty {
-                CachedAsyncImage(url: URL(string: contact.image.first!), urlCache: .imageCache) { phase in
+                let url = contact.smallImage ?? ""
+                CachedAsyncImage(url: URL(string: url), urlCache: .imageCache) { phase in
                                switch phase {
                                case .empty:
                                    ProgressView()
@@ -113,6 +114,5 @@ struct DetailsAvatarView: View {
 
 
 extension URLCache {
-    
     static let imageCache = URLCache(memoryCapacity: 512_000_000, diskCapacity: 10_000_000_000)
 }

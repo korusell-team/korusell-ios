@@ -91,18 +91,20 @@ struct EditSocialButton: View {
             }
         }()
         
+        let placeholder = "поле для ввода..."
+        
         let textField: TextField = {
             switch type {
-            case .kakao: TextField("", text: $contact.kakao.bound)
-            case .instagram: TextField("", text: $contact.instagram.bound)
-            case .youtube: TextField("", text: $contact.youtube.bound)
-            case .telegram: TextField("", text: $contact.telegram.bound)
-            case .link: TextField("", text: $contact.link.bound)
-            case .tiktok: TextField("", text: $contact.tiktok.bound)
-            case .linkedIn: TextField("", text: $contact.linkedIn.bound)
-            case .threads: TextField("", text: $contact.threads.bound)
-            case .twitter: TextField("", text: $contact.twitter.bound)
-            case .whatsApp: TextField("", text: $contact.whatsApp.bound)
+            case .kakao:        TextField(placeholder, text: $contact.kakao.bound)
+            case .instagram:    TextField(placeholder, text: $contact.instagram.bound)
+            case .youtube:      TextField(placeholder, text: $contact.youtube.bound)
+            case .telegram:     TextField(placeholder, text: $contact.telegram.bound)
+            case .link:         TextField(placeholder, text: $contact.link.bound)
+            case .tiktok:       TextField(placeholder, text: $contact.tiktok.bound)
+            case .linkedIn:     TextField(placeholder, text: $contact.linkedIn.bound)
+            case .threads:      TextField(placeholder, text: $contact.threads.bound)
+            case .twitter:      TextField(placeholder, text: $contact.twitter.bound)
+            case .whatsApp:     TextField(placeholder, text: $contact.whatsApp.bound)
             }
         }()
         
