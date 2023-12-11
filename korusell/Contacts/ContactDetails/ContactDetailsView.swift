@@ -26,10 +26,14 @@ struct ContactDetailsView: View {
         VStack(spacing: 0) {
             ZStack {
                 if editMode {
-                    Form {
-                        Section(header:
+                    List {
+                        Section {
                             EditContactImageView(user: $user, image: $image, url: $url, animation: animation)
-                        ) {}.textCase(nil)
+                                .listRowSeparator(.hidden)
+                        }
+                        .listRowInsets(EdgeInsets())
+                        .background(Color(UIColor.systemGroupedBackground))
+//                        ) {}.textCase(nil)
                         
                         EditContactView(user: $user)
                     }

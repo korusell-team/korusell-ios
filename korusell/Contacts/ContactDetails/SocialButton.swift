@@ -11,7 +11,7 @@ import UniformTypeIdentifiers
 enum socialType: String, CaseIterable, Identifiable {
     var id: String { return self.rawValue }
     
-    case kakao, instagram, youtube, telegram, link, tiktok, linkedIn, threads, twitter, whatsApp
+    case instagram, telegram, youtube, link, tiktok, kakao, whatsApp, linkedIn, threads, twitter
     
     var image: String {
         switch self {
@@ -137,7 +137,7 @@ struct SocialButtonView: View {
     var body: some View {
         HStack(spacing: 20) {
             ZStack {
-                Image(type.image)
+                Image(type.image + "-black")
                     .resizable()
                     .scaledToFit()
                     .opacity(0.7)

@@ -10,10 +10,11 @@ import PopupView
 import FirebaseFirestoreSwift
 
 struct ContactsScreen: View {
+    @EnvironmentObject var vc: SessionViewController
     @EnvironmentObject var cc: ContactsController
     @EnvironmentObject var userManager: UserManager
     @Namespace var namespace
-
+    @State var selectedContact: Contact? = nil
     @State var popCategories = false
     @State var popSubCategories = false
     @State var locationsPresented = false
@@ -27,7 +28,7 @@ struct ContactsScreen: View {
                         popSubCategories: $popSubCategories
                     ).padding(.top)
                     
-                    ContactListView()
+                    ContactListView(selectedContact: $selectedContact)
                 }
                 .ignoresSafeArea(edges: .bottom)
                 .navigationTitle("Контакты")
@@ -42,16 +43,21 @@ struct ContactsScreen: View {
                         },
                     
                     trailing:
-                        NavigationLink(destination: {
-                            if let user = userManager.user {
-                                ContactDetailsView(user: user)
-                            } else {
-                                Text("Упс... что то пошло не так... 👾")
+                        ZStack {
+                            if let contact = userManager.user {
+                                NavigationLink(tag: contact, selection: $selectedContact, destination: {
+                                    ContactDetailsView(user: contact)
+                                }) {
+                                    EmptyView()
+                                }
+                                .hidden()
+                                Image(systemName: "person.circle")
+                                    .foregroundColor(.gray900)
+                                    .onTapGesture {
+                                        self.selectedContact = userManager.user
+                                    }
                             }
-                        }) {
-                            Image(systemName: "person.circle")
-                                .foregroundColor(.gray900)
-                        }.disabled(userManager.user == nil)
+                        }
                 )
                 .padding(.top, 0.1)
                 .animation(.easeOut, value: cc.selectedCategory)
@@ -66,6 +72,11 @@ struct ContactsScreen: View {
 //                        .closeOnTapOutside(true)
 //                        .backgroundColor(.black.opacity(0.4))
 //                }
+                .onChange(of: selectedContact) { contact in
+                    withAnimation {
+                        vc.showBottomBar = contact == nil
+                    }
+                }
             }
         }
     }

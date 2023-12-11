@@ -11,7 +11,7 @@ import FirebaseFirestoreSwift
 struct ContactListView: View {
     @EnvironmentObject var cc: ContactsController
     @State var collapsed = false
-    @State var selectedContact: Contact? = nil
+    @Binding var selectedContact: Contact?
     let columns = [GridItem(.flexible())]
     
     var body: some View {

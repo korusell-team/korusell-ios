@@ -89,7 +89,7 @@ struct ContactView_Previews: PreviewProvider {
     static let cc = ContactsController()
     
     static var previews: some View {
-        ContactListView()
+        ContactListView(selectedContact: .constant(nil))
             .environmentObject(cc)
     }
 }

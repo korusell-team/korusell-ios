@@ -19,6 +19,7 @@ struct EditContactView: View {
     @State var editBioPresented: Bool = false
     @State var categoriesPresented: Bool = false
     @State var citiesPresented: Bool = false
+    @State var alertPresented: Bool = false
     
     @Binding var user: Contact
 
@@ -67,7 +68,8 @@ struct EditContactView: View {
                 TextField(text: $user.bio.bound) {
                     Text("Пару слов, туда - сюда")
                 }
-        }.textCase(nil)
+        }
+                .textCase(nil)
             
         Section(header: Text("О себе:")
             .font(semiBold18f)
@@ -75,35 +77,44 @@ struct EditContactView: View {
                 ,
                 footer: Text("В этой секции Вы можете выложиться по полной и описать Вашу деятельность большим полотном текста.")) {
             EditInfoView(info: $user.info)
-        }.textCase(nil)
+        }
+                .textCase(nil)
             
 //            AccTextField(title: "Заголовок*", placeholder: "Пару слов, туда - сюда", binding: $user.bio.bound, textLimit: 80)
             
 //            EditInfoView(info: $user.info)
             
-        Section(footer: 
-                    Text("Чтобы пользователи ближе узнали Вас или могли с Вами общаться в, удобном Вам, месте, Вы можете добавить аккаунты социальных сетей и мессенджеров")
-            .fixedSize(horizontal: false, vertical: true)
+        Section(header:
+                    Text("Соцсети и мессенджеры:")
+                        .font(semiBold18f)
+                        .foregroundColor(.gray1100)
+//                ,
+//            footer:
+//                    Text("Чтобы пользователи ближе узнали Вас или могли с Вами общаться в, удобном Вам, месте, Вы можете добавить аккаунты социальных сетей и мессенджеров")
         ) {
             ForEach(socialType.allCases, id: \.self.id) { type in
-                EditSocialButton(type: type, contact: $user)
+            EditSocialButton(type: type, contact: $user)
             }
         }
         .textCase(nil)
         
-        Button(action: userManager.signout) {
+        Button(action: {
+            alertPresented = true
+        }) {
             Text("Выйти")
                 .foregroundColor(.red)
                 .frame(maxWidth: .infinity, alignment: .center)
-            solve bug overlaying footer
-            alert and then exit
+        }
+        .alert(isPresented: $alertPresented) {
+            Alert(title: Text("Вы действительно хотите выйти?"),
+                  primaryButton: .default(Text("Отмена"), action: { alertPresented = false }),
+                  secondaryButton: .destructive(Text("Выйти"), action: userManager.signout))
         }
         
         Section(header: Text("")) {
-            EmptyView()
-            
         }
-        .padding(.bottom, 200)
+        .listRowInsets(EdgeInsets())
+        .background(Color(UIColor.systemGroupedBackground))
     }
 }
 
@@ -144,20 +155,20 @@ struct EditSocialButton: View {
         
         let textField: TextField = {
             switch type {
-            case .kakao:        TextField(placeholder, text: $contact.kakao.bound)
-            case .instagram:    TextField(placeholder, text: $contact.instagram.bound)
-            case .youtube:      TextField(placeholder, text: $contact.youtube.bound)
-            case .telegram:     TextField(placeholder, text: $contact.telegram.bound)
-            case .link:         TextField(placeholder, text: $contact.link.bound)
-            case .tiktok:       TextField(placeholder, text: $contact.tiktok.bound)
-            case .linkedIn:     TextField(placeholder, text: $contact.linkedIn.bound)
-            case .threads:      TextField(placeholder, text: $contact.threads.bound)
-            case .twitter:      TextField(placeholder, text: $contact.twitter.bound)
-            case .whatsApp:     TextField(placeholder, text: $contact.whatsApp.bound)
+            case .kakao:        TextField("id", text: $contact.kakao.bound)
+            case .instagram:    TextField("никнейм", text: $contact.instagram.bound)
+            case .youtube:      TextField("канал", text: $contact.youtube.bound)
+            case .telegram:     TextField("имя пользователя", text: $contact.telegram.bound)
+            case .link:         TextField("сайт (без https://)", text: $contact.link.bound)
+            case .tiktok:       TextField("id", text: $contact.tiktok.bound)
+            case .linkedIn:     TextField("профайл", text: $contact.linkedIn.bound)
+            case .threads:      TextField("никнейм", text: $contact.threads.bound)
+            case .twitter:      TextField("никнейм", text: $contact.twitter.bound)
+            case .whatsApp:     TextField("номер телефона", text: $contact.whatsApp.bound)
             }
         }()
         
-        
+    
         HStack{
             Image(type.image)
                 .resizable()
@@ -282,7 +293,7 @@ struct CityEditView: View {
         }) {
             HStack(alignment: .center) {
                 Text("Город")
-                    .padding(.trailing)
+                    .frame(width: Size.w(90), alignment: .leading)
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
                     ForEach(user.cities, id: \.self) { id in
@@ -330,8 +341,7 @@ struct CategoryEditView: View {
             HStack(alignment: .center) {
                 Text("Категория")
                     .lineLimit(1)
-                    .fixedSize(horizontal: true, vertical: true)
-                    .padding(.trailing)
+                    .frame(width: Size.w(90), alignment: .leading)
                 /// getting only sub categories
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
