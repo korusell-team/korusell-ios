@@ -19,9 +19,12 @@ struct ContactDetailsView: View {
     @State var offset: CGFloat = 0
     @State var image: UIImage?
     @State var isLoading: Bool = false
+    
     @State var url: URL? = nil
     @Namespace private var animation
     
+    @State var showAlert: Bool = false
+  
     var body: some View {
         VStack(spacing: 0) {
             ZStack {
@@ -52,6 +55,11 @@ struct ContactDetailsView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity).ignoresSafeArea()
         .background(Color.app_white)
         .navigationBarBackButtonHidden(true)
+        .alert(isPresented: $showAlert, content: {
+            Alert(title: Text("Чтобы сделать аккаунт публичным"), message: 
+                    Text("\n• Укажите имя\n• Загрузите фото\n• Заполните Био\n• Выберите категорию")
+            )
+        })
         .onAppear {
             self.url = URL(string: user.image.first ?? "")
         }
@@ -94,15 +102,7 @@ struct ContactDetailsView: View {
             view.navigationBarItems(trailing:
                                         Button(action: {
                 if editMode {
-                    Task {
-                        self.isLoading = true
-                        try await userManager.save(image: image, user: user)
-                        cc.getUsers()
-                        withAnimation {
-                            self.isLoading = false
-                            editMode = false
-                        }
-                    }
+                    save()
                 } else {
                     withAnimation {
                         editMode = true
@@ -114,6 +114,36 @@ struct ContactDetailsView: View {
             }
                 .disabled(editMode && userManager.user == user && self.image == nil)
             )
+        }
+    }
+    
+    private func save() {
+        if user.isPublic {
+            if user.image.isEmpty && image == nil {
+                showAlert = true
+                return
+            }
+            if user.name == nil || user.name?.isEmpty ?? true {
+                showAlert = true
+                return
+            }
+            if user.categories.isEmpty {
+                showAlert = true
+                return
+            }
+            if user.bio?.isEmpty ?? true {
+                showAlert = true
+                return
+            }
+        }
+        Task {
+            self.isLoading = true
+            try await userManager.save(image: image, user: user)
+            cc.getUsers()
+            withAnimation {
+                self.isLoading = false
+                editMode = false
+            }
         }
     }
 }
