@@ -12,10 +12,10 @@ struct OTPView: View {
     let animation: Namespace.ID
     @State var isFocused = false
     
-    let textBoxWidth: CGFloat = 40
-    let textBoxHeight: CGFloat = 50
-//    let textBoxWidth = UIScreen.main.bounds.width / 8
-//    let textBoxHeight = UIScreen.main.bounds.width / 8
+//    let textBoxWidth: CGFloat = 40
+//    let textBoxHeight: CGFloat = 50
+    let textBoxWidth = UIScreen.main.bounds.width / 8.5
+    let textBoxHeight = UIScreen.main.bounds.width / 7
     let spaceBetweenBoxes: CGFloat = 11
     let paddingOfBox: CGFloat = 1
     var textFieldOriginalWidth: CGFloat {
@@ -23,7 +23,6 @@ struct OTPView: View {
     }
     
     var body: some View {
-        VStack {
             ZStack {
                 HStack (spacing: spaceBetweenBoxes){
                     otpText(text: viewModel.otp1)
@@ -43,15 +42,14 @@ struct OTPView: View {
                     .accentColor(.clear)
                     .background(Color.clear)
                     .keyboardType(.numberPad)
-            }
-        }
+            }.frame(maxWidth: .infinity, alignment: .center)
     }
     
     private func otpText(text: String) -> some View {
         return Text(text)
             .font(.title)
             .frame(width: textBoxWidth, height: textBoxHeight)
-            .background(Color.app_white)
+            .background(Color.gray100)
             .padding(paddingOfBox)
             .cornerRadius(10)
     }

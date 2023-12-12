@@ -7,25 +7,26 @@
 
 import SwiftUI
 
-struct BlueButton: View {
+struct ActionButton: View {
     let title: String
     let action: () -> ()
     
     var body: some View {
         Button(action: action) {
             Text(title)
-                .font(regular13f)
+                .font(semiBold18f)
                 .foregroundColor(.app_white)
-                .padding(12)
-                .background(Color.action)
+                .padding(.vertical, 18)
+                .frame(maxWidth: .infinity)
+                .background(Color.gray900)
                 .cornerRadius(18)
         }
     }
 }
 
-struct BlueButton_Previews: PreviewProvider {
+struct ActionButton_Previews: PreviewProvider {
     static var previews: some View {
-        BlueButton(title: "Blue Button") {
+        ActionButton(title: "Blue Button") {
             print("hello!")
         }
     }

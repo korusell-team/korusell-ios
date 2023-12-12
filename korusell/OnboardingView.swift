@@ -34,7 +34,7 @@ struct OnboardingView: View {
             
             VStack {
                 HStack {
-                    BlueButton(title: "Пропустить") {
+                    ActionButton(title: "Пропустить") {
                         appOnboarded = true
                     }
                 }

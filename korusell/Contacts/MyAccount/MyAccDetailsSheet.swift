@@ -76,7 +76,7 @@ struct MyAccDetailsSheet: View {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
                         if user.categories.isEmpty {
-                            BlueButton(title: "Выберите категорию") {
+                            ActionButton(title: "Выберите категорию") {
                                 categoriesPresented = true
                             }
                         } else {
@@ -132,7 +132,7 @@ struct MyAccDetailsSheet: View {
                         }
                     }
                 } else {
-                    BlueButton(title: "Выберите город", action: {
+                    ActionButton(title: "Выберите город", action: {
                         citiesPresented = true
                     })
                 }

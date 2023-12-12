@@ -22,9 +22,24 @@ struct SignInView: View {
     @Namespace private var animation
     
     var body: some View {
-        NavigationView {
             ZStack {
-                VStack {
+                VStack(alignment: .leading) {
+                    Spacer()
+                    
+                    Image(systemName: showCodeWindow ? "lock.fill" : "iphone")
+                        .font(bold30f)
+                        .symbolRenderingMode(.monochrome)
+                        .foregroundColor(.gray500)
+                        .padding()
+                        .background(Color.gray100)
+                        .clipShape(Circle())
+                        .padding(.bottom)
+                    Text(showCodeWindow ? "Введите шестизначный код полученный в SMS" : "Войдите или Зарегистрируйтесь указав номер телефона")
+                        .font(light14f)
+                        .multilineTextAlignment(.leading)
+                        .foregroundColor(.gray600)
+                        .padding(.bottom)
+                    
                     if !showCodeWindow {
                         HStack {
                             Text("( 010 ) ")
@@ -39,8 +54,8 @@ struct SignInView: View {
                             Spacer()
                         }
                         .padding()
-                        .background(Color.app_white)
-                        .cornerRadius(25)
+                        .background(Color.gray100)
+                        .cornerRadius(15)
                         .matchedGeometryEffect(id: "field", in: animation)
                         
                     } else {
@@ -58,25 +73,32 @@ struct SignInView: View {
                         .padding(.horizontal, 25)
                     }
                     
-                    BlueButton(title: showCodeWindow ? "Войти" : "Получить СМС", action: onButtonTap)
-                        .padding()
-                        .disabled(!showCodeWindow && phone.count < 11)
-                        .opacity(!showCodeWindow && phone.count < 11 ? 0.5 : 1)
+                    Spacer()
+                    
+                    HStack {
+                        ActionButton(title: showCodeWindow ? "Войти" : "Далее", action: onButtonTap)
+                            .padding()
+                            .disabled(!showCodeWindow && phone.count < 11)
+                            .opacity(!showCodeWindow && phone.count < 11 ? 0.5 : 1)
+                    }.frame(maxWidth: .infinity, alignment: .center)
+                    
+                    if showCodeWindow {
+                        HStack {
+                            Button(action: signIn) {
+                                Text("Отправить код еще раз")
+                                    .foregroundColor(.gray700)
+                            }
+                        }
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .padding(.vertical)
+                    }
                 }
                 
-                if showCodeWindow {
-                    VStack {
-                        Spacer()
-                        Button(action: signIn) {
-                            Text("Отправить код еще раз")
-                        }
-                    }
-                    .padding(20)
-                }
+                
             }
             .padding(.horizontal, 22)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(Color.bg)
+            .background(Color.gray50)
             .onChange(of: viewModel.otpField) { _ in
                 resetError()
             }
@@ -84,7 +106,6 @@ struct SignInView: View {
                resetError()
             }
             .animation(.default, value: error)
-        }
     }
     
     private func resetError() {
@@ -160,6 +181,9 @@ struct SignInView: View {
 struct SignInView_Previews: PreviewProvider {
     static var previews: some View {
         SignInView()
+            .environmentObject(UserManager())
+//        @EnvironmentObject var userManager:
+//        @StateObject var viewModel = OTPViewModel()
     }
 }
 

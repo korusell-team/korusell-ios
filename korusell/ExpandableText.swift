@@ -33,14 +33,7 @@ public struct ExpandableText: View {
     }
     public var body: some View {
         ZStack(alignment: .bottomTrailing){
-            Group {
-                if #available(iOS 15.0, *) {
-                                        /// need more tests
-                    Text(markdownText) + Text("\n")
-                } else {
-                    Text(text)
-                }
-            }
+            (Text(markdownText) + Text("\n"))
                 .font(font)
                 .foregroundColor(foregroundColor)
                 .lineLimit(expand ? 60 : lineLimit)

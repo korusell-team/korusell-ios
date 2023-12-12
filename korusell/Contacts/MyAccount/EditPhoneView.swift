@@ -33,7 +33,7 @@ struct EditPhoneView: View {
             .padding(.horizontal, 30)
             .padding()
             
-            BlueButton(title: "Сохранить") {
+            ActionButton(title: "Сохранить") {
                 let properPhone = "+8210" + self.phone.replacingOccurrences(of: " - ", with: "")
                 userManager.user!.phone = properPhone
                 editPhonePresented = false

@@ -63,6 +63,7 @@
 		2B04915C2AB32D2900A8F81E /* EditPhoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04915B2AB32D2900A8F81E /* EditPhoneView.swift */; };
 		2B04915E2AB48D3300A8F81E /* BlueButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04915D2AB48D3300A8F81E /* BlueButton.swift */; };
 		2B0491602AB495C000A8F81E /* EditableSocialButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04915F2AB495C000A8F81E /* EditableSocialButton.swift */; };
+		2B0A6B4F2B286DEB005BB5F0 /* cats.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B0A6B4E2B286DEB005BB5F0 /* cats.json */; };
 		2B181D722AAF16F4001E6250 /* contacts.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B181D712AAF16F4001E6250 /* contacts.json */; };
 		2B181D752AAF1CF3001E6250 /* CachedAsyncImage in Frameworks */ = {isa = PBXBuildFile; productRef = 2B181D742AAF1CF3001E6250 /* CachedAsyncImage */; };
 		2B2B66B72AFA6807003195E9 /* ExpandableText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B66B62AFA6807003195E9 /* ExpandableText.swift */; };
@@ -139,6 +140,7 @@
 		2B04915B2AB32D2900A8F81E /* EditPhoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPhoneView.swift; sourceTree = "<group>"; };
 		2B04915D2AB48D3300A8F81E /* BlueButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueButton.swift; sourceTree = "<group>"; };
 		2B04915F2AB495C000A8F81E /* EditableSocialButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableSocialButton.swift; sourceTree = "<group>"; };
+		2B0A6B4E2B286DEB005BB5F0 /* cats.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = cats.json; sourceTree = "<group>"; };
 		2B181D712AAF16F4001E6250 /* contacts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = contacts.json; sourceTree = "<group>"; };
 		2B2B66B62AFA6807003195E9 /* ExpandableText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableText.swift; sourceTree = "<group>"; };
 		2B2B66BA2AFCFE7D003195E9 /* EditContactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditContactView.swift; sourceTree = "<group>"; };
@@ -374,6 +376,7 @@
 				2B0491502AB07EAE00A8F81E /* categories.json */,
 				2B181D712AAF16F4001E6250 /* contacts.json */,
 				2B0491522AB0851600A8F81E /* cities.json */,
+				2B0A6B4E2B286DEB005BB5F0 /* cats.json */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -459,6 +462,7 @@
 				2B0491532AB0851600A8F81E /* cities.json in Resources */,
 				25DB6CB42A0726C600660E99 /* Preview Assets.xcassets in Resources */,
 				2B9489562AA831FF0039D5AC /* GoogleService-Info.plist in Resources */,
+				2B0A6B4F2B286DEB005BB5F0 /* cats.json in Resources */,
 				2B181D722AAF16F4001E6250 /* contacts.json in Resources */,
 				2B0491512AB07EAE00A8F81E /* categories.json in Resources */,
 				25DB6CB12A0726C600660E99 /* Assets.xcassets in Resources */,
