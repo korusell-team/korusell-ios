@@ -25,6 +25,8 @@ struct ContentView: View {
                     .transition(.move(edge: .trailing))
             } else if userManager.user == nil {
                 SignInView()
+            } else if !userManager.isOnboarded {
+                UserOnboarding()
             } else {
                 SessionView()
             }

@@ -53,7 +53,7 @@ class FirestoreManager {
 //        }
 //    }
     
-    func createUser(uid: String, phone: String, completion: @escaping () -> Void) {
+    func createUser(uid: String, phone: String, completion: @escaping (Contact) -> Void) {
         db.collection("users").document(uid).setData([
             "uid" : uid,
             "phone" : phone,
@@ -67,7 +67,8 @@ class FirestoreManager {
         ])
         DispatchQueue.main.async {
             print("Successfully created user")
-            completion()
+            let createdUser = Contact(uid: uid, cities: [], image: [], imagePath: [], categories: [], phone: phone, updated: Date(), created: Date(), isPublic: false)
+            completion(createdUser)
         }
     }
     

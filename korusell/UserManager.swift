@@ -13,6 +13,7 @@ class UserManager: ObservableObject {
     @Published var authUser: FirebaseAuth.User? = nil
     @Published var user: Contact? = nil
     @Published var isLoading: Bool = false
+    @Published var isOnboarded: Bool = false
     
     let db = Firestore.firestore()
     let fs = FirestoreManager()
@@ -28,12 +29,14 @@ class UserManager: ObservableObject {
             // TODO: Test it out!
             getUser(phone: phone) {
                 if self.user == nil {
-                    self.fs.createUser(uid: uid, phone: phone) {
-                        self.user = Contact(uid: uid, phone: phone, isPublic: false)
+                    self.fs.createUser(uid: uid, phone: phone) { createdUser in
+                        self.user = createdUser
+                        self.isOnboarded = false
                         self.isLoading = false
                     }
                 } else {
-                    print("Successfully got user")
+                    self.isOnboarded = true
+                    print("Successfully got user from DB")
                     self.isLoading = false
                 }
             }
@@ -60,7 +63,8 @@ class UserManager: ObservableObject {
     func save(image: UIImage?, user: Contact) async throws {
         do {
             var savingUser = user
-            if let image = image, let id = savingUser.id {
+            if let image = image {
+                let id = user.uid
                 /// deleting old images before saving new ones
                 if let path = savingUser.imagePath.first {
                     try await StorageManager.shared.deleteImage(path: path)
