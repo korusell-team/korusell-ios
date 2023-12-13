@@ -32,14 +32,14 @@ struct EditContactView: View {
 //                .padding(.vertical, 30)
             
             Section(footer: Text("Сделайте Ваш аккаунт публичным, чтобы пользователи могли найти Вас в списке")) {
-                Toggle(isOn: $user.isPublic){
+                Toggle(isOn: $user.isPublic) {
                     MenuLabelView(title: "Публичный аккаунт", icon: "eyes", bgColor: Color.blue)
                 }
             }
             
             Section(footer: Text("Доступность номера телефона позволяет позвонить Вам или отправить SMS в один тап прямо из Приложения")) {
                 Toggle(isOn: $user.phoneIsAvailable.bound) {
-                    MenuLabelView(title: "Показать номер телефона", icon: "phone.fill", bgColor: Color.green)
+                        MenuLabelView(title: "Показать номер телефона.", subtitle: user.phone, icon: "phone.fill", bgColor: Color.green)
                 }
             }
             
