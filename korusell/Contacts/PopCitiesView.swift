@@ -13,13 +13,25 @@ struct PopCitiesView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            Text("ГОРОДА")
+            HStack {
+                Text("ГОРОДА")
+                    .font(bold17f)
+                    .bold()
+                Spacer()
+                Button(action: {
+                    popCities = false
+                }) {
+                    Image(systemName: "xmark.circle.fill")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 20, height: 20)
+                }
+            }
                 .foregroundColor(.gray1000)
-                .font(bold17f)
-                .bold()
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.horizontal, 22)
-                .padding(.top, 22)
+                .padding(.horizontal, 10)
+                .padding(.top, 10)
+                .padding(.bottom, 15)
         
             FlexibleView(availableWidth: UIScreen.main.bounds.width - 30, data: cc.cities.sorted(by: { $0.id < $1.id }), spacing: 10, alignment: .leading) { city in
                     Button(action: {
