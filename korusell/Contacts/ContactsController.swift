@@ -144,20 +144,21 @@ class ContactsController: ObservableObject {
     }
     
     func triggerCityFilter() {
-//        guard !self.selectedCities.isEmpty && !self.selectedCities.contains(0) else { return }
-        if let selectedSubcategory {
-            if let selectedCategory {
-                self.contacts = cityFilter(contacts:self.users.filter({ $0.categories.contains(where: { $0.divider() == selectedSubcategory.id.divider() }) }))
-                /// never gonna happen ?
+        withAnimation(.interpolatingSpring(stiffness: 200, damping: 20)) {
+            if let selectedSubcategory {
+                if let selectedCategory {
+                    self.contacts = cityFilter(contacts:self.users.filter({ $0.categories.contains(where: { $0.divider() == selectedSubcategory.id.divider() }) }))
+                    /// never gonna happen ?
+                } else {
+                    self.contacts = cityFilter(contacts: self.users)
+                }
             } else {
-                self.contacts = cityFilter(contacts: self.users)
-            }
-        } else {
-            if let selectedCategory {
-                self.contacts = cityFilter(contacts:self.users.filter({ $0.categories.contains(where: { $0.divider() == selectedCategory.id.divider() }) }))
-                /// never gonna happen ?
-            } else {
-                self.contacts = cityFilter(contacts: self.users)
+                if let selectedCategory {
+                    self.contacts = cityFilter(contacts:self.users.filter({ $0.categories.contains(where: { $0.divider() == selectedCategory.id.divider() }) }))
+                    /// never gonna happen ?
+                } else {
+                    self.contacts = cityFilter(contacts: self.users)
+                }
             }
         }
     }
@@ -168,9 +169,9 @@ class ContactsController: ObservableObject {
             
             
             return contacts.filter({
-                print(self.selectedCities.contains($0.cities))
-                print(self.selectedCities)
-                print($0.cities)
+//                print(self.selectedCities.contains($0.cities))
+//                print(self.selectedCities)
+//                print($0.cities)
                 return self.selectedCities.contains($0.cities)
             })
         } else {

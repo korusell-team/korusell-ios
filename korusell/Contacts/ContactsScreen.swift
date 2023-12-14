@@ -38,7 +38,7 @@ struct ContactsScreen: View {
                         Button(action: {
                             popCities.toggle()
                         }) {
-                            Image(systemName: "mappin.circle")
+                            Image(systemName: cc.selectedCities.isEmpty ? "mappin.circle" : "mappin.circle.fill")
                                 .foregroundColor(.gray900)
                         },
                     

@@ -55,19 +55,12 @@ struct ContactListView: View {
         }
         .listStyle(.plain)
         .refreshable {
+            //                if cc.selectedCategory == nil && (cc.selectedCities.isEmpty || cc.selectedCities.contains(0)) {
             if cc.selectedCategory == nil {
-                Task {
-                    print("1")
-                    cc.getCats()
-                    print("2")
-                    cc.getUsers()
-                    print("3")
-                    cc.getCities()
-                    print("4")
-                    cc.triggerCityFilter()
-                    print("5")
-                }
-                
+                cc.selectedCities = []
+                cc.getCats()
+                cc.getUsers()
+                cc.getCities()
                 print("refreshing...")
             }
         }
