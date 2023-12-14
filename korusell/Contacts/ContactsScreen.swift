@@ -17,7 +17,7 @@ struct ContactsScreen: View {
     @State var selectedContact: Contact? = nil
     @State var popCategories = false
     @State var popSubCategories = false
-    @State var locationsPresented = false
+    @State var popCities = false
     
     var body: some View {
         NavigationView {
@@ -36,7 +36,7 @@ struct ContactsScreen: View {
                 .navigationBarItems(
                     leading:
                         Button(action: {
-                            locationsPresented.toggle()
+                            popCities.toggle()
                         }) {
                             Image(systemName: "mappin.circle")
                                 .foregroundColor(.gray900)
@@ -62,16 +62,21 @@ struct ContactsScreen: View {
                 .padding(.top, 0.1)
                 .animation(.easeOut, value: cc.selectedCategory)
                 .background(Color.bg)
-//                .popup(isPresented: $locationsPresented) {
-//                    CitiesView(selectedCity: $cc.selectedCity)
-//                } customize: {
-//                    $0
-//                        .type(.toast)
-//                        .position(.bottom)
-//                        .closeOnTap(false)
-//                        .closeOnTapOutside(true)
-//                        .backgroundColor(.black.opacity(0.4))
-//                }
+                .onChange(of: popCities) { bool in
+                    if !bool {
+                        cc.triggerCityFilter()
+                    }
+                }
+                .popup(isPresented: $popCities) {
+                    PopCitiesView(popCities: $popCities)
+                } customize: {
+                    $0
+                        .type (.floater())
+                        .position(.top)
+                        .dragToDismiss(true)
+                        .closeOnTapOutside(true)
+                        .backgroundColor(.black.opacity(0.2))
+                }
                 .onChange(of: selectedContact) { contact in
                     withAnimation {
                         vc.showBottomBar = contact == nil
@@ -80,6 +85,7 @@ struct ContactsScreen: View {
             }
         }
     }
+
 }
 
 struct ContactsScreen_Previews: PreviewProvider {

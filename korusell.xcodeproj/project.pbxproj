@@ -65,6 +65,7 @@
 		2B0491602AB495C000A8F81E /* EditableSocialButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04915F2AB495C000A8F81E /* EditableSocialButton.swift */; };
 		2B0A6B4F2B286DEB005BB5F0 /* cats.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B0A6B4E2B286DEB005BB5F0 /* cats.json */; };
 		2B0A6B512B29C5CB005BB5F0 /* UserOnboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0A6B502B29C5CA005BB5F0 /* UserOnboarding.swift */; };
+		2B0A6B532B2AFD6C005BB5F0 /* PopCitiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0A6B522B2AFD6B005BB5F0 /* PopCitiesView.swift */; };
 		2B181D722AAF16F4001E6250 /* contacts.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B181D712AAF16F4001E6250 /* contacts.json */; };
 		2B181D752AAF1CF3001E6250 /* CachedAsyncImage in Frameworks */ = {isa = PBXBuildFile; productRef = 2B181D742AAF1CF3001E6250 /* CachedAsyncImage */; };
 		2B2B66B72AFA6807003195E9 /* ExpandableText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B66B62AFA6807003195E9 /* ExpandableText.swift */; };
@@ -143,6 +144,7 @@
 		2B04915F2AB495C000A8F81E /* EditableSocialButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableSocialButton.swift; sourceTree = "<group>"; };
 		2B0A6B4E2B286DEB005BB5F0 /* cats.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = cats.json; sourceTree = "<group>"; };
 		2B0A6B502B29C5CA005BB5F0 /* UserOnboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserOnboarding.swift; sourceTree = "<group>"; };
+		2B0A6B522B2AFD6B005BB5F0 /* PopCitiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopCitiesView.swift; sourceTree = "<group>"; };
 		2B181D712AAF16F4001E6250 /* contacts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = contacts.json; sourceTree = "<group>"; };
 		2B2B66B62AFA6807003195E9 /* ExpandableText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableText.swift; sourceTree = "<group>"; };
 		2B2B66BA2AFCFE7D003195E9 /* EditContactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditContactView.swift; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 			children = (
 				253B84F12A0F18C0004FA223 /* CategoryView.swift */,
 				253B84EF2A0F18A8004FA223 /* CategoryListView.swift */,
+				259EAAC82A97594C006C207F /* CitiesView.swift */,
 			);
 			path = _deprecated;
 			sourceTree = "<group>";
@@ -314,8 +317,8 @@
 				253B84F52A0F5B3E004FA223 /* ContactListView.swift */,
 				253B84E72A0BA0A9004FA223 /* ContactView.swift */,
 				259EAAC52A96318B006C207F /* PopCategoriesView.swift */,
+				2B0A6B522B2AFD6B005BB5F0 /* PopCitiesView.swift */,
 				259EAAD42A9DEA8C006C207F /* ContactDetails */,
-				259EAAC82A97594C006C207F /* CitiesView.swift */,
 				253B84EB2A0CF3D6004FA223 /* AvatarView.swift */,
 				259614492A1233C000393712 /* ContactsController.swift */,
 			);
@@ -504,6 +507,7 @@
 				2B04915C2AB32D2900A8F81E /* EditPhoneView.swift in Sources */,
 				256C97612A372B55003DD1B4 /* Design.swift in Sources */,
 				25ADF3342A694438009A2B73 /* PlaceMarker.swift in Sources */,
+				2B0A6B532B2AFD6C005BB5F0 /* PopCitiesView.swift in Sources */,
 				256C97652A39EC0E003DD1B4 /* LabelsView.swift in Sources */,
 				2548C4182A94E45300211CC0 /* OTPView.swift in Sources */,
 				259EAACD2A975CCC006C207F /* City.swift in Sources */,

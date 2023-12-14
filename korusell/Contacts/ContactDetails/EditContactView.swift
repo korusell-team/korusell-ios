@@ -316,7 +316,7 @@ struct CityEditView: View {
             .foregroundColor(.gray1100)
             .background(Color.white.opacity(0.1))
             .popup(isPresented: $citiesPresented) {
-                PopCitiesView(user: $user, popCities: $citiesPresented)
+                EditPopCitiesView(user: $user, popCities: $citiesPresented)
             } customize: {
                 $0
                     .type (.floater())

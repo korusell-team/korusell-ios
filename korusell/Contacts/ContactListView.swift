@@ -16,7 +16,7 @@ struct ContactListView: View {
     
     var body: some View {
         List {
-            if cc.contacts.isEmpty && cc.selectedCategory == nil && cc.selectedSubcategory == nil {
+            if cc.contacts.isEmpty && cc.selectedCategory == nil && cc.selectedSubcategory == nil && cc.selectedCities.isEmpty {
                 VStack(spacing: 15) {
                     Text("🙈 Список пуст...")
                     Text("Потяни 👇 вниз чтобы обновить")
@@ -56,8 +56,18 @@ struct ContactListView: View {
         .listStyle(.plain)
         .refreshable {
             if cc.selectedCategory == nil {
-                cc.getCats()
-                cc.getUsers()
+                Task {
+                    print("1")
+                    cc.getCats()
+                    print("2")
+                    cc.getUsers()
+                    print("3")
+                    cc.getCities()
+                    print("4")
+                    cc.triggerCityFilter()
+                    print("5")
+                }
+                
                 print("refreshing...")
             }
         }

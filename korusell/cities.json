@@ -1,37 +1,51 @@
 [
     {
-        "ru": "Сеул",
-        "en": "Seoul",
-        "ko": "서울",
-    },
-    {
-        "ru": "Ансан",
-        "en": "Ansan",
-        "ko": "안산",
-    },
-    {
-        "ru": "Инчхон",
+        "__id__": "2ZNjW84Bc88qOBNXwLTo",
         "en": "Incheon",
+        "id": 3,
         "ko": "인천",
+        "ru": "Инчхон"
     },
     {
-        "ru": "Сувон",
-        "en": "Suwon",
-        "ko": "수원",
+        "__id__": "95zesIT9Gyem0YCK5G0F",
+        "en": "Ansan",
+        "id": 2,
+        "ko": "안산",
+        "ru": "Ансан"
     },
     {
-        "ru": "Хвасонг",
+        "__id__": "KTORJBmirUaJGJEhbF43",
         "en": "Hwaseong",
+        "id": 7,
         "ko": "화성",
+        "ru": "Хвасонг"
     },
     {
-        "ru": "Пусан",
-        "en": "Busan",
-        "ko": "부산",
+        "__id__": "jhcIqaNIz3GOEWCaIZUo",
+        "en": "Suwon",
+        "id": 5,
+        "ko": "수원",
+        "ru": "Сувон"
     },
     {
-        "ru": "Кванджу",
+        "__id__": "q6iPiP6yUa6x9d1y76PI",
         "en": "Gwangju",
+        "id": 6,
         "ko": "광주",
+        "ru": "Кванджу"
     },
+    {
+        "__id__": "wW3kLewdlxU6YxOEAUzb",
+        "en": "Busan",
+        "id": 4,
+        "ko": "부산",
+        "ru": "Пусан"
+    },
+    {
+        "__id__": "z870uQ2e4zjPxwPMy1zS",
+        "en": "Seoul",
+        "id": 1,
+        "ko": "서울",
+        "ru": "Сеул"
+    }
 ]

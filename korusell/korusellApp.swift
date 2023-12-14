@@ -23,6 +23,9 @@ struct korusellApp: App {
         UITabBar.appearance().isHidden = true
         /// Hides TextFieldBackground
 //        UITextView.appearance().backgroundColor = .clear
+        
+/// use it for app onboarding tests
+//        appOnboarded = false
     }
     
     

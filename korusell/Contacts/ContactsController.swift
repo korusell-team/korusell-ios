@@ -12,7 +12,7 @@ class ContactsController: ObservableObject {
     @Published var searchFocused: Bool = false
     @Published var selectedSubcategory: Category? = nil
     @Published var selectedCategory: Category? = nil
-    @Published var selectedCity: String? = nil
+    @Published var selectedCities: [Int] = []
     @Published var openAllCategories = false
     
     /// all categories
@@ -66,12 +66,15 @@ class ContactsController: ObservableObject {
                     print("No cities! 🏙️")
                     return
                 }
-                
+                guard !documents.isEmpty else {
+                    print("No cities! 🏙️")
+                    return
+                }
                 self.cities = documents.compactMap { queryDocumentSnapshot -> City? in
                     do {
                         return try queryDocumentSnapshot.data(as: City.self)
                     } catch {
-                        print("Error decoding document into Category object: \(error)")
+                        print("Error decoding document into City object: \(error)")
                         return nil
                     }
                 }
@@ -92,7 +95,7 @@ class ContactsController: ObservableObject {
                     do {
                         return try queryDocumentSnapshot.data(as: Contact.self)
                     } catch {
-                        print("Error decoding document into Category object: \(error)")
+                        print("Error decoding document into User object: \(error)")
                         return nil
                     }
                 }
@@ -109,13 +112,13 @@ class ContactsController: ObservableObject {
                 self.selectedCategory = nil
                 self.selectedSubcategory = nil
                 self.subCategories = []
-                self.contacts = self.users
+                self.contacts = cityFilter(contacts: self.users)
                 reader.scrollTo(self.categories.first?.id, anchor: .center)
             } else {
                 self.selectedCategory = category
                 self.subCategories = self.cats.filter({ $0.p_id == self.selectedCategory?.id })
                 self.selectedSubcategory = nil
-                self.contacts = self.users.filter({ $0.categories.contains(where: { $0.divider() == category.id.divider() }) })
+                self.contacts = cityFilter(contacts: self.users.filter({ $0.categories.contains(where: { $0.divider() == category.id.divider() }) }))
                 reader.scrollTo(category.id, anchor: .center)
             }
         }
@@ -126,21 +129,54 @@ class ContactsController: ObservableObject {
             if self.selectedSubcategory == subCat {
                 self.selectedSubcategory = nil
                 if let selectedCategory {
-                    self.contacts = self.users.filter({ $0.categories.contains(where: { $0.divider() == subCat.id.divider() }) })
+                    self.contacts = cityFilter(contacts:self.users.filter({ $0.categories.contains(where: { $0.divider() == subCat.id.divider() }) }))
                     /// never gonna happen ?
                 } else {
-                    self.contacts = self.users
+                    self.contacts = cityFilter(contacts: self.users)
                 }
                 reader.scrollTo(self.subCategories.first?.id, anchor: .center)
             } else {
                 self.selectedSubcategory = subCat
-                self.contacts = self.users.filter({ $0.categories.contains(subCat.id) })
+                self.contacts = cityFilter(contacts: self.users.filter({ $0.categories.contains(subCat.id) }))
                 reader.scrollTo(subCat.id, anchor: .center)
             }
         }
     }
     
-    
+    func triggerCityFilter() {
+//        guard !self.selectedCities.isEmpty && !self.selectedCities.contains(0) else { return }
+        if let selectedSubcategory {
+            if let selectedCategory {
+                self.contacts = cityFilter(contacts:self.users.filter({ $0.categories.contains(where: { $0.divider() == selectedSubcategory.id.divider() }) }))
+                /// never gonna happen ?
+            } else {
+                self.contacts = cityFilter(contacts: self.users)
+            }
+        } else {
+            if let selectedCategory {
+                self.contacts = cityFilter(contacts:self.users.filter({ $0.categories.contains(where: { $0.divider() == selectedCategory.id.divider() }) }))
+                /// never gonna happen ?
+            } else {
+                self.contacts = cityFilter(contacts: self.users)
+            }
+        }
+    }
+
+    func cityFilter(contacts: [Contact]) -> [Contact] {
+        if #available(iOS 16.0, *) {
+            guard !self.selectedCities.isEmpty && !self.selectedCities.contains(0) else { return contacts }
+            
+            
+            return contacts.filter({
+                print(self.selectedCities.contains($0.cities))
+                print(self.selectedCities)
+                print($0.cities)
+                return self.selectedCities.contains($0.cities)
+            })
+        } else {
+            return contacts
+        }
+    }
     
 //    func filterData() {
 //        db.collection("users")
