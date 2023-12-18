@@ -11,7 +11,7 @@ import UniformTypeIdentifiers
 enum socialType: String, CaseIterable, Identifiable {
     var id: String { return self.rawValue }
     
-    case instagram, telegram, youtube, link, tiktok, kakao, whatsApp, linkedIn, threads, twitter
+    case instagram, telegram, youtube, link, facebook, tiktok, kakao, whatsApp, linkedIn, threads, twitter
     
     var image: String {
         switch self {
@@ -19,6 +19,7 @@ enum socialType: String, CaseIterable, Identifiable {
         case .telegram: return "ic-telegram"
         case .youtube: return "ic-youtube"
         case .link: return "ic-link"
+        case .facebook: return "ic-facebook"
         case .tiktok: return "ic-tiktok"
         case .kakao: return "ic-kakao"
         case .whatsApp: return "ic-whatsapp"
@@ -35,6 +36,7 @@ enum socialType: String, CaseIterable, Identifiable {
         case .youtube: return "Youtube"
         case .telegram: return "Telegram"
         case .link: return "Cайт"
+        case .facebook: return "Facebook"
         case .tiktok: return "TikTok"
         case .linkedIn: return "LinkedIn"
         case .threads: return "Threads"
@@ -59,6 +61,7 @@ struct SocialButton: View {
             case .youtube: return contact.youtube
             case .telegram: return contact.telegram
             case .link: return contact.link
+            case .facebook: return contact.facebook
             case .tiktok: return contact.tiktok
             case .linkedIn: return contact.linkedIn
             case .threads: return contact.threads
@@ -75,6 +78,7 @@ struct SocialButton: View {
             case .youtube: prefix = "youtube.com/@"
             case .telegram: prefix = "t.me/"
             case .link: prefix = ""
+            case .facebook: prefix = "www.facebook.com/"
             case .tiktok: prefix = "www.tiktok.com/@"
             case .linkedIn: prefix = "www.linkedin.com/in/"
             case .threads: prefix = "www.threads.net/@"

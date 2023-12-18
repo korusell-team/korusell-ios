@@ -34,6 +34,7 @@ struct Contact: Identifiable, Hashable, Codable {
     var threads: String?
     var youtube: String?
     var link: String?
+    var facebook: String?
     var telegram: String?
     var whatsApp: String?
     var kakao: String?
