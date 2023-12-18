@@ -11,8 +11,6 @@ import Firebase
 @main
 struct korusellApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-    @AppStorage("appOnboarded") var appOnboarded = false
-   
     
     init() {
 //        appOnboarded = false
@@ -25,7 +23,7 @@ struct korusellApp: App {
 //        UITextView.appearance().backgroundColor = .clear
         
 /// use it for app onboarding tests
-//        appOnboarded = false
+//        UserDefaults.standard.set(false, forKey: "appOnboarded")
     }
     
     

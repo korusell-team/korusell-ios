@@ -14,21 +14,24 @@ struct ContentView: View {
     @StateObject private var userManager = UserManager()
     
 //    @AppStorage("log_Status") var status = false
-    @AppStorage("appOnboarded") var appOnboarded = false
+//    @AppStorage("appOnboarded") var appOnboarded = false
     
     var body: some View {
         ZStack {
             if userManager.isLoading {
                 LoadingElement()
-            } else if !appOnboarded {
-                OnboardingView()
+            } else if !userManager.isAppOnboarded {
+                AppOnboarding()
                     .transition(.move(edge: .trailing))
             } else if userManager.user == nil {
                 SignInView()
-            } else if !userManager.isOnboarded {
+                    .transition(.move(edge: .trailing))
+            } else if !userManager.isUserOnboarded {
                 UserOnboarding()
+                    .transition(.move(edge: .trailing))
             } else {
                 SessionView()
+                    .transition(.move(edge: .trailing))
             }
         }
         .onAppear(perform: userManager.handleUser)

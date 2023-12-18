@@ -115,7 +115,7 @@ struct UserOnboarding: View {
                     try await userManager.save(image: image, user: userManager.user!)
                 }
                 self.isLoading = false
-                userManager.isOnboarded = true
+                userManager.isUserOnboarded = true
             }
         }
     }

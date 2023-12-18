@@ -13,10 +13,15 @@ class UserManager: ObservableObject {
     @Published var authUser: FirebaseAuth.User? = nil
     @Published var user: Contact? = nil
     @Published var isLoading: Bool = false
-    @Published var isOnboarded: Bool = false
+    @Published var isUserOnboarded: Bool = false
+    @Published var isAppOnboarded: Bool = UserDefaults.standard.bool(forKey: "appOnboarded")
     
     let db = Firestore.firestore()
     let fs = FirestoreManager()
+    
+    func initialize() {
+        self.handleUser()
+    }
     
     func handleUser() {
         self.isLoading = true
@@ -31,11 +36,11 @@ class UserManager: ObservableObject {
                 if self.user == nil {
                     self.fs.createUser(uid: uid, phone: phone) { createdUser in
                         self.user = createdUser
-                        self.isOnboarded = false
+                        self.isUserOnboarded = false
                         self.isLoading = false
                     }
                 } else {
-                    self.isOnboarded = true
+                    self.isUserOnboarded = true
                     print("Successfully got user from DB")
                     self.isLoading = false
                 }
