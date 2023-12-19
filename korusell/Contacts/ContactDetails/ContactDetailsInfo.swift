@@ -9,8 +9,9 @@ import SwiftUI
 
 struct ContactDetailsInfo: View {
     @EnvironmentObject var cc: ContactsController
+    @EnvironmentObject var userManager: UserManager
     
-    @State var aboutIsOpened = false
+    @State var alertPresented = false
     
     let contact: Contact
     
@@ -136,7 +137,30 @@ struct ContactDetailsInfo: View {
                 }
             }
             .padding(.vertical)
-
+            
+            
+            if contact.phone == userManager.user?.phone {
+                Button(action: {
+                    alertPresented = true
+                    print(alertPresented)
+                }) {
+                    Text("Выйти")
+                        .foregroundColor(.red)
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .padding(.vertical, 18)
+                        .background(Color.white)
+                        .clipShape(RoundedRectangle(cornerRadius: 18))
+                        .shadow(color: Color.gray500.opacity(0.1), radius: 2, x: 2, y: 2)
+                }
+                .padding(.top, 30)
+                .alertPatched(isPresented: $alertPresented) {
+                    Alert(title: Text("Вы действительно хотите выйти?"),
+                          primaryButton: .default(Text("Отмена"), action: { alertPresented = false }),
+                          secondaryButton: .destructive(Text("Выйти"), action: userManager.signout))
+                }
+            }
+            
+            
             Spacer(minLength: 200)
         }
         .frame(maxWidth: .infinity, alignment: .leading)

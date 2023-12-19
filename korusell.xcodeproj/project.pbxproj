@@ -60,7 +60,7 @@
 		2B0491552AB1DEB600A8F81E /* MyAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0491542AB1DEB600A8F81E /* MyAccountView.swift */; };
 		2B04915A2AB32B5B00A8F81E /* MyAccDetailsSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0491592AB32B5B00A8F81E /* MyAccDetailsSheet.swift */; };
 		2B04915C2AB32D2900A8F81E /* EditPhoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04915B2AB32D2900A8F81E /* EditPhoneView.swift */; };
-		2B04915E2AB48D3300A8F81E /* BlueButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04915D2AB48D3300A8F81E /* BlueButton.swift */; };
+		2B04915E2AB48D3300A8F81E /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04915D2AB48D3300A8F81E /* ActionButton.swift */; };
 		2B0491602AB495C000A8F81E /* EditableSocialButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04915F2AB495C000A8F81E /* EditableSocialButton.swift */; };
 		2B0A6B4F2B286DEB005BB5F0 /* cats.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B0A6B4E2B286DEB005BB5F0 /* cats.json */; };
 		2B0A6B512B29C5CB005BB5F0 /* UserOnboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0A6B502B29C5CA005BB5F0 /* UserOnboarding.swift */; };
@@ -139,7 +139,7 @@
 		2B0491542AB1DEB600A8F81E /* MyAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountView.swift; sourceTree = "<group>"; };
 		2B0491592AB32B5B00A8F81E /* MyAccDetailsSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccDetailsSheet.swift; sourceTree = "<group>"; };
 		2B04915B2AB32D2900A8F81E /* EditPhoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPhoneView.swift; sourceTree = "<group>"; };
-		2B04915D2AB48D3300A8F81E /* BlueButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueButton.swift; sourceTree = "<group>"; };
+		2B04915D2AB48D3300A8F81E /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
 		2B04915F2AB495C000A8F81E /* EditableSocialButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableSocialButton.swift; sourceTree = "<group>"; };
 		2B0A6B4E2B286DEB005BB5F0 /* cats.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = cats.json; sourceTree = "<group>"; };
 		2B0A6B502B29C5CA005BB5F0 /* UserOnboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserOnboarding.swift; sourceTree = "<group>"; };
@@ -237,7 +237,7 @@
 				259EAACE2A98A90D006C207F /* ActionSheetView.swift */,
 				259EAAD72A9DED9F006C207F /* SheetDragger.swift */,
 				259EAADA2AA09229006C207F /* BackButton.swift */,
-				2B04915D2AB48D3300A8F81E /* BlueButton.swift */,
+				2B04915D2AB48D3300A8F81E /* ActionButton.swift */,
 				2B2B66B62AFA6807003195E9 /* ExpandableText.swift */,
 				2B2B66C42B0CC6CB003195E9 /* ImagePicker.swift */,
 				2BD1248F2B25609A004C4772 /* LoadingElement.swift */,
@@ -493,7 +493,7 @@
 				253B84EA2A0C59CE004FA223 /* Extensions.swift in Sources */,
 				2B345B772ABB0C1E0025BF2C /* CategorySelectionView.swift in Sources */,
 				2B2B66BF2B0B866F003195E9 /* StorageManager.swift in Sources */,
-				2B04915E2AB48D3300A8F81E /* BlueButton.swift in Sources */,
+				2B04915E2AB48D3300A8F81E /* ActionButton.swift in Sources */,
 				253B84F22A0F18C0004FA223 /* CategoryView.swift in Sources */,
 				256275B12A7D0120006F0E39 /* SignInView.swift in Sources */,
 				253B84EE2A0D1815004FA223 /* Blur.swift in Sources */,

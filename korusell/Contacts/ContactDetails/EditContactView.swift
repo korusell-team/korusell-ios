@@ -105,7 +105,7 @@ struct EditContactView: View {
                 .foregroundColor(.red)
                 .frame(maxWidth: .infinity, alignment: .center)
         }
-        .alert(isPresented: $alertPresented) {
+        .alertPatched(isPresented: $alertPresented) {
             Alert(title: Text("Вы действительно хотите выйти?"),
                   primaryButton: .default(Text("Отмена"), action: { alertPresented = false }),
                   secondaryButton: .destructive(Text("Выйти"), action: userManager.signout))

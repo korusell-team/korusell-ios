@@ -63,15 +63,13 @@ struct EditContactImageView: View {
 //                    .clipShape(Circle())
 //                    .shadow(radius: 1)
 //                    .padding(Size.w(10)), alignment: .bottomTrailing
-//            )
+            //            )
             .onTapGesture {
                 showImagePicker = true
             }
             .sheet(isPresented: $showImagePicker) {
-                if user.id != nil {
-                    ImagePicker(
-                        image: $image)
-                }
+                ImagePicker(
+                    image: $image)
             }
             .padding(.top, Size.safeArea().top + Size.w(40))
             
@@ -82,12 +80,9 @@ struct EditContactImageView: View {
                     Text("Выбрать фотографию")
                 }
                 .sheet(isPresented: $showImagePicker) {
-                    if user.id != nil {
-                        ImagePicker(
-                            image: $image)
-                    }
+                    ImagePicker(
+                        image: $image)
                 }
-                
             }.frame(maxWidth: .infinity, alignment: .center)
         }
     }

@@ -105,15 +105,14 @@ struct UserOnboarding: View {
     }
     
     private func save() {
-        if let user = userManager.user {
+        if userManager.user != nil {
+            self.isLoading = true
+            userManager.user?.name = self.name
+            userManager.user?.surname = self.surname
+            userManager.user?.bio = self.bio
+            
             Task {
-                self.isLoading = true
-                userManager.user?.name = self.name
-                userManager.user?.surname = self.surname
-                userManager.user?.bio = self.bio
-                if let image {
-                    try await userManager.save(image: image, user: userManager.user!)
-                }
+                try await userManager.save(image: image, user: userManager.user!)
                 self.isLoading = false
                 userManager.isUserOnboarded = true
             }

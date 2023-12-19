@@ -18,12 +18,7 @@ struct ContentView: View {
     
     var body: some View {
         ZStack {
-            if userManager.isLoading {
-                LoadingElement()
-            } else if !userManager.isAppOnboarded {
-                AppOnboarding()
-                    .transition(.move(edge: .trailing))
-            } else if userManager.user == nil {
+            if userManager.user == nil {
                 SignInView()
                     .transition(.move(edge: .trailing))
             } else if !userManager.isUserOnboarded {
@@ -33,6 +28,17 @@ struct ContentView: View {
                 SessionView()
                     .transition(.move(edge: .trailing))
             }
+            
+            /// top zIndex views
+            if userManager.isLoading {
+                LoadingElement()
+            }
+            if !userManager.isAppOnboarded {
+                AppOnboarding()
+                    .transition(.move(edge: .trailing))
+            }
+        
+            
         }
         .onAppear(perform: userManager.handleUser)
         .environmentObject(userManager)

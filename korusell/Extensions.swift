@@ -21,6 +21,15 @@ extension View {
         }
     }
     
+    /// handling overlaying alerts!
+    public func alertPatched(isPresented: Binding<Bool>, content: () -> Alert) -> some View {
+        self.overlay(
+            EmptyView().alert(isPresented: isPresented, content: content),
+            alignment: .bottomTrailing
+        )
+    }
+    
+    
 //    @ViewBuilder
 //    func navigationView(back: @escaping () -> Void = {}, title: LocalizedStringKey = "", backButtonHidden: Bool = false, backButtonColor: Color = Color.white) -> some View {
 //        self

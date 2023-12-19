@@ -36,7 +36,13 @@ struct ContactDetailsView: View {
                         }
                         .listRowInsets(EdgeInsets())
                         .background(Color(UIColor.systemGroupedBackground))
+                        
 //                        ) {}.textCase(nil)
+                        .alertPatched(isPresented: $showAlert) {
+                            Alert(title: Text("Чтобы сделать аккаунт публичным"), message:
+                                    Text("\n• Укажите имя\n• Загрузите фото\n• Заполните Био\n• Выберите категорию")
+                            )
+                        }
                         
                         EditContactView(user: $user)
                     }
@@ -49,17 +55,13 @@ struct ContactDetailsView: View {
                 
                 if isLoading {
                     LoadingElement()
+                        
                 }
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity).ignoresSafeArea()
         .background(Color.app_white)
         .navigationBarBackButtonHidden(true)
-        .alert(isPresented: $showAlert, content: {
-            Alert(title: Text("Чтобы сделать аккаунт публичным"), message: 
-                    Text("\n• Укажите имя\n• Загрузите фото\n• Заполните Био\n• Выберите категорию")
-            )
-        })
         .onAppear {
             self.url = URL(string: user.image.first ?? "")
         }

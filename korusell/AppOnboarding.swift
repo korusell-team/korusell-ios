@@ -19,22 +19,20 @@ struct AppOnboarding: View {
             
             Spacer()
             
-            Text("Добро пожаловать в\nethnogram")
+            Text("ethnogram")
                 .font(regular34f)
                 .foregroundColor(.gray1100)
                 .padding(.bottom, 10)
             
-            Text("Найди своих предпринимателей, профессионалов, инфлуенсеров")
+            Text("Профессионалы, предприниматели, инфлуенсеры")
                 .font(regular17f)
                 .foregroundColor(.black)
             
             HStack {
                 ActionButton(title: "Поехали!") {
-                    print(UserDefaults.standard.bool(forKey: "appOnboarded"))
                     withAnimation {
                         userManager.isAppOnboarded = true
                         UserDefaults.standard.set(true, forKey: "appOnboarded")
-                        print(UserDefaults.standard.bool(forKey: "appOnboarded"))
                     }
                 }
             }
