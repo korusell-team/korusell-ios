@@ -84,6 +84,7 @@
 		2B9489582AA89FE50039D5AC /* PlacePoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9489572AA89FE50039D5AC /* PlacePoint.swift */; };
 		2BD124902B25609A004C4772 /* LoadingElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD1248F2B25609A004C4772 /* LoadingElement.swift */; };
 		2BD124922B25A4D1004C4772 /* MenuLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD124912B25A4D1004C4772 /* MenuLabelView.swift */; };
+		2BEC5A582B3AE3F500D8518A /* PhoneHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEC5A572B3AE3F500D8518A /* PhoneHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -160,6 +161,7 @@
 		2B9489572AA89FE50039D5AC /* PlacePoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacePoint.swift; sourceTree = "<group>"; };
 		2BD1248F2B25609A004C4772 /* LoadingElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingElement.swift; sourceTree = "<group>"; };
 		2BD124912B25A4D1004C4772 /* MenuLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuLabelView.swift; sourceTree = "<group>"; };
+		2BEC5A572B3AE3F500D8518A /* PhoneHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -348,6 +350,7 @@
 				256C97602A372B55003DD1B4 /* Design.swift */,
 				259EAAD02A98AE4B006C207F /* ScreenHelper.swift */,
 				2BD124912B25A4D1004C4772 /* MenuLabelView.swift */,
+				2BEC5A572B3AE3F500D8518A /* PhoneHelper.swift */,
 			);
 			name = Shared;
 			sourceTree = "<group>";
@@ -504,6 +507,7 @@
 				2B04915A2AB32B5B00A8F81E /* MyAccDetailsSheet.swift in Sources */,
 				259EAAD32A9CC857006C207F /* ContactDetailsView.swift in Sources */,
 				259EAACF2A98A90D006C207F /* ActionSheetView.swift in Sources */,
+				2BEC5A582B3AE3F500D8518A /* PhoneHelper.swift in Sources */,
 				2B04915C2AB32D2900A8F81E /* EditPhoneView.swift in Sources */,
 				256C97612A372B55003DD1B4 /* Design.swift in Sources */,
 				25ADF3342A694438009A2B73 /* PlaceMarker.swift in Sources */,

@@ -24,12 +24,21 @@ struct UserOnboarding: View {
                     showImagePicker = true
                 }, label: {
                     ZStack(alignment: .bottomTrailing) {
-                        Image(uiImage: image ?? UIImage(named: "alien")!)
-                            .resizable()
-                            .scaledToFill()
-                            .background(Color.gray100)
-                            .frame(width: 70, height: 70)
-                            .clipShape(Circle())
+                        if let image {
+                            Image(uiImage: image)
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: 70, height: 70)
+                                .background(Color.gray100)
+                                .clipShape(Circle())
+                        } else {
+                            Text("🧑🏻‍💻")
+                                .font(bold30f)
+                                .frame(width: 70, height: 70)
+                                .background(Color.gray100)
+                                .clipShape(Circle())
+                        }
+                        
                         
                         Image(systemName: "camera.circle.fill")
                             .resizable()
@@ -50,7 +59,7 @@ struct UserOnboarding: View {
                     .font(bold24f)
                     .padding(.bottom, 1)
                 
-                Text("Представьтесь всему русскоязычному сообществу Кореи.")
+                Text("Введите имя, фамилию и прикрепите фото для аватара")
                     .font(light14f)
                     .multilineTextAlignment(.leading)
                     .foregroundColor(.gray800)

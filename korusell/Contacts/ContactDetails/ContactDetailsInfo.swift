@@ -22,23 +22,32 @@ struct ContactDetailsInfo: View {
                     Text((contact.name ?? "") + " " + (contact.surname ?? ""))
                         .tracking(-0.5)
                         .font(semiBold22f)
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        HStack(spacing: 0) {
-                            ForEach(contact.cities, id: \.self) { id in
-                                if let city = cc.cities.first(where: { $0.id == id }) {
-                                    Text(city.ru)
-                                        .font(regular17f)
-                                        .foregroundColor(.gray800)
-                                        .padding(.trailing, 6)
+                    if contact.cities.isEmpty {
+                        Text("Город")
+                            .font(regular17f)
+                            .foregroundColor(.gray800)
+                            .padding(.trailing, 6)
+                            .opacity(0.5)
+                    } else {
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack(spacing: 0) {
+                                ForEach(contact.cities, id: \.self) { id in
+                                    if let city = cc.cities.first(where: { $0.id == id }) {
+                                        Text(city.ru)
+                                            .font(regular17f)
+                                            .foregroundColor(.gray800)
+                                            .padding(.trailing, 6)
+                                    }
                                 }
                             }
                         }
                     }
+                    
                 }
              
                 Spacer()
                 
-                Button(action: call) {
+                Button(action: { PhoneHelper.shared.call(contact.phone) }) {
                     Image("ic-phone")
                         .resizable()
                         .scaledToFit()
@@ -47,7 +56,7 @@ struct ContactDetailsInfo: View {
                 .disabled(!contact.phoneIsAvailable.bound)
                 .opacity(contact.phoneIsAvailable.bound ? 1 : 0.5)
                 
-                Button(action: sendSMS) {
+                Button(action: { PhoneHelper.shared.sendSMS(contact.phone) }) {
                     Image("ic-sms")
                         .resizable()
                         .scaledToFit()
@@ -58,44 +67,60 @@ struct ContactDetailsInfo: View {
             }
             .padding(.bottom, 5)
 
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 4) {
-                    /// getting only sub categories
-                    ForEach(contact.categories.filter({ $0 % 100 > 0  }), id: \.self) { cat in
-                        /// matching category int with categories from db
-                        let category = cc.cats.first(where: { $0.id == cat }) ??
-                        Category(id: 11110, title: "bug", p_id: 1, emoji: "👾")
-                        Text(category.emoji + "  " + category.title)
-                            .tracking(-0.5)
-                            .font(semiBold14f)
-                            .padding(.vertical, 7)
-                            .padding(.horizontal, 10)
-                            .overlay(
-                                        Capsule(style: .continuous)
-                                                .stroke(Color.gray200, lineWidth: 1)
-                                    )
-                            .clipShape(RoundedRectangle(cornerRadius: 25))
-                            .padding(.vertical, 4)
+            if contact.categories.isEmpty {
+                Text("Категории")
+                    .font(regular17f)
+                    .foregroundColor(.gray800)
+                    .padding(.trailing, 6)
+                    .opacity(0.5)
+            } else {
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 4) {
+                        /// getting only sub categories
+                        ForEach(contact.categories.filter({ $0 % 100 > 0  }), id: \.self) { cat in
+                            /// matching category int with categories from db
+                            let category = cc.cats.first(where: { $0.id == cat }) ??
+                            Category(id: 11110, title: "bug", p_id: 1, emoji: "👾")
+                            Text(category.emoji + "  " + category.title)
+                                .tracking(-0.5)
+                                .font(semiBold14f)
+                                .padding(.vertical, 7)
+                                .padding(.horizontal, 10)
+                                .overlay(
+                                            Capsule(style: .continuous)
+                                                    .stroke(Color.gray200, lineWidth: 1)
+                                        )
+                                .clipShape(RoundedRectangle(cornerRadius: 25))
+                                .padding(.vertical, 4)
+                        }
                     }
                 }
+                .foregroundColor(.gray1000)
             }
-            .foregroundColor(.gray1000)
-
+            
             Divider().padding(.vertical, 10)
             
-            if let info = contact.info, contact.info != "" {
+            
                 VStack(alignment: .leading, spacing: 6) {
                     Text("О себе:")
                         .bold()
                         .font(semiBold18f)
 //                        .padding(.bottom, 6)
-                    ExpandableText(text: info)
-                        .lineLimit(10)
-                        .collapseButton(TextSet(text: "свернуть", font: regular15f, color: .blue))
-              
+                    
+                    if let info = contact.info, contact.info != "" {
+                        ExpandableText(text: info)
+                            .lineLimit(10)
+                            .collapseButton(TextSet(text: "свернуть", font: regular15f, color: .blue))
+                    } else {
+                        Text("Подробная информация о себе...")
+                            .font(regular17f)
+                            .foregroundColor(.gray800)
+                            .padding(.trailing, 6)
+                            .opacity(0.5)
+                    }
                 }
                 .padding(6)
-            }
+            
 //                VStack(alignment: .leading, spacing: 0) {
 //                    Text("О себе:")
 //                        .bold()
@@ -138,7 +163,6 @@ struct ContactDetailsInfo: View {
             }
             .padding(.vertical)
             
-            
             if contact.phone == userManager.user?.phone {
                 Button(action: {
                     alertPresented = true
@@ -169,22 +193,7 @@ struct ContactDetailsInfo: View {
 
     }
 
-    private func call() {
-        let phone = contact.phone
-        let prefix = "tel://"
-        let phoneNumberformatted = prefix + phone
-        guard let url = URL(string: phoneNumberformatted) else { return }
-        UIApplication.shared.open(url)
-        //        }
-    }
     
-    private func sendSMS() {
-        let phone = contact.phone
-        let sms: String = "sms:+8210\(phone)"
-        let strURL: String = sms.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-        UIApplication.shared.open(URL.init(string: strURL)!, options: [:], completionHandler: nil)
-        //        }
-    }
 }
 
 
