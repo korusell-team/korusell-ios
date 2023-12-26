@@ -23,7 +23,7 @@ struct korusellApp: App {
 //        UITextView.appearance().backgroundColor = .clear
         
 /// use it for app onboarding tests
-        UserDefaults.standard.set(false, forKey: "appOnboarded")
+//        UserDefaults.standard.set(false, forKey: "appOnboarded")
     }
     
     

@@ -20,6 +20,8 @@ class ContactsController: ObservableObject {
     /// filtered categories
     @Published var categories: [Category] = []
     @Published var subCategories: [Category] = []
+    @Published var searchCategories: [Category] = []
+    @Published var searchCategoriesFull: [Category] = []
     /// all users
     @Published var users: [Contact] = []
     /// filtered users
@@ -55,6 +57,8 @@ class ContactsController: ObservableObject {
                 }
                 print("Successfullly got cats 🐾")
                 self.categories = self.cats.filter({ $0.p_id <= 0 })
+                self.searchCategories = self.cats.filter({ $0.p_id > 0 })
+                self.searchCategoriesFull = self.cats.filter({ $0.p_id > 0 })
             }
     }
     

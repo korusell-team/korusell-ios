@@ -16,6 +16,8 @@ struct LabelsView: View {
     @Namespace var namespace
     @Binding var popCategories: Bool
     @Binding var popSubCategories: Bool
+    @State var reader: ScrollViewProxy? = nil
+    @State var subReader: ScrollViewProxy? = nil
     
     var body: some View {
         ZStack {
@@ -39,19 +41,32 @@ struct LabelsView: View {
                             }
                             .padding(.horizontal)
                             .frame(height: 46)
+                            .onAppear {
+                                self.reader = reader
+                            }
                             .popup(isPresented: $popCategories) {
-                                PopCategoriesView(
-                                    popCategories: $popCategories,
-                                    selectedCategory: $cc.selectedCategory,
-                                    reader: reader)
+                                CategorySearchView(popCategories: $popCategories, reader: reader, subReader: subReader)
                             } customize: {
                                 $0
-                                    .type (.floater())
-                                    .position(.top)
-                                    .dragToDismiss(true)
+                                    .type(.toast)
+                                    .position(.bottom)
+                                    .closeOnTap(false)
                                     .closeOnTapOutside(true)
-                                    .backgroundColor(.black.opacity(0.2))
+                                    .backgroundColor(.black.opacity(0.4))
                             }
+//                            .popup(isPresented: $popCategories) {
+//                                PopCategoriesView(
+//                                    popCategories: $popCategories,
+//                                    selectedCategory: $cc.selectedCategory,
+//                                    reader: reader)
+//                            } customize: {
+//                                $0
+//                                    .type (.floater())
+//                                    .position(.top)
+//                                    .dragToDismiss(true)
+//                                    .closeOnTapOutside(true)
+//                                    .backgroundColor(.black.opacity(0.2))
+//                            }
                         }
                     }
                    
@@ -59,7 +74,7 @@ struct LabelsView: View {
                 
                 
                 /// Sub-categories list
-                if let selectedCategory = cc.selectedCategory {
+//                if let selectedCategory = cc.selectedCategory {
                     ZStack(alignment: .leading) {
                         ScrollView(.horizontal, showsIndicators: false) {
                             ScrollViewReader { reader in
@@ -77,25 +92,30 @@ struct LabelsView: View {
                                 }
                                 .padding(.horizontal)
                                 .frame(height: 46)
-                                .popup(isPresented: $popSubCategories) {
-                                    PopSubCategoriesView(
-                                        popCategories: $popSubCategories,
-                                        selectedCategory: $cc.selectedSubcategory,
-                                        reader: reader)
-                                } customize: {
-                                    $0
-                                        .type (.floater())
-                                        .position(.top)
-                                        .dragToDismiss(true)
-                                        .closeOnTapOutside(true)
-                                        .backgroundColor(.black.opacity(0.2))
+                                .onAppear {
+                                    self.subReader = reader
                                 }
+//                                .popup(isPresented: $popSubCategories) {
+//                                    PopSubCategoriesView(
+//                                        popCategories: $popSubCategories,
+//                                        selectedCategory: $cc.selectedSubcategory,
+//                                        reader: reader)
+//                                } customize: {
+//                                    $0
+//                                        .type (.floater())
+//                                        .position(.top)
+//                                        .dragToDismiss(true)
+//                                        .closeOnTapOutside(true)
+//                                        .backgroundColor(.black.opacity(0.2))
+//                                }
                             }
                         }
                         .padding(.top, 7)
                         
                     }
-                }
+                    .opacity(cc.selectedCategory == nil ? 0 : 1)
+                    .frame(height: cc.selectedCategory == nil ? 0 : .infinity)
+//                }
             }
         }
         .background(Color.bg)

@@ -10,7 +10,11 @@ import SwiftUI
 struct SessionView: View {
     var body: some View {
         NavigationView {
+//            CategorySearchView()
+            
+            
             ContactsScreen()
+            
 //            BottomTabBar(tabs: TabBarType.allCases.map({ $0.tabs })
 //            ) { index in
 //                getTabView(index: index)

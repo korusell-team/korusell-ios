@@ -85,6 +85,7 @@
 		2BD124902B25609A004C4772 /* LoadingElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD1248F2B25609A004C4772 /* LoadingElement.swift */; };
 		2BD124922B25A4D1004C4772 /* MenuLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD124912B25A4D1004C4772 /* MenuLabelView.swift */; };
 		2BEC5A582B3AE3F500D8518A /* PhoneHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEC5A572B3AE3F500D8518A /* PhoneHelper.swift */; };
+		2BEC5A5A2B3AED8000D8518A /* CategorySearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEC5A592B3AED8000D8518A /* CategorySearchView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -162,6 +163,7 @@
 		2BD1248F2B25609A004C4772 /* LoadingElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingElement.swift; sourceTree = "<group>"; };
 		2BD124912B25A4D1004C4772 /* MenuLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuLabelView.swift; sourceTree = "<group>"; };
 		2BEC5A572B3AE3F500D8518A /* PhoneHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneHelper.swift; sourceTree = "<group>"; };
+		2BEC5A592B3AED8000D8518A /* CategorySearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySearchView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,6 +223,7 @@
 		259EAAC22A960B95006C207F /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				2BEC5A592B3AED8000D8518A /* CategorySearchView.swift */,
 				253B84E52A0A614F004FA223 /* SearchBar.swift */,
 				259EAAC32A960BAD006C207F /* GlobalSearchView.swift */,
 			);
@@ -489,6 +492,7 @@
 				25DB6CC12A07287F00660E99 /* ContactsScreen.swift in Sources */,
 				2593380B2A29ED8700C7AF1B /* WebView.swift in Sources */,
 				259EAAC62A96318B006C207F /* PopCategoriesView.swift in Sources */,
+				2BEC5A5A2B3AED8000D8518A /* CategorySearchView.swift in Sources */,
 				2B0491552AB1DEB600A8F81E /* MyAccountView.swift in Sources */,
 				2B345B792ABB189A0025BF2C /* CitySelectionView.swift in Sources */,
 				259EAAC42A960BAD006C207F /* GlobalSearchView.swift in Sources */,
