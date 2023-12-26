@@ -9,24 +9,11 @@ import SwiftUI
 
 struct SessionView: View {
     var body: some View {
-//        TabView {
-//            ContactsScreen()
-//                .tabItem {
-//                    Label("Контакты", systemImage: "person.2.fill")
-//                }
-//            GlobalSearchView()
-//                .tabItem {
-//                    Label("Поиск", systemImage: "magnifyingglass")
-//                }
-//            PlacesScreen()
-//                .tabItem {
-//                    Label("Места", systemImage: "mappin.and.ellipse")
-//                }
-//        }
-        
-        BottomTabBar(tabs: TabBarType.allCases.map({ $0.tabs })
-        ) { index in
-            getTabView(index: index)
+        NavigationView {
+            BottomTabBar(tabs: TabBarType.allCases.map({ $0.tabs })
+            ) { index in
+                getTabView(index: index)
+            }
         }
     }
     

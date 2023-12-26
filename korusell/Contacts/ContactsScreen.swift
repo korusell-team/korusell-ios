@@ -20,72 +20,64 @@ struct ContactsScreen: View {
     @State var popCities = false
     
     var body: some View {
-        NavigationView {
-            ZStack {
-                VStack {
-                    LabelsView(
-                        popCategories: $popCategories,
-                        popSubCategories: $popSubCategories
-                    ).padding(.top)
-                    
-                    ContactListView(selectedContact: $selectedContact)
-                }
-                .ignoresSafeArea(edges: .bottom)
-                .navigationTitle("Контакты")
-                .navigationBarTitleDisplayMode(.inline)
-                .navigationBarItems(
-                    leading:
-                        Button(action: {
-                            popCities.toggle()
-                        }) {
-                            Image(systemName: cc.selectedCities.isEmpty ? "mappin.circle" : "mappin.circle.fill")
-                                .foregroundColor(.gray900)
-                        },
-                    
-                    trailing:
-                        ZStack {
-                            if let contact = userManager.user {
-                                NavigationLink(tag: contact, selection: $selectedContact, destination: {
-                                    ContactDetailsView(user: contact)
-                                }) {
-                                    EmptyView()
-                                }
-                                .hidden()
-                                Image(systemName: "person.circle")
-                                    .foregroundColor(.gray900)
-                                    .onTapGesture {
-                                        self.selectedContact = userManager.user
-                                    }
+        ZStack {
+            VStack {
+                LabelsView(
+                    popCategories: $popCategories,
+                    popSubCategories: $popSubCategories
+                ).padding(.top)
+                
+                ContactListView(selectedContact: $selectedContact)
+            }
+            .ignoresSafeArea(edges: .bottom)
+            .navigationTitle("Контакты")
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarItems(
+                leading:
+                    Button(action: {
+                        popCities.toggle()
+                    }) {
+                        Image(systemName: cc.selectedCities.isEmpty ? "mappin.circle" : "mappin.circle.fill")
+                            .foregroundColor(.gray900)
+                    },
+                
+                trailing:
+                    ZStack {
+                        if let contact = userManager.user {
+                            NavigationLink(tag: contact, selection: $selectedContact, destination: {
+                                ContactDetailsView(user: contact)
+                            }) {
+                                EmptyView()
                             }
+                            .hidden()
+                            Image(systemName: "person.circle")
+                                .foregroundColor(.gray900)
+                                .onTapGesture {
+                                    self.selectedContact = userManager.user
+                                }
                         }
-                )
-                .padding(.top, 0.1)
-                .animation(.easeOut, value: cc.selectedCategory)
-                .background(Color.bg)
-                .onChange(of: popCities) { bool in
-                    if !bool {
-                        cc.triggerCityFilter()
                     }
+            )
+            .padding(.top, 0.1)
+            .animation(.easeOut, value: cc.selectedCategory)
+            .background(Color.bg)
+            .onChange(of: popCities) { bool in
+                if !bool {
+                    cc.triggerCityFilter()
                 }
-                .popup(isPresented: $popCities) {
-                    PopCitiesView(popCities: $popCities)
-                } customize: {
-                    $0
-                        .type (.floater())
-                        .position(.top)
-                        .dragToDismiss(true)
-                        .closeOnTapOutside(true)
-                        .backgroundColor(.black.opacity(0.2))
-                }
-                .onChange(of: selectedContact) { contact in
-                    withAnimation {
-                        vc.showBottomBar = contact == nil
-                    }
-                }
+            }
+            .popup(isPresented: $popCities) {
+                PopCitiesView(popCities: $popCities)
+            } customize: {
+                $0
+                    .type (.floater())
+                    .position(.top)
+                    .dragToDismiss(true)
+                    .closeOnTapOutside(true)
+                    .backgroundColor(.black.opacity(0.2))
             }
         }
     }
-
 }
 
 struct ContactsScreen_Previews: PreviewProvider {
