@@ -9,30 +9,28 @@ import SwiftUI
 
 struct SessionView: View {
     var body: some View {
-        NavigationView {
-//            CategorySearchView()
+   
+//            ContactsScreen()
             
-            
-            ContactsScreen()
-            
-//            BottomTabBar(tabs: TabBarType.allCases.map({ $0.tabs })
-//            ) { index in
-//                getTabView(index: index)
-//            }
-        }
+            BottomTabBar(tabs: TabBarType.allCases.map({ $0.tabs })
+            ) { index in
+                getTabView(index: index)
+            }
+//        }
     }
     
     @ViewBuilder
     func getTabView(index: Int) -> some View {
-        let type = TabBarType(rawValue: index) ?? .main
-        
-        switch type {
-        case .main:
-            ContactsScreen()
-        case .report:
-            GlobalSearchView()
-        case .alarm:
-            PlacesScreen()
+        let type = TabBarType(rawValue: index) ?? .contacts
+        NavigationView {
+            switch type {
+            case .contacts:
+                ContactsScreen()
+            case .search:
+                GlobalSearchView()
+            case .places:
+                PlacesScreen()
+            }
         }
     }
 }
@@ -70,7 +68,7 @@ struct TabBarBottomView: View {
             HStack(alignment: .center) {
                 tabButton(index: 0)
                 tabButton(index: 1)
-                tabButton(index: 2)
+//                tabButton(index: 2)
             }
             
             .padding(.vertical, 10)
@@ -113,17 +111,17 @@ struct TabBarBottomView: View {
 }
 
 enum TabBarType: Int, CaseIterable {
-    case main = 0
-    case report
-    case alarm
+    case contacts = 0
+    case search
+    case places
 
     var tabs: (icon: String, title: String) {
         switch self {
-        case .main:
+        case .contacts:
             return ("person.2.fill", "Контакты")
-        case .report:
+        case .search:
             return ("magnifyingglass", "Поиск")
-        case .alarm:
+        case .places:
             return ("mappin.and.ellipse", "Места")
         }
     }

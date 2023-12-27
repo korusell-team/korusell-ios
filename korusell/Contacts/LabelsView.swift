@@ -44,29 +44,29 @@ struct LabelsView: View {
                             .onAppear {
                                 self.reader = reader
                             }
-                            .popup(isPresented: $popCategories) {
-                                CategorySearchView(popCategories: $popCategories, reader: reader, subReader: subReader)
-                            } customize: {
-                                $0
-                                    .type(.toast)
-                                    .position(.bottom)
-                                    .closeOnTap(false)
-                                    .closeOnTapOutside(true)
-                                    .backgroundColor(.black.opacity(0.4))
-                            }
 //                            .popup(isPresented: $popCategories) {
-//                                PopCategoriesView(
-//                                    popCategories: $popCategories,
-//                                    selectedCategory: $cc.selectedCategory,
-//                                    reader: reader)
+//                                CategorySearchView(popCategories: $popCategories, reader: reader, subReader: subReader)
 //                            } customize: {
 //                                $0
-//                                    .type (.floater())
-//                                    .position(.top)
-//                                    .dragToDismiss(true)
+//                                    .type(.toast)
+//                                    .position(.bottom)
+//                                    .closeOnTap(false)
 //                                    .closeOnTapOutside(true)
-//                                    .backgroundColor(.black.opacity(0.2))
+//                                    .backgroundColor(.black.opacity(0.4))
 //                            }
+                            .popup(isPresented: $popCategories) {
+                                PopCategoriesView(
+                                    popCategories: $popCategories,
+                                    selectedCategory: $cc.selectedCategory,
+                                    reader: reader)
+                            } customize: {
+                                $0
+                                    .type (.floater())
+                                    .position(.top)
+                                    .dragToDismiss(true)
+                                    .closeOnTapOutside(true)
+                                    .backgroundColor(.black.opacity(0.2))
+                            }
                         }
                     }
                    
@@ -95,19 +95,19 @@ struct LabelsView: View {
                                 .onAppear {
                                     self.subReader = reader
                                 }
-//                                .popup(isPresented: $popSubCategories) {
-//                                    PopSubCategoriesView(
-//                                        popCategories: $popSubCategories,
-//                                        selectedCategory: $cc.selectedSubcategory,
-//                                        reader: reader)
-//                                } customize: {
-//                                    $0
-//                                        .type (.floater())
-//                                        .position(.top)
-//                                        .dragToDismiss(true)
-//                                        .closeOnTapOutside(true)
-//                                        .backgroundColor(.black.opacity(0.2))
-//                                }
+                                .popup(isPresented: $popSubCategories) {
+                                    PopSubCategoriesView(
+                                        popCategories: $popSubCategories,
+                                        selectedCategory: $cc.selectedSubcategory,
+                                        reader: reader)
+                                } customize: {
+                                    $0
+                                        .type (.floater())
+                                        .position(.top)
+                                        .dragToDismiss(true)
+                                        .closeOnTapOutside(true)
+                                        .backgroundColor(.black.opacity(0.2))
+                                }
                             }
                         }
                         .padding(.top, 7)

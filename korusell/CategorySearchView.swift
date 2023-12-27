@@ -26,10 +26,9 @@ struct CategorySearchView: View {
                                 cc.selectCategory(category: p_cat, reader: reader)
                                 cc.selectSubCategory(subCat: cat, reader: subReader!)
                                 self.popCategories = false
-                            fix: scroll view on top!
                             }) {
                                 HStack {
-                                    Text(cat.emoji)
+                                    Text(cat.emoji) 
                                     Text(cat.title)
                                         .font(regular15f)
                                         .padding(.trailing, 5)

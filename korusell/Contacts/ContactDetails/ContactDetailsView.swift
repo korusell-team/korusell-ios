@@ -11,6 +11,7 @@ import CachedAsyncImage
 struct ContactDetailsView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @EnvironmentObject var userManager: UserManager
+    @EnvironmentObject var vc: SessionViewController
     @EnvironmentObject var cc: ContactsController
     
     @State var editMode: Bool = false
@@ -63,8 +64,18 @@ struct ContactDetailsView: View {
         .background(Color.app_white)
         .navigationBarBackButtonHidden(true)
         .onAppear {
+            withAnimation {
+                vc.showBottomBar = false
+            }
+            
             self.url = URL(string: user.image.first ?? "")
         }
+        .onDisappear {
+            withAnimation {
+                vc.showBottomBar = true
+            }
+        }
+        
         .applyIf(editMode) { view in
             view
                 .navigationBarItems(

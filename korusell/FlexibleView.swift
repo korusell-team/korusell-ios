@@ -31,11 +31,11 @@ struct FlexibleView<Data: Collection, Content: View>: View where Data.Element: H
                         }
                     }.onAppear {
                         //MARK: defind proper dynamic height of Flexible view
-                        if computeRows().count < 5 {
+//                        if computeRows().count < 5 {
                             self.count = computeRows().count
-                        } else {
-                            self.count = 5
-                        }
+//                        } else {
+//                            self.count = 5
+//                        }
                     }
                 }
             }

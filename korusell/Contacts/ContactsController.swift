@@ -56,7 +56,7 @@ class ContactsController: ObservableObject {
                     }
                 }
                 print("Successfullly got cats 🐾")
-                self.categories = self.cats.filter({ $0.p_id <= 0 })
+                self.categories = self.cats.filter({ $0.p_id <= 0 }).sorted(by: { $0.title < $1.title })
                 self.searchCategories = self.cats.filter({ $0.p_id > 0 })
                 self.searchCategoriesFull = self.cats.filter({ $0.p_id > 0 })
             }
