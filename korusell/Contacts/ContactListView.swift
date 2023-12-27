@@ -47,16 +47,18 @@ struct ContactListView: View {
                         self.selectedContact = contact
                     }
                     .swipeActions(allowsFullSwipe: false) {
-                        Button(action: {
-                            PhoneHelper.shared.call(contact.phone)
-                        }) {
-                            Label("звонок", systemImage: "phone.fill")
-                        }.tint(.green)
-                        Button(action: {
-                            PhoneHelper.shared.sendSMS(contact.phone)
-                        }) {
-                            Label("СМС", systemImage: "message.fill")
-                        }.tint(.blue)
+                        if contact.phoneIsAvailable ?? false {
+                            Button(action: {
+                                PhoneHelper.shared.call(contact.phone)
+                            }) {
+                                Label("звонок", systemImage: "phone.fill")
+                            }.tint(.green)
+                            Button(action: {
+                                PhoneHelper.shared.sendSMS(contact.phone)
+                            }) {
+                                Label("СМС", systemImage: "message.fill")
+                            }.tint(.blue)
+                        }
                     }
                 }
                 
