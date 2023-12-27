@@ -9,13 +9,14 @@ import SwiftUI
 
 struct SessionView: View {
     var body: some View {
-   
-//            ContactsScreen()
-            
-            BottomTabBar(tabs: TabBarType.allCases.map({ $0.tabs })
-            ) { index in
-                getTabView(index: index)
-            }
+        NavigationView {
+            ContactsScreen()
+        }
+        
+//            BottomTabBar(tabs: TabBarType.allCases.map({ $0.tabs })
+//            ) { index in
+//                getTabView(index: index)
+//            }
 //        }
     }
     

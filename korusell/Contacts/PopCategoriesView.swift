@@ -16,13 +16,25 @@ struct PopCategoriesView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            Text("КАТЕГОРИИ")
+            HStack {
+                Text("КАТЕГОРИИ")
+                    .font(bold17f)
+                    .bold()
+                Spacer()
+                Button(action: {
+                    popCategories = false
+                }) {
+                    Image(systemName: "xmark.circle.fill")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 20, height: 20)
+                }
+            }
                 .foregroundColor(.gray1000)
-                .font(bold17f)
-                .bold()
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.horizontal, 22)
-                .padding(.top, 22)
+                .padding(.horizontal, 10)
+                .padding(.top, 10)
+                .padding(.bottom, 15)
             
             FlexibleView(availableWidth: UIScreen.main.bounds.width - 30, data: cc.categories, spacing: 10, alignment: .leading) { category in
                 Button(action: {
@@ -53,13 +65,25 @@ struct PopSubCategoriesView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            Text("ПОД-КАТЕГОРИИ")
+            HStack {
+                Text("ПОД-КАТЕГОРИИ")
+                    .font(bold17f)
+                    .bold()
+                Spacer()
+                Button(action: {
+                    popCategories = false
+                }) {
+                    Image(systemName: "xmark.circle.fill")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 20, height: 20)
+                }
+            }
                 .foregroundColor(.gray1000)
-                .font(bold17f)
-                .bold()
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.horizontal, 22)
-                .padding(.top, 22)
+                .padding(.horizontal, 10)
+                .padding(.top, 10)
+                .padding(.bottom, 15)
             
             FlexibleView(availableWidth: UIScreen.main.bounds.width - 30, data: cc.subCategories, spacing: 10, alignment: .leading) { category in
                 Button(action: {

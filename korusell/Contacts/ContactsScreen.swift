@@ -8,6 +8,7 @@
 import SwiftUI
 import PopupView
 import FirebaseFirestoreSwift
+import CachedAsyncImage
 
 struct ContactsScreen: View {
     @EnvironmentObject var vc: SessionViewController
@@ -50,11 +51,33 @@ struct ContactsScreen: View {
                                 EmptyView()
                             }
                             .hidden()
-                            Image(systemName: "person.circle")
-                                .foregroundColor(.gray900)
-                                .onTapGesture {
-                                    self.selectedContact = userManager.user
+                            
+                            let url = contact.smallImage ?? ""
+                            CachedAsyncImage(url: URL(string: url), urlCache: .imageCache) { phase in
+                                switch phase {
+                                case .empty:
+                                    Image(systemName: "person.circle")
+                                        .foregroundColor(.gray900)
+                                case .success(let image):
+                                    image
+                                        .resizable()
+                                        .scaledToFill()
+                                    //                                        .aspectRatio(contentMode: .fit)
+                                        .frame(maxWidth: Size.w(25), maxHeight: Size.w(25))
+                                        .clipShape(Circle())
+                                        .background(Circle().stroke(Color.app_white, lineWidth: 3))
+                                        
+                                case .failure:
+                                    Image(systemName: "person.circle")
+                                        .foregroundColor(.gray900)
+                                @unknown default:
+                                    Image(systemName: "person.circle")
+                                        .foregroundColor(.gray900)
                                 }
+                            }
+                            .onTapGesture {
+                                self.selectedContact = userManager.user
+                            }
                         }
                     }
             )
