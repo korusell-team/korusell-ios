@@ -80,6 +80,12 @@ extension Optional where Wrapped == Bool {
     }
 }
 
+extension UIApplication {
+    func endEditing() {
+        sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
+}
+
 extension Color {
     static let bg = Color("bg")
     static let app_white = Color("app-white")

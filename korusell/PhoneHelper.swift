@@ -19,7 +19,7 @@ final class PhoneHelper {
     }
     
     func sendSMS(_ phone: String) {
-        let sms: String = "sms:+8210\(phone)"
+        let sms: String = "sms:\(phone)"
         let strURL: String = sms.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         UIApplication.shared.open(URL.init(string: strURL)!, options: [:], completionHandler: nil)
     }

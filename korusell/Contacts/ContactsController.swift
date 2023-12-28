@@ -173,9 +173,10 @@ class ContactsController: ObservableObject {
             
             
             return contacts.filter({
-//                print(self.selectedCities.contains($0.cities))
-//                print(self.selectedCities)
-//                print($0.cities)
+                print(self.selectedCities.contains($0.cities))
+                print(self.selectedCities)
+                print($0.cities)
+                
                 return self.selectedCities.contains($0.cities)
             })
         } else {

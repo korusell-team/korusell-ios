@@ -34,6 +34,10 @@ struct ContactImageView: View {
                         switch phase {
                         case .empty:
                             ProgressView()
+                                .tint(.white)
+                                .background(Color.gray10)
+                                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                
                         case .success(let image):
                             Color.clear
                                 .aspectRatio(1, contentMode: .fit)
@@ -47,6 +51,8 @@ struct ContactImageView: View {
                             
                         case .failure:
                             Image(systemName: "photo")
+                                .background(Color.gray10)
+                                .frame(maxWidth: .infinity, maxHeight: .infinity)
                         @unknown default:
                             EmptyView()
                         }

@@ -126,7 +126,15 @@ struct SignInView: View {
             self.phone = self.phone.appending(" - ")
         } else if phone.count == 6 {
             self.phone = String(self.phone.dropLast(3))
-        } else if phone.count == 11 {
+        } else if phone.count == 11 && !self.phone.contains(" - ") {
+            // MARK: Case when phone paste from keyboard suggestions... (need tests)
+            let full = String(self.phone.dropFirst(3))
+            let firstPart = full.dropLast(4)
+            let secondPart = full.dropFirst(4)
+            self.phone = ""
+            self.phone.append(String(firstPart))
+            self.phone.append(" - ")
+            self.phone.append(String(secondPart))
             self.focusedField = true
         } else if phone.count > 11 {
             self.phone = String(self.phone.dropLast())

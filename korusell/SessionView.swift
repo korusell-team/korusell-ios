@@ -9,14 +9,14 @@ import SwiftUI
 
 struct SessionView: View {
     var body: some View {
-        NavigationView {
-            ContactsScreen()
-        }
+//        NavigationView {
+//            ContactsScreen()
+//        }
         
-//            BottomTabBar(tabs: TabBarType.allCases.map({ $0.tabs })
-//            ) { index in
-//                getTabView(index: index)
-//            }
+            BottomTabBar(tabs: TabBarType.allCases.map({ $0.tabs })
+            ) { index in
+                getTabView(index: index)
+            }
 //        }
     }
     
@@ -69,7 +69,7 @@ struct TabBarBottomView: View {
             HStack(alignment: .center) {
                 tabButton(index: 0)
                 tabButton(index: 1)
-//                tabButton(index: 2)
+                tabButton(index: 2)
             }
             
             .padding(.vertical, 10)

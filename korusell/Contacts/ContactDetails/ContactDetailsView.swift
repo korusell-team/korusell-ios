@@ -46,6 +46,17 @@ struct ContactDetailsView: View {
                         }
                         
                         EditContactView(user: $user)
+                            .background(Color.gray10.opacity(0.1))
+                            .onTapGesture {
+                                UIApplication.shared.endEditing()
+                            }
+                        
+                        //FIXME: need more space!
+                        Section(header: Text("")) {
+                        }
+                        .listRowInsets(EdgeInsets())
+                        .background(Color(UIColor.systemGroupedBackground))
+                        
                     }
                 } else {
                     TrackableScrollView(showIndicators: false, contentOffset: $offset) {
@@ -70,12 +81,6 @@ struct ContactDetailsView: View {
             
             self.url = URL(string: user.image.first ?? "")
         }
-        .onDisappear {
-            withAnimation {
-                vc.showBottomBar = true
-            }
-        }
-        
         .applyIf(editMode) { view in
             view
                 .navigationBarItems(

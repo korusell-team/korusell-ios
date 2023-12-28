@@ -10,6 +10,7 @@ import FirebaseFirestoreSwift
 
 struct ContactListView: View {
     @EnvironmentObject var cc: ContactsController
+    @EnvironmentObject var vc: SessionViewController
     @State var collapsed = false
     @Binding var selectedContact: Contact?
     let columns = [GridItem(.flexible())]
@@ -82,6 +83,11 @@ struct ContactListView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
         .background(Color.app_white)
         .cornerRadius(30, corners: [.topLeft, .topRight])
+        .onAppear {
+            withAnimation {
+                vc.showBottomBar = true
+            }
+        }
     }
 }
 

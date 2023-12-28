@@ -110,11 +110,6 @@ struct EditContactView: View {
                   primaryButton: .default(Text("Отмена"), action: { alertPresented = false }),
                   secondaryButton: .destructive(Text("Выйти"), action: userManager.signout))
         }
-        
-        Section(header: Text("")) {
-        }
-        .listRowInsets(EdgeInsets())
-        .background(Color(UIColor.systemGroupedBackground))
     }
 }
 
@@ -136,23 +131,23 @@ struct EditSocialButton: View {
     @Binding var contact: Contact
     
     var body: some View {
-        let title: String? = {
-            switch type {
-            case .kakao: return contact.kakao
-            case .instagram: return contact.instagram
-            case .youtube: return contact.youtube
-            case .telegram: return contact.telegram
-            case .link: return contact.link
-            case .facebook: return contact.facebook
-            case .tiktok: return contact.tiktok
-            case .linkedIn: return contact.linkedIn
-            case .threads: return contact.threads
-            case .twitter: return contact.twitter
-            case .whatsApp: return contact.whatsApp
-            }
-        }()
+//        let title: String? = {
+//            switch type {
+//            case .kakao: return contact.kakao
+//            case .instagram: return contact.instagram
+//            case .youtube: return contact.youtube
+//            case .telegram: return contact.telegram
+//            case .link: return contact.link
+//            case .facebook: return contact.facebook
+//            case .tiktok: return contact.tiktok
+//            case .linkedIn: return contact.linkedIn
+//            case .threads: return contact.threads
+//            case .twitter: return contact.twitter
+//            case .whatsApp: return contact.whatsApp
+//            }
+//        }()
         
-        let placeholder = ""
+//        let placeholder = ""
         
         let textField: TextField = {
             switch type {
@@ -166,7 +161,7 @@ struct EditSocialButton: View {
             case .linkedIn:     TextField("профайл", text: $contact.linkedIn.bound)
             case .threads:      TextField("никнейм", text: $contact.threads.bound)
             case .twitter:      TextField("никнейм", text: $contact.twitter.bound)
-            case .whatsApp:     TextField("номер телефона", text: $contact.whatsApp.bound)
+            case .whatsApp:     TextField("номер телефона (+821000000000)", text: $contact.whatsApp.bound)
             }
         }()
         

@@ -32,22 +32,22 @@ class ClusterView: MKAnnotationView {
                 
                 image = renderer.image { _ in
                     // Fill full circle with tricycle color
-                    UIColor(Color.blue200).setFill()
-                    UIBezierPath(ovalIn: CGRect(x: 0, y: 0, width: 40, height: 40)).fill()
-
-                    // Fill pie with unicycle color
-                    UIColor(Color.red200).setFill()
-                    let piePath = UIBezierPath()
-                    piePath.addArc(withCenter: CGPoint(x: 20, y: 20), radius: 20,
-                                   startAngle: 0, endAngle: (CGFloat.pi * 2.0 * CGFloat(uniCount)) / CGFloat(count),
-                                   clockwise: true)
-                    piePath.addLine(to: CGPoint(x: 20, y: 20))
-                    piePath.close()
-                    piePath.fill()
+//                    UIColor(Color.blue200).setFill()
+//                    UIBezierPath(ovalIn: CGRect(x: 0, y: 0, width: 40, height: 40)).fill()
+//
+//                    // Fill pie with unicycle color
+//                    UIColor(Color.red200).setFill()
+//                    let piePath = UIBezierPath()
+//                    piePath.addArc(withCenter: CGPoint(x: 20, y: 20), radius: 20,
+//                                   startAngle: 0, endAngle: (CGFloat.pi * 2.0 * CGFloat(uniCount)) / CGFloat(count),
+//                                   clockwise: true)
+//                    piePath.addLine(to: CGPoint(x: 20, y: 20))
+//                    piePath.close()
+//                    piePath.fill()
 
                     // Fill inner circle with white color
-                    UIColor.white.setFill()
-                    UIBezierPath(ovalIn: CGRect(x: 8, y: 8, width: 24, height: 24)).fill()
+                    UIColor.systemYellow.setFill()
+//                    UIBezierPath(ovalIn: CGRect(x: 16, y: 16, width: 48, height: 48)).fill()
 
                     // Finally draw count text vertically and horizontally centered
                     let attributes = [ NSAttributedString.Key.foregroundColor: UIColor.black,
