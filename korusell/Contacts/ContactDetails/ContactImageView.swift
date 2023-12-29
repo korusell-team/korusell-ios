@@ -52,7 +52,7 @@ struct ContactImageView: View {
                         case .failure:
                             Image(systemName: "photo")
                                 .background(Color.gray10)
-                                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                .frame(maxWidth: .infinity)
                         @unknown default:
                             EmptyView()
                         }

@@ -51,7 +51,7 @@ struct UserOnboarding: View {
                 })
                 .padding(.top, 100)
                 .sheet(isPresented: $showImagePicker) {
-                    ImagePicker(image: $image)
+                    ImagePicker(image: $image).ignoresSafeArea(.all)
                 }
                 
                 Text("Ваш Профиль")

@@ -29,7 +29,7 @@ enum socialType: String, CaseIterable, Identifiable {
         }
     }
     
-    var placeholder: String {
+    var providerName: String {
         switch self {
         case .kakao: return "KakaoTalk"
         case .instagram: return "Instagram"
@@ -149,7 +149,7 @@ struct SocialButtonView: View {
             .frame(width: 50, height: 50)
             
             VStack(alignment: .leading) {
-                Text(type.placeholder)
+                Text(type.providerName)
                     .foregroundColor(.gray1100)
                     .font(semiBold18f)
                 Group {

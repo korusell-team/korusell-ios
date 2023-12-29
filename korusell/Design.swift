@@ -16,6 +16,7 @@ let appleGothicThin = "AppleSDGothicNeo-Thin"
 let appleGothicUltraLight = "AppleSDGothicNeo-UltraLight"
 
 
+let light16f: Font = Font.custom(appleGothicLight, size: 16)
 let light14f: Font = Font.custom(appleGothicLight, size: 14)
 let light12f: Font = Font.custom(appleGothicLight, size: 12)
 

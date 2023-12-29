@@ -30,34 +30,7 @@ struct ContactDetailsView: View {
         VStack(spacing: 0) {
             ZStack {
                 if editMode {
-                    List {
-                        Section {
-                            EditContactImageView(user: $user, image: $image, url: $url, animation: animation)
-                                .listRowSeparator(.hidden)
-                        }
-                        .listRowInsets(EdgeInsets())
-                        .background(Color(UIColor.systemGroupedBackground))
-                        
-//                        ) {}.textCase(nil)
-                        .alertPatched(isPresented: $showAlert) {
-                            Alert(title: Text("Чтобы сделать аккаунт публичным"), message:
-                                    Text("\n• Укажите имя\n• Загрузите фото\n• Заполните Био\n• Выберите категорию")
-                            )
-                        }
-                        
-                        EditContactView(user: $user)
-                            .background(Color.gray10.opacity(0.1))
-                            .onTapGesture {
-                                UIApplication.shared.endEditing()
-                            }
-                        
-                        //FIXME: need more space!
-                        Section(header: Text("")) {
-                        }
-                        .listRowInsets(EdgeInsets())
-                        .background(Color(UIColor.systemGroupedBackground))
-                        
-                    }
+                    EditDetailsView(user: $user, image: $image, url: $url, showAlert: $showAlert, animation: animation)
                 } else {
                     TrackableScrollView(showIndicators: false, contentOffset: $offset) {
                         ContactImageView(contact: user, animation: animation)
@@ -127,7 +100,7 @@ struct ContactDetailsView: View {
                     }
                 }
             }) {
-                Text(editMode ? "Готово" : "Изменить")
+                Text(editMode ? "Сохранить" : "Изменить")
                     .foregroundColor((offset > 0 || editMode) ? .accentColor : .white)
             }
                 .disabled(editMode && userManager.user == user && self.image == nil)

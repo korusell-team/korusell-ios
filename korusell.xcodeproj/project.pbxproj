@@ -82,6 +82,12 @@
 		2B345B792ABB189A0025BF2C /* CitySelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B345B782ABB189A0025BF2C /* CitySelectionView.swift */; };
 		2B9489562AA831FF0039D5AC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2B9489552AA831FE0039D5AC /* GoogleService-Info.plist */; };
 		2B9489582AA89FE50039D5AC /* PlacePoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9489572AA89FE50039D5AC /* PlacePoint.swift */; };
+		2BC565B92B3ED1C400AFB708 /* EditDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC565B82B3ED1C400AFB708 /* EditDetailsView.swift */; };
+		2BC565BB2B3ED30E00AFB708 /* EditSocialButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC565BA2B3ED30E00AFB708 /* EditSocialButton.swift */; };
+		2BC565BD2B3ED32500AFB708 /* EditInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC565BC2B3ED32500AFB708 /* EditInfoView.swift */; };
+		2BC565BF2B3ED33D00AFB708 /* AccTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC565BE2B3ED33D00AFB708 /* AccTextField.swift */; };
+		2BC565C12B3ED35B00AFB708 /* CityEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC565C02B3ED35B00AFB708 /* CityEditView.swift */; };
+		2BC565C32B3ED37900AFB708 /* CategoryEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC565C22B3ED37900AFB708 /* CategoryEditView.swift */; };
 		2BD124902B25609A004C4772 /* LoadingElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD1248F2B25609A004C4772 /* LoadingElement.swift */; };
 		2BD124922B25A4D1004C4772 /* MenuLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD124912B25A4D1004C4772 /* MenuLabelView.swift */; };
 		2BEC5A582B3AE3F500D8518A /* PhoneHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEC5A572B3AE3F500D8518A /* PhoneHelper.swift */; };
@@ -160,6 +166,12 @@
 		2B345B782ABB189A0025BF2C /* CitySelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitySelectionView.swift; sourceTree = "<group>"; };
 		2B9489552AA831FE0039D5AC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2B9489572AA89FE50039D5AC /* PlacePoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacePoint.swift; sourceTree = "<group>"; };
+		2BC565B82B3ED1C400AFB708 /* EditDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDetailsView.swift; sourceTree = "<group>"; };
+		2BC565BA2B3ED30E00AFB708 /* EditSocialButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSocialButton.swift; sourceTree = "<group>"; };
+		2BC565BC2B3ED32500AFB708 /* EditInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditInfoView.swift; sourceTree = "<group>"; };
+		2BC565BE2B3ED33D00AFB708 /* AccTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccTextField.swift; sourceTree = "<group>"; };
+		2BC565C02B3ED35B00AFB708 /* CityEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityEditView.swift; sourceTree = "<group>"; };
+		2BC565C22B3ED37900AFB708 /* CategoryEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryEditView.swift; sourceTree = "<group>"; };
 		2BD1248F2B25609A004C4772 /* LoadingElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingElement.swift; sourceTree = "<group>"; };
 		2BD124912B25A4D1004C4772 /* MenuLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuLabelView.swift; sourceTree = "<group>"; };
 		2BEC5A572B3AE3F500D8518A /* PhoneHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneHelper.swift; sourceTree = "<group>"; };
@@ -254,11 +266,10 @@
 			isa = PBXGroup;
 			children = (
 				259EAAD22A9CC857006C207F /* ContactDetailsView.swift */,
+				2BC565B72B3ED19300AFB708 /* Edit */,
 				2B2B66C02B0CB89A003195E9 /* ContactImageView.swift */,
 				259EAAD52A9DEABA006C207F /* ContactDetailsInfo.swift */,
 				25174A522AA5F88C00024E1A /* SocialButton.swift */,
-				2B2B66C22B0CB8DB003195E9 /* EditContactImageView.swift */,
-				2B2B66BA2AFCFE7D003195E9 /* EditContactView.swift */,
 			);
 			path = ContactDetails;
 			sourceTree = "<group>";
@@ -400,6 +411,21 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		2BC565B72B3ED19300AFB708 /* Edit */ = {
+			isa = PBXGroup;
+			children = (
+				2BC565B82B3ED1C400AFB708 /* EditDetailsView.swift */,
+				2B2B66C22B0CB8DB003195E9 /* EditContactImageView.swift */,
+				2B2B66BA2AFCFE7D003195E9 /* EditContactView.swift */,
+				2BC565BA2B3ED30E00AFB708 /* EditSocialButton.swift */,
+				2BC565BC2B3ED32500AFB708 /* EditInfoView.swift */,
+				2BC565BE2B3ED33D00AFB708 /* AccTextField.swift */,
+				2BC565C02B3ED35B00AFB708 /* CityEditView.swift */,
+				2BC565C22B3ED37900AFB708 /* CategoryEditView.swift */,
+			);
+			path = Edit;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -493,6 +519,7 @@
 				2593380B2A29ED8700C7AF1B /* WebView.swift in Sources */,
 				259EAAC62A96318B006C207F /* PopCategoriesView.swift in Sources */,
 				2BEC5A5A2B3AED8000D8518A /* CategorySearchView.swift in Sources */,
+				2BC565C12B3ED35B00AFB708 /* CityEditView.swift in Sources */,
 				2B0491552AB1DEB600A8F81E /* MyAccountView.swift in Sources */,
 				2B345B792ABB189A0025BF2C /* CitySelectionView.swift in Sources */,
 				259EAAC42A960BAD006C207F /* GlobalSearchView.swift in Sources */,
@@ -509,6 +536,7 @@
 				2B0491602AB495C000A8F81E /* EditableSocialButton.swift in Sources */,
 				2B9489582AA89FE50039D5AC /* PlacePoint.swift in Sources */,
 				2B04915A2AB32B5B00A8F81E /* MyAccDetailsSheet.swift in Sources */,
+				2BC565BF2B3ED33D00AFB708 /* AccTextField.swift in Sources */,
 				259EAAD32A9CC857006C207F /* ContactDetailsView.swift in Sources */,
 				259EAACF2A98A90D006C207F /* ActionSheetView.swift in Sources */,
 				2BEC5A582B3AE3F500D8518A /* PhoneHelper.swift in Sources */,
@@ -538,9 +566,11 @@
 				25ADF32A2A694403009A2B73 /* PlacesScreen.swift in Sources */,
 				259EAAC92A97594C006C207F /* CitiesView.swift in Sources */,
 				256C97592A2C4954003DD1B4 /* Place.swift in Sources */,
+				2BC565BB2B3ED30E00AFB708 /* EditSocialButton.swift in Sources */,
 				253B84F82A0F7B00004FA223 /* FlexibleView.swift in Sources */,
 				253B84F62A0F5B3E004FA223 /* ContactListView.swift in Sources */,
 				2B345B722AB85C700025BF2C /* FirestoreManager.swift in Sources */,
+				2BC565C32B3ED37900AFB708 /* CategoryEditView.swift in Sources */,
 				25ADF3362A694516009A2B73 /* ContentView.swift in Sources */,
 				253B84F02A0F18A8004FA223 /* CategoryListView.swift in Sources */,
 				25ADF3302A694438009A2B73 /* MapView.swift in Sources */,
@@ -548,6 +578,8 @@
 				253B84EC2A0CF3D6004FA223 /* AvatarView.swift in Sources */,
 				2B345B702AB85A410025BF2C /* UserManager.swift in Sources */,
 				253B84E62A0A614F004FA223 /* SearchBar.swift in Sources */,
+				2BC565B92B3ED1C400AFB708 /* EditDetailsView.swift in Sources */,
+				2BC565BD2B3ED32500AFB708 /* EditInfoView.swift in Sources */,
 				259338092A29E22E00C7AF1B /* RoundedCorner.swift in Sources */,
 				259EAAD12A98AE4B006C207F /* ScreenHelper.swift in Sources */,
 				2B2B66BB2AFCFE7D003195E9 /* EditContactView.swift in Sources */,

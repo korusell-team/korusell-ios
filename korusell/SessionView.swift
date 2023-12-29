@@ -8,16 +8,19 @@
 import SwiftUI
 
 struct SessionView: View {
+    @EnvironmentObject var userManager: UserManager
+    
     var body: some View {
-//        NavigationView {
-//            ContactsScreen()
-//        }
-        
+        if userManager.user?.uid == "jFw6tzSYiJNxkCL3kDXT8zUXMyw2removeme" {
             BottomTabBar(tabs: TabBarType.allCases.map({ $0.tabs })
             ) { index in
                 getTabView(index: index)
             }
-//        }
+        } else {
+            NavigationView {
+                ContactsScreen()
+            }
+        }
     }
     
     @ViewBuilder
