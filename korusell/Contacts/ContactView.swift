@@ -24,7 +24,9 @@ struct ContactView: View {
                 
                 VStack(alignment: .leading, spacing: 0) {
                     HStack {
-                        Text(contact.surname ?? "")
+                        if let surname = contact.surname {
+                            Text(surname)
+                        }
                         Text(contact.name ?? "")
                     }
                     .foregroundColor(.gray1100)

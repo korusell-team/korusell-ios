@@ -31,7 +31,15 @@ struct ContentView: View {
             
             /// top zIndex views
             if userManager.isLoading {
-                LoadingElement()
+                ZStack {
+                    Image("logo")
+                        .resizable()
+                        .scaledToFit()
+                    LoadingElement()
+                }
+                .background(Color.white)
+                .frame(maxWidth: .infinity, maxHeight: .infinity).ignoresSafeArea()
+                
             }
             if !userManager.isAppOnboarded {
                 AppOnboarding()
