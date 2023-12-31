@@ -10,7 +10,6 @@ import SwiftUI
 struct EditDetailsView: View {
     @Binding var user: Contact
     @Binding var image: UIImage?
-    @Binding var url: URL?
     @Binding var showAlert: Bool
     
     @State var showImagePicker = false
@@ -20,7 +19,7 @@ struct EditDetailsView: View {
     var body: some View {
         ScrollView {
             LazyVStack(pinnedViews: [.sectionHeaders]) {
-                EditContactImageView(user: $user, image: $image, url: $url, showImagePicker: $showImagePicker, animation: animation)
+                EditContactImageView(user: $user, image: $image, showImagePicker: $showImagePicker, animation: animation)
                     .alertPatched(isPresented: $showAlert) {
                         Alert(title: Text("Чтобы сделать аккаунт публичным"), message:
                                 Text("\n• Укажите имя\n• Загрузите фото\n• Заполните Био\n• Выберите категорию")

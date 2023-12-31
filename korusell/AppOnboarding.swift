@@ -37,7 +37,7 @@ struct AppOnboarding: View {
                 }
             }
             .frame(maxWidth: .infinity)
-            .padding(20)
+            .padding(.vertical, 20)
         }
         .padding(.horizontal, 22)
         .frame(maxWidth: .infinity, maxHeight: .infinity)

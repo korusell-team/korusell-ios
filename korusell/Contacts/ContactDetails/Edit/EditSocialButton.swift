@@ -42,7 +42,7 @@ struct EditSocialButton: View {
             case .linkedIn:     TextField("профайл", text: $contact.linkedIn.bound)
             case .threads:      TextField("никнейм", text: $contact.threads.bound)
             case .twitter:      TextField("никнейм", text: $contact.twitter.bound)
-            case .whatsApp:     TextField("номер телефона (+821000000000)", text: $contact.whatsApp.bound)
+            case .whatsApp:     TextField("телефон (+821000000000)", text: $contact.whatsApp.bound)
             }
         }()
         

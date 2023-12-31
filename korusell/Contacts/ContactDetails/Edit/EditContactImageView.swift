@@ -9,10 +9,10 @@ import SwiftUI
 import CachedAsyncImage
 
 struct EditContactImageView: View {
+    @EnvironmentObject var userManager: UserManager
     //    @State var page: Int = 0
     @Binding var user: Contact
     @Binding var image: UIImage?
-    @Binding var url: URL?
     
     @Binding var showImagePicker: Bool
     let animation: Namespace.ID
@@ -25,7 +25,7 @@ struct EditContactImageView: View {
                         .resizable()
                         .scaledToFill()
                 } else {
-                    CachedAsyncImage(url: url, urlCache: .imageCache) { phase in
+                    CachedAsyncImage(url: userManager.imageUrl, urlCache: .imageCache) { phase in
                         switch phase {
                         case .empty:
                             ProgressView()

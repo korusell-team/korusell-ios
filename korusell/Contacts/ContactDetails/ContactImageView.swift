@@ -9,35 +9,35 @@ import SwiftUI
 import CachedAsyncImage
 
 struct ContactImageView: View {
+    @EnvironmentObject var userManager: UserManager
     @State var page: Int = 0
     
-    let contact: Contact
+    @Binding var user: Contact
+    
     let animation: Namespace.ID
     
     var body: some View {
         ZStack(alignment: .bottom) {
             ZStack(alignment: .top) {
-                if contact.image.isEmpty {
-                    ZStack(alignment: .bottom) {
+                if user.image.isEmpty {
+                    ZStack(alignment: .center) {
                         Color.gray50
-                        Image("alien")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: UIScreen.main.bounds.width / 1.5)
+                        VStack {
+                            Text("😢")
+                                .font(bold60f)
+                            Text("Фотографий нет.\nУвы и ах...")
+                                .foregroundColor(.gray900)
+                                .multilineTextAlignment(.center)
+                        }
                     }
                 } else {
-                    //                TabView(selection: $page) {
-                    //                    ForEach(0..<contact.image.count, id: \.self) { index in
-                    //                        CachedAsyncImage(url: URL(string: contact.image[index]), urlCache: .imageCache) { phase in
-                    CachedAsyncImage(url: URL(string: contact.image.first ?? ""), urlCache: .imageCache) { phase in
+                    let url = user.uid == userManager.user?.uid ? URL(string: userManager.user?.image.first ?? "") : URL(string: user.image.first ?? "")
+                    CachedAsyncImage(url: url, urlCache: .imageCache) { phase in
                         
                         switch phase {
                         case .empty:
                             ProgressView()
-                                .tint(.white)
-                                .background(Color.gray10)
-                                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                                
+                                .frame(minHeight: UIScreen.main.bounds.width)
                         case .success(let image):
                             Color.clear
                                 .aspectRatio(1, contentMode: .fit)
@@ -50,19 +50,26 @@ struct ContactImageView: View {
                                 .matchedGeometryEffect(id: "avatar", in: animation)
                             
                         case .failure:
-                            Image(systemName: "photo")
-                                .background(Color.gray10)
-                                .frame(maxWidth: .infinity)
+                            ZStack(alignment: .center) {
+                                Color.gray50
+                                // TODO: create from this: message object with emoji, text and subtext
+                                VStack {
+                                    Text("🚧")
+                                        .font(bold60f)
+                                    Text("Что то пошло не так во время загрузки картинки...\n")
+                                        .foregroundColor(.gray900)
+                                        .multilineTextAlignment(.center)
+                                    
+                                    Text("(Возможно у Вас медленная скорость интернета)")
+                                        .font(light16f)
+                                        .foregroundColor(.gray700)
+                                        .multilineTextAlignment(.center)
+                                }
+                            }
                         @unknown default:
                             EmptyView()
                         }
                     }
-                    //                        .tag(index)
-                    
-                    //                    }
-                    //                }
-                    //                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .automatic))
-                    //                .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
                 } //else
                 LinearGradient(colors: [.clear, .gray1100.opacity(0.8)], startPoint: .bottom, endPoint: .top)
                     .frame(height: 120)

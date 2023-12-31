@@ -38,6 +38,7 @@ let semiBold16f: Font = Font.custom(appleGothicSemiBold, size: 16)
 let semiBold18f: Font = Font.custom(appleGothicSemiBold, size: 18)
 let semiBold22f: Font = Font.custom(appleGothicSemiBold, size: 22)
 
+let bold60f: Font = Font.custom(appleGothicBold, size: 60)
 let bold30f: Font = Font.custom(appleGothicBold, size: 30)
 let bold24f: Font = Font.custom(appleGothicBold, size: 24)
 let bold20f: Font = Font.custom(appleGothicBold, size: 20)

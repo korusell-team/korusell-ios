@@ -20,8 +20,8 @@ struct ContactDetailsView: View {
     @State var offset: CGFloat = 0
     @State var image: UIImage?
     @State var isLoading: Bool = false
-    
-    @State var url: URL? = nil
+//    
+//    @State var url: URL? = nil
     @Namespace private var animation
     
     @State var showAlert: Bool = false
@@ -30,10 +30,10 @@ struct ContactDetailsView: View {
         VStack(spacing: 0) {
             ZStack {
                 if editMode {
-                    EditDetailsView(user: $user, image: $image, url: $url, showAlert: $showAlert, animation: animation)
+                    EditDetailsView(user: $user, image: $image, showAlert: $showAlert, animation: animation)
                 } else {
                     TrackableScrollView(showIndicators: false, contentOffset: $offset) {
-                        ContactImageView(contact: user, animation: animation)
+                        ContactImageView(user: $user, animation: animation)
                         ContactDetailsInfo(contact: user)
                     }
                 }
@@ -51,8 +51,6 @@ struct ContactDetailsView: View {
             withAnimation {
                 vc.showBottomBar = false
             }
-            
-            self.url = URL(string: user.image.first ?? "")
         }
         .applyIf(editMode) { view in
             view
@@ -132,6 +130,7 @@ struct ContactDetailsView: View {
             try await userManager.save(image: image, user: user)
             cc.getUsers()
             withAnimation {
+//                self.url = URL(string: userManager.user?.image.first ?? "")
                 self.isLoading = false
                 editMode = false
             }
