@@ -171,14 +171,15 @@ class ContactsController: ObservableObject {
         if #available(iOS 16.0, *) {
             guard !self.selectedCities.isEmpty && !self.selectedCities.contains(0) else { return contacts }
             
-            
             return contacts.filter({
-                print(self.selectedCities.contains($0.cities))
-                print(self.selectedCities)
-                print($0.cities)
+//                print(self.selectedCities.contains($0.cities))
+//                print(self.selectedCities)
+//                print($0.cities)
                 
                 return self.selectedCities.contains($0.cities)
-            })
+            }) +
+            contacts.filter({ $0.cities.contains(0) })
+            
         } else {
             return contacts
         }
