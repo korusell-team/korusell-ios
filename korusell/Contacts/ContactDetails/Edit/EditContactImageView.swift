@@ -28,7 +28,16 @@ struct EditContactImageView: View {
                     CachedAsyncImage(url: userManager.imageUrl, urlCache: .imageCache) { phase in
                         switch phase {
                         case .empty:
-                            ProgressView()
+                            ZStack {
+                                VStack {
+                                    Text("🫥")
+                                        .font(bold60f)
+                                    Text("нет фотографии...")
+                                        .foregroundColor(.gray900)
+                                        .multilineTextAlignment(.center)
+                                        .font(light16f)
+                                }
+                            }.frame(width: Size.w(190), height: Size.w(190), alignment: .center)
                         case .success(let image):
                             ZStack(alignment: .top) {
                                 image
@@ -38,8 +47,15 @@ struct EditContactImageView: View {
                             }
                         case .failure:
                             ZStack {
-                                Image(systemName: "photo")
-                            }.frame(width: UIScreen.main.bounds.width, height: Size.w(390), alignment: .center)
+                                VStack {
+                                    Text("😖")
+                                        .font(bold60f)
+                                    Text("Что то пошло не так...")
+                                        .foregroundColor(.gray900)
+                                        .multilineTextAlignment(.center)
+                                        .font(light16f)
+                                }
+                            }.frame(width: Size.w(190), height: Size.w(190), alignment: .center)
                         @unknown default:
                             EmptyView()
                         }

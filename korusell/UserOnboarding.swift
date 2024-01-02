@@ -93,7 +93,7 @@ struct UserOnboarding: View {
                 .cornerRadius(15)
                 .padding(.bottom, 2)
                 
-                Text("Пример: 27yo, UI/UX дизайнер с +5 лет опыта работы")
+                Text("Пример: 27yo, UI/UX дизайнер с 3+ лет опыта работы")
                     .font(regular13f)
                     .multilineTextAlignment(.leading)
                     .foregroundColor(.gray600)

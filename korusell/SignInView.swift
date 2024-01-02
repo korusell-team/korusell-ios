@@ -150,7 +150,8 @@ struct SignInView: View {
     
     private func signIn() {
         //MARK: disable when you need to test with real device
-//        Auth.auth().settings?.isAppVerificationDisabledForTesting = true
+        Auth.auth().settings?.isAppVerificationDisabledForTesting = true
+        
         self.isLoading = true
         let properPhone = "+8210" + self.phone.replacingOccurrences(of: " - ", with: "")
         PhoneAuthProvider.provider().verifyPhoneNumber(properPhone, uiDelegate: nil) { CODE, error in
