@@ -43,6 +43,7 @@ class ContactsController: ObservableObject {
             .collection("cats")
             .getDocuments{ (querySnapshot, error) in
                 guard let documents = querySnapshot?.documents else {
+                    print(error?.localizedDescription)
                     print("No cats! 🐾")
                     return
                 }

@@ -1,4 +1,11 @@
 //
+//  ContactDetailsViewA.swift
+//  korusell
+//
+//  Created by Sergey Li on 1/2/24.
+//
+
+//
 //  ContactDetailsView.swift
 //  korusell
 //
@@ -8,7 +15,7 @@
 import SwiftUI
 import CachedAsyncImage
 
-struct ContactDetailsView: View {
+struct ContactDetailsViewA: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @EnvironmentObject var userManager: UserManager
     @EnvironmentObject var vc: SessionViewController
@@ -20,7 +27,7 @@ struct ContactDetailsView: View {
     @State var offset: CGFloat = 0
     @State var image: UIImage?
     @State var isLoading: Bool = false
-//    
+//
 //    @State var url: URL? = nil
     @Namespace private var animation
     
@@ -87,8 +94,7 @@ struct ContactDetailsView: View {
                     //                        BackButton(action: { presentationMode.wrappedValue.dismiss() }, title: "Контакты")
                 )
         }
-        .applyIf(user.phone == userManager.user?.phone) { view in
-            view.navigationBarItems(trailing:
+        .navigationBarItems(trailing:
                                         Button(action: {
                 if editMode {
                     save()
@@ -101,37 +107,34 @@ struct ContactDetailsView: View {
                 Text(editMode ? "Сохранить" : "Изменить")
                     .foregroundColor((offset > 0 || editMode) ? .accentColor : .white)
             }
-                .disabled(editMode && userManager.user == user && self.image == nil)
+              
             )
-        }
+        
     }
     
     private func save() {
         if user.isPublic {
-            if user.image.isEmpty && image == nil {
-                showAlert = true
-                return
-            }
-            if user.name == nil || user.name?.isEmpty ?? true {
-                showAlert = true
-                return
-            }
-            if user.categories.isEmpty {
-                showAlert = true
-                return
-            }
-            if user.bio?.isEmpty ?? true {
-                showAlert = true
-                return
-            }
+//            if user.image.isEmpty && image == nil {
+//                showAlert = true
+//                return
+//            }
+//            if user.name == nil || user.name?.isEmpty ?? true {
+//                showAlert = true
+//                return
+//            }
+//            if user.categories.isEmpty {
+//                showAlert = true
+//                return
+//            }
+//            if user.bio?.isEmpty ?? true {
+//                showAlert = true
+//                return
+//            }
         }
         Task {
             self.isLoading = true
             try await userManager.save(image: image, user: user)
-            // MARK: Applying changes inside contacts list
-            if let me = cc.contacts.firstIndex(where: { $0.uid == user.uid }) {
-                cc.contacts[me] = user
-            }
+            cc.getUsers()
             withAnimation {
 //                self.url = URL(string: userManager.user?.image.first ?? "")
                 self.isLoading = false
@@ -148,3 +151,4 @@ struct ContactDetailsView: View {
 //        }
 //    }
 //}
+

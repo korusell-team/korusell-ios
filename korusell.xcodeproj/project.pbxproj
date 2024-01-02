@@ -80,7 +80,6 @@
 		2B345B752AB868B80025BF2C /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2B345B742AB868B80025BF2C /* FirebaseFirestoreSwift */; };
 		2B345B772ABB0C1E0025BF2C /* CategorySelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B345B762ABB0C1E0025BF2C /* CategorySelectionView.swift */; };
 		2B345B792ABB189A0025BF2C /* CitySelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B345B782ABB189A0025BF2C /* CitySelectionView.swift */; };
-		2B9489562AA831FF0039D5AC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2B9489552AA831FE0039D5AC /* GoogleService-Info.plist */; };
 		2B9489582AA89FE50039D5AC /* PlacePoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9489572AA89FE50039D5AC /* PlacePoint.swift */; };
 		2BC565B92B3ED1C400AFB708 /* EditDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC565B82B3ED1C400AFB708 /* EditDetailsView.swift */; };
 		2BC565BB2B3ED30E00AFB708 /* EditSocialButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC565BA2B3ED30E00AFB708 /* EditSocialButton.swift */; };
@@ -88,6 +87,10 @@
 		2BC565BF2B3ED33D00AFB708 /* AccTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC565BE2B3ED33D00AFB708 /* AccTextField.swift */; };
 		2BC565C12B3ED35B00AFB708 /* CityEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC565C02B3ED35B00AFB708 /* CityEditView.swift */; };
 		2BC565C32B3ED37900AFB708 /* CategoryEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC565C22B3ED37900AFB708 /* CategoryEditView.swift */; };
+		2BC565C62B440F6C00AFB708 /* AdminView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC565C52B440F6C00AFB708 /* AdminView.swift */; };
+		2BC565C82B440FDC00AFB708 /* ContactDetailsViewA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC565C72B440FDC00AFB708 /* ContactDetailsViewA.swift */; };
+		2BC565CA2B4410BB00AFB708 /* ContactListViewA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC565C92B4410BB00AFB708 /* ContactListViewA.swift */; };
+		2BC565CC2B441FD200AFB708 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2BC565CB2B441FD200AFB708 /* GoogleService-Info.plist */; };
 		2BD124902B25609A004C4772 /* LoadingElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD1248F2B25609A004C4772 /* LoadingElement.swift */; };
 		2BD124922B25A4D1004C4772 /* MenuLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD124912B25A4D1004C4772 /* MenuLabelView.swift */; };
 		2BEC5A582B3AE3F500D8518A /* PhoneHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEC5A572B3AE3F500D8518A /* PhoneHelper.swift */; };
@@ -164,7 +167,6 @@
 		2B345B712AB85C700025BF2C /* FirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManager.swift; sourceTree = "<group>"; };
 		2B345B762ABB0C1E0025BF2C /* CategorySelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySelectionView.swift; sourceTree = "<group>"; };
 		2B345B782ABB189A0025BF2C /* CitySelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitySelectionView.swift; sourceTree = "<group>"; };
-		2B9489552AA831FE0039D5AC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2B9489572AA89FE50039D5AC /* PlacePoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacePoint.swift; sourceTree = "<group>"; };
 		2BC565B82B3ED1C400AFB708 /* EditDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDetailsView.swift; sourceTree = "<group>"; };
 		2BC565BA2B3ED30E00AFB708 /* EditSocialButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSocialButton.swift; sourceTree = "<group>"; };
@@ -172,6 +174,10 @@
 		2BC565BE2B3ED33D00AFB708 /* AccTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccTextField.swift; sourceTree = "<group>"; };
 		2BC565C02B3ED35B00AFB708 /* CityEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityEditView.swift; sourceTree = "<group>"; };
 		2BC565C22B3ED37900AFB708 /* CategoryEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryEditView.swift; sourceTree = "<group>"; };
+		2BC565C52B440F6C00AFB708 /* AdminView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminView.swift; sourceTree = "<group>"; };
+		2BC565C72B440FDC00AFB708 /* ContactDetailsViewA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailsViewA.swift; sourceTree = "<group>"; };
+		2BC565C92B4410BB00AFB708 /* ContactListViewA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListViewA.swift; sourceTree = "<group>"; };
+		2BC565CB2B441FD200AFB708 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2BD1248F2B25609A004C4772 /* LoadingElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingElement.swift; sourceTree = "<group>"; };
 		2BD124912B25A4D1004C4772 /* MenuLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuLabelView.swift; sourceTree = "<group>"; };
 		2BEC5A572B3AE3F500D8518A /* PhoneHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneHelper.swift; sourceTree = "<group>"; };
@@ -300,8 +306,9 @@
 				256275AF2A7D0103006F0E39 /* Auth */,
 				2548C4192A96001F00211CC0 /* Session */,
 				25DB6CBA2A0727FA00660E99 /* Contacts */,
-				259EAAC22A960B95006C207F /* Search */,
 				25DB6CC22A0A59DE00660E99 /* Places */,
+				259EAAC22A960B95006C207F /* Search */,
+				2BC565C42B440F4300AFB708 /* AdminPanel */,
 				25DB6CC92A0A5BFA00660E99 /* Models */,
 				25DB6CC62A0A5A0700660E99 /* Shared */,
 				259EAAC72A97583F006C207F /* Elements */,
@@ -310,7 +317,7 @@
 				25DB6CB22A0726C600660E99 /* Preview Content */,
 				256C97622A372EAC003DD1B4 /* TestView.swift */,
 				256276072A80F114006F0E39 /* Info.plist */,
-				2B9489552AA831FE0039D5AC /* GoogleService-Info.plist */,
+				2BC565CB2B441FD200AFB708 /* GoogleService-Info.plist */,
 			);
 			path = korusell;
 			sourceTree = "<group>";
@@ -426,6 +433,16 @@
 			path = Edit;
 			sourceTree = "<group>";
 		};
+		2BC565C42B440F4300AFB708 /* AdminPanel */ = {
+			isa = PBXGroup;
+			children = (
+				2BC565C52B440F6C00AFB708 /* AdminView.swift */,
+				2BC565C72B440FDC00AFB708 /* ContactDetailsViewA.swift */,
+				2BC565C92B4410BB00AFB708 /* ContactListViewA.swift */,
+			);
+			name = AdminPanel;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -499,11 +516,11 @@
 			files = (
 				2B0491532AB0851600A8F81E /* cities.json in Resources */,
 				25DB6CB42A0726C600660E99 /* Preview Assets.xcassets in Resources */,
-				2B9489562AA831FF0039D5AC /* GoogleService-Info.plist in Resources */,
 				2B0A6B4F2B286DEB005BB5F0 /* cats.json in Resources */,
 				2B181D722AAF16F4001E6250 /* contacts.json in Resources */,
 				2B0491512AB07EAE00A8F81E /* categories.json in Resources */,
 				25DB6CB12A0726C600660E99 /* Assets.xcassets in Resources */,
+				2BC565CC2B441FD200AFB708 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -558,10 +575,12 @@
 				2548C41B2A96005700211CC0 /* SessionView.swift in Sources */,
 				25DB6CCB2A0A5C1000660E99 /* Contact.swift in Sources */,
 				259EAAD62A9DEABA006C207F /* ContactDetailsInfo.swift in Sources */,
+				2BC565C62B440F6C00AFB708 /* AdminView.swift in Sources */,
 				2B0A6B552B306D9E005BB5F0 /* AppOnboarding.swift in Sources */,
 				2BD124922B25A4D1004C4772 /* MenuLabelView.swift in Sources */,
 				2596144F2A124E5900393712 /* TrackableScrollView.swift in Sources */,
 				253B84F42A0F1B1A004FA223 /* Category.swift in Sources */,
+				2BC565CA2B4410BB00AFB708 /* ContactListViewA.swift in Sources */,
 				2BD124902B25609A004C4772 /* LoadingElement.swift in Sources */,
 				25ADF32A2A694403009A2B73 /* PlacesScreen.swift in Sources */,
 				259EAAC92A97594C006C207F /* CitiesView.swift in Sources */,
@@ -579,6 +598,7 @@
 				2B345B702AB85A410025BF2C /* UserManager.swift in Sources */,
 				253B84E62A0A614F004FA223 /* SearchBar.swift in Sources */,
 				2BC565B92B3ED1C400AFB708 /* EditDetailsView.swift in Sources */,
+				2BC565C82B440FDC00AFB708 /* ContactDetailsViewA.swift in Sources */,
 				2BC565BD2B3ED32500AFB708 /* EditInfoView.swift in Sources */,
 				259338092A29E22E00C7AF1B /* RoundedCorner.swift in Sources */,
 				259EAAD12A98AE4B006C207F /* ScreenHelper.swift in Sources */,

@@ -11,7 +11,7 @@ struct SessionView: View {
     @EnvironmentObject var userManager: UserManager
     
     var body: some View {
-        if userManager.user?.uid == "jFw6tzSYiJNxkCL3kDXT8zUXMyw2removeme" {
+        if userManager.user?.uid == "jFw6tzSYiJNxkCL3kDXT8zUXMyw2" {
             BottomTabBar(tabs: TabBarType.allCases.map({ $0.tabs })
             ) { index in
                 getTabView(index: index)
@@ -30,10 +30,10 @@ struct SessionView: View {
             switch type {
             case .contacts:
                 ContactsScreen()
-            case .search:
-                GlobalSearchView()
             case .places:
                 PlacesScreen()
+            case .search:
+                AdminView()
             }
         }
     }
@@ -124,7 +124,8 @@ enum TabBarType: Int, CaseIterable {
         case .contacts:
             return ("person.2.fill", "Контакты")
         case .search:
-            return ("magnifyingglass", "Поиск")
+//            return ("magnifyingglass", "Поиск")
+            return ("person.2.badge.gearshape", "Админка")
         case .places:
             return ("mappin.and.ellipse", "Места")
         }
