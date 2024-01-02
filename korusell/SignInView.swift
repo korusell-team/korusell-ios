@@ -158,8 +158,20 @@ struct SignInView: View {
             self.isLoading = false
             self.CODE = CODE ?? ""
             if let error {
-                self.error = error.localizedDescription
-                print(error)
+                let err = error as NSError
+                switch err.code {
+                case AuthErrorCode.captchaCheckFailed.rawValue:
+                    self.error = "Вы не прошли Capthca проверку 🔒"
+                case AuthErrorCode.invalidPhoneNumber.rawValue:
+                    self.error = "Неверный номер телефона ☎️"
+                case AuthErrorCode.tooManyRequests.rawValue:
+                    self.error = "Вы отправили слишком много запросов 🙈"
+                case AuthErrorCode.networkError.rawValue:
+                    self.error = "Проблемы с сетью... 🛰️"
+                default:
+                    self.error = "Что то пошло не так... 😖"
+                }
+                print(err)
                 return
             }
             
@@ -181,12 +193,24 @@ struct SignInView: View {
         
         Auth.auth().signIn(with: credential) { (result, error) in
             if let error {
-                self.error = error.localizedDescription
-                print(error)
-                self.isLoading = false
-//                userManager.isLoading = false
+                let err = error as NSError
+                switch err.code {
+                case AuthErrorCode.wrongPassword.rawValue:
+                    self.error = "Неверный пароль 🔒"
+                case AuthErrorCode.invalidPhoneNumber.rawValue:
+                    self.error = "Неверный номер телефона ☎️"
+                case AuthErrorCode.tooManyRequests.rawValue:
+                    self.error = "Вы отправили слишком много запросов 🙈"
+                case AuthErrorCode.networkError.rawValue:
+                    self.error = "Проблемы с сетью... 🛰️"
+                default:
+                    self.error = "Что то пошло не так... 😖"
+                }
+                print(err)
+                isLoading = false
                 return
             }
+            
             DispatchQueue.main.async {
                 userManager.handleUser()
             }
