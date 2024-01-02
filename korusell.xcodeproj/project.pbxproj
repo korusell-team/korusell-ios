@@ -90,7 +90,7 @@
 		2BC565C62B440F6C00AFB708 /* AdminView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC565C52B440F6C00AFB708 /* AdminView.swift */; };
 		2BC565C82B440FDC00AFB708 /* ContactDetailsViewA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC565C72B440FDC00AFB708 /* ContactDetailsViewA.swift */; };
 		2BC565CA2B4410BB00AFB708 /* ContactListViewA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC565C92B4410BB00AFB708 /* ContactListViewA.swift */; };
-		2BC565CC2B441FD200AFB708 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2BC565CB2B441FD200AFB708 /* GoogleService-Info.plist */; };
+		2BC565CE2B44275500AFB708 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2BC565CD2B44275500AFB708 /* GoogleService-Info.plist */; };
 		2BD124902B25609A004C4772 /* LoadingElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD1248F2B25609A004C4772 /* LoadingElement.swift */; };
 		2BD124922B25A4D1004C4772 /* MenuLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD124912B25A4D1004C4772 /* MenuLabelView.swift */; };
 		2BEC5A582B3AE3F500D8518A /* PhoneHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEC5A572B3AE3F500D8518A /* PhoneHelper.swift */; };
@@ -177,7 +177,8 @@
 		2BC565C52B440F6C00AFB708 /* AdminView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminView.swift; sourceTree = "<group>"; };
 		2BC565C72B440FDC00AFB708 /* ContactDetailsViewA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailsViewA.swift; sourceTree = "<group>"; };
 		2BC565C92B4410BB00AFB708 /* ContactListViewA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListViewA.swift; sourceTree = "<group>"; };
-		2BC565CB2B441FD200AFB708 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2BC565CD2B44275500AFB708 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2BC565CF2B4428C300AFB708 /* korusell.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = korusell.entitlements; sourceTree = "<group>"; };
 		2BD1248F2B25609A004C4772 /* LoadingElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingElement.swift; sourceTree = "<group>"; };
 		2BD124912B25A4D1004C4772 /* MenuLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuLabelView.swift; sourceTree = "<group>"; };
 		2BEC5A572B3AE3F500D8518A /* PhoneHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneHelper.swift; sourceTree = "<group>"; };
@@ -300,6 +301,7 @@
 		25DB6CAB2A0726C400660E99 /* korusell */ = {
 			isa = PBXGroup;
 			children = (
+				2BC565CF2B4428C300AFB708 /* korusell.entitlements */,
 				25DB6CAC2A0726C400660E99 /* korusellApp.swift */,
 				25ADF3352A694516009A2B73 /* ContentView.swift */,
 				2548C4142A94B40000211CC0 /* Onboarding */,
@@ -317,7 +319,7 @@
 				25DB6CB22A0726C600660E99 /* Preview Content */,
 				256C97622A372EAC003DD1B4 /* TestView.swift */,
 				256276072A80F114006F0E39 /* Info.plist */,
-				2BC565CB2B441FD200AFB708 /* GoogleService-Info.plist */,
+				2BC565CD2B44275500AFB708 /* GoogleService-Info.plist */,
 			);
 			path = korusell;
 			sourceTree = "<group>";
@@ -515,12 +517,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B0491532AB0851600A8F81E /* cities.json in Resources */,
+				2BC565CE2B44275500AFB708 /* GoogleService-Info.plist in Resources */,
 				25DB6CB42A0726C600660E99 /* Preview Assets.xcassets in Resources */,
 				2B0A6B4F2B286DEB005BB5F0 /* cats.json in Resources */,
 				2B181D722AAF16F4001E6250 /* contacts.json in Resources */,
 				2B0491512AB07EAE00A8F81E /* categories.json in Resources */,
 				25DB6CB12A0726C600660E99 /* Assets.xcassets in Resources */,
-				2BC565CC2B441FD200AFB708 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -733,6 +735,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = korusell/korusell.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"korusell/Preview Content\"";
@@ -770,6 +773,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = korusell/korusell.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"korusell/Preview Content\"";

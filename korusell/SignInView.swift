@@ -17,6 +17,7 @@ struct SignInView: View {
     @State var CODE = ""
     @State var showCodeWindow = false
     @State var error: String? = nil
+    @State var isLoading: Bool = false
     
     @FocusState var focusedField
     @Namespace private var animation
@@ -93,12 +94,14 @@ struct SignInView: View {
                     .padding(.vertical)
                 }
             }
+            .padding(.horizontal, 22)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(Color.gray50)
             
-            
+            if isLoading {
+                LoadingElement()
+            }
         }
-        .padding(.horizontal, 22)
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color.gray50)
         .onChange(of: viewModel.otpField) { _ in
             resetError()
         }
@@ -146,11 +149,12 @@ struct SignInView: View {
     }
     
     private func signIn() {
-        // disable when you need to test with real device
-        Auth.auth().settings?.isAppVerificationDisabledForTesting = true
-        
+        //MARK: disable when you need to test with real device
+//        Auth.auth().settings?.isAppVerificationDisabledForTesting = true
+        self.isLoading = true
         let properPhone = "+8210" + self.phone.replacingOccurrences(of: " - ", with: "")
         PhoneAuthProvider.provider().verifyPhoneNumber(properPhone, uiDelegate: nil) { CODE, error in
+            self.isLoading = false
             self.CODE = CODE ?? ""
             if let error {
                 self.error = error.localizedDescription
@@ -167,8 +171,10 @@ struct SignInView: View {
     }
     
     private func verifyCode() {
+        
         withAnimation {
-            userManager.isLoading = true
+            self.isLoading = true
+//            userManager.isLoading = true
         }
         let credential = PhoneAuthProvider.provider().credential(withVerificationID: self.CODE, verificationCode: viewModel.otpField)
         
@@ -176,7 +182,8 @@ struct SignInView: View {
             if let error {
                 self.error = error.localizedDescription
                 print(error)
-                userManager.isLoading = false
+                self.isLoading = false
+//                userManager.isLoading = false
                 return
             }
             DispatchQueue.main.async {
