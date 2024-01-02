@@ -48,18 +48,20 @@ struct ContactDetailsInfo: View {
                 Spacer()
                 
                 Button(action: { PhoneHelper.shared.call(contact.phone) }) {
-                    Image("ic-phone")
+                    Image(systemName: "phone.circle.fill")
                         .resizable()
                         .scaledToFit()
+                        .foregroundColor(.green)
                         .frame(width: 50, height: 50)
                 }
                 .disabled(!contact.phoneIsAvailable.bound)
                 .opacity(contact.phoneIsAvailable.bound ? 1 : 0.5)
                 
                 Button(action: { PhoneHelper.shared.sendSMS(contact.phone) }) {
-                    Image("ic-sms")
+                    Image(systemName: "message.circle.fill")
                         .resizable()
                         .scaledToFit()
+                        .foregroundColor(.green)
                         .frame(width: 50, height: 50)
                 }
                 .disabled(!contact.phoneIsAvailable.bound)
