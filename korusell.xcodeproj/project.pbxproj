@@ -91,6 +91,9 @@
 		2BC565C82B440FDC00AFB708 /* ContactDetailsViewA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC565C72B440FDC00AFB708 /* ContactDetailsViewA.swift */; };
 		2BC565CA2B4410BB00AFB708 /* ContactListViewA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC565C92B4410BB00AFB708 /* ContactListViewA.swift */; };
 		2BC565CE2B44275500AFB708 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2BC565CD2B44275500AFB708 /* GoogleService-Info.plist */; };
+		2BC565D12B4570EB00AFB708 /* CreateUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC565D02B4570EB00AFB708 /* CreateUserView.swift */; };
+		2BC565D42B45713300AFB708 /* CreateImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC565D32B45713300AFB708 /* CreateImageView.swift */; };
+		2BC565D62B45713F00AFB708 /* CreateContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC565D52B45713F00AFB708 /* CreateContactView.swift */; };
 		2BD124902B25609A004C4772 /* LoadingElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD1248F2B25609A004C4772 /* LoadingElement.swift */; };
 		2BD124922B25A4D1004C4772 /* MenuLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD124912B25A4D1004C4772 /* MenuLabelView.swift */; };
 		2BEC5A582B3AE3F500D8518A /* PhoneHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEC5A572B3AE3F500D8518A /* PhoneHelper.swift */; };
@@ -179,6 +182,9 @@
 		2BC565C92B4410BB00AFB708 /* ContactListViewA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListViewA.swift; sourceTree = "<group>"; };
 		2BC565CD2B44275500AFB708 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2BC565CF2B4428C300AFB708 /* korusell.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = korusell.entitlements; sourceTree = "<group>"; };
+		2BC565D02B4570EB00AFB708 /* CreateUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUserView.swift; sourceTree = "<group>"; };
+		2BC565D32B45713300AFB708 /* CreateImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateImageView.swift; sourceTree = "<group>"; };
+		2BC565D52B45713F00AFB708 /* CreateContactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateContactView.swift; sourceTree = "<group>"; };
 		2BD1248F2B25609A004C4772 /* LoadingElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingElement.swift; sourceTree = "<group>"; };
 		2BD124912B25A4D1004C4772 /* MenuLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuLabelView.swift; sourceTree = "<group>"; };
 		2BEC5A572B3AE3F500D8518A /* PhoneHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneHelper.swift; sourceTree = "<group>"; };
@@ -438,11 +444,22 @@
 		2BC565C42B440F4300AFB708 /* AdminPanel */ = {
 			isa = PBXGroup;
 			children = (
+				2BC565D22B45711800AFB708 /* Creation */,
 				2BC565C52B440F6C00AFB708 /* AdminView.swift */,
 				2BC565C72B440FDC00AFB708 /* ContactDetailsViewA.swift */,
 				2BC565C92B4410BB00AFB708 /* ContactListViewA.swift */,
 			);
 			name = AdminPanel;
+			sourceTree = "<group>";
+		};
+		2BC565D22B45711800AFB708 /* Creation */ = {
+			isa = PBXGroup;
+			children = (
+				2BC565D02B4570EB00AFB708 /* CreateUserView.swift */,
+				2BC565D32B45713300AFB708 /* CreateImageView.swift */,
+				2BC565D52B45713F00AFB708 /* CreateContactView.swift */,
+			);
+			name = Creation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -562,7 +579,9 @@
 				2B04915C2AB32D2900A8F81E /* EditPhoneView.swift in Sources */,
 				256C97612A372B55003DD1B4 /* Design.swift in Sources */,
 				25ADF3342A694438009A2B73 /* PlaceMarker.swift in Sources */,
+				2BC565D12B4570EB00AFB708 /* CreateUserView.swift in Sources */,
 				2B0A6B532B2AFD6C005BB5F0 /* PopCitiesView.swift in Sources */,
+				2BC565D62B45713F00AFB708 /* CreateContactView.swift in Sources */,
 				256C97652A39EC0E003DD1B4 /* LabelsView.swift in Sources */,
 				2548C4182A94E45300211CC0 /* OTPView.swift in Sources */,
 				259EAACD2A975CCC006C207F /* City.swift in Sources */,
@@ -608,6 +627,7 @@
 				2B2B66C52B0CC6CB003195E9 /* ImagePicker.swift in Sources */,
 				256C97632A372EAC003DD1B4 /* TestView.swift in Sources */,
 				253B84FA2A0F7F9E004FA223 /* LabelView.swift in Sources */,
+				2BC565D42B45713300AFB708 /* CreateImageView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

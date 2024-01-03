@@ -26,18 +26,20 @@ struct ContactDetailsViewA: View {
     @State var user: Contact
     @State var offset: CGFloat = 0
     @State var image: UIImage?
+    @State var imageUrl: URL?
     @State var isLoading: Bool = false
-//
-//    @State var url: URL? = nil
+    //
+    //    @State var url: URL? = nil
     @Namespace private var animation
     
     @State var showAlert: Bool = false
-  
+    
     var body: some View {
         VStack(spacing: 0) {
             ZStack {
                 if editMode {
-                    EditDetailsView(user: $user, image: $image, showAlert: $showAlert, animation: animation)
+                    CreateUserView(user: user, image: image, imageUrl: imageUrl)
+//                    EditDetailsView(user: $user, image: $image, showAlert: $showAlert, animation: animation)
                 } else {
                     TrackableScrollView(showIndicators: false, contentOffset: $offset) {
                         ContactImageView(user: $user, animation: animation)
@@ -47,7 +49,7 @@ struct ContactDetailsViewA: View {
                 
                 if isLoading {
                     LoadingElement()
-                        
+                    
                 }
             }
         }
@@ -55,6 +57,7 @@ struct ContactDetailsViewA: View {
         .background(Color.app_white)
         .navigationBarBackButtonHidden(true)
         .onAppear {
+            self.imageUrl = URL(string: user.image.first ?? "")
             withAnimation {
                 vc.showBottomBar = false
             }
@@ -94,54 +97,38 @@ struct ContactDetailsViewA: View {
                     //                        BackButton(action: { presentationMode.wrappedValue.dismiss() }, title: "Контакты")
                 )
         }
-        .navigationBarItems(trailing:
-                                        Button(action: {
-                if editMode {
-                    save()
-                } else {
-                    withAnimation {
-                        editMode = true
-                    }
-                }
-            }) {
-                Text(editMode ? "Сохранить" : "Изменить")
-                    .foregroundColor((offset > 0 || editMode) ? .accentColor : .white)
-            }
-              
-            )
+//        .navigationBarItems(trailing:
+//                                Button(action: {
+//            if editMode {
+//                save()
+//            } else {
+//                withAnimation {
+//                    editMode = true
+//                }
+//            }
+//        }) {
+//            Text(editMode ? "Сохранить" : "Изменить")
+//                .foregroundColor((offset > 0 || editMode) ? .accentColor : .white)
+//        }
+//                            
+//        )
         
     }
     
-    private func save() {
-        if user.isPublic {
-//            if user.image.isEmpty && image == nil {
-//                showAlert = true
-//                return
+//    private func save() {
+//        Task {
+//            self.isLoading = true
+//            try await userManager.createUser(image: image, user: user)
+//            // MARK: Applying changes inside contacts list
+//            if let editUser = cc.contacts.firstIndex(where: { $0.uid == user.uid }) {
+//                cc.contacts[editUser] = user
 //            }
-//            if user.name == nil || user.name?.isEmpty ?? true {
-//                showAlert = true
-//                return
+//            withAnimation {
+//                self.isLoading = false
+//                editMode = false
 //            }
-//            if user.categories.isEmpty {
-//                showAlert = true
-//                return
-//            }
-//            if user.bio?.isEmpty ?? true {
-//                showAlert = true
-//                return
-//            }
-        }
-        Task {
-            self.isLoading = true
-            try await userManager.save(image: image, user: user)
-            cc.getUsers()
-            withAnimation {
-//                self.url = URL(string: userManager.user?.image.first ?? "")
-                self.isLoading = false
-                editMode = false
-            }
-        }
-    }
+//        }
+//    }
 }
 
 //struct ContactDetailsView_Previews: PreviewProvider {

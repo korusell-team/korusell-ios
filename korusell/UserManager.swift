@@ -5,7 +5,7 @@
 //  Created by Sergey Li on 2023/09/18.
 //
 
-import Foundation
+import UIKit
 import FirebaseAuth
 import Firebase
 
@@ -110,5 +110,52 @@ class UserManager: ObservableObject {
                 print(error.localizedDescription)
             }
         }
+    }
+    
+    func deleteUser(user: Contact? = nil) {
+        if let user {
+            fs.deleteUser(user: user) {
+            
+            }
+        } else {
+            if let currentUser = self.user {
+                fs.deleteUser(user: currentUser) {
+                    self.signout()
+                }
+            }
+        }
+    }
+    
+    func createUser(image: UIImage?, user: Contact, completion: @escaping (Contact?) -> Void) async throws {
+        do {
+            var savingUser = user
+            if let image = image {
+                let id = user.uid
+                /// deleting old images before saving new ones
+                if let path = savingUser.imagePath.first {
+                    try await StorageManager.shared.deleteImage(path: path)
+                }
+                if let path = savingUser.smallImagePath {
+                    try await StorageManager.shared.deleteImage(path: path)
+                }
+                let result = try await StorageManager.shared.saveProfileImage(image: image, directory: "avatars", uid: id)
+                let url = try await StorageManager.shared.getUrlForImage(dir: "avatars", uid: id, path: result.name)
+                let smallUrl = try await StorageManager.shared.getUrlForImage(dir: "avatars", uid: id, path: result.nameSmall)
+                /// change it for multiple images. If we delete some images we also should delete paths and urls for these images
+                savingUser.image = [url.absoluteString]
+                savingUser.smallImage = smallUrl.absoluteString
+                savingUser.imagePath = [result.path]
+                savingUser.smallImagePath = result.pathSmall
+                print("Image successfully saved!")
+            }
+            self.fs.updateUser(user: savingUser) {
+                completion(savingUser)
+            }
+        } catch {
+            completion(nil)
+            print(error.localizedDescription)
+        }
+        
+        
     }
 }

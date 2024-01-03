@@ -91,4 +91,16 @@ class FirestoreManager {
         }
         completion()
     }
+    
+    func deleteUser(user: Contact, completion: @escaping () -> Void) {
+        db.collection("users").document(user.uid).delete { error in
+            if let error {
+                print(error.localizedDescription)
+            } else {
+                print("User successfully deleted!")
+            }
+            completion()
+        }
+    }
+    
 }

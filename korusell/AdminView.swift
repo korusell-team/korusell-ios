@@ -28,17 +28,17 @@ struct AdminView: View {
                         popSubCategories: $popSubCategories
                     ).padding(.top)
                     
-                    ContactListView(selectedContact: $selectedContact)
+                    ContactListViewA(selectedContact: $selectedContact)
                 }
                 .ignoresSafeArea(edges: .bottom)
-                .navigationTitle("Контакты")
+                .navigationTitle("Админка")
                 .navigationBarTitleDisplayMode(.inline)
                 .navigationBarItems(
                     leading:
-                        Button(action: {
-                            popCities.toggle()
+                        NavigationLink(destination: {
+                            CreateUserView(user: Contact(uid: randomString(length: 24), phone: "", isPublic: false))
                         }) {
-                            Image(systemName: cc.selectedCities.isEmpty ? "mappin.circle" : "mappin.circle.fill")
+                            Image(systemName: "gear")
                                 .foregroundColor(.gray900)
                         },
                     
@@ -46,7 +46,7 @@ struct AdminView: View {
                         ZStack {
                             if let contact = userManager.user {
                                 NavigationLink(tag: contact, selection: $selectedContact, destination: {
-                                    ContactDetailsView(user: contact)
+                                    ContactDetailsViewA(user: contact)
                                 }) {
                                     EmptyView()
                                 }
@@ -84,21 +84,6 @@ struct AdminView: View {
                 .padding(.top, 0.1)
                 .animation(.easeOut, value: cc.selectedCategory)
                 .background(Color.bg)
-                .onChange(of: popCities) { bool in
-                    if !bool {
-                        cc.triggerCityFilter()
-                    }
-                }
-                .popup(isPresented: $popCities) {
-                    PopCitiesView(popCities: $popCities)
-                } customize: {
-                    $0
-                        .type (.floater())
-                        .position(.top)
-                        .dragToDismiss(true)
-                        .closeOnTapOutside(true)
-                        .backgroundColor(.black.opacity(0.2))
-                }
             }
         }
     }

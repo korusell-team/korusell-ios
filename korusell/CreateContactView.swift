@@ -1,16 +1,13 @@
 //
-//  EditContactView.swift
+//  CreateContactView.swift
 //  korusell
 //
-//  Created by Sergey Li on 11/9/23.
+//  Created by Sergey Li on 1/3/24.
 //
 
 import SwiftUI
-import PopupView
-import PhotosUI
-import CachedAsyncImage
 
-struct EditContactView: View {
+struct CreateContactView: View {
     @EnvironmentObject var userManager: UserManager
     @EnvironmentObject var cc: ContactsController
     @FocusState var focusedField
@@ -36,14 +33,18 @@ struct EditContactView: View {
             }
         }
         
+        CustomSection {
+            TextField(text: $user.phone) {
+                Text("Телефон")
+            }
+        }
+        
         CustomSection(footer: "Укажите имя и фамилию") {
             VStack(spacing: 15) {
                 TextField(text: $user.name.bound) {
                     Text("Имя")
                 }
                 .autocorrectionDisabled()
-                
-                
                 Divider()
                 TextField(text: $user.surname.bound) {
                     Text("Фамилия")
@@ -95,61 +96,18 @@ struct EditContactView: View {
             Alert(title: Text("Вы действительно хотите удалить Ваш аккаунт?"),
                   message: Text("Все Ваши данные будут удалены и не будут подлежать восстановлению"),
                   primaryButton: .default(Text("Отмена"), action: { alertPresented = false }),
-                  secondaryButton: .destructive(Text("Удалить"), action: { userManager.deleteUser() }))
+                  secondaryButton: .destructive(Text("Удалить"), action: {
+                userManager.deleteUser(user: user)
+                if let me = cc.contacts.firstIndex(where: { $0.uid == user.uid }) {
+                    cc.contacts.remove(at: me)
+                }
+            }))
         }
         
         Spacer().frame(height: Size.w(200))
     }
 }
 
-#Preview {
-    EditContactView(user: .constant(dummyUser))
-        .environmentObject(UserManager())
-        .environmentObject(ContactsController())
-}
-
-struct CustomSection<Content: View>: View {
-    var header: String? = nil
-    var footer: String? = nil
-    @ViewBuilder let content: Content
-    
-    var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            if let header {
-                Text(header)
-                    .font(regular20f)
-                    .foregroundColor(.gray1100)
-                    .padding(.horizontal)
-            }
-            
-            content
-                .padding(.vertical, 10)
-                .padding(.horizontal)
-                .background(Color.white)
-            
-            .clipShape(RoundedRectangle(cornerRadius: 14))
-            if let footer {
-                Text(footer)
-                    .font(light16f)
-                    .foregroundColor(.gray600)
-                    .padding(.horizontal, 10)
-            }
-        }
-        .padding(.horizontal)
-        .padding(.vertical)
-    }
-}
-
 //#Preview {
-//    ScrollView {
-//        LazyVStack {
-//            Color.red.frame(width: .infinity, height: 200)
-//                .padding(.bottom, 50)
-//            CustomSection(header: "header", footer: "Сделайте ваг аккаунт публичным бла бла бла") {
-//                Toggle(isOn: .constant(true)) {
-//                    MenuLabelView(title: "Публичный аккаунт", icon: "eyes", bgColor: Color.blue)
-//                }
-//            }
-//        }
-//    } .background(Color.app_white)
+//    CreateContactView()
 //}
