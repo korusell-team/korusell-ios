@@ -41,7 +41,6 @@ struct AdminView: View {
                             Image(systemName: "gear")
                                 .foregroundColor(.gray900)
                         },
-                    
                     trailing:
                         ZStack {
                             if let contact = userManager.user {

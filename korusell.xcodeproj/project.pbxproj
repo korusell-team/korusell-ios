@@ -94,6 +94,8 @@
 		2BC565D12B4570EB00AFB708 /* CreateUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC565D02B4570EB00AFB708 /* CreateUserView.swift */; };
 		2BC565D42B45713300AFB708 /* CreateImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC565D32B45713300AFB708 /* CreateImageView.swift */; };
 		2BC565D62B45713F00AFB708 /* CreateContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC565D52B45713F00AFB708 /* CreateContactView.swift */; };
+		2BC565D92B46D35200AFB708 /* BottomSheetDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC565D82B46D35200AFB708 /* BottomSheetDesign.swift */; };
+		2BC565DB2B46D38000AFB708 /* SheetUIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC565DA2B46D38000AFB708 /* SheetUIKit.swift */; };
 		2BD124902B25609A004C4772 /* LoadingElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD1248F2B25609A004C4772 /* LoadingElement.swift */; };
 		2BD124922B25A4D1004C4772 /* MenuLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD124912B25A4D1004C4772 /* MenuLabelView.swift */; };
 		2BEC5A582B3AE3F500D8518A /* PhoneHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEC5A572B3AE3F500D8518A /* PhoneHelper.swift */; };
@@ -185,6 +187,8 @@
 		2BC565D02B4570EB00AFB708 /* CreateUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUserView.swift; sourceTree = "<group>"; };
 		2BC565D32B45713300AFB708 /* CreateImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateImageView.swift; sourceTree = "<group>"; };
 		2BC565D52B45713F00AFB708 /* CreateContactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateContactView.swift; sourceTree = "<group>"; };
+		2BC565D82B46D35200AFB708 /* BottomSheetDesign.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetDesign.swift; sourceTree = "<group>"; };
+		2BC565DA2B46D38000AFB708 /* SheetUIKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetUIKit.swift; sourceTree = "<group>"; };
 		2BD1248F2B25609A004C4772 /* LoadingElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingElement.swift; sourceTree = "<group>"; };
 		2BD124912B25A4D1004C4772 /* MenuLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuLabelView.swift; sourceTree = "<group>"; };
 		2BEC5A572B3AE3F500D8518A /* PhoneHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneHelper.swift; sourceTree = "<group>"; };
@@ -307,6 +311,7 @@
 		25DB6CAB2A0726C400660E99 /* korusell */ = {
 			isa = PBXGroup;
 			children = (
+				2BC565D72B46D33800AFB708 /* Tests */,
 				2BC565CF2B4428C300AFB708 /* korusell.entitlements */,
 				25DB6CAC2A0726C400660E99 /* korusellApp.swift */,
 				25ADF3352A694516009A2B73 /* ContentView.swift */,
@@ -363,7 +368,6 @@
 				25ADF32B2A694437009A2B73 /* MapView.swift */,
 				25ADF32D2A694437009A2B73 /* ClusterView.swift */,
 				25ADF32F2A694437009A2B73 /* PlaceMarker.swift */,
-				2B9489572AA89FE50039D5AC /* PlacePoint.swift */,
 			);
 			name = Places;
 			sourceTree = "<group>";
@@ -388,6 +392,7 @@
 			isa = PBXGroup;
 			children = (
 				25DB6CCA2A0A5C1000660E99 /* Contact.swift */,
+				2B9489572AA89FE50039D5AC /* PlacePoint.swift */,
 				253B84F32A0F1B1A004FA223 /* Category.swift */,
 				256C97582A2C4954003DD1B4 /* Place.swift */,
 				259EAACC2A975CCC006C207F /* City.swift */,
@@ -460,6 +465,15 @@
 				2BC565D52B45713F00AFB708 /* CreateContactView.swift */,
 			);
 			name = Creation;
+			sourceTree = "<group>";
+		};
+		2BC565D72B46D33800AFB708 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				2BC565D82B46D35200AFB708 /* BottomSheetDesign.swift */,
+				2BC565DA2B46D38000AFB708 /* SheetUIKit.swift */,
+			);
+			name = Tests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -590,6 +604,7 @@
 				25174A532AA5F88C00024E1A /* SocialButton.swift in Sources */,
 				2B2B66B72AFA6807003195E9 /* ExpandableText.swift in Sources */,
 				259EAAC12A960189006C207F /* SessionViewController.swift in Sources */,
+				2BC565D92B46D35200AFB708 /* BottomSheetDesign.swift in Sources */,
 				25DB6CC82A0A5AC500660E99 /* DataHelper.swift in Sources */,
 				259EAADB2AA09229006C207F /* BackButton.swift in Sources */,
 				259EAAD82A9DED9F006C207F /* SheetDragger.swift in Sources */,
@@ -623,6 +638,7 @@
 				2BC565BD2B3ED32500AFB708 /* EditInfoView.swift in Sources */,
 				259338092A29E22E00C7AF1B /* RoundedCorner.swift in Sources */,
 				259EAAD12A98AE4B006C207F /* ScreenHelper.swift in Sources */,
+				2BC565DB2B46D38000AFB708 /* SheetUIKit.swift in Sources */,
 				2B2B66BB2AFCFE7D003195E9 /* EditContactView.swift in Sources */,
 				2B2B66C52B0CC6CB003195E9 /* ImagePicker.swift in Sources */,
 				256C97632A372EAC003DD1B4 /* TestView.swift in Sources */,

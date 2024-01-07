@@ -43,14 +43,11 @@ struct SignInView: View {
                 
                 if !showCodeWindow {
                     HStack {
-                        Text("( 010 ) ")
-                            .foregroundColor(.gray500)
-                            .bold()
                         TextField("Номер телефона", text: $phone)
                             .textContentType(.telephoneNumber)
-                            .keyboardType(.numberPad)
-                            .onChange(of: phone) { phone in
-                                switcher(phone: phone)
+                            .keyboardType(.phonePad)
+                            .onChange(of: self.phone) { phone in
+                                self.phone = phone.replacingOccurrences(of: " ", with: "", options: .literal, range: nil)
                             }
                         Spacer()
                     }
@@ -58,6 +55,12 @@ struct SignInView: View {
                     .background(Color.gray100)
                     .cornerRadius(15)
                     .matchedGeometryEffect(id: "field", in: animation)
+                    
+                    Text("Пример: +821012341234")
+                        .foregroundColor(.gray600)
+                        .padding(.horizontal, 18)
+                        .padding(.bottom)
+                    
                     
                 } else {
                     OTPView(viewModel: viewModel, animation: animation)
@@ -79,8 +82,8 @@ struct SignInView: View {
                 HStack {
                     ActionButton(title: showCodeWindow ? "Войти" : "Далее", action: onButtonTap)
                         .padding()
-                        .disabled(!showCodeWindow && phone.count < 11)
-                        .opacity(!showCodeWindow && phone.count < 11 ? 0.5 : 1)
+                        .disabled(!showCodeWindow && !validatePhone())
+                        .opacity(!showCodeWindow && !validatePhone() ? 0.5 : 1)
                 }.frame(maxWidth: .infinity, alignment: .center)
                 
                 if showCodeWindow {
@@ -109,6 +112,10 @@ struct SignInView: View {
             resetError()
         }
         .animation(.default, value: error)
+    }
+    
+    private func validatePhone() -> Bool {
+        self.phone.count >= 8
     }
     
     private func resetError() {
@@ -150,16 +157,18 @@ struct SignInView: View {
     
     private func signIn() {
         //MARK: disable when you need to test with real device
-        Auth.auth().settings?.isAppVerificationDisabledForTesting = true
+//        Auth.auth().settings?.isAppVerificationDisabledForTesting = true
         
         self.isLoading = true
-        let properPhone = "+8210" + self.phone.replacingOccurrences(of: " - ", with: "")
-        PhoneAuthProvider.provider().verifyPhoneNumber(properPhone, uiDelegate: nil) { CODE, error in
+        self.phone = self.phone.starts(with: "010") ? self.phone.replacingOccurrences(of: "010", with: "+8210") : self.phone
+        PhoneAuthProvider.provider().verifyPhoneNumber(self.phone, uiDelegate: nil) { CODE, error in
             self.isLoading = false
             self.CODE = CODE ?? ""
             if let error {
                 let err = error as NSError
                 switch err.code {
+                case AuthErrorCode.missingClientIdentifier.rawValue:
+                    self.error = "Что то пошло не так... 😖"
                 case AuthErrorCode.captchaCheckFailed.rawValue:
                     self.error = "Вы не прошли Capthca проверку 🔒"
                 case AuthErrorCode.invalidPhoneNumber.rawValue:
@@ -180,7 +189,7 @@ struct SignInView: View {
                 self.showCodeWindow = true
             }
         }
-        print(properPhone)
+        print(self.phone)
     }
     
     private func verifyCode() {

@@ -6,49 +6,97 @@
 //
 
 import SwiftUI
+import PopupView
 
 struct PlacesScreen: View {
+    @EnvironmentObject var vc: SessionViewController
     @Environment(\.openURL) var openURL
-    
+    @State var places: [PlacePoint] = dummyPlaces
     @State var selectedPlace: PlacePoint? = nil
+    @State var goToDetails: Bool = false
     
     var body: some View {
         ZStack(alignment: .bottom) {
-            MapView(selectedPlace: $selectedPlace)
+            NavigationLink(isActive: $goToDetails, destination: {
+                Text("SON OF GOD")
+                    .onAppear {
+                        withAnimation {
+                            self.selectedPlace = nil
+                            vc.showBottomBar = false
+                        }
+                    }
+                    .onDisappear {
+                        withAnimation {
+                            vc.showBottomBar = true
+                        }
+                    }
+            }) { EmptyView() }
+            
+            MapView(places: $places, selectedPlace: $selectedPlace)
+            if selectedPlace != nil {
+                Color.black.opacity(0.07)
+                    .onTapGesture {
+                        withAnimation {
+                            selectedPlace = nil
+                        }
+                    }
+            }
         }
         .ignoresSafeArea()
-        .sheet(item: $selectedPlace) { place in
+        .popup(item: $selectedPlace) { place in
             VStack {
-                Text(place.title ?? "")
-                    .font(regular34f)
-                    .padding()
-                Text("🚧 здесь нужен дизайн...")
-                
-                if let address = place.address {
-                    // Create the URL with query items
-                   
-                           
-                    
-                    Button(address) {
-                                openURL(createKakaoUrl(address: address))
-                            }
-                    .padding()
-//                    Link(destination: URL(string: urlString) ?? URL(string: "https://map.kakao.com")! ) {
-//                        Text(address)
-//                            .font(calloutFont)
-//                            .foregroundColor(.blue400)
-//                            .onAppear {
-//                                print(urlString)
-//                            }
-//                    }
-                    .padding(.bottom, 5)
+                Text(place.name ?? "")
+                if let instagram = place.instagram {
+                    Link(destination: URL(string: "https://instagram.com/" + instagram)!) {
+                            Text("INST")
+                    }
                 }
-                
             }
-            .onDisappear {
-                selectedPlace = nil
+            .padding(50)
+            .background(Color.app_white)
+            .clipShape(RoundedRectangle(cornerRadius: 30))
+            .onTapGesture {
+                self.goToDetails = true
             }
+        } customize: {
+            $0
+                .type (.floater())
+                .position(.bottom)
+                .animation(.bouncy)
+                .dragToDismiss(true)
+                .closeOnTapOutside(true)
+                .closeOnTap(false)
+                .backgroundColor(.black.opacity(0.1))
         }
+//        .sheet(item: $selectedPlace) { place in
+//            VStack {
+//                Text(place.name ?? "")
+//                    .font(regular34f)
+//                    .padding()
+//                Text("🚧 здесь нужен дизайн...")
+//                if let address = place.address {
+//                    // Create the URL with query items
+//                
+//                    Button(address) {
+//                                openURL(createKakaoUrl(address: address))
+//                            }
+//                    .padding()
+////                    Link(destination: URL(string: urlString) ?? URL(string: "https://map.kakao.com")! ) {
+////                        Text(address)
+////                            .font(calloutFont)
+////                            .foregroundColor(.blue400)
+////                            .onAppear {
+////                                print(urlString)
+////                            }
+////                    }
+//                    .padding(.bottom, 5)
+//                }
+//                
+//            }
+//            .onDisappear {
+//                selectedPlace = nil
+//            }
+//        }
     }
     
     func stringToEuckrString(stringValue: String) -> String {

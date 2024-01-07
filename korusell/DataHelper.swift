@@ -75,16 +75,7 @@ let dummyCities: [City] = [
 ]
 
 
-var data: [PlacePoint] = [
-    
-    PlacePoint(type: .cafe, address: "서울%20영등포구%20여의도동%2084-1", coordinate: CLLocationCoordinate2D(latitude:  61.19533942,   longitude: -149.9054948 ), title: "У Тани", bio: "America"),
-    PlacePoint(type: .cafe, coordinate: CLLocationCoordinate2D(latitude:  61.2297    ,   longitude: -149.7522    ), title: "Кошка", bio: "America"),
-    PlacePoint(type: .shop, coordinate: CLLocationCoordinate2D(latitude:  61.19525062,   longitude: -149.8643361 ), title: "Империя Фудс", bio: "America"),
-    PlacePoint(type: .shop, coordinate: CLLocationCoordinate2D(latitude:  61.13751355,   longitude: -149.8379726 ), title: "Корзинка", bio: "America"),
-    PlacePoint(type: .shop, coordinate: CLLocationCoordinate2D(latitude:  61.13994658,   longitude: -149.9092788 ), title: "Колобок", bio: "America"),
-    PlacePoint(type: .shop, coordinate: CLLocationCoordinate2D(latitude:  61.19533265,   longitude: -149.7364877 ), title: "Ханян", bio: "America"),
-    PlacePoint(type: .shop, coordinate: CLLocationCoordinate2D(latitude:  61.2156    ,   longitude: -149.8211    ), title: "Пекарня", bio: "America"),
-    PlacePoint(type: .cafe, coordinate: CLLocationCoordinate2D(latitude:  61.13806145,   longitude: -149.8445832 ), title: "Текколь", bio: "America"),
-    PlacePoint(type: .cafe, coordinate: CLLocationCoordinate2D(latitude:  61.176693  ,     longitude: -149.9728678), title: "Валерия", bio: "America"),
-    PlacePoint(type: .cafe, coordinate: CLLocationCoordinate2D(latitude:  61.14473454,   longitude: -149.8638034 ), title: "Куйлюк", bio: "America"),
+var dummyPlaces: [PlacePoint] = [
+    PlacePoint(pid: "1", name: "LEE FLOWERS", city: 2, latitude:  37.30501026564322, longitude: 126.84550345674847, categories: [101], address: "경기 안산시 상록구 사동", bio: "America", info: "“LEE FLOWER”| арт-студия •услуги флориста •мастер-класс по живописи •арт-терапия •душевные разговоры", instagram: "l.eeflower"),
+    PlacePoint(pid: "2", name: "Home Cafe", city: 2, latitude:  37.30227732026979, longitude: 126.84739799098557, categories: [101], address: "경기 안산시 상록구 사동", bio: "America", phone: "+821021160770", info: "Кафе домашней кухни♥️", instagram: "home_cafe_ansan"),
 ]

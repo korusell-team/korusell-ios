@@ -25,9 +25,9 @@ class ClusterView: MKAnnotationView {
             if let cluster = newValue as? MKClusterAnnotation {
                 let renderer = UIGraphicsImageRenderer(size: CGSize(width: 40, height: 40))
                 let count = cluster.memberAnnotations.count
-                let uniCount = cluster.memberAnnotations.filter { member -> Bool in
-                    return (member as! PlacePoint).type == .cafe
-                }.count
+//                let uniCount = cluster.memberAnnotations.filter { member -> Bool in
+//                    return (member as! PlacePoint).type == .cafe
+//                }.count
                 
                 
                 image = renderer.image { _ in
