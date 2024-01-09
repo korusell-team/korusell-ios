@@ -14,7 +14,7 @@ class PlaceMarker: MKMarkerAnnotationView {
                 clusteringIdentifier = "place"
               
                 // MARK: Markers as balloons with custom icons
-                glyphImage = UIImage(named: "cafe")
+//                glyphImage = UIImage(named: "cafe")
 //                if place.type == .cafe {
 //                    markerTintColor = UIColor(Color.red200)
 //                    glyphImage = UIImage(named: "cafe")

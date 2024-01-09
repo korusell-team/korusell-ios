@@ -76,6 +76,6 @@ let dummyCities: [City] = [
 
 
 var dummyPlaces: [PlacePoint] = [
-    PlacePoint(pid: "1", name: "LEE FLOWERS", city: 2, latitude:  37.30501026564322, longitude: 126.84550345674847, categories: [101], address: "경기 안산시 상록구 사동", bio: "America", info: "“LEE FLOWER”| арт-студия •услуги флориста •мастер-класс по живописи •арт-терапия •душевные разговоры", instagram: "l.eeflower"),
-    PlacePoint(pid: "2", name: "Home Cafe", city: 2, latitude:  37.30227732026979, longitude: 126.84739799098557, categories: [101], address: "경기 안산시 상록구 사동", bio: "America", phone: "+821021160770", info: "Кафе домашней кухни♥️", instagram: "home_cafe_ansan"),
+    PlacePoint(pid: "1", name: "LEE FLOWERS", city: 2, latitude:  37.30501026564322, longitude: 126.84550345674847, categories: [101], address: "경기 안산시 상록구 사동", bio: "“LEE FLOWER”| арт-студия •услуги флориста •мастер-класс по живописи •арт-терапия •душевные разговоры", phone: "01012340011", info: "“LEE FLOWER”| арт-студия •услуги флориста •мастер-класс по живописи •арт-терапия •душевные разговоры", images: ["https://firebasestorage.googleapis.com/v0/b/ethnogram-1cd0f.appspot.com/o/dummy%2FSimplyChic.jpg?alt=media&token=f551a867-2273-4ca3-bb39-a647ffd00c29"], smallImages: ["https://firebasestorage.googleapis.com/v0/b/ethnogram-1cd0f.appspot.com/o/dummy%2FSimplyChic.jpg?alt=media&token=f551a867-2273-4ca3-bb39-a647ffd00c29"], instagram: "l.eeflower"),
+    PlacePoint(pid: "2", name: "Home Cafe", city: 2, latitude:  37.30227732026979, longitude: 126.84739799098557, categories: [101], address: "경기 안산시 상록구 사동", bio: "", phone: "+821021160770", info: "Кафе домашней кухни♥️", instagram: "home_cafe_ansan"),
 ]

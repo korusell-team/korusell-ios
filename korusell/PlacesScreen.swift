@@ -13,23 +13,25 @@ struct PlacesScreen: View {
     @Environment(\.openURL) var openURL
     @State var places: [PlacePoint] = dummyPlaces
     @State var selectedPlace: PlacePoint? = nil
+    @State var detailedPlace: PlacePoint? = nil
     @State var goToDetails: Bool = false
     
     var body: some View {
         ZStack(alignment: .bottom) {
             NavigationLink(isActive: $goToDetails, destination: {
-                Text("SON OF GOD")
-                    .onAppear {
-                        withAnimation {
-                            self.selectedPlace = nil
-                            vc.showBottomBar = false
+                if let detailedPlace {
+                    PlaceDetails(place: detailedPlace)
+                        .onAppear {
+                            withAnimation {
+                                vc.showBottomBar = false
+                            }
                         }
-                    }
-                    .onDisappear {
-                        withAnimation {
-                            vc.showBottomBar = true
+                        .onDisappear {
+                            withAnimation {
+                                vc.showBottomBar = true
+                            }
                         }
-                    }
+                }
             }) { EmptyView() }
             
             MapView(places: $places, selectedPlace: $selectedPlace)
@@ -44,18 +46,10 @@ struct PlacesScreen: View {
         }
         .ignoresSafeArea()
         .popup(item: $selectedPlace) { place in
-            VStack {
-                Text(place.name ?? "")
-                if let instagram = place.instagram {
-                    Link(destination: URL(string: "https://instagram.com/" + instagram)!) {
-                            Text("INST")
-                    }
-                }
-            }
-            .padding(50)
-            .background(Color.app_white)
-            .clipShape(RoundedRectangle(cornerRadius: 30))
+            PlaceSheet(place: place)
             .onTapGesture {
+                self.detailedPlace = place
+                self.selectedPlace = nil
                 self.goToDetails = true
             }
         } customize: {

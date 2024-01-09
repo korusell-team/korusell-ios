@@ -80,6 +80,7 @@ extension Optional where Wrapped == Bool {
     }
 }
 
+
 extension UIApplication {
     func endEditing() {
         sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)

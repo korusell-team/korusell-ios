@@ -22,7 +22,6 @@
 		2548C4182A94E45300211CC0 /* OTPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2548C4172A94E45300211CC0 /* OTPView.swift */; };
 		2548C41B2A96005700211CC0 /* SessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2548C41A2A96005700211CC0 /* SessionView.swift */; };
 		256275AD2A7138B0006F0E39 /* PopupView in Frameworks */ = {isa = PBXBuildFile; productRef = 256275AC2A7138B0006F0E39 /* PopupView */; };
-		256275B12A7D0120006F0E39 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256275B02A7D0120006F0E39 /* SignInView.swift */; };
 		256276022A80F00C006F0E39 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 256276012A80F00C006F0E39 /* FirebaseAuth */; };
 		256276042A80F00C006F0E39 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 256276032A80F00C006F0E39 /* FirebaseFirestore */; };
 		256C97592A2C4954003DD1B4 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256C97582A2C4954003DD1B4 /* Place.swift */; };
@@ -96,6 +95,10 @@
 		2BC565D62B45713F00AFB708 /* CreateContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC565D52B45713F00AFB708 /* CreateContactView.swift */; };
 		2BC565D92B46D35200AFB708 /* BottomSheetDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC565D82B46D35200AFB708 /* BottomSheetDesign.swift */; };
 		2BC565DB2B46D38000AFB708 /* SheetUIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC565DA2B46D38000AFB708 /* SheetUIKit.swift */; };
+		2BC565DD2B4C1B6E00AFB708 /* PlaceSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC565DC2B4C1B6E00AFB708 /* PlaceSheet.swift */; };
+		2BC565DF2B4C1CCC00AFB708 /* PlaceDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC565DE2B4C1CCC00AFB708 /* PlaceDetails.swift */; };
+		2BC565E12B4D6A2D00AFB708 /* AppOnboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC565E02B4D6A2D00AFB708 /* AppOnboarding.swift */; };
+		2BC565E32B4D6A7F00AFB708 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC565E22B4D6A7F00AFB708 /* SignInView.swift */; };
 		2BD124902B25609A004C4772 /* LoadingElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD1248F2B25609A004C4772 /* LoadingElement.swift */; };
 		2BD124922B25A4D1004C4772 /* MenuLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD124912B25A4D1004C4772 /* MenuLabelView.swift */; };
 		2BEC5A582B3AE3F500D8518A /* PhoneHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEC5A572B3AE3F500D8518A /* PhoneHelper.swift */; };
@@ -117,7 +120,6 @@
 		253B84F92A0F7F9E004FA223 /* LabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelView.swift; sourceTree = "<group>"; };
 		2548C4172A94E45300211CC0 /* OTPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPView.swift; sourceTree = "<group>"; };
 		2548C41A2A96005700211CC0 /* SessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionView.swift; sourceTree = "<group>"; };
-		256275B02A7D0120006F0E39 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		256276072A80F114006F0E39 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		256C97582A2C4954003DD1B4 /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		256C97602A372B55003DD1B4 /* Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Design.swift; sourceTree = "<group>"; };
@@ -189,6 +191,10 @@
 		2BC565D52B45713F00AFB708 /* CreateContactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateContactView.swift; sourceTree = "<group>"; };
 		2BC565D82B46D35200AFB708 /* BottomSheetDesign.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetDesign.swift; sourceTree = "<group>"; };
 		2BC565DA2B46D38000AFB708 /* SheetUIKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetUIKit.swift; sourceTree = "<group>"; };
+		2BC565DC2B4C1B6E00AFB708 /* PlaceSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceSheet.swift; sourceTree = "<group>"; };
+		2BC565DE2B4C1CCC00AFB708 /* PlaceDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDetails.swift; sourceTree = "<group>"; };
+		2BC565E02B4D6A2D00AFB708 /* AppOnboarding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppOnboarding.swift; sourceTree = "<group>"; };
+		2BC565E22B4D6A7F00AFB708 /* SignInView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		2BD1248F2B25609A004C4772 /* LoadingElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingElement.swift; sourceTree = "<group>"; };
 		2BD124912B25A4D1004C4772 /* MenuLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuLabelView.swift; sourceTree = "<group>"; };
 		2BEC5A572B3AE3F500D8518A /* PhoneHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneHelper.swift; sourceTree = "<group>"; };
@@ -215,6 +221,7 @@
 		2548C4142A94B40000211CC0 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				2BC565E02B4D6A2D00AFB708 /* AppOnboarding.swift */,
 				2B0A6B542B306D9E005BB5F0 /* AppOnboarding.swift */,
 			);
 			name = Onboarding;
@@ -242,7 +249,7 @@
 		256275AF2A7D0103006F0E39 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
-				256275B02A7D0120006F0E39 /* SignInView.swift */,
+				2BC565E22B4D6A7F00AFB708 /* SignInView.swift */,
 				2548C4172A94E45300211CC0 /* OTPView.swift */,
 				2B0A6B502B29C5CA005BB5F0 /* UserOnboarding.swift */,
 			);
@@ -366,8 +373,10 @@
 			children = (
 				25ADF3292A694403009A2B73 /* PlacesScreen.swift */,
 				25ADF32B2A694437009A2B73 /* MapView.swift */,
+				2BC565DC2B4C1B6E00AFB708 /* PlaceSheet.swift */,
 				25ADF32D2A694437009A2B73 /* ClusterView.swift */,
 				25ADF32F2A694437009A2B73 /* PlaceMarker.swift */,
+				2BC565DE2B4C1CCC00AFB708 /* PlaceDetails.swift */,
 			);
 			name = Places;
 			sourceTree = "<group>";
@@ -579,7 +588,6 @@
 				2B2B66BF2B0B866F003195E9 /* StorageManager.swift in Sources */,
 				2B04915E2AB48D3300A8F81E /* ActionButton.swift in Sources */,
 				253B84F22A0F18C0004FA223 /* CategoryView.swift in Sources */,
-				256275B12A7D0120006F0E39 /* SignInView.swift in Sources */,
 				253B84EE2A0D1815004FA223 /* Blur.swift in Sources */,
 				253B84E82A0BA0A9004FA223 /* ContactView.swift in Sources */,
 				25DB6CAD2A0726C400660E99 /* korusellApp.swift in Sources */,
@@ -595,6 +603,7 @@
 				25ADF3342A694438009A2B73 /* PlaceMarker.swift in Sources */,
 				2BC565D12B4570EB00AFB708 /* CreateUserView.swift in Sources */,
 				2B0A6B532B2AFD6C005BB5F0 /* PopCitiesView.swift in Sources */,
+				2BC565DD2B4C1B6E00AFB708 /* PlaceSheet.swift in Sources */,
 				2BC565D62B45713F00AFB708 /* CreateContactView.swift in Sources */,
 				256C97652A39EC0E003DD1B4 /* LabelsView.swift in Sources */,
 				2548C4182A94E45300211CC0 /* OTPView.swift in Sources */,
@@ -617,6 +626,7 @@
 				2596144F2A124E5900393712 /* TrackableScrollView.swift in Sources */,
 				253B84F42A0F1B1A004FA223 /* Category.swift in Sources */,
 				2BC565CA2B4410BB00AFB708 /* ContactListViewA.swift in Sources */,
+				2BC565DF2B4C1CCC00AFB708 /* PlaceDetails.swift in Sources */,
 				2BD124902B25609A004C4772 /* LoadingElement.swift in Sources */,
 				25ADF32A2A694403009A2B73 /* PlacesScreen.swift in Sources */,
 				259EAAC92A97594C006C207F /* CitiesView.swift in Sources */,
@@ -629,6 +639,7 @@
 				25ADF3362A694516009A2B73 /* ContentView.swift in Sources */,
 				253B84F02A0F18A8004FA223 /* CategoryListView.swift in Sources */,
 				25ADF3302A694438009A2B73 /* MapView.swift in Sources */,
+				2BC565E12B4D6A2D00AFB708 /* AppOnboarding.swift in Sources */,
 				2B2B66C12B0CB89A003195E9 /* ContactImageView.swift in Sources */,
 				253B84EC2A0CF3D6004FA223 /* AvatarView.swift in Sources */,
 				2B345B702AB85A410025BF2C /* UserManager.swift in Sources */,
@@ -639,6 +650,7 @@
 				259338092A29E22E00C7AF1B /* RoundedCorner.swift in Sources */,
 				259EAAD12A98AE4B006C207F /* ScreenHelper.swift in Sources */,
 				2BC565DB2B46D38000AFB708 /* SheetUIKit.swift in Sources */,
+				2BC565E32B4D6A7F00AFB708 /* SignInView.swift in Sources */,
 				2B2B66BB2AFCFE7D003195E9 /* EditContactView.swift in Sources */,
 				2B2B66C52B0CC6CB003195E9 /* ImagePicker.swift in Sources */,
 				256C97632A372EAC003DD1B4 /* TestView.swift in Sources */,
@@ -779,7 +791,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = korusell/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = ethnogram;
+				INFOPLIST_KEY_CFBundleDisplayName = Ethnogram;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -817,7 +829,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = korusell/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = ethnogram;
+				INFOPLIST_KEY_CFBundleDisplayName = Ethnogram;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

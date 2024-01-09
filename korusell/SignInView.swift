@@ -25,6 +25,20 @@ struct SignInView: View {
     var body: some View {
         ZStack {
             VStack(alignment: .leading) {
+                HStack {
+                    Button(action: {
+                        withAnimation {
+                            showCodeWindow = false
+                        }
+                    }, label: {
+                        Image(systemName: "chevron.left")
+                            .font(regular20f)
+                            .foregroundColor(.gray800)
+                    })
+                    
+                    Spacer()
+                }.opacity(showCodeWindow ? 1 : 0)
+                
                 Spacer()
                 
                 Image(systemName: showCodeWindow ? "lock.fill" : "iphone")
@@ -74,7 +88,14 @@ struct SignInView: View {
                         //                                .lineLimit(1)
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.horizontal, 25)
+                    .padding(.top, 10)
+                    .padding(.horizontal, 15)
+                    .onChange(of: viewModel.otpField) { _ in
+                        self.error = ""
+                    }
+                    .onChange(of: phone) { _ in
+                        self.error = ""
+                    }
                 }
                 
                 Spacer()
@@ -173,6 +194,8 @@ struct SignInView: View {
                     self.error = "Вы не прошли Capthca проверку 🔒"
                 case AuthErrorCode.invalidPhoneNumber.rawValue:
                     self.error = "Неверный номер телефона ☎️"
+                case AuthErrorCode.invalidVerificationCode.rawValue:
+                    self.error = "Неверный код подтверждения 🔒"
                 case AuthErrorCode.tooManyRequests.rawValue:
                     self.error = "Вы отправили слишком много запросов 🙈"
                 case AuthErrorCode.networkError.rawValue:
@@ -212,6 +235,8 @@ struct SignInView: View {
                     self.error = "Вы отправили слишком много запросов 🙈"
                 case AuthErrorCode.networkError.rawValue:
                     self.error = "Проблемы с сетью... 🛰️"
+                case AuthErrorCode.invalidVerificationCode.rawValue:
+                    self.error = "Неверный код подтверждения 🔒"
                 default:
                     self.error = "Что то пошло не так... 😖"
                 }

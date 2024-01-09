@@ -11,7 +11,7 @@ struct SessionView: View {
     @EnvironmentObject var userManager: UserManager
     
     var body: some View {
-        if userManager.user?.uid == "jFw6tzSYiJNxkCL3kDXT8zUXMyw2" || userManager.user?.uid == "UAGUOeluC7DjsaqJZaL5" {
+        if userManager.user?.uid == "jFw6tzSYiJNxkCL3kDXT8zUXMyw2" || userManager.user?.uid == "h9TX19WYrhVg3O6z6kmVZxdXuuH2" {
             BottomTabBar(tabs: TabBarType.allCases.map({ $0.tabs })
             ) { index in
                 getTabView(index: index)
