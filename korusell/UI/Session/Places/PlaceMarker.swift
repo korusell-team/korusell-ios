@@ -11,8 +11,8 @@ class PlaceMarker: MKMarkerAnnotationView {
     override var annotation: MKAnnotation? {
         willSet {
             if let place = newValue as? PlacePoint {
+                
                 clusteringIdentifier = "place"
-              
                 // MARK: Markers as balloons with custom icons
 //                glyphImage = UIImage(named: "cafe")
 //                if place.type == .cafe {

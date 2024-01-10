@@ -45,7 +45,7 @@ struct PlaceSheet: View {
                 
                 VStack(alignment: .leading) {
                     HStack {
-                        Text(place.name ?? "")
+                        Text(place.title ?? "")
                             .font(semiBold18f)
                             .foregroundColor(.gray1100)
                             .padding(.bottom, 3)
@@ -72,20 +72,22 @@ struct PlaceSheet: View {
                         .disabled(place.phone == nil)
                         .opacity(place.phone != nil ? 1 : 0.5)
                     }
+                    .padding(.bottom, 10)
                     
                     if let address = place.address {
-                        HStack {
-                            Image(systemName: "pin.circle.fill")
-                            Text(address)
-                                .font(regular15f)
-//                                .foregroundColor(.gray900)
-                                .lineLimit(1)
-                        }.onTapGesture {
-                            UIPasteboard.general.setValue(address as Any,
-                                                          forPasteboardType: UTType.plainText.identifier)
+                        Button(action: {
+                            UIPasteboard.general.setValue(address as Any, forPasteboardType: UTType.plainText.identifier)
                             alertIsPresented = true
+                        }) {
+                            HStack {
+                                Image(systemName: "pin.circle.fill")
+                                Text(address)
+                                    .font(regular13f)
+    //                                .foregroundColor(.gray900)
+                                    .lineLimit(1)
+                            }
                         }
-                        .alert(isPresented: $alertIsPresented) {
+                        .alertPatched(isPresented: $alertIsPresented) {
                             Alert(title: Text("адрес: '\(address)' скопирован в буфер обмена"))
                         }
                     }

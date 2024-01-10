@@ -31,14 +31,13 @@ struct MapView: UIViewRepresentable {
             self.parent = parent
         }
         
-//        func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-//          
+        func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
 //          if let annotation = view.annotation as? Place {
 //              // MARK: Tap logic here
 //            print("selected Place is : \(annotation)")
 //              parent.selectedPlace = annotation
 //          }
-//        }
+        }
         
         
         

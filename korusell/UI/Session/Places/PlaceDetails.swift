@@ -10,7 +10,7 @@ import SwiftUI
 struct PlaceDetails: View {
     let place: PlacePoint
     var body: some View {
-        Text(place.name ?? "noname")
+        Text(place.title ?? "notitle")
     }
 }
 

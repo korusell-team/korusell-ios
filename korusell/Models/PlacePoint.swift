@@ -12,7 +12,8 @@ import FirebaseFirestoreSwift
 class PlacePoint: NSObject, MKAnnotation, Identifiable {
     @DocumentID var id: String?
     var pid: String
-    var name: String?
+    var title: String?
+    var subtitle: String?
     var city: Int?
     var coordinate: CLLocationCoordinate2D
     var categories: [Int]
@@ -38,7 +39,8 @@ class PlacePoint: NSObject, MKAnnotation, Identifiable {
     var twitter: String?
     
     init(pid: String,
-         name: String? = nil,
+         title: String? = nil,
+         subtitle: String? = nil,
          city: Int? = nil,
          latitude: Double,
          longitude: Double,
@@ -64,7 +66,8 @@ class PlacePoint: NSObject, MKAnnotation, Identifiable {
          linkedIn: String? = nil,
          twitter: String? = nil) {
         self.pid = pid
-        self.name = name
+        self.title = title
+        self.subtitle = subtitle
         self.city = city
         self.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         self.categories = categories
