@@ -36,7 +36,7 @@ struct EditSocialButton: View {
             case .instagram:    TextField("никнейм", text: $contact.instagram.bound)
             case .youtube:      TextField("канал", text: $contact.youtube.bound)
             case .telegram:     TextField("имя пользователя", text: $contact.telegram.bound)
-            case .link:         TextField("сайт (без https://)", text: $contact.link.bound)
+            case .link:         TextField("Ссылка (без https://)", text: $contact.link.bound)
             case .facebook:     TextField("id", text: $contact.facebook.bound)
             case .tiktok:       TextField("id", text: $contact.tiktok.bound)
             case .linkedIn:     TextField("профайл", text: $contact.linkedIn.bound)

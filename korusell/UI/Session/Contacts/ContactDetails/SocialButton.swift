@@ -35,7 +35,7 @@ enum socialType: String, CaseIterable, Identifiable {
         case .instagram: return "Instagram"
         case .youtube: return "Youtube"
         case .telegram: return "Telegram"
-        case .link: return "Cайт"
+        case .link: return "Ссылка"
         case .facebook: return "Facebook"
         case .tiktok: return "TikTok"
         case .linkedIn: return "LinkedIn"

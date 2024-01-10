@@ -14,11 +14,11 @@ struct PlacesScreen: View {
     @State var places: [PlacePoint] = dummyPlaces
     @State var selectedPlace: PlacePoint? = nil
     @State var detailedPlace: PlacePoint? = nil
-    @State var goToDetails: Bool = false
+    @State var detailsPresented: Bool = false
     
     var body: some View {
         ZStack(alignment: .bottom) {
-            NavigationLink(isActive: $goToDetails, destination: {
+            NavigationLink(isActive: $detailsPresented, destination: {
                 if let detailedPlace {
                     PlaceDetails(place: detailedPlace)
                         .onAppear {
@@ -46,12 +46,7 @@ struct PlacesScreen: View {
         }
         .ignoresSafeArea()
         .popup(item: $selectedPlace) { place in
-            PlaceSheet(place: place)
-            .onTapGesture {
-                self.detailedPlace = place
-                self.selectedPlace = nil
-                self.goToDetails = true
-            }
+            PlaceSheet(place: place, action: { goToDetails(place: place) })
         } customize: {
             $0
                 .type (.floater())
@@ -91,6 +86,12 @@ struct PlacesScreen: View {
 //                selectedPlace = nil
 //            }
 //        }
+    }
+    
+    private func goToDetails(place: PlacePoint) {
+        self.detailedPlace = place
+        self.selectedPlace = nil
+        self.detailsPresented = true
     }
     
     func stringToEuckrString(stringValue: String) -> String {
