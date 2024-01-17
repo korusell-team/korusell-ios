@@ -186,6 +186,21 @@ struct ContactDetailsInfo: View {
                 }
             }
             
+            Text("Если Вы обнаружили контент (фото, текст, ссылик), который нарушает Политику Нежелательного Контента, пожалуйста, напишите мне на guagetru.bla@gmail.com")
+                .font(light14f)
+                .foregroundColor(.gray700)
+                .multilineTextAlignment(.center)
+                .padding(.vertical)
+            
+            
+//            VStack(spacing: 0) {
+//                Text("Если Вы обнаружили контент (фото, текст, ссылик), который нарушает Политику Нежелательного Контента, пожалуйста, напишите мне на ")
+//                    .multilineTextAlignment(.center)
+//                Link("guagetru.bla@gmail.com", destination: URL(string: "mailto:guagetru.bla@gmail.com")!)
+//            }
+//                .font(light14f)
+//                .foregroundColor(.gray700)
+//                .padding(.vertical)
             
             Spacer(minLength: 200)
         }

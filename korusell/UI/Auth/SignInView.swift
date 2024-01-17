@@ -19,6 +19,11 @@ struct SignInView: View {
     @State var error: String? = nil
     @State var isLoading: Bool = false
     
+    @State var privacyAgree = false
+    @State var contentAgree = false
+    @State var showContentPolicy = false
+    @State var showPrivcacyPolicy = false
+    
     @FocusState var focusedField
     @Namespace private var animation
     
@@ -98,13 +103,56 @@ struct SignInView: View {
                     }
                 }
                 
+                if !showCodeWindow {
+                    Button(action: {
+                        contentAgree.toggle()
+                    }) {
+                        (Text(Image(systemName: contentAgree ? "checkmark.square" : "square")) + Text("  Да, я согласен с Политикой нежелательного контента"))
+                            .foregroundColor(.gray1000)
+                    }
+                    
+                    HStack {
+                        Button(action: {
+                            showContentPolicy = true
+                        }, label: {
+                            Text("Прочитать")
+                                .font(light14f)
+                        })
+                        .sheet(isPresented: $showContentPolicy, content: {
+                            WebView(url: URL(string: "https://wide-arthropod-bad.notion.site/00bc2c43d10449a68463233a80007ee6?pvs=4")!)
+                        })
+                    }.frame(maxWidth: .infinity, alignment: .trailing)
+                        .padding(.bottom)
+                    
+                    Button(action: {
+                        privacyAgree.toggle()
+                    }) {
+                        (Text(Image(systemName: privacyAgree ? "checkmark.square" : "square")) + Text("  Да, я согласен с Политикой конфиденциальности"))
+                            .foregroundColor(.gray1000)
+                    }
+                    
+                    HStack {
+                        Button(action: {
+                            showPrivcacyPolicy = true
+                        }, label: {
+                            Text("Прочитать")
+                                .font(light14f)
+                        })
+                        .sheet(isPresented: $showPrivcacyPolicy, content: {
+                            WebView(url: URL(string: "https://wide-arthropod-bad.notion.site/4d3f3c37114243bcb9bd97ee1646bc11?pvs=4")!)
+                        })
+                    }.frame(maxWidth: .infinity, alignment: .trailing)
+                }
+                
                 Spacer()
                 
                 HStack {
                     ActionButton(title: showCodeWindow ? "Войти" : "Далее", action: onButtonTap)
                         .padding()
                         .disabled(!showCodeWindow && !validatePhone())
+                        .disabled(!privacyAgree || !contentAgree)
                         .opacity(!showCodeWindow && !validatePhone() ? 0.5 : 1)
+                        .opacity(!privacyAgree || !contentAgree ? 0.5 : 1)
                 }.frame(maxWidth: .infinity, alignment: .center)
                 
                 if showCodeWindow {

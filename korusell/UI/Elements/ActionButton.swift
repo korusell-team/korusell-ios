@@ -24,6 +24,20 @@ struct ActionButton: View {
     }
 }
 
+struct ActionButtonLink: View {
+    let title: String
+    
+    var body: some View {
+        Text(title)
+            .font(semiBold18f)
+            .foregroundColor(.app_white)
+            .padding(.vertical, 18)
+            .frame(maxWidth: .infinity)
+            .background(Color.gray900)
+            .cornerRadius(18)
+    }
+}
+
 struct ActionButton_Previews: PreviewProvider {
     static var previews: some View {
         ActionButton(title: "Blue Button") {
