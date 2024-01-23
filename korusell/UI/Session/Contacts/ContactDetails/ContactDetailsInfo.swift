@@ -186,21 +186,12 @@ struct ContactDetailsInfo: View {
                 }
             }
             
-            Text("Если Вы обнаружили контент (фото, текст, ссылик), который нарушает Политику Нежелательного Контента, пожалуйста, напишите мне на guagetru.bla@gmail.com. Также Вы можете заблокировать Пользователя или пожаловаться на него на странице списка Контактов смахнув на Пользователе вправо и нажав на 'Заблокировать' или 'Пожаловаться' соответственно")
+            Text("Если Вы обнаружили контент (фото, текст, ссылик), который нарушает Политику Нежелательного Контента, пожалуйста, напишите мне на guagetru.bla@gmail.com. Также Вы можете заблокировать Пользователя или пожаловаться на него нажав на три точки в правом верхнем углу экрана")
                 .font(light14f)
                 .foregroundColor(.gray700)
                 .multilineTextAlignment(.center)
+                .fixedSize(horizontal: false, vertical: true)
                 .padding(.top, 100)
-            
-            
-//            VStack(spacing: 0) {
-//                Text("Если Вы обнаружили контент (фото, текст, ссылик), который нарушает Политику Нежелательного Контента, пожалуйста, напишите мне на ")
-//                    .multilineTextAlignment(.center)
-//                Link("guagetru.bla@gmail.com", destination: URL(string: "mailto:guagetru.bla@gmail.com")!)
-//            }
-//                .font(light14f)
-//                .foregroundColor(.gray700)
-//                .padding(.vertical)
             
             Spacer(minLength: 200)
         }

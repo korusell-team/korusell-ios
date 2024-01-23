@@ -25,6 +25,8 @@ struct ContactDetailsView: View {
     @Namespace private var animation
     
     @State var showAlert: Bool = false
+    @State var showBlock: Bool = false
+    @State var showReport: Bool = false
   
     var body: some View {
         VStack(spacing: 0) {
@@ -47,6 +49,34 @@ struct ContactDetailsView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity).ignoresSafeArea()
         .background(Color.app_white)
         .navigationBarBackButtonHidden(true)
+        .alertPatched(isPresented: $showBlock) {
+            Alert(title: Text("Блокировка Пользователя"), message:
+                    Text("Вы уверены что хотите заблокировать Пользователя?"),
+                  primaryButton: .destructive(Text("Заблокировать"), action: {
+                if let uid = userManager.user?.uid {
+                    userManager.blockOrReport(blocker: uid, userId: user.uid) {
+                        cc.contacts.removeAll(where: { $0.uid ==  user.uid})
+                    }
+                }
+            }),
+                  secondaryButton: .cancel(Text("Отмена"), action: {
+                showBlock = false
+            }))
+        }
+        .alertPatched(isPresented: $showReport) {
+            Alert(title: Text(""), message:
+                    Text("Вы уверены что хотите пожаловаться на Пользователя?"),
+                  primaryButton: .destructive(Text("Пожаловаться"), action: {
+                if let uid = userManager.user?.uid {
+                    userManager.blockOrReport(reporter: uid, userId: user.uid) {
+                        cc.contacts.removeAll(where: { $0.uid ==  user.uid})
+                    }
+                }
+            }),
+                  secondaryButton: .cancel(Text("Отмена"), action: {
+                showReport = false
+            }))
+        }
         .onAppear {
             withAnimation {
                 vc.showBottomBar = false
@@ -102,6 +132,26 @@ struct ContactDetailsView: View {
                     .foregroundColor((offset > 0 || editMode) ? .accentColor : .white)
             }
                 .disabled(editMode && userManager.user == user && self.image == nil)
+            )
+        }
+        .applyIf(user.phone != userManager.user?.phone) { view in
+            view.navigationBarItems(trailing:
+                                        Menu {
+                Button(action: {
+                    showBlock = true
+                }) {
+                    Label("Заблокировать", systemImage: "hand.raised")
+                }.tint(.orange)
+                    
+                Button(action: {
+                    showReport = true
+                }) {
+                    Label("Пожаловаться", systemImage: "exclamationmark.bubble")
+                }.tint(.red)
+            } label: {
+                Image(systemName: "ellipsis.circle")
+                    .foregroundColor((offset > 0 || editMode) ? .accentColor : .white)
+            }
             )
         }
     }
