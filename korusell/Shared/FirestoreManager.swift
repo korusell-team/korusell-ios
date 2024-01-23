@@ -63,11 +63,13 @@ class FirestoreManager {
             "imagePath": [String](),
             "categories": [Int](),
             "updated": Date(),
-            "created": Date()
+            "created": Date(),
+            "blockedBy": [String](),
+            "reports": [String]()
         ])
         DispatchQueue.main.async {
             print("Successfully created user")
-            let createdUser = Contact(uid: uid, cities: [], image: [], imagePath: [], categories: [], phone: phone, updated: Date(), created: Date(), isPublic: false)
+            let createdUser = Contact(uid: uid, cities: [], image: [], imagePath: [], categories: [], phone: phone, updated: Date(), created: Date(), isPublic: false, blockedBy: [], reports: [])
             completion(createdUser)
         }
     }
@@ -103,4 +105,17 @@ class FirestoreManager {
         }
     }
     
+    func reportOrBlockUser(reporter: String? = nil, blocker: String? = nil, userId: String, completion: @escaping () -> Void) {
+        if let blocker {
+            db.collection("users").document(userId).updateData(["blockedBy" : [blocker]])
+        } else if let reporter {
+            db.collection("users").document(userId).updateData(["reports" : [reporter]])
+        }
+            
+        DispatchQueue.main.async {
+            let action = reporter == nil ? "blocked" : "reported"
+            print("\(userId) Successfully \(action) by \(blocker ?? reporter ?? "none")")
+            completion()
+        }
+    }
 }

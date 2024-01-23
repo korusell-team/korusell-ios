@@ -11,6 +11,7 @@ import FirebaseFirestoreSwift
 struct ContactListView: View {
     @EnvironmentObject var cc: ContactsController
     @EnvironmentObject var vc: SessionViewController
+    @EnvironmentObject var userManager: UserManager
     @State var collapsed = false
     @Binding var selectedContact: Contact?
     let columns = [GridItem(.flexible())]
@@ -33,7 +34,10 @@ struct ContactListView: View {
                     .listRowSeparator(.hidden)
                     .listRowBackground(Color.app_white)
             } else {
-                ForEach(cc.contacts) { contact in
+                ForEach(cc.contacts
+                    .filter({ !$0.blockedBy.contains(userManager.user?.id ?? "🇰🇵")})
+                    .filter({ $0.reports.isEmpty })
+                ) { contact in
                     ZStack {
                         NavigationLink(tag: contact, selection: $selectedContact, destination: {
                             ContactDetailsView(user: contact)
@@ -47,7 +51,29 @@ struct ContactListView: View {
                     .onTapGesture {
                         self.selectedContact = contact
                     }
-                    .swipeActions(allowsFullSwipe: false) {
+                    .swipeActions(edge: .leading, allowsFullSwipe: false) {
+                        Button(action: {
+                            if let uid = userManager.user?.uid {
+                                userManager.blockOrReport(blocker: uid, userId: contact.uid) {
+                                    print("here")
+                                    cc.contacts.removeAll(where: { $0.uid ==  contact.uid})
+                                }
+                            }
+                        }) {
+                            Label("Заблокировать", systemImage: "hand.raised.fill")
+                        }.tint(.orange)
+                        Button(action: {
+                            if let uid = userManager.user?.uid {
+                                userManager.blockOrReport(reporter: uid, userId: contact.uid) {
+                                    print("here")
+                                    cc.contacts.removeAll(where: { $0.uid ==  contact.uid})
+                                }
+                            }
+                        }) {
+                            Label("Пожаловаться", systemImage: "exclamationmark.bubble.fill")
+                        }.tint(.red)
+                    }
+                    .swipeActions(edge: .trailing, allowsFullSwipe: false) {
                         if contact.phoneIsAvailable ?? false {
                             Button(action: {
                                 PhoneHelper.shared.call(contact.phone)

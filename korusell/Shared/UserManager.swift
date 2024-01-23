@@ -70,6 +70,12 @@ class UserManager: ObservableObject {
         }
     }
     
+    func blockOrReport(reporter: String? = nil, blocker: String? = nil, userId: String, completion: @escaping () -> Void) {
+        fs.reportOrBlockUser(reporter: reporter, blocker: blocker, userId: userId) {
+            completion()
+        }
+    }
+    
     func save(image: UIImage?, user: Contact) async throws {
         do {
             var savingUser = user

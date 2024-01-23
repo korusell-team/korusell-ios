@@ -27,8 +27,6 @@ struct Contact: Identifiable, Hashable, Codable {
     var created: Date?
     var isPublic: Bool
     var phoneIsAvailable: Bool?
-    var isOnline: Bool?
-    var priority: Int?
     
     var instagram: String?
     var threads: String?
@@ -42,6 +40,10 @@ struct Contact: Identifiable, Hashable, Codable {
     var linkedIn: String?
     var twitter: String?
     
+    var blockedBy: [String] = []
+    var reports: [String] = []
+    var isOnline: Bool?
+    var priority: Int?
     
     /// places ids?
 //    var places: [Place] = []
