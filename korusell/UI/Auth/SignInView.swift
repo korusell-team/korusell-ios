@@ -62,7 +62,7 @@ struct SignInView: View {
                 
                 if !showCodeWindow {
                     HStack {
-                        TextField("Номер телефона", text: $phone)
+                        TextField("+82100001111", text: $phone)
                             .textContentType(.telephoneNumber)
                             .keyboardType(.phonePad)
                             .onChange(of: self.phone) { phone in
@@ -75,10 +75,10 @@ struct SignInView: View {
                     .cornerRadius(15)
                     .matchedGeometryEffect(id: "field", in: animation)
                     
-                    Text("Пример: +821012341234")
-                        .foregroundColor(.gray600)
-                        .padding(.horizontal, 18)
-                        .padding(.bottom)
+//                    Text("Пример: +821012341234")
+//                        .foregroundColor(.gray600)
+//                        .padding(.horizontal, 18)
+//                        .padding(.bottom)
                     
                     
                 } else {
@@ -103,56 +103,71 @@ struct SignInView: View {
                     }
                 }
                 
+                Spacer()
+                
                 if !showCodeWindow {
-                    Button(action: {
-                        contentAgree.toggle()
-                    }) {
-                        (Text(Image(systemName: contentAgree ? "checkmark.square" : "square")) + Text("  Да, я согласен с Политикой нежелательного контента"))
-                            .foregroundColor(.gray1000)
-                    }
-                    
-                    HStack {
-                        Button(action: {
-                            showContentPolicy = true
-                        }, label: {
-                            Text("Прочитать")
-                                .font(light14f)
-                        })
-                        .sheet(isPresented: $showContentPolicy, content: {
-                            WebView(url: URL(string: "https://wide-arthropod-bad.notion.site/00bc2c43d10449a68463233a80007ee6?pvs=4")!)
-                        })
-                    }.frame(maxWidth: .infinity, alignment: .trailing)
-                        .padding(.bottom)
-                    
-                    Button(action: {
-                        privacyAgree.toggle()
-                    }) {
-                        (Text(Image(systemName: privacyAgree ? "checkmark.square" : "square")) + Text("  Да, я согласен с Политикой конфиденциальности"))
-                            .foregroundColor(.gray1000)
-                    }
-                    
-                    HStack {
-                        Button(action: {
-                            showPrivcacyPolicy = true
-                        }, label: {
-                            Text("Прочитать")
-                                .font(light14f)
-                        })
-                        .sheet(isPresented: $showPrivcacyPolicy, content: {
-                            WebView(url: URL(string: "https://wide-arthropod-bad.notion.site/4d3f3c37114243bcb9bd97ee1646bc11?pvs=4")!)
-                        })
-                    }.frame(maxWidth: .infinity, alignment: .trailing)
+                    VStack(alignment: .center) {
+                        Text("Авторизуясь, Вы соглашаетесь с **Политикой нежелательного контента** и с **Политикой конфиденциальности**")
+                            .font(light14f)
+                            .multilineTextAlignment(.center)
+                            .foregroundColor(.gray700)
+                            .onTapGesture {
+                                showContentPolicy = true
+                            }
+                            .sheet(isPresented: $showContentPolicy, content: {
+                                WebView(url: URL(string: "https://wide-arthropod-bad.notion.site/ethnogram-9da27521cf1b4775825e9b85ad255790?pvs=4")!)
+                            })
+                    }.frame(maxWidth: .infinity)
+
+//                    Button(action: {
+//                        contentAgree.toggle()
+//                    }) {
+//                        (Text(Image(systemName: contentAgree ? "checkmark.square" : "square")) + Text("  Да, я согласен с Политикой нежелательного контента"))
+//                            .foregroundColor(.gray1000)
+//                    }
+//                    
+//                    HStack {
+//                        Button(action: {
+//                            showContentPolicy = true
+//                        }, label: {
+//                            Text("Прочитать")
+//                                .font(light14f)
+//                        })
+//                        .sheet(isPresented: $showContentPolicy, content: {
+//                            WebView(url: URL(string: "https://wide-arthropod-bad.notion.site/00bc2c43d10449a68463233a80007ee6?pvs=4")!)
+//                        })
+//                    }.frame(maxWidth: .infinity, alignment: .trailing)
+//                        .padding(.bottom)
+//                    
+//                    Button(action: {
+//                        privacyAgree.toggle()
+//                    }) {
+//                        (Text(Image(systemName: privacyAgree ? "checkmark.square" : "square")) + Text("  Да, я согласен с Политикой конфиденциальности"))
+//                            .foregroundColor(.gray1000)
+//                    }
+//                    
+//                    HStack {
+//                        Button(action: {
+//                            showPrivcacyPolicy = true
+//                        }, label: {
+//                            Text("Прочитать")
+//                                .font(light14f)
+//                        })
+//                        .sheet(isPresented: $showPrivcacyPolicy, content: {
+//                            WebView(url: URL(string: "https://wide-arthropod-bad.notion.site/4d3f3c37114243bcb9bd97ee1646bc11?pvs=4")!)
+//                        })
+//                    }.frame(maxWidth: .infinity, alignment: .trailing)
                 }
                 
-                Spacer()
+
                 
                 HStack {
                     ActionButton(title: showCodeWindow ? "Войти" : "Далее", action: onButtonTap)
                         .padding()
                         .disabled(!showCodeWindow && !validatePhone())
-                        .disabled(!privacyAgree || !contentAgree)
+//                        .disabled(!privacyAgree || !contentAgree)
                         .opacity(!showCodeWindow && !validatePhone() ? 0.5 : 1)
-                        .opacity(!privacyAgree || !contentAgree ? 0.5 : 1)
+//                        .opacity(!privacyAgree || !contentAgree ? 0.5 : 1)
                 }.frame(maxWidth: .infinity, alignment: .center)
                 
                 if showCodeWindow {

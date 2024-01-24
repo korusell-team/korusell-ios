@@ -198,10 +198,7 @@ struct ContactDetailsInfo: View {
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(.top, 13)
         .padding(.horizontal, 24)
-
     }
-
-    
 }
 
 
