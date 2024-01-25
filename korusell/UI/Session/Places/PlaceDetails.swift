@@ -14,6 +14,6 @@ struct PlaceDetails: View {
     }
 }
 
-#Preview {
-    PlaceDetails(place: dummyPlaces.first!)
-}
+//#Preview {
+//    PlaceDetails(place: dummyPlaces.first!)
+//}

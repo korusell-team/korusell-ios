@@ -54,6 +54,8 @@
 		25DB6CC12A07287F00660E99 /* ContactsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DB6CC02A07287F00660E99 /* ContactsScreen.swift */; };
 		25DB6CC82A0A5AC500660E99 /* DataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DB6CC72A0A5AC500660E99 /* DataHelper.swift */; };
 		25DB6CCB2A0A5C1000660E99 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DB6CCA2A0A5C1000660E99 /* Contact.swift */; };
+		2B008CA52B613BAE004DAC79 /* PlacesLabelsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B008CA42B613BAE004DAC79 /* PlacesLabelsView.swift */; };
+		2B008CA92B628883004DAC79 /* PopCategoriesPlaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B008CA82B628883004DAC79 /* PopCategoriesPlaces.swift */; };
 		2B0491512AB07EAE00A8F81E /* categories.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B0491502AB07EAE00A8F81E /* categories.json */; };
 		2B0491532AB0851600A8F81E /* cities.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B0491522AB0851600A8F81E /* cities.json */; };
 		2B0491552AB1DEB600A8F81E /* MyAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0491542AB1DEB600A8F81E /* MyAccountView.swift */; };
@@ -152,6 +154,8 @@
 		25DB6CC02A07287F00660E99 /* ContactsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsScreen.swift; sourceTree = "<group>"; };
 		25DB6CC72A0A5AC500660E99 /* DataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataHelper.swift; sourceTree = "<group>"; };
 		25DB6CCA2A0A5C1000660E99 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
+		2B008CA42B613BAE004DAC79 /* PlacesLabelsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesLabelsView.swift; sourceTree = "<group>"; };
+		2B008CA82B628883004DAC79 /* PopCategoriesPlaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopCategoriesPlaces.swift; sourceTree = "<group>"; };
 		2B0491502AB07EAE00A8F81E /* categories.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = categories.json; sourceTree = "<group>"; };
 		2B0491522AB0851600A8F81E /* cities.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = cities.json; sourceTree = "<group>"; };
 		2B0491542AB1DEB600A8F81E /* MyAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountView.swift; sourceTree = "<group>"; };
@@ -387,9 +391,11 @@
 				25ADF3292A694403009A2B73 /* PlacesScreen.swift */,
 				25ADF32B2A694437009A2B73 /* MapView.swift */,
 				2BC565DC2B4C1B6E00AFB708 /* PlaceSheet.swift */,
+				2B008CA42B613BAE004DAC79 /* PlacesLabelsView.swift */,
 				25ADF32D2A694437009A2B73 /* ClusterView.swift */,
 				25ADF32F2A694437009A2B73 /* PlaceMarker.swift */,
 				2BC565DE2B4C1CCC00AFB708 /* PlaceDetails.swift */,
+				2B008CA82B628883004DAC79 /* PopCategoriesPlaces.swift */,
 			);
 			path = Places;
 			sourceTree = "<group>";
@@ -628,6 +634,7 @@
 				2548C41B2A96005700211CC0 /* SessionView.swift in Sources */,
 				25DB6CCB2A0A5C1000660E99 /* Contact.swift in Sources */,
 				259EAAD62A9DEABA006C207F /* ContactDetailsInfo.swift in Sources */,
+				2B008CA52B613BAE004DAC79 /* PlacesLabelsView.swift in Sources */,
 				2BC565C62B440F6C00AFB708 /* AdminView.swift in Sources */,
 				2BD124922B25A4D1004C4772 /* MenuLabelView.swift in Sources */,
 				2596144F2A124E5900393712 /* TrackableScrollView.swift in Sources */,
@@ -652,6 +659,7 @@
 				253B84EC2A0CF3D6004FA223 /* AvatarView.swift in Sources */,
 				2B345B702AB85A410025BF2C /* UserManager.swift in Sources */,
 				253B84E62A0A614F004FA223 /* SearchBar.swift in Sources */,
+				2B008CA92B628883004DAC79 /* PopCategoriesPlaces.swift in Sources */,
 				2BC565B92B3ED1C400AFB708 /* EditDetailsView.swift in Sources */,
 				2BC565C82B440FDC00AFB708 /* ContactDetailsViewA.swift in Sources */,
 				2BC565BD2B3ED32500AFB708 /* EditInfoView.swift in Sources */,

@@ -10,11 +10,15 @@ import PopupView
 
 struct PlacesScreen: View {
     @EnvironmentObject var vc: SessionViewController
+    @EnvironmentObject var cc: ContactsController
     @Environment(\.openURL) var openURL
-    @State var places: [PlacePoint] = dummyPlaces
+    
     @State var selectedPlace: PlacePoint? = nil
     @State var detailedPlace: PlacePoint? = nil
     @State var detailsPresented: Bool = false
+    
+    @State var popCategories = false
+    @State var popSubCategories = false
     
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -33,8 +37,16 @@ struct PlacesScreen: View {
                         }
                 }
             }) { EmptyView() }
+            VStack(spacing: 0) {
+                PlacesLabelsView(
+                    popCategories: $popCategories,
+                    popSubCategories: $popSubCategories
+                )
+                
+                MapView(places: $cc.filteredPlaces, selectedPlace: $selectedPlace)
+            }
             
-            MapView(places: $places, selectedPlace: $selectedPlace)
+            
             if selectedPlace != nil {
                 Color.black.opacity(0.07)
                     .onTapGesture {
@@ -44,7 +56,7 @@ struct PlacesScreen: View {
                     }
             }
         }
-        .ignoresSafeArea()
+        .ignoresSafeArea(edges: .bottom)
         .popup(item: $selectedPlace) { place in
             PlaceSheet(place: place, action: { goToDetails(place: place) })
         } customize: {

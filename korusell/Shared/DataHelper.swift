@@ -59,11 +59,7 @@ let dummyUser = Contact(
 //    Contact(uid: "", name: "David", surname: "Beckham", bio: "I'm here to check if english content displays properly", image: ["david-beckham"], categories: ["Маркетинг"], subcategories: ["Продажи"], phone: "112331333", instagram: "https://www.instagram.com/davidbeckham"),
 //]
 
-let listOfPlaces: [Place] = [
-    Place(name: "Кафе Виктория", image: "https://www.shuttledelivery.co.kr/uploads/_1c5541729a3513b9db5f712d8cdf26691556766796.jpg", subcategories: ["мероприятия", "праздники", "свадьбы", "асянди", "хангаби"], owner: "sad"),
-    Place(name: "Habsida", image: "https://seeklogo.com/images/D/dunkin-donuts-logo-1E269BA8F1-seeklogo.com.png", subcategories: ["Образование", "IT", "программирование", "обучение"], owner: "sad"),
-    Place(name: "СТО", image: "https://cdn.cookielaw.org/logos/94ba57b5-e5fc-4459-a91d-28bc381b6185/cbbac623-b9e1-4fa5-b22c-c59abdf87131/6956a7a6-b2b7-4930-8b81-174cb0def489/MicrosoftTeams-imagec5a4e92dea00544f64bbc54c6eab7f24841d0d022e5e883abe8838f725a633ce.png", subcategories: ["транспорт", "ремонт"], owner: "sad"),
-]
+
 
 let dummyCities: [City] = [
     City(id: 1, ru: "Сеул", en: "Seoul", ko: "서울"),
@@ -75,7 +71,7 @@ let dummyCities: [City] = [
 ]
 
 
-var dummyPlaces: [PlacePoint] = [
-    PlacePoint(pid: "1", title: "LEE FLOWERS", city: 2, latitude:  37.30501026564322, longitude: 126.84550345674847, categories: [101], address: "경기 안산시 상록구 사동", bio: "“LEE FLOWER”| арт-студия •услуги флориста •мастер-класс по живописи •арт-терапия •душевные разговоры", phone: "01012340011", info: "“LEE FLOWER”| арт-студия •услуги флориста •мастер-класс по живописи •арт-терапия •душевные разговоры", images: ["https://firebasestorage.googleapis.com/v0/b/ethnogram-1cd0f.appspot.com/o/dummy%2FSimplyChic.jpg?alt=media&token=f551a867-2273-4ca3-bb39-a647ffd00c29"], smallImages: ["https://firebasestorage.googleapis.com/v0/b/ethnogram-1cd0f.appspot.com/o/dummy%2FSimplyChic.jpg?alt=media&token=f551a867-2273-4ca3-bb39-a647ffd00c29"], instagram: "l.eeflower"),
-    PlacePoint(pid: "2", title: "Home Cafe", city: 2, latitude:  37.30227732026979, longitude: 126.84739799098557, categories: [101], address: "경기 안산시 상록구 사동", bio: "", phone: "+821021160770", info: "Кафе домашней кухни♥️", instagram: "home_cafe_ansan"),
-]
+//var dummyPlaces: [PlacePoint] = [
+//    PlacePoint(pid: "1", title: "LEE FLOWERS", city: 2, latitude:  37.30501026564322, longitude: 126.84550345674847, categories: [104], address: "경기 안산시 상록구 사동", bio: "“LEE FLOWER”| арт-студия •услуги флориста •мастер-класс по живописи •арт-терапия •душевные разговоры", phone: "01012340011", info: "“LEE FLOWER”| арт-студия •услуги флориста •мастер-класс по живописи •арт-терапия •душевные разговоры", images: ["https://firebasestorage.googleapis.com/v0/b/ethnogram-1cd0f.appspot.com/o/dummy%2FSimplyChic.jpg?alt=media&token=f551a867-2273-4ca3-bb39-a647ffd00c29"], smallImages: ["https://firebasestorage.googleapis.com/v0/b/ethnogram-1cd0f.appspot.com/o/dummy%2FSimplyChic.jpg?alt=media&token=f551a867-2273-4ca3-bb39-a647ffd00c29"], instagram: "l.eeflower"),
+//    PlacePoint(pid: "2", title: "Home Cafe", city: 2, latitude:  37.30227732026979, longitude: 126.84739799098557, categories: [201], address: "경기 안산시 상록구 사동", bio: "", phone: "+821021160770", info: "Кафе домашней кухни♥️", instagram: "home_cafe_ansan"),
+//]

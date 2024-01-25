@@ -190,81 +190,82 @@ struct MyAccDetailsSheet: View {
                 .padding(.bottom)
                 
                 // TODO: listOfPlaces -> change to My places logic
-                if !listOfPlaces.isEmpty {
-                    Text("Места:")
-                        .font(regular17f)
-                        .bold()
-                    
-                    let columns = [GridItem(.flexible(maximum: 100)), GridItem(.flexible(maximum: 100)), GridItem(.flexible()), GridItem(.flexible())]
-                    
-                    LazyVGrid(columns: columns) {
-                        VStack {
-                            Button(action: {
-                                // TODO: add new Place logic
-                            }) {
-                                ZStack {
-                                    Color.gray700
-                                    Image(systemName: "plus")
-                                        .font(regular20f)
-                                        .foregroundColor(.gray10)
-                                }
-                                .frame(width: 60, height: 60)
-                                .cornerRadius(10)
-                            }
-                            Text("Добавить\nМесто")
-                                .multilineTextAlignment(.center)
-                                .font(regular12f)
-                                .lineLimit(2)
-                        }
-                        
-                        
-                        ForEach(listOfPlaces) { place in
-                            VStack(alignment: .center) {
-                                Button(action: {
-                                    //TODO: Open Place
-                                }) {
-                                    ZStack {
-                                        if let image = place.image {
-                                            
-                                            CachedAsyncImage(url: URL(string: image), urlCache: .imageCache) { phase in
-                                                switch phase {
-                                                case .empty:
-                                                    ProgressView()
-                                                case .success(let image):
-                                                    ZStack(alignment: .top) {
-                                                        RoundedRectangle(cornerRadius: 10)
-                                                            .fill(Color.gray100)
-                                                            .frame(width: 60, height: 60)
-                                                        image
-                                                            .resizable()
-                                                            .scaledToFit()
-                                                            .frame(width: 60, height: 60)
-                                                            .cornerRadius(10)
-                                                    }
-                                                    .transition(.scale(scale: 0.1, anchor: .center))
-                                                case .failure:
-                                                    Image(systemName: "photo")
-                                                @unknown default:
-                                                    EmptyView()
-                                                }
-                                            }
-                                        } else {
-                                            RoundedRectangle(cornerRadius: 10)
-                                                .fill(Color.gray700)
-                                                .frame(width: 60, height: 60)
-                                        }
-                                    }
-                                }
-                                
-                                Text(place.name)
-                                    .multilineTextAlignment(.center)
-                                    .font(regular12f)
-                                    .lineLimit(2)
-                            }
-                            .frame(maxHeight: 120, alignment: .top)
-                        }
-                    }
-                }
+//                if !cc.places.isEmpty {
+//                    Text("Места:")
+//                        .font(regular17f)
+//                        .bold()
+//                    
+//                    let columns = [GridItem(.flexible(maximum: 100)), GridItem(.flexible(maximum: 100)), GridItem(.flexible()), GridItem(.flexible())]
+//                    
+//                    LazyVGrid(columns: columns) {
+//                        VStack {
+//                            Button(action: {
+//                                // TODO: add new Place logic
+//                            }) {
+//                                ZStack {
+//                                    Color.gray700
+//                                    Image(systemName: "plus")
+//                                        .font(regular20f)
+//                                        .foregroundColor(.gray10)
+//                                }
+//                                .frame(width: 60, height: 60)
+//                                .cornerRadius(10)
+//                            }
+//                            Text("Добавить\nМесто")
+//                                .multilineTextAlignment(.center)
+//                                .font(regular12f)
+//                                .lineLimit(2)
+//                        }
+//                        
+//                        // TODO: get only my places
+////                        ForEach(cc.places.filter({ $0.pid == "sdfsdfds" })) { place in
+//                        ForEach(dummyPlaces, id:\.self) { place in
+//                            VStack(alignment: .center) {
+//                                Button(action: {
+//                                    //TODO: Open Place
+//                                }) {
+//                                    ZStack {
+//                                        if let image = place.image {
+//                                            
+//                                            CachedAsyncImage(url: URL(string: image), urlCache: .imageCache) { phase in
+//                                                switch phase {
+//                                                case .empty:
+//                                                    ProgressView()
+//                                                case .success(let image):
+//                                                    ZStack(alignment: .top) {
+//                                                        RoundedRectangle(cornerRadius: 10)
+//                                                            .fill(Color.gray100)
+//                                                            .frame(width: 60, height: 60)
+//                                                        image
+//                                                            .resizable()
+//                                                            .scaledToFit()
+//                                                            .frame(width: 60, height: 60)
+//                                                            .cornerRadius(10)
+//                                                    }
+//                                                    .transition(.scale(scale: 0.1, anchor: .center))
+//                                                case .failure:
+//                                                    Image(systemName: "photo")
+//                                                @unknown default:
+//                                                    EmptyView()
+//                                                }
+//                                            }
+//                                        } else {
+//                                            RoundedRectangle(cornerRadius: 10)
+//                                                .fill(Color.gray700)
+//                                                .frame(width: 60, height: 60)
+//                                        }
+//                                    }
+//                                }
+//                                
+//                                Text(place.title)
+//                                    .multilineTextAlignment(.center)
+//                                    .font(regular12f)
+//                                    .lineLimit(2)
+//                            }
+//                            .frame(maxHeight: 120, alignment: .top)
+//                        }
+//                    }
+//                }
                 Spacer(minLength: 300)
             }
             .padding(.top, 13)

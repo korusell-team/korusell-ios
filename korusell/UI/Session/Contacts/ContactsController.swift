@@ -20,6 +20,14 @@ class ContactsController: ObservableObject {
     /// filtered categories
     @Published var categories: [Category] = []
     @Published var subCategories: [Category] = []
+    /// categories for places
+    @Published var categoriesPlaces: [Category] = []
+    @Published var subCategoriesPlaces: [Category] = []
+    @Published var selectedSubcategoryPlaces: Category? = nil
+    @Published var selectedCategoryPlaces: Category? = nil
+    @Published var places: [PlacePoint] = []
+    @Published var filteredPlaces: [PlacePoint] = []
+    
     @Published var searchCategories: [Category] = []
     @Published var searchCategoriesFull: [Category] = []
     /// all users
@@ -32,10 +40,10 @@ class ContactsController: ObservableObject {
     private var db = Firestore.firestore()
     
     init() {
-        print("Concatcts Controller initialization")
         self.getCats()
         self.getCities()
         self.getUsers()
+        self.getPlaces()
     }
     
     func getCats() {
@@ -57,9 +65,15 @@ class ContactsController: ObservableObject {
                     }
                 }
                 print("Successfullly got cats 🐾")
-                self.categories = self.cats.filter({ $0.p_id <= 0 }).sorted(by: { $0.title < $1.title })
+                
+                self.categories = self.cats.filter({ $0.p_id <= 0 }).filter({ $0.id < 2000 }) .sorted(by: { $0.title < $1.title })
+                self.categoriesPlaces = self.cats.filter({ $0.p_id <= 0 }).sorted(by: { $0.title < $1.title })
                 self.searchCategories = self.cats.filter({ $0.p_id > 0 })
                 self.searchCategoriesFull = self.cats.filter({ $0.p_id > 0 })
+                
+                if let encoded = try? JSONEncoder().encode(self.cats.filter({ $0.id.divider() > 0 })) {
+                        UserDefaults.standard.set(encoded, forKey: "cats")
+                    }
             }
     }
     
@@ -107,6 +121,30 @@ class ContactsController: ObservableObject {
                 print("Successfullly got users 🤦🏻")
                 self.users = users.filter({ $0.isPublic })
                 self.contacts = self.users.shuffled().sorted(by: { $0.priority ?? 0 > $1.priority ?? 0 })
+            }
+    }
+    
+    func getPlaces() {
+        db
+            .collection("places")
+            .getDocuments{ (querySnapshot, error) in
+                guard let documents = querySnapshot?.documents else {
+                    print("No places! 🏖️")
+                    return
+                }
+                
+                let places = documents.compactMap { queryDocumentSnapshot -> Place? in
+                    do {
+                        return try queryDocumentSnapshot.data(as: Place.self)
+                    } catch {
+                        print("Error decoding document into Place object: \(error)")
+                        return nil
+                    }
+                }
+                print("Successfullly got places 🏖️")
+//                print(places)
+                self.places = places.map({ $0.toPlacePoint() })
+                self.filteredPlaces = self.places
             }
     }
     
@@ -186,104 +224,52 @@ class ContactsController: ObservableObject {
         }
     }
     
-//    func filterData() {
-//        db.collection("users")
-//            .whereField("categories", arrayContains: selectedCategory?.id)
-//            .addSnapshotListener { (querySnapshot, error) in
-//                guard let documents = querySnapshot?.documents else {
-//                    print("No documents")
-//                    return
-//                }
-//
-//                self.contacts = documents.compactMap { queryDocumentSnapshot -> Contact? in
-//                    do {
-//                        return try queryDocumentSnapshot.data(as: Contact.self)
-//                    } catch {
-//                        print("Error decoding document into Service: \(error)")
-//                        return nil
-//                    }
-//                }
-//            }
-//    }
-        
-//    func loadContacts() {
-//        if let url = Bundle.main.url(forResource: "contacts", withExtension: "json") {
-//            do {
-//                let data = try Data(contentsOf: url)
-//                let decoder = JSONDecoder()
-//                let contacts = try decoder.decode([Contact].self, from: data)
-//                self.contacts = contacts
-//                print(self.contacts)
-//            } catch {
-//                print("error:\(error)")
-//                self.contacts = dummyContacts
-//            }
-//        }
-//    }
-    
-    /// from json
-//    func loadCategories() {
-//        if let url = Bundle.main.url(forResource: "categories", withExtension: "json") {
-//            do {
-//                let data = try Data(contentsOf: url)
-//                let decoder = JSONDecoder()
-//                let categories = try decoder.decode([Category].self, from: data)
-//                self.categories = categories
-//            } catch {
-//                print("error:\(error)")
-////                self.categories = DummyCategories
-//            }
-//        }
-//    }
-    /// from json
-//    func loadCities() {
-//        if let url = Bundle.main.url(forResource: "cities", withExtension: "json") {
-//            do {
-//                let data = try Data(contentsOf: url)
-//                let decoder = JSONDecoder()
-//                let cities = try decoder.decode([City].self, from: data)
-//                self.cities = cities
-//            } catch {
-//                print("error:\(error)")
-//                return self.cities = dummyCities
-//            }
-//        }
-//    }
-    
-//    func resetState() {
-//        withAnimation {
-//            self.searchFocused = false
-//            self.selectedSubcategory = nil
-//            self.selectedCategory = nil
-//        }
-//    }
-    
-//    var filteredCategories: [Category] {
-//        guard selectedSubcategory != nil else { return categories }
-        
-//        return categories.filter { category in
-//            category.title.lowercased().contains(selectedSubcategory!.title.lowercased()) ||
-//            !category.subCategories.filter { $0.title.lowercased().contains(selectedSubcategory!.title.lowercased()) }.isEmpty
-//        }
-//    }
-    
-//    var filteredContacts: [Contact] {
-//        return contacts.filter { contact in
-//            ( (city != nil) ? !contact.cities.filter { $0.lowercased().contains(city!.lowercased()) }.isEmpty : true) &&
-//            ( (selectedCategory != nil) ? !contact.categories.filter { $0.lowercased().contains(selectedCategory!.name.lowercased()) }.isEmpty : true) &&
-//            ( (selectedSubcategory != nil) ? !contact.subcategories.filter { $0.lowercased().contains(selectedSubcategory!.lowercased()) }.isEmpty : true)
-//        }
-//        .sorted(by: { $0.surname ?? "" < $1.surname ?? ""})
-//    }
-    
-    var filteredPlaces: [Place] {
-        guard selectedSubcategory != nil else { return listOfPlaces.sorted(by: { $0.name < $1.name}) }
-        
-        return listOfPlaces.filter { place in
-            place.name.lowercased().contains(selectedSubcategory!.title.lowercased()) ||
-            !place.subcategories.filter { $0.lowercased().contains(selectedSubcategory!.title.lowercased()) }.isEmpty
-        }.sorted(by: { $0.name < $1.name})
+    func selectCategoryPlaces(category: Category, reader: ScrollViewProxy) {
+        withAnimation {
+//        withAnimation(.interpolatingSpring(stiffness: 200, damping: 20)) {
+            if self.selectedCategoryPlaces == category {
+                self.selectedCategoryPlaces = nil
+                self.selectedSubcategoryPlaces = nil
+                self.subCategoriesPlaces = []
+                self.filteredPlaces = self.places
+                reader.scrollTo(self.categoriesPlaces.first?.id, anchor: .center)
+            } else {
+                self.selectedCategoryPlaces = category
+                self.subCategoriesPlaces = self.cats.filter({ $0.p_id == self.selectedCategoryPlaces?.id })
+                self.selectedSubcategoryPlaces = nil
+                self.filteredPlaces = self.places.filter({ $0.categories.contains(where: { $0.divider() == category.id.divider() }) })
+                reader.scrollTo(category.id, anchor: .center)
+            }
+        }
     }
+    
+    func selectSubCategoryPlaces(subCat: Category, reader: ScrollViewProxy) {
+        withAnimation(.interpolatingSpring(stiffness: 200, damping: 20)) {
+            if self.selectedSubcategoryPlaces == subCat {
+                self.selectedSubcategoryPlaces = nil
+                if let selectedCategory {
+                    self.filteredPlaces = self.places.filter({ $0.categories.contains(where: { $0.divider() == subCat.id.divider() }) })
+                    /// never gonna happen ?
+                } else {
+                    self.filteredPlaces = self.places
+                }
+                reader.scrollTo(self.subCategoriesPlaces.first?.id, anchor: .center)
+            } else {
+                self.selectedSubcategoryPlaces = subCat
+                self.filteredPlaces = self.places.filter({ $0.categories.contains(subCat.id) })
+                reader.scrollTo(subCat.id, anchor: .center)
+            }
+        }
+    }
+    
+//    var filteredPlaces: [Place] {
+//        guard selectedSubcategory != nil else { return listOfPlaces.sorted(by: { $0.name < $1.name}) }
+//        
+//        return listOfPlaces.filter { place in
+//            place.name.lowercased().contains(selectedSubcategory!.title.lowercased()) ||
+//            !place.subcategories.filter { $0.lowercased().contains(selectedSubcategory!.title.lowercased()) }.isEmpty
+//        }.sorted(by: { $0.name < $1.name})
+//    }
     
     /// Filter for search
     //        guard !text.isEmpty else { return listOfContacts.sorted(by: { $0.surname < $1.surname}) }

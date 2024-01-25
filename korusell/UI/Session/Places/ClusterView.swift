@@ -34,7 +34,8 @@ class ClusterView: MKAnnotationView {
 //                     Fill full circle with tricycle color
                     UIColor(Color.app_white).setFill()
                     UIBezierPath(ovalIn: CGRect(x: 0, y: 0, width: 40, height: 40)).fill()
-
+                    UIColor(Color.gray300).setStroke()
+                    UIBezierPath(ovalIn: CGRect(x: 0, y: 0, width: 39, height: 39)).stroke()
                     // Fill pie with unicycle color
                     
 //                    let piePath = UIBezierPath()

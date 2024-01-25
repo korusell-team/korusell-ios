@@ -148,6 +148,6 @@ struct PlaceSheet: View {
     }
 }
 
-#Preview {
-    PlaceSheet(place: dummyPlaces.first!, action: {})
-}
+//#Preview {
+//    PlaceSheet(place: dummyPlaces.first!, action: {})
+//}

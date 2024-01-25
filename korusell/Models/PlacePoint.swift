@@ -10,7 +10,6 @@ import MapKit
 import FirebaseFirestoreSwift
 
 class PlacePoint: NSObject, MKAnnotation, Identifiable {
-    @DocumentID var id: String?
     var pid: String
     var title: String?
     var subtitle: String?
@@ -38,6 +37,10 @@ class PlacePoint: NSObject, MKAnnotation, Identifiable {
     var linkedIn: String?
     var twitter: String?
     
+    var blockedBy: [String] = []
+    var reports: [String] = []
+    var priority: Int?
+    
     init(pid: String,
          title: String? = nil,
          subtitle: String? = nil,
@@ -64,7 +67,11 @@ class PlacePoint: NSObject, MKAnnotation, Identifiable {
          kakao: String? = nil,
          tiktok: String? = nil,
          linkedIn: String? = nil,
-         twitter: String? = nil) {
+         twitter: String? = nil,
+         blockedBy: [String] = [],
+         reports: [String] = [],
+         priority: Int?
+    ) {
         self.pid = pid
         self.title = title
         self.subtitle = subtitle
@@ -90,5 +97,8 @@ class PlacePoint: NSObject, MKAnnotation, Identifiable {
         self.tiktok = tiktok
         self.linkedIn = linkedIn
         self.twitter = twitter
+        self.blockedBy = blockedBy
+        self.reports = reports
+        self.priority = priority
     }
 }

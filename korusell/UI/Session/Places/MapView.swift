@@ -50,7 +50,7 @@ struct MapView: UIViewRepresentable {
         func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
             if let annotation = view.annotation as? PlacePoint {
                 // MARK: Tap logic here
-              print("selected Place is : \(annotation)")
+                print("selected Place is : \(annotation.pid)")
                 withAnimation {
                     parent.selectedPlace = annotation
                 }
