@@ -13,6 +13,25 @@ struct MapView: UIViewRepresentable {
     @Binding var selectedPlace: PlacePoint?
     
     func updateUIView(_ uiView: MKMapView, context: Context) {
+        // TODO: figure out better way to update annotations
+        if places.map({ $0.title?.description ?? "" }) != uiView.annotations.map({ $0.title ?? "" }) {
+            print(places.map({ $0.title }))
+            print(uiView.annotations.map({ $0.title }))
+            
+            print("refreshing ....")
+            DispatchQueue.main.async {
+//                withAnimation {
+                    uiView.removeAnnotations(uiView.annotations)
+//                }
+            }
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+//                withAnimation {
+                    uiView.addAnnotations(places)
+//                }
+            }
+        }
+        
         if selectedPlace == nil {
             uiView.deselectAnnotation(selectedPlace, animated: true)
         }
@@ -42,9 +61,12 @@ struct MapView: UIViewRepresentable {
         
         
         func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
-//            withAnimation {
-//                parent.selectedPlace = nil
-//            }
+            print(view.annotation)
+                withAnimation {
+                    /// doesnt work resizing
+//                    view.annotation. = CGRect(x: 0, y: 0, width: 40, height: 40)
+                }
+            
         }
         
         func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
@@ -53,7 +75,13 @@ struct MapView: UIViewRepresentable {
                 print("selected Place is : \(annotation.pid)")
                 withAnimation {
                     parent.selectedPlace = annotation
+                    /// doesnt work resizing
+//                    view.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
                 }
+                parent.region = MKCoordinateRegion(center: annotation.coordinate,
+                                                          span: MKCoordinateSpan(latitudeDelta: 0.03, longitudeDelta: 0.03))
+                mapView.setRegion(parent.region, animated: true)
+
             }
         }
     }
