@@ -16,7 +16,7 @@ class UserManager: ObservableObject {
     @Published var isUserOnboarded: Bool = false
     @Published var isAppOnboarded: Bool = UserDefaults.standard.bool(forKey: "appOnboarded")
     
-    @Published var imageUrl: URL? = nil
+    @Published var userImageUrl: URL? = nil
     
     let db = Firestore.firestore()
     let fs = FirestoreManager()
@@ -56,7 +56,7 @@ class UserManager: ObservableObject {
         fs.getUserByPhone(phone: phone) { user in
             self.user = user
             if let user {
-                self.imageUrl = URL(string: user.image.first ?? "")
+                self.userImageUrl = URL(string: user.image.first ?? "")
             }
             completion()
         }
@@ -99,7 +99,7 @@ class UserManager: ObservableObject {
                 print("Image successfully saved!")
             }
             self.user = savingUser
-            self.imageUrl = URL(string: savingUser.image.first ?? "")
+            self.userImageUrl = URL(string: savingUser.image.first ?? "")
             self.updateUser()
         } catch {
             print(error.localizedDescription)
@@ -161,7 +161,11 @@ class UserManager: ObservableObject {
             completion(nil)
             print(error.localizedDescription)
         }
-        
-        
+    }
+    
+    func createPlace() {
+        fs.createPlace(place: Place(pid: "", latitude: 1, longitude: 1, categories: [])) { success in
+            
+        }
     }
 }

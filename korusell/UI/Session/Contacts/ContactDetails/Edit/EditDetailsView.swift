@@ -18,7 +18,7 @@ struct EditDetailsView: View {
     
     var body: some View {
         ScrollView {
-            LazyVStack(pinnedViews: [.sectionHeaders]) {
+            LazyVStack {
                 EditContactImageView(user: $user, image: $image, showImagePicker: $showImagePicker, animation: animation)
                     .alertPatched(isPresented: $showAlert) {
                         Alert(title: Text("Чтобы сделать аккаунт публичным"), message:

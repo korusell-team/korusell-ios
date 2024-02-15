@@ -9,14 +9,15 @@ import SwiftUI
 
 struct SearchBar: View {
     @EnvironmentObject var cc: ContactsController
-    @State var searching: Bool = false
-    @Binding var searchField: String
+//    @Binding var searching: Bool
+//    @Binding var searchField: String
+    @Binding var searchPresented: Bool
     @FocusState var isEditing: Bool
 //    var isEditing: FocusState<Bool>.Binding
     
     var body: some View {
         HStack {
-            TextField("Поиск", text: $searchField, onCommit: {
+            TextField("Поиск", text: $cc.searchField, onCommit: {
                 // TODO: Test it out!
 //                cc.selectedCategory = listOfCategories.filter { $0.name.lowercased() == cc.selectedSubcategory.bound.lowercased() }.first
                 })
@@ -33,24 +34,26 @@ struct SearchBar: View {
                             .frame(minWidth: 0, maxWidth: UIScreen.main.bounds.width, alignment: .leading)
                             .padding(.leading, 8)
                  
-                        if cc.searchFocused && !searchField.isEmpty {
-                            Button(action: {
-//                                cc.selectedSubcategory = "" MARK: logic
-                            }) {
-                                Image(systemName: "multiply.circle.fill")
-                                    .foregroundColor(.gray)
-                                    .padding(.trailing, 8)
-                            }
-                        }
+//                        if cc.searching && !cc.searchField.isEmpty {
+//                            Button(action: {
+//                                cc.searchField = ""
+//                            }) {
+//                                Image(systemName: "multiply.circle.fill")
+//                                    .foregroundColor(.gray)
+//                                    .padding(.trailing, 8)
+//                            }
+//                        }
                     }
                 )
                 .focused($isEditing)
             
-            if $isEditing.wrappedValue {
+//            if $isEditing.wrappedValue {
                 Button(action: {
                     withAnimation {
-//                        cc.resetState()
-                        searching = false
+                        searchPresented = false
+                        cc.searchField = ""
+                        cc.searching = false
+                        cc.resetCategories()
                         $isEditing.wrappedValue = false
                     }
                 }) {
@@ -58,12 +61,16 @@ struct SearchBar: View {
                 }
                 .padding(.trailing, 10)
                 .transition(.scale)
+//            }
+        }
+        .padding(.horizontal, 20)
+        .background(Color.bg)
+        .animation(.default, value: isEditing)
+        .onChange(of: isEditing) { editing in
+            withAnimation {
+                cc.searching = editing
             }
         }
-        .background(Color.gray10)
-        .padding(.horizontal, 20)
-        .padding(.vertical, 10)
-        .background(Color.gray10)
     }
 }
 

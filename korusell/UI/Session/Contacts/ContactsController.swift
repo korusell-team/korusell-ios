@@ -30,6 +30,8 @@ class ContactsController: ObservableObject {
     
     @Published var searchCategories: [Category] = []
     @Published var searchCategoriesFull: [Category] = []
+    @Published var searching: Bool = false
+    @Published var searchField: String = ""
     /// all users
     @Published var users: [Contact] = []
     /// filtered users
@@ -167,6 +169,15 @@ class ContactsController: ObservableObject {
         }
     }
     
+    func resetCategories() {
+        withAnimation {
+                self.selectedCategory = nil
+                self.selectedSubcategory = nil
+//                self.subCategories = []
+                self.contacts = cityFilter(contacts: self.users)
+        }
+    }
+    
     func selectSubCategory(subCat: Category, reader: ScrollViewProxy) {
         withAnimation(.interpolatingSpring(stiffness: 200, damping: 20)) {
             if self.selectedSubcategory == subCat {
@@ -261,25 +272,6 @@ class ContactsController: ObservableObject {
             }
         }
     }
-    
-//    var filteredPlaces: [Place] {
-//        guard selectedSubcategory != nil else { return listOfPlaces.sorted(by: { $0.name < $1.name}) }
-//        
-//        return listOfPlaces.filter { place in
-//            place.name.lowercased().contains(selectedSubcategory!.title.lowercased()) ||
-//            !place.subcategories.filter { $0.lowercased().contains(selectedSubcategory!.title.lowercased()) }.isEmpty
-//        }.sorted(by: { $0.name < $1.name})
-//    }
-    
-    /// Filter for search
-    //        guard !text.isEmpty else { return listOfContacts.sorted(by: { $0.surname < $1.surname}) }
-    
-    //        return listOfContacts.filter { contact in
-    //            contact.name.lowercased().contains(text.lowercased()) ||
-    //            contact.surname.lowercased().contains(text.lowercased()) ||
-    //            !contact.subcategories.filter { $0.lowercased().contains(text.lowercased()) }.isEmpty
-    //        }.sorted(by: { $0.surname < $1.surname})
-    
 }
 ///  simple function for comparing sub category and category
 extension Int {

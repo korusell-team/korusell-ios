@@ -17,7 +17,7 @@ struct CategorySearchView: View {
     var body: some View {
         ActionSheetView(fixedHeight: true, bgColor: .app_white) {
             VStack {
-                SearchBar(searchField: $searchField)
+//                SearchBar(searchField: $searchField)
                 VStack {
                     ScrollView(.vertical, showsIndicators: false) {
                         FlexibleView(availableWidth: UIScreen.main.bounds.width, data: cc.searchCategories, spacing: 10, alignment: .leading) { cat in

@@ -20,13 +20,16 @@ struct ContactsScreen: View {
     @State var popSubCategories = false
     @State var popCities = false
     
+   
+    
     var body: some View {
         ZStack {
-            VStack {
+            VStack {                
                 LabelsView(
                     popCategories: $popCategories,
                     popSubCategories: $popSubCategories
-                ).padding(.top)
+                )
+//                .padding(.top)
                 
                 ContactListView(selectedContact: $selectedContact)
             }

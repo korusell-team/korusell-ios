@@ -55,50 +55,50 @@ struct ContactListView: View {
                     .onTapGesture {
                         self.selectedContact = contact
                     }
-                    .alertPatched(isPresented: $showBlock) {
-                        Alert(title: Text("Блокировка Пользователя"), message:
-                                Text("Вы уверены что хотите заблокировать Пользователя?"),
-                              primaryButton: .destructive(Text("Заблокировать"), action: {
-                            if let uid = userManager.user?.uid, let blockingContact  {
-                                userManager.blockOrReport(blocker: uid, userId: blockingContact.uid) {
-                                    cc.contacts.removeAll(where: { $0.uid ==  blockingContact.uid})
-                                    self.blockingContact = nil
-                                }
-                            }
-                        }),
-                              secondaryButton: .cancel(Text("Отмена"), action: {
-                            showBlock = false
-                        }))
-                    }
-                    .alertPatched(isPresented: $showReport) {
-                        Alert(title: Text(""), message:
-                                Text("Вы уверены что хотите пожаловаться на Пользователя?"),
-                              primaryButton: .destructive(Text("Пожаловаться"), action: {
-                            if let uid = userManager.user?.uid, let blockingContact {
-                                userManager.blockOrReport(reporter: uid, userId: blockingContact.uid) {
-                                    cc.contacts.removeAll(where: { $0.uid ==  blockingContact.uid})
-                                    self.blockingContact = nil
-                                }
-                            }
-                        }),
-                              secondaryButton: .cancel(Text("Отмена"), action: {
-                            showReport = false
-                        }))
-                    }
-                    .swipeActions(edge: .leading, allowsFullSwipe: false) {
-                        Button(action: {
-                            blockingContact = contact
-                            showBlock = true
-                        }) {
-                            Label("Заблокировать", systemImage: "hand.raised.fill")
-                        }.tint(.orange)
-                        Button(action: {
-                            blockingContact = contact
-                            showReport = true
-                        }) {
-                            Label("Пожаловаться", systemImage: "exclamationmark.bubble.fill")
-                        }.tint(.red)
-                    }
+//                    .alertPatched(isPresented: $showBlock) {
+//                        Alert(title: Text("Блокировка Пользователя"), message:
+//                                Text("Вы уверены что хотите заблокировать Пользователя?"),
+//                              primaryButton: .destructive(Text("Заблокировать"), action: {
+//                            if let uid = userManager.user?.uid, let blockingContact  {
+//                                userManager.blockOrReport(blocker: uid, userId: blockingContact.uid) {
+//                                    cc.contacts.removeAll(where: { $0.uid ==  blockingContact.uid})
+//                                    self.blockingContact = nil
+//                                }
+//                            }
+//                        }),
+//                              secondaryButton: .cancel(Text("Отмена"), action: {
+//                            showBlock = false
+//                        }))
+//                    }
+//                    .alertPatched(isPresented: $showReport) {
+//                        Alert(title: Text(""), message:
+//                                Text("Вы уверены что хотите пожаловаться на Пользователя?"),
+//                              primaryButton: .destructive(Text("Пожаловаться"), action: {
+//                            if let uid = userManager.user?.uid, let blockingContact {
+//                                userManager.blockOrReport(reporter: uid, userId: blockingContact.uid) {
+//                                    cc.contacts.removeAll(where: { $0.uid ==  blockingContact.uid})
+//                                    self.blockingContact = nil
+//                                }
+//                            }
+//                        }),
+//                              secondaryButton: .cancel(Text("Отмена"), action: {
+//                            showReport = false
+//                        }))
+//                    }
+//                    .swipeActions(edge: .leading, allowsFullSwipe: false) {
+//                        Button(action: {
+//                            blockingContact = contact
+//                            showBlock = true
+//                        }) {
+//                            Label("Заблокировать", systemImage: "hand.raised.fill")
+//                        }.tint(.orange)
+//                        Button(action: {
+//                            blockingContact = contact
+//                            showReport = true
+//                        }) {
+//                            Label("Пожаловаться", systemImage: "exclamationmark.bubble.fill")
+//                        }.tint(.red)
+//                    }
                     .swipeActions(edge: .trailing, allowsFullSwipe: false) {
                         if contact.phoneIsAvailable ?? false {
                             Button(action: {

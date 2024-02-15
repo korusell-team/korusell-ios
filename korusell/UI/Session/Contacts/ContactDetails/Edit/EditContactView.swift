@@ -71,7 +71,7 @@ struct EditContactView: View {
             EditInfoView(info: $user.info)
         }
         
-        CustomSection(header: "Соцсети и мессенджеры:", footer: "В этой секции Вы можете выложиться по полной и описать Вашу деятельность большим полотном текста.") {
+        CustomSection(header: "Соцсети и мессенджеры:", footer: "Разместите Ваши соц сети и мессенджеры") {
             VStack(spacing: 13) {
                 ForEach(socialType.allCases, id: \.self.id) { type in
                     EditSocialButton(type: type, contact: $user)

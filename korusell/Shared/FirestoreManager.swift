@@ -118,4 +118,19 @@ class FirestoreManager {
             completion()
         }
     }
+    
+    func createPlace(place: Place, completion: @escaping (Bool) -> Void) {
+        do {
+            try db.collection("places").document().setData(from: place)
+            DispatchQueue.main.async {
+                print("Successfully created place")
+                completion(true)
+            }
+        } catch {
+            print(error)
+            completion(false)
+        }
+        completion(false)
+    }
 }
+

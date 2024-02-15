@@ -116,7 +116,6 @@ struct PlacesLabelsView: View {
                 //                }
             }
         }
-        .background(Color.clear)
     }
 }
 

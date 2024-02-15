@@ -16,8 +16,11 @@ struct LabelsView: View {
     @Namespace var namespace
     @Binding var popCategories: Bool
     @Binding var popSubCategories: Bool
+//    @Binding var searching: Bool
+    
     @State var reader: ScrollViewProxy? = nil
     @State var subReader: ScrollViewProxy? = nil
+    @State var searchPresented: Bool = false
     
     var body: some View {
         ZStack {
@@ -26,10 +29,12 @@ struct LabelsView: View {
             VStack(spacing: 0) {
                 /// Categories list
 //                ZStack(alignment: .leading) {
+                if !searchPresented {
+//                if !cc.searching {
                     ScrollView(.horizontal, showsIndicators: false) {
                         ScrollViewReader { reader in
                             LazyHGrid(rows: rows, alignment: .center) {
-                                HambButton(isOpen: $popCategories)
+                                HambButton(icon: "magnifyingglass", isOpen: $searchPresented)
                                 ForEach(cc.categories, id: \.self.id) { category in
                                     Button(action: {
                                         cc.selectCategory(category: category, reader: reader)
@@ -70,7 +75,24 @@ struct LabelsView: View {
                         }
                     }
                    
-//                }
+                } else {
+                    SearchBar(searchPresented: $searchPresented)
+                        .onChange(of: cc.searchField) { newField in
+                            cc.resetCategories()
+                            if newField.isEmpty {
+                                cc.subCategories = cc.searchCategoriesFull
+                            } else {
+                                cc.subCategories = cc.searchCategoriesFull.filter { $0.title.lowercased().contains(newField) }
+                            }
+                            
+                        }
+                        .onChange(of: cc.searching) { searching in
+    //                        cc.resetCategories()
+                            if searching {
+                                cc.subCategories = cc.searchCategoriesFull
+                            }
+                        }
+                }
                 
                 
                 /// Sub-categories list
@@ -79,8 +101,9 @@ struct LabelsView: View {
                         ScrollView(.horizontal, showsIndicators: false) {
                             ScrollViewReader { reader in
                                 LazyHGrid(rows: rows, alignment: .top) {
-                                    HambButton(isOpen: $popSubCategories)
-                                    
+                                    if !cc.searching {
+                                        HambButton(isOpen: $popSubCategories)
+                                    }
                                     ForEach(cc.subCategories, id: \.self) { subCat in
                                         Button(action: {
                                             cc.selectSubCategory(subCat: subCat, reader: reader)
@@ -113,8 +136,11 @@ struct LabelsView: View {
                         .padding(.top, 7)
                         
                     }
-                    .opacity(cc.selectedCategory == nil ? 0 : 1)
-                    .frame(height: cc.selectedCategory == nil ? 0 : .infinity)
+                    .opacity(cc.searching ? 1 : (cc.selectedCategory == nil ? 0 : 1))
+                    .frame(height: cc.searching ? .infinity : (cc.selectedCategory == nil ? 0 : .infinity))
+                    .opacity(cc.subCategories.isEmpty ? 0 : 1)
+                    .frame(height: cc.subCategories.isEmpty ? 0 : .infinity)
+                    .animation(.default, value: cc.subCategories)
 //                }
             }
         }
@@ -123,12 +149,15 @@ struct LabelsView: View {
 }
 
 struct HambButton: View {
+    var icon: String = "line.3.horizontal"
     @Binding var isOpen: Bool
     var body: some View {
         Button(action: {
-            isOpen = true
+            withAnimation {
+                isOpen = true
+            }
         }) {
-            Image(systemName: "line.3.horizontal")
+            Image(systemName: icon)
                 .resizable()
                 .scaledToFit()
                 .foregroundColor(.gray700)

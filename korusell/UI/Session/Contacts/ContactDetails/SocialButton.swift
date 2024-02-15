@@ -48,7 +48,8 @@ enum socialType: String, CaseIterable, Identifiable {
 
 struct SocialButton: View {
     let type: socialType
-    var contact: Contact
+    var contact: Contact? = nil
+    var place: PlacePoint? = nil
     var description: String? = nil
     
     @State var alertIsPresented = false
@@ -56,17 +57,17 @@ struct SocialButton: View {
     var body: some View {
         let title: String? = {
             switch type {
-            case .kakao: return contact.kakao
-            case .instagram: return contact.instagram
-            case .youtube: return contact.youtube
-            case .telegram: return contact.telegram
-            case .link: return contact.link
-            case .facebook: return contact.facebook
-            case .tiktok: return contact.tiktok
-            case .linkedIn: return contact.linkedIn
-            case .threads: return contact.threads
-            case .twitter: return contact.twitter
-            case .whatsApp: return contact.whatsApp
+            case .kakao: return contact?.kakao ?? place?.kakao
+            case .instagram: return contact?.instagram ?? place?.instagram
+            case .youtube: return contact?.youtube ?? place?.youtube
+            case .telegram: return contact?.telegram ?? place?.telegram
+            case .link: return contact?.link ?? place?.link
+            case .facebook: return contact?.facebook ?? place?.facebook
+            case .tiktok: return contact?.tiktok ?? place?.tiktok
+            case .linkedIn: return contact?.linkedIn ?? place?.linkedIn
+            case .threads: return contact?.threads ?? place?.threads
+            case .twitter: return contact?.twitter ?? place?.twitter
+            case .whatsApp: return contact?.whatsApp ?? place?.whatsApp
             }
         }()
         

@@ -80,6 +80,7 @@
 		2B345B752AB868B80025BF2C /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2B345B742AB868B80025BF2C /* FirebaseFirestoreSwift */; };
 		2B345B772ABB0C1E0025BF2C /* CategorySelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B345B762ABB0C1E0025BF2C /* CategorySelectionView.swift */; };
 		2B345B792ABB189A0025BF2C /* CitySelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B345B782ABB189A0025BF2C /* CitySelectionView.swift */; };
+		2B3A132C2B6A63CC003657A8 /* NewPlaceCreationSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3A132B2B6A63CB003657A8 /* NewPlaceCreationSheet.swift */; };
 		2B62B1D82B537CCF00AB001A /* PolicyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B62B1D72B537CCF00AB001A /* PolicyView.swift */; };
 		2B9489582AA89FE50039D5AC /* PlacePoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9489572AA89FE50039D5AC /* PlacePoint.swift */; };
 		2BC565B92B3ED1C400AFB708 /* EditDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC565B82B3ED1C400AFB708 /* EditDetailsView.swift */; };
@@ -177,6 +178,7 @@
 		2B345B712AB85C700025BF2C /* FirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManager.swift; sourceTree = "<group>"; };
 		2B345B762ABB0C1E0025BF2C /* CategorySelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySelectionView.swift; sourceTree = "<group>"; };
 		2B345B782ABB189A0025BF2C /* CitySelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitySelectionView.swift; sourceTree = "<group>"; };
+		2B3A132B2B6A63CB003657A8 /* NewPlaceCreationSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPlaceCreationSheet.swift; sourceTree = "<group>"; };
 		2B62B1D72B537CCF00AB001A /* PolicyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyView.swift; sourceTree = "<group>"; };
 		2B9489572AA89FE50039D5AC /* PlacePoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacePoint.swift; sourceTree = "<group>"; };
 		2BC565B82B3ED1C400AFB708 /* EditDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDetailsView.swift; sourceTree = "<group>"; };
@@ -396,6 +398,7 @@
 				25ADF32F2A694437009A2B73 /* PlaceMarker.swift */,
 				2BC565DE2B4C1CCC00AFB708 /* PlaceDetails.swift */,
 				2B008CA82B628883004DAC79 /* PopCategoriesPlaces.swift */,
+				2B3A132B2B6A63CB003657A8 /* NewPlaceCreationSheet.swift */,
 			);
 			path = Places;
 			sourceTree = "<group>";
@@ -628,6 +631,7 @@
 				2B2B66B72AFA6807003195E9 /* ExpandableText.swift in Sources */,
 				259EAAC12A960189006C207F /* SessionViewController.swift in Sources */,
 				2BC565D92B46D35200AFB708 /* BottomSheetDesign.swift in Sources */,
+				2B3A132C2B6A63CC003657A8 /* NewPlaceCreationSheet.swift in Sources */,
 				25DB6CC82A0A5AC500660E99 /* DataHelper.swift in Sources */,
 				259EAADB2AA09229006C207F /* BackButton.swift in Sources */,
 				259EAAD82A9DED9F006C207F /* SheetDragger.swift in Sources */,

@@ -25,7 +25,7 @@ struct EditContactImageView: View {
                         .resizable()
                         .scaledToFill()
                 } else {
-                    CachedAsyncImage(url: userManager.imageUrl, urlCache: .imageCache) { phase in
+                    CachedAsyncImage(url: userManager.userImageUrl, urlCache: .imageCache) { phase in
                         switch phase {
                         case .empty:
                             ZStack {

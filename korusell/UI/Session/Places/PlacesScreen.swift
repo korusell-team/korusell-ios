@@ -37,15 +37,15 @@ struct PlacesScreen: View {
                         }
                 }
             }) { EmptyView() }
-            VStack(spacing: 0) {
+            ZStack(alignment: .top) {
+                MapView(places: $cc.filteredPlaces, selectedPlace: $selectedPlace)
+                
                 PlacesLabelsView(
                     popCategories: $popCategories,
                     popSubCategories: $popSubCategories
                 )
-                
-                MapView(places: $cc.filteredPlaces, selectedPlace: $selectedPlace)
+                .padding(.top, Size.safeArea().top + Size.w(15))
             }
-            
             
             if selectedPlace != nil {
                 Color.black.opacity(0.07)
@@ -56,7 +56,7 @@ struct PlacesScreen: View {
                     }
             }
         }
-        .ignoresSafeArea(edges: .bottom)
+        .ignoresSafeArea()
         .popup(item: $selectedPlace) { place in
             PlaceSheet(place: place, action: { goToDetails(place: place) })
         } customize: {
