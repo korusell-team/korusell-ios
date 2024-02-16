@@ -42,6 +42,7 @@ struct Contact: Identifiable, Hashable, Codable {
     
     var blockedBy: [String] = []
     var reports: [String] = []
+    var likes: [String] = []
     var isOnline: Bool?
     var priority: Int?
     

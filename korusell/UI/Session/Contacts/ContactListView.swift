@@ -38,18 +38,19 @@ struct ContactListView: View {
                     .listRowSeparator(.hidden)
                     .listRowBackground(Color.app_white)
             } else {
-                ForEach(cc.contacts
-                    .filter({ !$0.blockedBy.contains(userManager.user?.id ?? "🇰🇵")})
+                ForEach($cc.contacts
+//                    .filter({ !$0.blockedBy.contains(userManager.user?.id ?? "🇰🇵")})
                     .filter({ $0.reports.isEmpty })
-                ) { contact in
+                    .sorted(by: { $0.likes.count > $1.likes.count })
+                ) { $contact in
                     ZStack {
                         NavigationLink(tag: contact, selection: $selectedContact, destination: {
-                            ContactDetailsView(user: contact)
+                            ContactDetailsView(outerUser: $contact)
                         }) {
                             EmptyView()
                         }
                         .hidden()
-                        ContactView(contact: contact)
+                        ContactView(contact: $contact)
                     }
                     .listRowBackground(Color.app_white)
                     .onTapGesture {
@@ -112,6 +113,25 @@ struct ContactListView: View {
                                 Label("СМС", systemImage: "message.fill")
                             }.tint(.blue)
                         }
+//                        if contact.uid != userManager.user?.uid {
+//                            Button(action: {
+//                                userManager.like(user: contact) {
+//                                    if let myUid = userManager.user?.uid {
+//                                        if contact.likes.contains(myUid) {
+//                                            contact.likes.removeAll(where: { $0 == myUid })
+//                                        } else {
+//                                            contact.likes.append(myUid)
+//                                        }
+//                                    }
+//                                }
+//                            }) {
+//                                let liked = contact.likes.contains(userManager.user?.uid ?? "")
+//                                Label(liked ? "Больше не одобряю" : "Одобряю", systemImage: "heart.fill")
+//                            }
+//                            .applyIf(contact.likes.contains(userManager.user?.uid ?? "")) { view in
+//                                view.tint(.red)
+//                            }
+//                        }
                     }
                 }
                 

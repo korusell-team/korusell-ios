@@ -20,8 +20,6 @@ struct ContactsScreen: View {
     @State var popSubCategories = false
     @State var popCities = false
     
-   
-    
     var body: some View {
         ZStack {
             VStack {                
@@ -49,7 +47,7 @@ struct ContactsScreen: View {
                     ZStack {
                         if let contact = userManager.user {
                             NavigationLink(tag: contact, selection: $selectedContact, destination: {
-                                ContactDetailsView(user: contact)
+                                ContactDetailsView(outerUser: .constant(contact))
                             }) {
                                 EmptyView()
                             }

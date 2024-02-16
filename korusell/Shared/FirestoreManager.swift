@@ -132,5 +132,25 @@ class FirestoreManager {
         }
         completion(false)
     }
+    
+    func likeUser(uid: String, myUid: String, completion: @escaping () -> Void) {
+        db.collection("users")
+            .document(uid)
+            .updateData(["likes" : FieldValue.arrayUnion([myUid])])
+        DispatchQueue.main.async {
+            print("Successfully liked user")
+            completion()
+        }
+    }
+    
+    func dislikeUser(uid: String, myUid: String, completion: @escaping () -> Void) {
+        db.collection("users")
+            .document(uid)
+            .updateData(["likes" : FieldValue.arrayRemove([myUid])])
+        DispatchQueue.main.async {
+            print("Successfully disliked user")
+            completion()
+        }
+    }
 }
 

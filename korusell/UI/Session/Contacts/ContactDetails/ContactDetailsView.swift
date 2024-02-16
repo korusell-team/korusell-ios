@@ -16,18 +16,20 @@ struct ContactDetailsView: View {
     
     @State var editMode: Bool = false
     
-    @State var user: Contact
+    @Binding var outerUser: Contact
+    @State var user: Contact = Contact(uid: "", phone: "", isPublic: false)
+    
     @State var offset: CGFloat = 0
     @State var image: UIImage?
     @State var isLoading: Bool = false
-//    
-//    @State var url: URL? = nil
+    //
+    //    @State var url: URL? = nil
     @Namespace private var animation
     
     @State var showAlert: Bool = false
     @State var showBlock: Bool = false
     @State var showReport: Bool = false
-  
+    
     var body: some View {
         VStack(spacing: 0) {
             ZStack {
@@ -42,7 +44,7 @@ struct ContactDetailsView: View {
                 
                 if isLoading {
                     LoadingElement()
-                        
+                    
                 }
             }
         }
@@ -78,9 +80,13 @@ struct ContactDetailsView: View {
             }))
         }
         .onAppear {
+            self.user = self.outerUser
             withAnimation {
                 vc.showBottomBar = false
             }
+        }
+        .onDisappear {
+            self.outerUser = self.user
         }
         .applyIf(editMode) { view in
             view
@@ -136,22 +142,43 @@ struct ContactDetailsView: View {
         }
         .applyIf(user.phone != userManager.user?.phone) { view in
             view.navigationBarItems(trailing:
-                                        Menu {
+                                        HStack {
                 Button(action: {
-                    showBlock = true
+                    userManager.like(user: user) {
+                        withAnimation(.bouncy) {
+                            if let myUid = userManager.user?.uid {
+                                if user.likes.contains(myUid) {
+                                    user.likes.removeAll(where: { $0 == myUid })
+                                } else {
+                                    user.likes.append(myUid)
+                                }
+                            }
+                        }
+                    }
                 }) {
-                    Label("Заблокировать", systemImage: "hand.raised")
-                }.tint(.orange)
+                    let liked = user.likes.contains(userManager.user?.uid ?? "")
+                    Image(systemName: liked ? "heart.fill" : "heart")
+                        .foregroundColor(liked ? .red : .white)
+                }
+                
+                Menu {
+                    Button(action: {
+                        showBlock = true
+                    }) {
+                        Label("Заблокировать", systemImage: "hand.raised")
+                    }.tint(.orange)
                     
-                Button(action: {
-                    showReport = true
-                }) {
-                    Label("Пожаловаться", systemImage: "exclamationmark.bubble")
-                }.tint(.red)
-            } label: {
-                Image(systemName: "ellipsis.circle")
-                    .foregroundColor((offset > 0 || editMode) ? .accentColor : .white)
+                    Button(action: {
+                        showReport = true
+                    }) {
+                        Label("Пожаловаться", systemImage: "exclamationmark.bubble")
+                    }.tint(.red)
+                } label: {
+                    Image(systemName: "ellipsis.circle")
+                        .foregroundColor((offset > 0 || editMode) ? .accentColor : .white)
+                }
             }
+                                    
             )
         }
     }
@@ -183,7 +210,7 @@ struct ContactDetailsView: View {
                 cc.contacts[me] = user
             }
             withAnimation {
-//                self.url = URL(string: userManager.user?.image.first ?? "")
+                //                self.url = URL(string: userManager.user?.image.first ?? "")
                 self.isLoading = false
                 editMode = false
             }

@@ -168,4 +168,18 @@ class UserManager: ObservableObject {
             
         }
     }
+    
+    func like(user: Contact, completion: @escaping () -> Void) {
+        if let myUid = self.user?.uid {
+            if user.likes.contains(myUid) {
+                fs.dislikeUser(uid: user.uid, myUid: myUid) {
+                    completion()
+                }
+            } else {
+                fs.likeUser(uid: user.uid, myUid: myUid) {
+                    completion()
+                }
+            }
+        }
+    }
 }
