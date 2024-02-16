@@ -9,54 +9,41 @@ import SwiftUI
 
 struct SearchBar: View {
     @EnvironmentObject var cc: ContactsController
-    //    @Binding var searching: Bool
-    //    @Binding var searchField: String
     @Binding var searchPresented: Bool
     @FocusState var isEditing: Bool
     //    var isEditing: FocusState<Bool>.Binding
     
     var body: some View {
         HStack {
-            TextField("Поиск", text: $cc.searchField, onCommit: {
-                // TODO: Test it out!
-                //                cc.selectedCategory = listOfCategories.filter { $0.name.lowercased() == cc.selectedSubcategory.bound.lowercased() }.first
-            })
-            .autocorrectionDisabled()
-            .textInputAutocapitalization(.never)
-            .padding(7)
-            .padding(.horizontal, 25)
-            .background(Color.gray50)
-            .cornerRadius(8)
-            .overlay(
-                HStack {
-                    Image(systemName: "magnifyingglass")
-                        .foregroundColor(.gray)
-                        .frame(minWidth: 0, maxWidth: UIScreen.main.bounds.width, alignment: .leading)
-                        .padding(.leading, 8)
-                    
-                    //                        if cc.searching && !cc.searchField.isEmpty {
-                    //                            Button(action: {
-                    //                                cc.searchField = ""
-                    //                            }) {
-                    //                                Image(systemName: "multiply.circle.fill")
-                    //                                    .foregroundColor(.gray)
-                    //                                    .padding(.trailing, 8)
-                    //                            }
-                    //                        }
-                }
-            )
-            .focused($isEditing)
+            TextField("Поиск", text: $cc.searchField, onCommit: cancel)
+                .autocorrectionDisabled()
+                .textInputAutocapitalization(.never)
+                .padding(7)
+                .padding(.horizontal, 25)
+                .background(Color.gray50)
+                .cornerRadius(8)
+                .overlay(
+                    HStack {
+                        Image(systemName: "magnifyingglass")
+                            .foregroundColor(.gray)
+                            .frame(minWidth: 0, maxWidth: UIScreen.main.bounds.width, alignment: .leading)
+                            .padding(.leading, 8)
+                        
+                        //                        if cc.searching && !cc.searchField.isEmpty {
+                        //                            Button(action: {
+                        //                                cc.searchField = ""
+                        //                            }) {
+                        //                                Image(systemName: "multiply.circle.fill")
+                        //                                    .foregroundColor(.gray)
+                        //                                    .padding(.trailing, 8)
+                        //                            }
+                        //                        }
+                    }
+                )
+                .focused($isEditing)
             
             //            if $isEditing.wrappedValue {
-            Button(action: {
-                withAnimation {
-                    searchPresented = false
-                    cc.searchField = ""
-                    cc.searching = false
-                    cc.resetCategories()
-                    $isEditing.wrappedValue = false
-                }
-            }) {
+            Button(action: cancel) {
                 Text("Отмена")
             }
             .transition(.scale)
@@ -70,8 +57,18 @@ struct SearchBar: View {
         }
         .onChange(of: isEditing) { editing in
             withAnimation {
+                cc.searchField = ""
                 cc.searching = editing
             }
+        }
+    }
+    
+    private func cancel() {
+        withAnimation {
+            searchPresented = false
+            cc.searching = false
+            cc.resetCategories()
+            $isEditing.wrappedValue = false
         }
     }
 }
