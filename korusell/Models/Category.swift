@@ -12,6 +12,7 @@ struct Category: Hashable, Codable {
     let title: String
     let p_id: Int
     let emoji: String
+    let tags: [String]
 }
 
 //struct Category: Hashable, Codable {

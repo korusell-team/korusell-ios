@@ -174,7 +174,22 @@ class ContactsController: ObservableObject {
                 self.selectedCategory = nil
                 self.selectedSubcategory = nil
 //                self.subCategories = []
-                self.contacts = cityFilter(contacts: self.users)
+                self.contacts = cityFilter(contacts: self.users.shuffled()
+                    .sorted(by: { $0.priority ?? 0 > $1.priority ?? 0 }))
+        }
+    }
+    
+    func filterBySearch() {
+        self.subCategories = filterCategoryByTags(data: self.searchCategoriesFull, subs: self.searchField.lowercased())
+        if searchField.isEmpty {
+            self.contacts = self.users
+                .shuffled()
+                .sorted(by: { $0.priority ?? 0 > $1.priority ?? 0 })
+        } else {
+            self.contacts = self.users
+                .filter({ $0.name?.lowercased().contains(self.searchField.lowercased()) ?? false || $0.surname?.lowercased().contains(self.searchField.lowercased()) ?? false })
+                .shuffled()
+                .sorted(by: { $0.priority ?? 0 > $1.priority ?? 0 })
         }
     }
     

@@ -59,7 +59,7 @@ struct SearchBar: View {
                 }) {
                     Text("Отмена")
                 }
-                .padding(.trailing, 10)
+//                .padding(.trailing, 10)
                 .transition(.scale)
 //            }
         }

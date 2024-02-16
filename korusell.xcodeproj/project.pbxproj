@@ -75,6 +75,8 @@
 		2B2B66C12B0CB89A003195E9 /* ContactImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B66C02B0CB89A003195E9 /* ContactImageView.swift */; };
 		2B2B66C32B0CB8DC003195E9 /* EditContactImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B66C22B0CB8DB003195E9 /* EditContactImageView.swift */; };
 		2B2B66C52B0CC6CB003195E9 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B66C42B0CC6CB003195E9 /* ImagePicker.swift */; };
+		2B2FAD8C2B7EE252009CB2C6 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2FAD8B2B7EE252009CB2C6 /* Functions.swift */; };
+		2B2FAD8E2B7EEC52009CB2C6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2FAD8D2B7EEC52009CB2C6 /* Constants.swift */; };
 		2B345B702AB85A410025BF2C /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B345B6F2AB85A410025BF2C /* UserManager.swift */; };
 		2B345B722AB85C700025BF2C /* FirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B345B712AB85C700025BF2C /* FirestoreManager.swift */; };
 		2B345B752AB868B80025BF2C /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2B345B742AB868B80025BF2C /* FirebaseFirestoreSwift */; };
@@ -174,6 +176,8 @@
 		2B2B66C02B0CB89A003195E9 /* ContactImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactImageView.swift; sourceTree = "<group>"; };
 		2B2B66C22B0CB8DB003195E9 /* EditContactImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditContactImageView.swift; sourceTree = "<group>"; };
 		2B2B66C42B0CC6CB003195E9 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		2B2FAD8B2B7EE252009CB2C6 /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
+		2B2FAD8D2B7EEC52009CB2C6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2B345B6F2AB85A410025BF2C /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		2B345B712AB85C700025BF2C /* FirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManager.swift; sourceTree = "<group>"; };
 		2B345B762ABB0C1E0025BF2C /* CategorySelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySelectionView.swift; sourceTree = "<group>"; };
@@ -446,6 +450,8 @@
 				259EAAD02A98AE4B006C207F /* ScreenHelper.swift */,
 				2BD124912B25A4D1004C4772 /* MenuLabelView.swift */,
 				2BEC5A572B3AE3F500D8518A /* PhoneHelper.swift */,
+				2B2FAD8B2B7EE252009CB2C6 /* Functions.swift */,
+				2B2FAD8D2B7EEC52009CB2C6 /* Constants.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -613,6 +619,7 @@
 				2B04915A2AB32B5B00A8F81E /* MyAccDetailsSheet.swift in Sources */,
 				2BC565BF2B3ED33D00AFB708 /* AccTextField.swift in Sources */,
 				259EAAD32A9CC857006C207F /* ContactDetailsView.swift in Sources */,
+				2B2FAD8E2B7EEC52009CB2C6 /* Constants.swift in Sources */,
 				259EAACF2A98A90D006C207F /* ActionSheetView.swift in Sources */,
 				2BEC5A582B3AE3F500D8518A /* PhoneHelper.swift in Sources */,
 				2B04915C2AB32D2900A8F81E /* EditPhoneView.swift in Sources */,
@@ -655,6 +662,7 @@
 				253B84F62A0F5B3E004FA223 /* ContactListView.swift in Sources */,
 				2B345B722AB85C700025BF2C /* FirestoreManager.swift in Sources */,
 				2BC565C32B3ED37900AFB708 /* CategoryEditView.swift in Sources */,
+				2B2FAD8C2B7EE252009CB2C6 /* Functions.swift in Sources */,
 				25ADF3362A694516009A2B73 /* ContentView.swift in Sources */,
 				253B84F02A0F18A8004FA223 /* CategoryListView.swift in Sources */,
 				25ADF3302A694438009A2B73 /* MapView.swift in Sources */,

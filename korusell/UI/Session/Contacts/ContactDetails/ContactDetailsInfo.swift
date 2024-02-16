@@ -81,8 +81,7 @@ struct ContactDetailsInfo: View {
                         /// getting only sub categories
                         ForEach(contact.categories.filter({ $0 % 100 > 0  }), id: \.self) { cat in
                             /// matching category int with categories from db
-                            let category = cc.cats.first(where: { $0.id == cat }) ??
-                            Category(id: 11110, title: "bug", p_id: 1, emoji: "👾")
+                            let category = cc.cats.first(where: { $0.id == cat }) ?? Constants.bugCat
                             Text(category.emoji + "  " + category.title)
                                 .tracking(-0.5)
                                 .font(semiBold14f)

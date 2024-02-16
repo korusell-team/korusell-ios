@@ -77,14 +77,8 @@ struct LabelsView: View {
                    
                 } else {
                     SearchBar(searchPresented: $searchPresented)
-                        .onChange(of: cc.searchField) { newField in
-                            cc.resetCategories()
-                            if newField.isEmpty {
-                                cc.subCategories = cc.searchCategoriesFull
-                            } else {
-                                cc.subCategories = cc.searchCategoriesFull.filter { $0.title.lowercased().contains(newField) }
-                            }
-                            
+                        .onChange(of: cc.searchField) { _ in
+                            cc.filterBySearch()
                         }
                         .onChange(of: cc.searching) { searching in
     //                        cc.resetCategories()
