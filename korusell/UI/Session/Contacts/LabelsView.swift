@@ -20,7 +20,7 @@ struct LabelsView: View {
     
     @State var reader: ScrollViewProxy? = nil
     @State var subReader: ScrollViewProxy? = nil
-    @State var searchPresented: Bool = false
+    
     
     var body: some View {
         ZStack {
@@ -29,12 +29,12 @@ struct LabelsView: View {
             VStack(spacing: 0) {
                 /// Categories list
 //                ZStack(alignment: .leading) {
-                if !searchPresented {
+                if !cc.searchPresented {
 //                if !cc.searching {
                     ScrollView(.horizontal, showsIndicators: false) {
                         ScrollViewReader { reader in
                             LazyHGrid(rows: rows, alignment: .center) {
-                                HambButton(icon: "magnifyingglass", isOpen: $searchPresented)
+                                HambButton(icon: "magnifyingglass", isOpen: $cc.searchPresented)
                                 ForEach(cc.categories, id: \.self.id) { category in
                                     Button(action: {
                                         cc.selectCategory(category: category, reader: reader)
@@ -76,16 +76,7 @@ struct LabelsView: View {
                     }
                    
                 } else {
-                    SearchBar(searchPresented: $searchPresented)
-                        .onChange(of: cc.searchField) { _ in
-                            cc.filterBySearch()
-                        }
-                        .onChange(of: cc.searching) { searching in
-    //                        cc.resetCategories()
-                            if searching {
-                                cc.subCategories = cc.searchCategoriesFull
-                            }
-                        }
+                    SearchBar(searchPresented: $cc.searchPresented)
                 }
                 
                 
@@ -135,6 +126,7 @@ struct LabelsView: View {
                     .opacity(cc.subCategories.isEmpty ? 0 : 1)
                     .frame(height: cc.subCategories.isEmpty ? 0 : .infinity)
                     .animation(.default, value: cc.subCategories)
+                    .animation(.default, value: cc.searching)
 //                }
             }
         }

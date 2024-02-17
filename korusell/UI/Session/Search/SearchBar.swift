@@ -16,6 +16,7 @@ struct SearchBar: View {
     var body: some View {
         HStack {
             TextField("Поиск", text: $cc.searchField, onCommit: cancel)
+                .id("search")
                 .autocorrectionDisabled()
                 .textInputAutocapitalization(.never)
                 .padding(7)
@@ -56,10 +57,13 @@ struct SearchBar: View {
             isEditing = true
         }
         .onChange(of: isEditing) { editing in
-            withAnimation {
-                cc.searchField = ""
                 cc.searching = editing
+            if editing && cc.searchField.isEmpty {
+                cc.subCategories = cc.searchCategoriesFull
             }
+        }
+        .onChange(of: cc.searchField) { _ in
+            cc.filterBySearch()
         }
     }
     
@@ -69,6 +73,7 @@ struct SearchBar: View {
             cc.searching = false
             cc.resetCategories()
             $isEditing.wrappedValue = false
+            cc.searchField = ""
         }
     }
 }

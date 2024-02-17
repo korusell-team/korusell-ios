@@ -15,7 +15,7 @@ struct ContactsScreen: View {
     @EnvironmentObject var cc: ContactsController
     @EnvironmentObject var userManager: UserManager
     @Namespace var namespace
-    @State var selectedContact: Contact? = nil
+    
     @State var popCategories = false
     @State var popSubCategories = false
     @State var popCities = false
@@ -29,7 +29,7 @@ struct ContactsScreen: View {
                 )
 //                .padding(.top)
                 
-                ContactListView(selectedContact: $selectedContact)
+                ContactListView()
             }
             .ignoresSafeArea(edges: .bottom)
             .navigationTitle("Контакты")
@@ -46,8 +46,8 @@ struct ContactsScreen: View {
                 trailing:
                     ZStack {
                         if let contact = userManager.user {
-                            NavigationLink(tag: contact, selection: $selectedContact, destination: {
-                                ContactDetailsView(outerUser: .constant(contact))
+                            NavigationLink(tag: contact, selection: $cc.selectedContact, destination: {
+                                ContactDetailsView(outerUser: .constant(contact), user: contact)
                             }) {
                                 EmptyView()
                             }
@@ -77,7 +77,7 @@ struct ContactsScreen: View {
                                 }
                             }
                             .onTapGesture {
-                                self.selectedContact = userManager.user
+                                cc.selectedContact = userManager.user
                             }
                         }
                     }

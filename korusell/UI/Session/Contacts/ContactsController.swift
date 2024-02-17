@@ -32,6 +32,8 @@ class ContactsController: ObservableObject {
     @Published var searchCategoriesFull: [Category] = []
     @Published var searching: Bool = false
     @Published var searchField: String = ""
+    @Published var searchPresented: Bool = false
+    @Published var selectedContact: Contact? = nil
     /// all users
     @Published var users: [Contact] = []
     /// filtered users
@@ -63,6 +65,7 @@ class ContactsController: ObservableObject {
                         return try queryDocumentSnapshot.data(as: Category.self)
                     } catch {
                         print("Error decoding document into Category object: \(error)")
+                        print(queryDocumentSnapshot.documentID)
                         return nil
                     }
                 }
@@ -151,22 +154,27 @@ class ContactsController: ObservableObject {
     }
     
     func selectCategory(category: Category, reader: ScrollViewProxy) {
-        withAnimation {
-//        withAnimation(.interpolatingSpring(stiffness: 200, damping: 20)) {
-            if self.selectedCategory == category {
-                self.selectedCategory = nil
-                self.selectedSubcategory = nil
-                self.subCategories = []
-                self.contacts = cityFilter(contacts: self.users)
-                reader.scrollTo(self.categories.first?.id, anchor: .center)
-            } else {
-                self.selectedCategory = category
-                self.subCategories = self.cats.filter({ $0.p_id == self.selectedCategory?.id })
-                self.selectedSubcategory = nil
-                self.contacts = cityFilter(contacts: self.users.filter({ $0.categories.contains(where: { $0.divider() == category.id.divider() }) }))
-                reader.scrollTo(category.id, anchor: .center)
+        
+            withAnimation {
+                //        withAnimation(.interpolatingSpring(stiffness: 200, damping: 20)) {
+                if self.selectedCategory == category {
+                    self.selectedCategory = nil
+                    self.selectedSubcategory = nil
+                    self.subCategories = []
+                    DispatchQueue.main.async {
+                        self.contacts = self.cityFilter(contacts: self.users)
+                    }
+                    reader.scrollTo(self.categories.first?.id, anchor: .center)
+                } else {
+                    self.selectedCategory = category
+                    self.subCategories = self.cats.filter({ $0.p_id == self.selectedCategory?.id })
+                    self.selectedSubcategory = nil
+                    DispatchQueue.main.async {
+                        self.contacts = self.cityFilter(contacts: self.users.filter({ $0.categories.contains(where: { $0.divider() == category.id.divider() }) }))
+                    }
+                    reader.scrollTo(category.id, anchor: .center)
+                }
             }
-        }
     }
     
     func resetCategories() {
@@ -197,16 +205,20 @@ class ContactsController: ObservableObject {
         withAnimation(.interpolatingSpring(stiffness: 200, damping: 20)) {
             if self.selectedSubcategory == subCat {
                 self.selectedSubcategory = nil
-                if let selectedCategory {
-                    self.contacts = cityFilter(contacts:self.users.filter({ $0.categories.contains(where: { $0.divider() == subCat.id.divider() }) }))
+                if self.selectedCategory != nil {
+                    DispatchQueue.main.async {
+                        self.contacts = self.cityFilter(contacts:self.users.filter({ $0.categories.contains(where: { $0.divider() == subCat.id.divider() }) }))
+                    }
                     /// never gonna happen ?
                 } else {
-                    self.contacts = cityFilter(contacts: self.users)
+                    self.contacts = self.cityFilter(contacts: self.users)
                 }
                 reader.scrollTo(self.subCategories.first?.id, anchor: .center)
             } else {
                 self.selectedSubcategory = subCat
-                self.contacts = cityFilter(contacts: self.users.filter({ $0.categories.contains(subCat.id) }))
+                DispatchQueue.main.async {
+                    self.contacts = self.cityFilter(contacts: self.users.filter({ $0.categories.contains(subCat.id) }))
+                }
                 reader.scrollTo(subCat.id, anchor: .center)
             }
         }

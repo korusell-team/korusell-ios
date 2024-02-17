@@ -13,7 +13,7 @@ struct ContactListView: View {
     @EnvironmentObject var vc: SessionViewController
     @EnvironmentObject var userManager: UserManager
     @State var collapsed = false
-    @Binding var selectedContact: Contact?
+    
     let columns = [GridItem(.flexible())]
     
     @State var showBlock: Bool = false
@@ -44,8 +44,8 @@ struct ContactListView: View {
                     .sorted(by: { $0.likes.count > $1.likes.count })
                 ) { $contact in
                     ZStack {
-                        NavigationLink(tag: contact, selection: $selectedContact, destination: {
-                            ContactDetailsView(outerUser: $contact)
+                        NavigationLink(tag: contact, selection: $cc.selectedContact, destination: {
+                            ContactDetailsView(outerUser: $contact, user: contact)
                         }) {
                             EmptyView()
                         }
@@ -54,7 +54,7 @@ struct ContactListView: View {
                     }
                     .listRowBackground(Color.app_white)
                     .onTapGesture {
-                        self.selectedContact = contact
+                        cc.selectedContact = contact
                     }
 //                    .alertPatched(isPresented: $showBlock) {
 //                        Alert(title: Text("Блокировка Пользователя"), message:

@@ -17,7 +17,7 @@ struct ContactDetailsView: View {
     @State var editMode: Bool = false
     
     @Binding var outerUser: Contact
-    @State var user: Contact = Contact(uid: "", phone: "", isPublic: false)
+    @State var user: Contact
     
     @State var offset: CGFloat = 0
     @State var image: UIImage?
@@ -44,7 +44,6 @@ struct ContactDetailsView: View {
                 
                 if isLoading {
                     LoadingElement()
-                    
                 }
             }
         }

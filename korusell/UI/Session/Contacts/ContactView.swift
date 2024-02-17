@@ -11,8 +11,6 @@ struct ContactView: View {
     @EnvironmentObject var cc: ContactsController
     @EnvironmentObject var userManager: UserManager
     
-    @State var marked = false
-    @State var liked = false
     @State var connectOpened = false
     @State var isPresentInfo = false
     
@@ -69,9 +67,9 @@ struct ContactView: View {
                             Text(contact.likes.count.description)
                                 .font(semiBold14f)
                                 .foregroundColor(.gray900)
+                                .transition(.move(edge: .trailing))
                         }
                     }
-                    
                 }
                 .frame(width: 55, alignment: .center)
                 .buttonStyle(HighPriorityButtonStyle())
@@ -122,7 +120,7 @@ struct ContactView_Previews: PreviewProvider {
     static let cc = ContactsController()
     
     static var previews: some View {
-        ContactListView(selectedContact: .constant(nil))
+        ContactListView()
             .environmentObject(cc)
     }
 }
