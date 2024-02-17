@@ -40,7 +40,8 @@ struct ContactListViewA: View {
                     .listRowSeparator(.hidden)
                     .listRowBackground(Color.app_white)
             } else {
-                ForEach($cc.contacts) { $contact in
+                // MARK: refactoring
+                ForEach(cc.contacts) { contact in
                     ZStack {
                         NavigationLink(tag: contact, selection: $selectedContact, destination: {
                             CreateUserView(user: contact)
@@ -50,7 +51,7 @@ struct ContactListViewA: View {
                             EmptyView()
                         }
                         .hidden()
-                        ContactView(contact: $contact)
+                        ContactView(contact: .constant(contact))
                     }
                     .listRowBackground(Color.app_white)
                     .onTapGesture {

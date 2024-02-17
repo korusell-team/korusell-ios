@@ -45,16 +45,21 @@ struct ContactView: View {
                 .padding(.leading, 8)
             }
             HStack {
-                
                 Button(action: {
+                    // TODO: save like to contact list
                     userManager.like(user: contact) {
-                        withAnimation(.bouncy) {
+                        var editUser = cc.users.first(where: { $0.uid == contact.uid })
+                        if editUser != nil {
+                            cc.users.removeAll(where: { $0.uid == contact.uid })
                             if let myUid = userManager.user?.uid {
-                                if contact.likes.contains(myUid) {
-                                    contact.likes.removeAll(where: { $0 == myUid })
+                                if editUser?.likes.contains(myUid) ?? false {
+                                    editUser?.likes.removeAll(where: { $0 == myUid })
                                 } else {
-                                    contact.likes.append(myUid)
+                                    editUser?.likes.append(myUid)
                                 }
+                            }
+                            withAnimation(.bouncy) {
+                                cc.users.append(editUser!)
                             }
                         }
                     }

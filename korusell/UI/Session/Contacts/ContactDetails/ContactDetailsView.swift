@@ -16,7 +16,7 @@ struct ContactDetailsView: View {
     
     @State var editMode: Bool = false
     
-    @Binding var outerUser: Contact
+//    @Binding var outerUser: Contact
     @State var user: Contact
     
     @State var offset: CGFloat = 0
@@ -56,7 +56,8 @@ struct ContactDetailsView: View {
                   primaryButton: .destructive(Text("Заблокировать"), action: {
                 if let uid = userManager.user?.uid {
                     userManager.blockOrReport(blocker: uid, userId: user.uid) {
-                        cc.contacts.removeAll(where: { $0.uid ==  user.uid})
+                        // MARK: refactoring
+//                        cc.contacts.removeAll(where: { $0.uid ==  user.uid})
                     }
                 }
             }),
@@ -70,7 +71,8 @@ struct ContactDetailsView: View {
                   primaryButton: .destructive(Text("Пожаловаться"), action: {
                 if let uid = userManager.user?.uid {
                     userManager.blockOrReport(reporter: uid, userId: user.uid) {
-                        cc.contacts.removeAll(where: { $0.uid ==  user.uid})
+                        // MARK: refactoring
+//                        cc.contacts.removeAll(where: { $0.uid ==  user.uid})
                     }
                 }
             }),
@@ -79,13 +81,21 @@ struct ContactDetailsView: View {
             }))
         }
         .onAppear {
-            self.user = self.outerUser
             withAnimation {
                 vc.showBottomBar = false
             }
         }
         .onDisappear {
-            self.outerUser = self.user
+            if let previousUser = cc.users.first(where: { $0.uid == user.uid }) {
+                if self.user.likes.count != previousUser.likes.count {
+                    if let myUid = userManager.user?.uid {
+                        withAnimation(.bouncy) {
+                            cc.users.removeAll(where: { $0.uid == user.uid })
+                            cc.users.append(self.user)
+                        }
+                    }
+                }
+            }
         }
         .applyIf(editMode) { view in
             view
@@ -206,7 +216,8 @@ struct ContactDetailsView: View {
             try await userManager.save(image: image, user: user)
             // MARK: Applying changes inside contacts list
             if let me = cc.contacts.firstIndex(where: { $0.uid == user.uid }) {
-                cc.contacts[me] = user
+                // MARK: refactoring
+//                cc.contacts[me] = user
             }
             withAnimation {
                 //                self.url = URL(string: userManager.user?.image.first ?? "")

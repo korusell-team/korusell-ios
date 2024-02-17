@@ -47,7 +47,7 @@ struct ContactsScreen: View {
                     ZStack {
                         if let contact = userManager.user {
                             NavigationLink(tag: contact, selection: $cc.selectedContact, destination: {
-                                ContactDetailsView(outerUser: .constant(contact), user: contact)
+                                ContactDetailsView(user: contact)
                             }) {
                                 EmptyView()
                             }
@@ -87,7 +87,8 @@ struct ContactsScreen: View {
             .background(Color.bg)
             .onChange(of: popCities) { bool in
                 if !bool {
-                    cc.triggerCityFilter()
+                    // MARK: refactoring
+//                    cc.triggerCityFilter()
                 }
             }
             .popup(isPresented: $popCities) {

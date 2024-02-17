@@ -99,7 +99,8 @@ struct CreateContactView: View {
                   secondaryButton: .destructive(Text("Удалить"), action: {
                 userManager.deleteUser(user: user)
                 if let me = cc.contacts.firstIndex(where: { $0.uid == user.uid }) {
-                    cc.contacts.remove(at: me)
+                    // MARK: refactoring
+//                    cc.contacts.remove(at: me)
                 }
             }))
         }

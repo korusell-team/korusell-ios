@@ -38,19 +38,20 @@ struct ContactListView: View {
                     .listRowSeparator(.hidden)
                     .listRowBackground(Color.app_white)
             } else {
-                ForEach($cc.contacts
+                // MARK: refactoring
+                ForEach(cc.contacts
 //                    .filter({ !$0.blockedBy.contains(userManager.user?.id ?? "🇰🇵")})
-                    .filter({ $0.reports.isEmpty })
-                    .sorted(by: { $0.likes.count > $1.likes.count })
-                ) { $contact in
+//                    .filter({ $0.reports.isEmpty })
+//                    .sorted(by: { $0.likes.count > $1.likes.count })
+                ) { contact in
                     ZStack {
                         NavigationLink(tag: contact, selection: $cc.selectedContact, destination: {
-                            ContactDetailsView(outerUser: $contact, user: contact)
+                            ContactDetailsView(user: contact)
                         }) {
                             EmptyView()
                         }
                         .hidden()
-                        ContactView(contact: $contact)
+                        ContactView(contact: .constant(contact))
                     }
                     .listRowBackground(Color.app_white)
                     .onTapGesture {
