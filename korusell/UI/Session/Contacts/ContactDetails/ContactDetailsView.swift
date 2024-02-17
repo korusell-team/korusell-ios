@@ -157,7 +157,7 @@ struct ContactDetailsView: View {
                 }) {
                     let liked = user.likes.contains(userManager.user?.uid ?? "")
                     Image(systemName: liked ? "heart.fill" : "heart")
-                        .foregroundColor(liked ? .red : .white)
+                        .foregroundColor(liked ? .red : ((offset > 0 || editMode) ? .accentColor : .white))
                 }
                 
                 Menu {
