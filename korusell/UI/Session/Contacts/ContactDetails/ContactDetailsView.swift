@@ -53,14 +53,7 @@ struct ContactDetailsView: View {
         .alertPatched(isPresented: $showBlock) {
             Alert(title: Text("Блокировка Пользователя"), message:
                     Text("Вы уверены что хотите заблокировать Пользователя?"),
-                  primaryButton: .destructive(Text("Заблокировать"), action: {
-                if let uid = userManager.user?.uid {
-                    userManager.blockOrReport(blocker: uid, userId: user.uid) {
-                        // MARK: refactoring
-//                        cc.contacts.removeAll(where: { $0.uid ==  user.uid})
-                    }
-                }
-            }),
+                  primaryButton: .destructive(Text("Заблокировать"), action: block),
                   secondaryButton: .cancel(Text("Отмена"), action: {
                 showBlock = false
             }))
@@ -68,14 +61,7 @@ struct ContactDetailsView: View {
         .alertPatched(isPresented: $showReport) {
             Alert(title: Text(""), message:
                     Text("Вы уверены что хотите пожаловаться на Пользователя?"),
-                  primaryButton: .destructive(Text("Пожаловаться"), action: {
-                if let uid = userManager.user?.uid {
-                    userManager.blockOrReport(reporter: uid, userId: user.uid) {
-                        // MARK: refactoring
-//                        cc.contacts.removeAll(where: { $0.uid ==  user.uid})
-                    }
-                }
-            }),
+                  primaryButton: .destructive(Text("Пожаловаться"), action: report),
                   secondaryButton: .cancel(Text("Отмена"), action: {
                 showReport = false
             }))
@@ -223,6 +209,34 @@ struct ContactDetailsView: View {
                 //                self.url = URL(string: userManager.user?.image.first ?? "")
                 self.isLoading = false
                 editMode = false
+            }
+        }
+    }
+    
+    private func block() {
+        if let uid = userManager.user?.uid {
+            userManager.blockOrReport(blocker: uid, userId: user.uid) {
+                var editUser = cc.users.first(where: { $0.uid == user.uid })
+                if editUser != nil {
+                    editUser!.blockedBy.append(uid)
+                    cc.users.removeAll(where: { $0.uid ==  user.uid })
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                        cc.users.append(editUser!)
+                    }
+                }
+            }
+        }
+    }
+    
+    private func report() {
+        if let uid = userManager.user?.uid {
+            userManager.blockOrReport(reporter: uid, userId: user.uid) {
+                var editUser = cc.users.first(where: { $0.uid == user.uid })
+                if editUser != nil {
+                    editUser!.reports.append(uid)
+                    cc.users.removeAll(where: { $0.uid ==  user.uid })
+                    cc.users.append(editUser!)
+                }
             }
         }
     }

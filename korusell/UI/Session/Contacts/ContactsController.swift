@@ -54,8 +54,9 @@ class ContactsController: ObservableObject {
         self.users
             .filter({ $0.isPublic })
 //            .shuffled()
-        //                            .filter({ !$0.blockedBy.contains(userManager.user?.id ?? "🇰🇵")})
+//            .filter({ !$0.blockedBy.contains(userManager.user?.id ?? "🇰🇵")})
             .filter({ $0.reports.isEmpty })
+            .filter({ $0.blockedBy.isEmpty })
             .sorted(by: { $0.likes.count > $1.likes.count })
             .sorted(by: { $0.priority ?? 0 > $1.priority ?? 0 })
             .filter({ $0.categories.contains(where: { selectedCategory != nil ? $0.divider() == self.selectedCategory?.id.divider() : true }) })
