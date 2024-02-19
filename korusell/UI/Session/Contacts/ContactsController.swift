@@ -62,6 +62,12 @@ class ContactsController: ObservableObject {
             .filter({ $0.categories.contains(where: { selectedCategory != nil ? $0.divider() == self.selectedCategory?.id.divider() : true }) })
             .filter({ self.selectedSubcategory != nil ? $0.categories.contains(self.selectedSubcategory!.id) : true })
             .filter({ self.selectedSubcategory != nil ? true : (self.searchField.isEmpty ? true : $0.name?.lowercased().contains(self.searchField.lowercased()) ?? false || $0.surname?.lowercased().contains(self.searchField.lowercased()) ?? false) })
+            .filter({ object in
+                selectedCities.isEmpty || selectedCities.contains(0) ? true :
+                self.selectedCities.contains { cityId in
+                    object.cities.contains(cityId) || object.cities.contains(0)
+                }
+            })
     }
     
     var categories: [Category] {

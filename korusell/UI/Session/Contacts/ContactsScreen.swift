@@ -85,12 +85,6 @@ struct ContactsScreen: View {
             .padding(.top, 0.1)
             .animation(.easeOut, value: cc.selectedCategory)
             .background(Color.bg)
-            .onChange(of: popCities) { bool in
-                if !bool {
-                    // MARK: refactoring
-//                    cc.triggerCityFilter()
-                }
-            }
             .popup(isPresented: $popCities) {
                 PopCitiesView(popCities: $popCities)
             } customize: {

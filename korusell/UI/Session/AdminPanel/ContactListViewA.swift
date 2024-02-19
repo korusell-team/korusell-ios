@@ -40,7 +40,6 @@ struct ContactListViewA: View {
                     .listRowSeparator(.hidden)
                     .listRowBackground(Color.app_white)
             } else {
-                // MARK: refactoring
                 ForEach(cc.contacts) { contact in
                     ZStack {
                         NavigationLink(tag: contact, selection: $selectedContact, destination: {

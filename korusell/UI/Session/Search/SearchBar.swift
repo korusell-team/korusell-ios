@@ -58,14 +58,6 @@ struct SearchBar: View {
         }
         .onChange(of: isEditing) { editing in
                 cc.searching = editing
-            if editing && cc.searchField.isEmpty {
-                // MARK: refactoring
-//                cc.subCategories = cc.searchCategoriesFull
-            }
-        }
-        .onChange(of: cc.searchField) { _ in
-            // MARK: refactoring
-//            cc.filterBySearch()
         }
     }
     

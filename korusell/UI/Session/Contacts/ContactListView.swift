@@ -22,7 +22,7 @@ struct ContactListView: View {
     
     var body: some View {
         List {
-            if cc.contacts.isEmpty && cc.selectedCategory == nil && cc.selectedSubcategory == nil && cc.selectedCities.isEmpty {
+            if cc.contacts.isEmpty && cc.selectedCategory == nil && cc.selectedSubcategory == nil && cc.selectedCities.isEmpty && cc.searchField.isEmpty {
                 VStack(spacing: 15) {
                     Text("🙈 Список пуст...")
                     Text("Потяни 👇 вниз чтобы обновить")
@@ -31,18 +31,15 @@ struct ContactListView: View {
                 .frame(maxWidth: .infinity, maxHeight: UIScreen.main.bounds.height, alignment: .center)
                 .listRowSeparator(.hidden)
                 .listRowBackground(Color.app_white)
-            } else if cc.contacts.isEmpty && (cc.selectedCategory != nil || cc.selectedSubcategory != nil) {
+            } else if cc.contacts.isEmpty {
+//            } else if cc.contacts.isEmpty && (cc.selectedCategory != nil || cc.selectedSubcategory != nil) {
                 Text("🙈 Список пуст...")
                     .foregroundColor(.gray300)
                     .frame(maxWidth: .infinity, maxHeight: UIScreen.main.bounds.height, alignment: .center)
                     .listRowSeparator(.hidden)
                     .listRowBackground(Color.app_white)
             } else {
-                // MARK: refactoring
                 ForEach(cc.contacts
-//                    .filter({ !$0.blockedBy.contains(userManager.user?.id ?? "🇰🇵")})
-//                    .filter({ $0.reports.isEmpty })
-//                    .sorted(by: { $0.likes.count > $1.likes.count })
                 ) { contact in
                     ZStack {
                         NavigationLink(tag: contact, selection: $cc.selectedContact, destination: {

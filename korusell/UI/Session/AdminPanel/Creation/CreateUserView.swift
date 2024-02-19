@@ -57,12 +57,11 @@ struct CreateUserView: View {
                     newUser = user
                 }
             }
-            // MARK: refactoring
-//            if let me = cc.contacts.firstIndex(where: { $0.uid == newUser.uid }) {
-//                cc.contacts[me] = newUser
-//            } else {
-//                cc.contacts.append(newUser)
-//            }
+            if let me = cc.users.firstIndex(where: { $0.uid == newUser.uid }) {
+                cc.users[me] = newUser
+            } else {
+                cc.users.append(newUser)
+            }
             
             withAnimation {
                 self.isLoading = false

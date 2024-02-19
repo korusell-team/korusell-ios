@@ -60,7 +60,7 @@ struct ContactDetailsView: View {
         }
         .alertPatched(isPresented: $showReport) {
             Alert(title: Text(""), message:
-                    Text("Вы уверены что хотите пожаловаться на Пользователя?"),
+                    Text("Вы уверены что хотите отправить Жалобу на Пользователя '\(user.name ?? "")'?"),
                   primaryButton: .destructive(Text("Пожаловаться"), action: report),
                   secondaryButton: .cancel(Text("Отмена"), action: {
                 showReport = false
@@ -201,9 +201,8 @@ struct ContactDetailsView: View {
             self.isLoading = true
             try await userManager.save(image: image, user: user)
             // MARK: Applying changes inside contacts list
-            if let me = cc.contacts.firstIndex(where: { $0.uid == user.uid }) {
-                // MARK: refactoring
-//                cc.contacts[me] = user
+            if let me = cc.users.firstIndex(where: { $0.uid == user.uid }) {
+                cc.users[me] = user
             }
             withAnimation {
                 //                self.url = URL(string: userManager.user?.image.first ?? "")
@@ -216,13 +215,10 @@ struct ContactDetailsView: View {
     private func block() {
         if let uid = userManager.user?.uid {
             userManager.blockOrReport(blocker: uid, userId: user.uid) {
-                var editUser = cc.users.first(where: { $0.uid == user.uid })
-                if editUser != nil {
-                    editUser!.blockedBy.append(uid)
-                    cc.users.removeAll(where: { $0.uid ==  user.uid })
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                        cc.users.append(editUser!)
-                    }
+                DispatchQueue.main.async {
+                    self.user.blockedBy.append(uid)
+                    cc.users.removeAll(where: { $0.uid == user.uid })
+                    cc.users.append(self.user)
                 }
             }
         }
@@ -231,11 +227,10 @@ struct ContactDetailsView: View {
     private func report() {
         if let uid = userManager.user?.uid {
             userManager.blockOrReport(reporter: uid, userId: user.uid) {
-                var editUser = cc.users.first(where: { $0.uid == user.uid })
-                if editUser != nil {
-                    editUser!.reports.append(uid)
-                    cc.users.removeAll(where: { $0.uid ==  user.uid })
-                    cc.users.append(editUser!)
+                DispatchQueue.main.async {
+                    self.user.reports.append(uid)
+                    cc.users.removeAll(where: { $0.uid == user.uid })
+                    cc.users.append(self.user)
                 }
             }
         }
