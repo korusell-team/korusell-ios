@@ -72,7 +72,9 @@ class ContactsController: ObservableObject {
     
     var categories: [Category] {
         self.cats
-            .filter({ $0.p_id <= 0 }).filter({ $0.id < 2000 }) .sorted(by: { $0.title < $1.title })
+            .filter({ $0.p_id <= 0 })
+            .filter({ $0.id < 2000 })
+            .sorted(by: { $0.title < $1.title })
     }
     
     var subCategories: [Category] {

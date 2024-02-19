@@ -18,12 +18,13 @@ struct EmoLabelView: View {
                 Text(emo)
             }
             Text(title)
-                .font(regular15f)
+                .font(semiBold16f)
+//                .font(regular15f)
                 .foregroundColor(isSelected ? .gray50 : .gray900)
                 
         }
         .padding(.vertical, 8)
-        .padding(.horizontal, 15)
+        .padding(.horizontal, 16)
         .background(isSelected ? Color.gray700 : Color.app_white)
         .cornerRadius(20)
         .shadow(color: isSelected ? Color.clear : Color.gray200.opacity(0.2), radius: 2, x: 1, y: 1)

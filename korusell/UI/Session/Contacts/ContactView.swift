@@ -17,7 +17,7 @@ struct ContactView: View {
     @Binding var contact: Contact
     
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 0) {
             HStack(alignment: .center, spacing: 5) {
                 AvatarView(contact: contact)
                 
@@ -27,83 +27,63 @@ struct ContactView: View {
                             Text(surname)
                         }
                         Text(contact.name ?? "")
+                        
+                        Spacer()
+                        
+                        likeButton()
                     }
                     .foregroundColor(.gray1100)
-                    .font(bold20f)
+                    .font(semiBold18f)
                     
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(spacing: 0) {
+                            ForEach(contact.cities, id: \.self) { id in
+                                if let city = cc.cities.first(where: { $0.id == id }) {
+                                    Text(city.ru)
+                                        .font(regular15f)
+                                        .foregroundColor(.gray600)
+                                        .padding(.trailing, 6)
+                                }
+                            }
+                        }
+                    }
+                    .padding(.bottom, 3)
                     
                     if let bio = contact.bio {
                         Text(bio)
-                            .font(light14f)
-                            .foregroundColor(.gray800)
+                            .font(light16f)
+                            .foregroundColor(.gray1000)
                             .multilineTextAlignment(.leading)
                             .lineLimit(2)
-                            .padding(.vertical, 5)
+                            .padding(.top, 4)
+                            
                     }
                     
                 }
                 .padding(.leading, 8)
             }
-            HStack {
-                Button(action: {
-                    // TODO: save like to contact list
-                    userManager.like(user: contact) {
-                        var editUser = cc.users.first(where: { $0.uid == contact.uid })
-                        if editUser != nil {
-                            cc.users.removeAll(where: { $0.uid == contact.uid })
-                            if let myUid = userManager.user?.uid {
-                                if editUser?.likes.contains(myUid) ?? false {
-                                    editUser?.likes.removeAll(where: { $0 == myUid })
-                                } else {
-                                    editUser?.likes.append(myUid)
-                                }
-                            }
-                            withAnimation(.bouncy) {
-                                cc.users.append(editUser!)
-                            }
-                        }
-                    }
-                }) {
-                    let liked = contact.likes.contains(userManager.user?.uid ?? "")
-                    HStack(spacing: 2) {
-                        Image(systemName: liked ? "heart.fill" : "heart")
-                            .foregroundColor(liked ? .red : .gray800)
-                        if !contact.likes.isEmpty {
-                            Text(contact.likes.count.description)
-                                .font(semiBold14f)
-                                .foregroundColor(.gray900)
-                                .transition(.move(edge: .trailing))
-                        }
-                    }
-                }
-                .frame(width: 55, alignment: .center)
-                .buttonStyle(HighPriorityButtonStyle())
-                
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: 4) {
-                        /// getting only sub categories
-                        ForEach(contact.categories.filter({ $0 % 100 > 0  }), id: \.self) { cat in
-                            /// matching category int with categories from db
-                            let category = cc.cats.filter({ $0.id == cat }).first ?? Constants.bugCat
-                            Text(category.emoji + "  " + category.title)
-                                .tracking(-0.5)
-                                .font(semiBold12f)
-                                .padding(.vertical, 6)
-                                .padding(.horizontal, 8)
-                                .overlay(
-                                            Capsule(style: .continuous)
-                                                    .stroke(Color.gray200, lineWidth: 1)
-                                        )
-                                .clipShape(RoundedRectangle(cornerRadius: 25))
-                                .padding(.vertical, 4)
-                        }
-                    }
-                }
-                .foregroundColor(.gray1100)
-            }
             
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 7) {
+                    /// getting only sub categories
+                    ForEach(contact.categories.filter({ $0 % 100 > 0  }), id: \.self) { cat in
+                        /// matching category int with categories from db
+                        let category = cc.cats.filter({ $0.id == cat }).first ?? Constants.bugCat
+                        Text(category.title)
+                            .font(semiBold12f)
+                            .padding(.vertical, 6)
+                            .padding(.horizontal, 12)
+                            .foregroundColor(.gray1100)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 8)
+                                    .fill(Color.gray1000.opacity(0.05))
+                            )
+                            .padding(.vertical, 4)
+                    }
+                }
+            }
+            .foregroundColor(.gray1100)
         }
-        
         .background(Color.gray10.opacity(0.1))
         .contextMenu {
               Button(action: {
@@ -118,6 +98,43 @@ struct ContactView: View {
                     Image(systemName: "phone")
               }
           }
+    }
+    
+    @ViewBuilder
+    private func likeButton() -> some View {
+        Button(action: {
+            // TODO: save like to contact list
+            userManager.like(user: contact) {
+                var editUser = cc.users.first(where: { $0.uid == contact.uid })
+                if editUser != nil {
+                    cc.users.removeAll(where: { $0.uid == contact.uid })
+                    if let myUid = userManager.user?.uid {
+                        if editUser?.likes.contains(myUid) ?? false {
+                            editUser?.likes.removeAll(where: { $0 == myUid })
+                        } else {
+                            editUser?.likes.append(myUid)
+                        }
+                    }
+                    withAnimation(.bouncy) {
+                        cc.users.append(editUser!)
+                    }
+                }
+            }
+        }) {
+            let liked = contact.likes.contains(userManager.user?.uid ?? "")
+            HStack(spacing: 2) {
+                Image(systemName: liked ? "heart.fill" : "heart")
+                    .foregroundColor(liked ? .red : .gray800)
+                if !contact.likes.isEmpty {
+                    Text(contact.likes.count.description)
+                        .font(semiBold14f)
+                        .foregroundColor(.gray900)
+                        .transition(.move(edge: .trailing))
+                }
+            }
+        }
+//        .frame(width: 55, alignment: .center)
+        .buttonStyle(HighPriorityButtonStyle())
     }
 }
 
