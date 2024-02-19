@@ -24,21 +24,20 @@ struct UserOnboarding: View {
                     showImagePicker = true
                 }, label: {
                     ZStack(alignment: .bottomTrailing) {
-                        if let image {
-                            Image(uiImage: image)
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: 70, height: 70)
-                                .background(Color.gray100)
-                                .clipShape(Circle())
-                        } else {
-                            Text("🧑🏻‍💻")
-                                .font(bold30f)
-                                .frame(width: 70, height: 70)
-                                .background(Color.gray100)
-                                .clipShape(Circle())
+                        Group {
+                            if let image {
+                                Image(uiImage: image)
+                                    .resizable()
+                                    .scaledToFill()
+                            } else {
+                                Image(systemName: "plus")
+                                    .font(bold30f)
+                                    .foregroundColor(.gray700)
+                            }
                         }
-                        
+                        .frame(width: 80, height: 80)
+                        .background(Color.gray100)
+                        .clipShape(Circle())
                         
                         Image(systemName: "camera.circle.fill")
                             .resizable()
