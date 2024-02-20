@@ -45,7 +45,7 @@ struct CategorySelectionView: View {
                 }
                 
                 if !subcategories.isEmpty {
-                    Text("ПОД-КАТЕГОРИИ:")
+                    Text("ПОДКАТЕГОРИИ:")
                         .foregroundColor(.gray1000)
                         .font(bold17f)
                         .bold()

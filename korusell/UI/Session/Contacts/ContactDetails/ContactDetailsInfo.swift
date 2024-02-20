@@ -44,7 +44,7 @@ struct ContactDetailsInfo: View {
                     }
                     
                 }
-             
+                
                 Spacer()
                 
                 Button(action: { PhoneHelper.shared.call(contact.phone) }) {
@@ -68,7 +68,7 @@ struct ContactDetailsInfo: View {
                 .opacity(contact.phoneIsAvailable.bound ? 1 : 0.5)
             }
             .padding(.bottom, 5)
-
+            
             if contact.categories.isEmpty {
                 Text("Категории")
                     .font(regular17f)
@@ -82,16 +82,15 @@ struct ContactDetailsInfo: View {
                         ForEach(contact.categories.filter({ $0 % 100 > 0  }), id: \.self) { cat in
                             /// matching category int with categories from db
                             let category = cc.cats.first(where: { $0.id == cat }) ?? Constants.bugCat
-                            Text(category.emoji + "  " + category.title)
-                                .tracking(-0.5)
-                                .font(semiBold14f)
-                                .padding(.vertical, 7)
-                                .padding(.horizontal, 10)
+                            Text(category.title)
+                                .font(semiBold12f)
+                                .padding(.vertical, 6)
+                                .padding(.horizontal, 12)
+                                .foregroundColor(.gray1100)
                                 .overlay(
-                                            Capsule(style: .continuous)
-                                                    .stroke(Color.gray200, lineWidth: 1)
-                                        )
-                                .clipShape(RoundedRectangle(cornerRadius: 25))
+                                    RoundedRectangle(cornerRadius: 8)
+                                        .fill(Color.gray1000.opacity(0.05))
+                                )
                                 .padding(.vertical, 4)
                         }
                     }
@@ -101,61 +100,60 @@ struct ContactDetailsInfo: View {
             
             Divider().padding(.vertical, 10)
             
-            
-                VStack(alignment: .leading, spacing: 6) {
-                    Text("О себе:")
-                        .bold()
-                        .font(semiBold18f)
-//                        .padding(.bottom, 6)
-                    
-                    if let info = contact.info, contact.info != "" {
-                        ExpandableText(text: info)
-                            .lineLimit(10)
-                            .collapseButton(TextSet(text: "свернуть", font: regular15f, color: .blue))
-                    } else {
-                        Text("Подробная информация о себе...")
-                            .font(regular17f)
-                            .foregroundColor(.gray800)
-                            .padding(.trailing, 6)
-                            .opacity(0.5)
-                    }
+            VStack(alignment: .leading, spacing: 6) {
+                Text("О себе:")
+                    .bold()
+                    .font(semiBold18f)
+                //                        .padding(.bottom, 6)
+                
+                if let info = contact.info, contact.info != "" {
+                    ExpandableText(text: info)
+                        .lineLimit(10)
+                        .collapseButton(TextSet(text: "свернуть", font: regular15f, color: .blue))
+                } else {
+                    Text("Подробная информация о себе...")
+                        .font(regular17f)
+                        .foregroundColor(.gray800)
+                        .padding(.trailing, 6)
+                        .opacity(0.5)
                 }
-                .padding(6)
+            }
+            .padding(6)
             
-//                VStack(alignment: .leading, spacing: 0) {
-//                    Text("О себе:")
-//                        .bold()
-//                        .padding(.bottom, 6)
-//                    Text(bio)
-//                        .lineLimit(7)
-//                    
-//                    HStack {
-//                        Button(action: {
-//                           aboutIsOpened = true
-//                        }) {
-//                            Text("...раскрыть")
-//                        }
-//                        .padding()
-//                        .clipShape(Rectangle())
-//                    }.frame(maxWidth: .infinity, alignment: .trailing)
-//                }
-//                .font(regular17f)
-//                .sheet(isPresented: $aboutIsOpened) {
-//                    ScrollView {
-//                        VStack(alignment: .leading, spacing: 5) {
-//                            Text("О себе:")
-//                                .bold()
-//                            Text(bio)
-//                        }
-//                        .frame(maxWidth: .infinity, alignment: .leading)
-//                        .padding(.horizontal, 24)
-//                        
-//                    }
-//                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-//                    .font(regular17f)
-//                    .padding(.top, 30)
-//                }
-//            }
+            //                VStack(alignment: .leading, spacing: 0) {
+            //                    Text("О себе:")
+            //                        .bold()
+            //                        .padding(.bottom, 6)
+            //                    Text(bio)
+            //                        .lineLimit(7)
+            //
+            //                    HStack {
+            //                        Button(action: {
+            //                           aboutIsOpened = true
+            //                        }) {
+            //                            Text("...раскрыть")
+            //                        }
+            //                        .padding()
+            //                        .clipShape(Rectangle())
+            //                    }.frame(maxWidth: .infinity, alignment: .trailing)
+            //                }
+            //                .font(regular17f)
+            //                .sheet(isPresented: $aboutIsOpened) {
+            //                    ScrollView {
+            //                        VStack(alignment: .leading, spacing: 5) {
+            //                            Text("О себе:")
+            //                                .bold()
+            //                            Text(bio)
+            //                        }
+            //                        .frame(maxWidth: .infinity, alignment: .leading)
+            //                        .padding(.horizontal, 24)
+            //
+            //                    }
+            //                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+            //                    .font(regular17f)
+            //                    .padding(.top, 30)
+            //                }
+            //            }
             
             VStack(alignment: .leading, spacing: 10) {
                 ForEach(socialType.allCases) { type in
@@ -185,7 +183,7 @@ struct ContactDetailsInfo: View {
                 }
             }
             
-            Text("Если Вы обнаружили контент (фото, текст, ссылик), который нарушает Политику Нежелательного Контента, пожалуйста, напишите мне на guagetru.bla@gmail.com. Также Вы можете заблокировать Пользователя или пожаловаться на него нажав на три точки в правом верхнем углу экрана")
+            Text("Если Вы обнаружили контент (фото, текст, ссылки), который нарушает Политику Нежелательного Контента, пожалуйста, напишите мне на guagetru.bla@gmail.com. Также Вы можете заблокировать Пользователя или пожаловаться на него нажав на три точки в правом верхнем углу экрана")
                 .font(light14f)
                 .foregroundColor(.gray700)
                 .multilineTextAlignment(.center)

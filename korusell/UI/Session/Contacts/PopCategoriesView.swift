@@ -66,7 +66,7 @@ struct PopSubCategoriesView: View {
     var body: some View {
         VStack(spacing: 0) {
             HStack {
-                Text("ПОД-КАТЕГОРИИ")
+                Text("ПОДКАТЕГОРИИ")
                     .font(bold17f)
                     .bold()
                 Spacer()

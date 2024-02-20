@@ -39,8 +39,7 @@ struct ContactListView: View {
                     .listRowSeparator(.hidden)
                     .listRowBackground(Color.app_white)
             } else {
-                ForEach(cc.contacts
-                ) { contact in
+                ForEach(cc.contacts) { contact in
                     ZStack {
                         NavigationLink(tag: contact, selection: $cc.selectedContact, destination: {
                             ContactDetailsView(user: contact)
@@ -132,12 +131,15 @@ struct ContactListView: View {
 //                        }
                     }
                 }
+                /// sets list row paddings
+                .listRowInsets( EdgeInsets(top: 8, leading: 14, bottom: 8, trailing: 14))
                 
                 Spacer(minLength: 100)
                     .listRowSeparator(.hidden)
                     .listRowBackground(Color.app_white)
             }
         }
+        
         .listStyle(.plain)
         .refreshable {
             //                if cc.selectedCategory == nil && (cc.selectedCities.isEmpty || cc.selectedCities.contains(0)) {

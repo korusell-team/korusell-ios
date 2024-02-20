@@ -36,12 +36,31 @@ struct ContactsScreen: View {
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(
                 leading:
-                    Button(action: {
-                        popCities.toggle()
-                    }) {
-                        Image(systemName: cc.selectedCities.isEmpty ? "mappin.circle" : "mappin.circle.fill")
-                            .foregroundColor(.gray900)
-                    },
+                    HStack {
+                        Button(action: {
+                            if cc.searchPresented {
+                                withAnimation {
+                                    cc.searchPresented = false
+                                    cc.searching = false
+                                    cc.resetCategories()
+                                    cc.searchField = ""
+                                }
+                            } else {
+                                cc.searchPresented.toggle()
+                            }
+                        }) {
+                            Image(systemName: cc.searchPresented ? "arrow.uturn.backward" : "magnifyingglass")
+                                .foregroundColor(.gray1100)
+                        }
+                    
+                        Button(action: {
+                            popCities.toggle()
+                        }) {
+                            Image(systemName: cc.selectedCities.isEmpty  ? "mappin.circle" : "mappin.circle.fill")
+                                .foregroundColor(.gray1100)
+                        }
+                    }
+                ,
                 
                 trailing:
                     ZStack {

@@ -35,7 +35,7 @@ struct ContactView: View {
                     .foregroundColor(.gray1100)
                     .font(semiBold18f)
                     
-                    ScrollView(.horizontal, showsIndicators: false) {
+//                    ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 0) {
                             ForEach(contact.cities, id: \.self) { id in
                                 if let city = cc.cities.first(where: { $0.id == id }) {
@@ -46,7 +46,7 @@ struct ContactView: View {
                                 }
                             }
                         }
-                    }
+//                    }
                     .padding(.bottom, 3)
                     
                     if let bio = contact.bio {

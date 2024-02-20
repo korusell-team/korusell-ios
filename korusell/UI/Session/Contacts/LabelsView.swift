@@ -34,7 +34,7 @@ struct LabelsView: View {
                     ScrollView(.horizontal, showsIndicators: false) {
                         ScrollViewReader { reader in
                             LazyHGrid(rows: rows, alignment: .center) {
-                                HambButton(icon: "magnifyingglass", isOpen: $cc.searchPresented)
+//                                HambButton(icon: "magnifyingglass", isOpen: $cc.searchPresented)
                                 ForEach(cc.categories, id: \.self.id) { category in
                                     Button(action: {
                                         cc.selectCategory(category: category, reader: reader)

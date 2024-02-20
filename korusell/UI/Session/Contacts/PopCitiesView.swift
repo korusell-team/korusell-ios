@@ -14,7 +14,7 @@ struct PopCitiesView: View {
     var body: some View {
         VStack(spacing: 0) {
             HStack {
-                Text("ГОРОДА")
+                Text("Фильтр по городам")
                     .font(bold17f)
                     .bold()
                 Spacer()
