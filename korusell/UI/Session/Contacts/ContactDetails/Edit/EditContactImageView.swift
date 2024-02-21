@@ -64,7 +64,7 @@ struct EditContactImageView: View {
                 } ///else
             }
             
-            .frame(width: Size.w(190), height: Size.w(190), alignment: .top)
+            .frame(width: Size.w(190), height: Size.w(190), alignment: .center)
             .background(Color.app_white.opacity(0.01))
             .cornerRadius(300)
             
