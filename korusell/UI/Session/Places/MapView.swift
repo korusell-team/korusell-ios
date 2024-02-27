@@ -14,7 +14,8 @@ struct MapView: UIViewRepresentable {
     
     func updateUIView(_ uiView: MKMapView, context: Context) {
         // TODO: figure out better way to update annotations
-        if places.map({ $0.title?.description ?? "" }) != uiView.annotations.map({ $0.title ?? "" }) {
+        if places.map({ $0.title?.description ?? "" }).sorted() != uiView.annotations.map({ ($0.title ?? "") ?? "" }).sorted() {
+//        if places.count != uiView.annotations.count {
             print(places.map({ $0.title }))
             print(uiView.annotations.map({ $0.title }))
             
