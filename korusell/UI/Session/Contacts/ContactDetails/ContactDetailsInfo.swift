@@ -98,6 +98,12 @@ struct ContactDetailsInfo: View {
                 .foregroundColor(.gray1000)
             }
             
+            if let bio = contact.bio {
+                Text(bio)
+                    .font(light14f)
+                    .foregroundColor(.gray1000)
+            }
+            
             Divider().padding(.vertical, 10)
             
             VStack(alignment: .leading, spacing: 6) {

@@ -66,7 +66,9 @@ struct CreateContactView: View {
             TextField(text: $user.bio.bound) {
                 Text("Пару слов, туда - сюда")
             }
-        }
+            .onChange(of: user.bio.bound) { newValue in
+                user.bio.bound = newValue.count > 75 ? String(newValue.prefix(75)) : newValue
+            }        }
         
         CustomSection(header: "О себе:", footer: "В этой секции Вы можете выложиться по полной и описать Вашу деятельность большим полотном текста.") {
             EditInfoView(info: $user.info)
