@@ -14,7 +14,7 @@ struct AvatarView: View {
     var body: some View {
         ZStack {
             if !contact.image.isEmpty {
-                let url = contact.smallImage ?? ""
+                let url = contact.smallImage ?? contact.image.first ?? ""
                 CachedAsyncImage(url: URL(string: url), urlCache: .imageCache) { phase in
                                switch phase {
                                case .empty:

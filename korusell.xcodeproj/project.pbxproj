@@ -94,7 +94,6 @@
 		2BC565C62B440F6C00AFB708 /* AdminView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC565C52B440F6C00AFB708 /* AdminView.swift */; };
 		2BC565C82B440FDC00AFB708 /* ContactDetailsViewA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC565C72B440FDC00AFB708 /* ContactDetailsViewA.swift */; };
 		2BC565CA2B4410BB00AFB708 /* ContactListViewA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC565C92B4410BB00AFB708 /* ContactListViewA.swift */; };
-		2BC565CE2B44275500AFB708 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2BC565CD2B44275500AFB708 /* GoogleService-Info.plist */; };
 		2BC565D12B4570EB00AFB708 /* CreateUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC565D02B4570EB00AFB708 /* CreateUserView.swift */; };
 		2BC565D42B45713300AFB708 /* CreateImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC565D32B45713300AFB708 /* CreateImageView.swift */; };
 		2BC565D62B45713F00AFB708 /* CreateContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC565D52B45713F00AFB708 /* CreateContactView.swift */; };
@@ -108,6 +107,7 @@
 		2BD124922B25A4D1004C4772 /* MenuLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD124912B25A4D1004C4772 /* MenuLabelView.swift */; };
 		2BEC5A582B3AE3F500D8518A /* PhoneHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEC5A572B3AE3F500D8518A /* PhoneHelper.swift */; };
 		2BEC5A5A2B3AED8000D8518A /* CategorySearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEC5A592B3AED8000D8518A /* CategorySearchView.swift */; };
+		EDEBBBEB2D15B70100A17868 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EDEBBBEA2D15B70100A17868 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -194,7 +194,6 @@
 		2BC565C52B440F6C00AFB708 /* AdminView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminView.swift; sourceTree = "<group>"; };
 		2BC565C72B440FDC00AFB708 /* ContactDetailsViewA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailsViewA.swift; sourceTree = "<group>"; };
 		2BC565C92B4410BB00AFB708 /* ContactListViewA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListViewA.swift; sourceTree = "<group>"; };
-		2BC565CD2B44275500AFB708 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2BC565CF2B4428C300AFB708 /* korusell.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = korusell.entitlements; sourceTree = "<group>"; };
 		2BC565D02B4570EB00AFB708 /* CreateUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUserView.swift; sourceTree = "<group>"; };
 		2BC565D32B45713300AFB708 /* CreateImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateImageView.swift; sourceTree = "<group>"; };
@@ -209,6 +208,7 @@
 		2BD124912B25A4D1004C4772 /* MenuLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuLabelView.swift; sourceTree = "<group>"; };
 		2BEC5A572B3AE3F500D8518A /* PhoneHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneHelper.swift; sourceTree = "<group>"; };
 		2BEC5A592B3AED8000D8518A /* CategorySearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySearchView.swift; sourceTree = "<group>"; };
+		EDEBBBEA2D15B70100A17868 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -281,7 +281,7 @@
 				256C97622A372EAC003DD1B4 /* TestView.swift */,
 				2BC565CF2B4428C300AFB708 /* korusell.entitlements */,
 				256276072A80F114006F0E39 /* Info.plist */,
-				2BC565CD2B44275500AFB708 /* GoogleService-Info.plist */,
+				EDEBBBEA2D15B70100A17868 /* GoogleService-Info.plist */,
 			);
 			path = korusell;
 			sourceTree = "<group>";
@@ -580,12 +580,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B0491532AB0851600A8F81E /* cities.json in Resources */,
-				2BC565CE2B44275500AFB708 /* GoogleService-Info.plist in Resources */,
 				25DB6CB42A0726C600660E99 /* Preview Assets.xcassets in Resources */,
 				2B0A6B4F2B286DEB005BB5F0 /* cats.json in Resources */,
 				2B181D722AAF16F4001E6250 /* contacts.json in Resources */,
 				2B0491512AB07EAE00A8F81E /* categories.json in Resources */,
 				25DB6CB12A0726C600660E99 /* Assets.xcassets in Resources */,
+				EDEBBBEB2D15B70100A17868 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

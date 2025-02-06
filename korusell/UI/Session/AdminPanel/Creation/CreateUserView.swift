@@ -11,6 +11,7 @@ struct CreateUserView: View {
     @EnvironmentObject var userManager: UserManager
     @EnvironmentObject var cc: ContactsController
     @State var user: Contact = Contact(uid: UUID().uuidString, phone: "", isPublic: false)
+   
     @State var image: UIImage? = nil
     @State var imageUrl: URL? = nil
     

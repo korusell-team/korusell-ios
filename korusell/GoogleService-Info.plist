@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyACR7eMDGtJKEOJk5Q5hMLCWh2bXwaixjY</string>
+	<key>GCM_SENDER_ID</key>
+	<string>316785912727</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>co.alienminds.ethnogram</string>
+	<key>PROJECT_ID</key>
+	<string>ethnogram-1cd0f</string>
+	<key>STORAGE_BUCKET</key>
+	<string>ethnogram-1cd0f.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:316785912727:ios:e9f5ea1e38b001ea3532d2</string>
+</dict>
+</plist>

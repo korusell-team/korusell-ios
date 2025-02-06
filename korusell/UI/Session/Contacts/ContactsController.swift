@@ -156,16 +156,16 @@ class ContactsController: ObservableObject {
                     return
                 }
                 
-                let users = documents.compactMap { queryDocumentSnapshot -> Contact? in
+                let users = documents.compactMap { queryDocumentSnapshot -> CodingContact? in
                     do {
-                        return try queryDocumentSnapshot.data(as: Contact.self)
+                        return try queryDocumentSnapshot.data(as: CodingContact.self)
                     } catch {
                         print("Error decoding document into User object: \(error)")
                         return nil
                     }
                 }
                 print("Successfullly got users 🤦🏻")
-                self.users = users
+                self.users = users.map({ Contact.fromCodingContact(codingContact: $0) })
 //                self.users = users.filter({ $0.isPublic })
                 //                self.contacts = self.users.shuffled().sorted(by: { $0.priority ?? 0 > $1.priority ?? 0 })
             }
