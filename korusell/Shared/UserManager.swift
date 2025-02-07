@@ -88,6 +88,7 @@ class UserManager: ObservableObject {
                 if let path = savingUser.smallImagePath {
                     try await StorageManager.shared.deleteImage(path: path)
                 }
+                
                 let result = try await StorageManager.shared.saveProfileImage(image: image, directory: "avatars", uid: id)
                 let url = try await StorageManager.shared.getUrlForImage(dir: "avatars", uid: id, path: result.name)
                 let smallUrl = try await StorageManager.shared.getUrlForImage(dir: "avatars", uid: id, path: result.nameSmall)
@@ -97,11 +98,17 @@ class UserManager: ObservableObject {
                 savingUser.imagePath = [result.path]
                 savingUser.smallImagePath = result.pathSmall
                 print("Image successfully saved!")
+                DispatchQueue.main.async {
+                    self.user = savingUser
+                    self.userImageUrl = URL(string: savingUser.image.first ?? "")
+                }
             }
-            self.user = savingUser
-            self.userImageUrl = URL(string: savingUser.image.first ?? "")
-            self.updateUser()
+            DispatchQueue.main.async {
+                
+                self.updateUser()
+            }
         } catch {
+            print("error while saving image")
             print(error.localizedDescription)
         }
     }

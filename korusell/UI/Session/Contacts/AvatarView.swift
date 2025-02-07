@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import CachedAsyncImage
+import Kingfisher
 
 struct AvatarView: View {
     let contact: Contact
@@ -15,23 +15,43 @@ struct AvatarView: View {
         ZStack {
             if !contact.image.isEmpty {
                 let url = contact.smallImage ?? contact.image.first ?? ""
-                CachedAsyncImage(url: URL(string: url), urlCache: .imageCache) { phase in
-                               switch phase {
-                               case .empty:
-                                   ProgressView()
-                               case .success(let image):
-                                   image
-                                       .resizable()
-                                       .scaledToFill()
-//                                        .aspectRatio(contentMode: .fit)
-                                        .frame(maxWidth: 55, maxHeight: 55)
-                                        .transition(.scale(scale: 0.1, anchor: .center))
-                               case .failure:
-                                   Image(systemName: "photo")
-                               @unknown default:
-                                   EmptyView()
-                               }
-                           }
+                
+                KFImage.url(URL(string: url))
+                    .resizable()
+                    .placeholder {
+                        Circle()
+                            .fill(Color.gray900)
+                            .frame(width: 55, height: 55)
+                        Text(String(contact.name?.capitalized.first! ?? "U"))
+                            .font(regular22f)
+                            .foregroundColor(.white)
+                        + Text(String(contact.surname?.capitalized.first! ?? "N"))
+                            .font(regular22f)
+                            .foregroundColor(.white)
+                    }
+                    .fade(duration: 1)
+                    .cancelOnDisappear(true)
+                    .aspectRatio(contentMode: .fill)
+                    .frame(maxWidth: 55, maxHeight: 55)
+                    .transition(.scale(scale: 0.1, anchor: .center))
+                
+//                CachedAsyncImage(url: URL(string: url), urlCache: .imageCache) { phase in
+//                               switch phase {
+//                               case .empty:
+//                                   ProgressView()
+//                               case .success(let image):
+//                                   image
+//                                       .resizable()
+//                                       .scaledToFill()
+////                                        .aspectRatio(contentMode: .fit)
+//                                        .frame(maxWidth: 55, maxHeight: 55)
+//                                        .transition(.scale(scale: 0.1, anchor: .center))
+//                               case .failure:
+//                                   Image(systemName: "photo")
+//                               @unknown default:
+//                                   EmptyView()
+//                               }
+//                           }
 //                AsyncImage(url: URL(string: contact.image.first!))
 //                Image(contact.image.first!)
 //                    .resizable()

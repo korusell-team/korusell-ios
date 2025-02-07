@@ -13,7 +13,6 @@
 //
 
 import SwiftUI
-import CachedAsyncImage
 
 struct ContactDetailsViewA: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>

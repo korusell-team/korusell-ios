@@ -7,7 +7,6 @@
 
 import SwiftUI
 import PopupView
-import CachedAsyncImage
 
 struct MyAccDetailsSheet: View {
     @EnvironmentObject var userManager: UserManager

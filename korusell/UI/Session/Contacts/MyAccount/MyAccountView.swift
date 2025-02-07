@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import CachedAsyncImage
+import Kingfisher
 
 struct MyAccountView: View {
     @EnvironmentObject var cc: ContactsController
@@ -30,25 +30,37 @@ struct MyAccountView: View {
                     } else {
                         TabView(selection: $page) {
                             ForEach(0..<user.image.count, id: \.self) { index in
-                                CachedAsyncImage(url: URL(string: user.image[index]), urlCache: .imageCache) { phase in
-                                    switch phase {
-                                    case .empty:
-                                        ProgressView()
-                                    case .success(let image):
-                                        ZStack(alignment: .top) {
-                                            image
-                                                .resizable()
-                                                .scaledToFill()
-                                            LinearGradient(colors: [.clear, .gray1100.opacity(0.8)], startPoint: .bottom, endPoint: .top)
-                                                .frame(height: 150)
-                                        }
-                                        .transition(.scale(scale: 0.1, anchor: .center))
-                                    case .failure:
+                                KFImage.url(URL(string: user.image[index]))
+                                    .resizable()
+                                    .placeholder {
                                         Image(systemName: "photo")
-                                    @unknown default:
-                                        EmptyView()
                                     }
-                                }
+                                    .fade(duration: 1)
+                                    .cancelOnDisappear(true)
+                                    .aspectRatio(contentMode: .fill)
+                                    .frame(maxWidth: Size.w(25), maxHeight: Size.w(25))
+                                    .clipShape(Circle())
+                                    .background(Circle().stroke(Color.app_white, lineWidth: 3))
+                                
+//                                CachedAsyncImage(url: URL(string: user.image[index]), urlCache: .imageCache) { phase in
+//                                    switch phase {
+//                                    case .empty:
+//                                        ProgressView()
+//                                    case .success(let image):
+//                                        ZStack(alignment: .top) {
+//                                            image
+//                                                .resizable()
+//                                                .scaledToFill()
+//                                            LinearGradient(colors: [.clear, .gray1100.opacity(0.8)], startPoint: .bottom, endPoint: .top)
+//                                                .frame(height: 150)
+//                                        }
+//                                        .transition(.scale(scale: 0.1, anchor: .center))
+//                                    case .failure:
+//                                        Image(systemName: "photo")
+//                                    @unknown default:
+//                                        EmptyView()
+//                                    }
+//                                }
                                 .tag(index)
                                 .ignoresSafeArea()
                             }

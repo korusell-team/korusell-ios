@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import CachedAsyncImage
+import Kingfisher
 
 struct PlaceDetails: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -46,44 +46,76 @@ struct PlaceDetails: View {
                             }
                         } else {
                             let url = URL(string: place.images.first ?? "")
-                            CachedAsyncImage(url: url, urlCache: .imageCache) { phase in
-                                
-                                switch phase {
-                                case .empty:
-                                    ProgressView()
-                                        .frame(minHeight: UIScreen.main.bounds.width)
-                                case .success(let image):
-                                    Color.clear
-                                        .aspectRatio(1, contentMode: .fit)
-                                        .overlay(
-                                            image
-                                                .resizable()
-                                                .scaledToFill()
-                                        )
-                                        .clipShape(Rectangle())
-                                        .matchedGeometryEffect(id: "avatar", in: animation)
-                                    
-                                case .failure:
-                                    ZStack(alignment: .center) {
-                                        Color.gray50
-                                        // TODO: create from this: message object with emoji, text and subtext
-                                        VStack {
-                                            Text("🚧")
-                                                .font(bold60f)
-                                            Text("Что то пошло не так во время загрузки картинки...\n")
-                                                .foregroundColor(.gray900)
-                                                .multilineTextAlignment(.center)
-                                            
-                                            Text("(Возможно у Вас медленная скорость интернета)")
-                                                .font(light16f)
-                                                .foregroundColor(.gray700)
-                                                .multilineTextAlignment(.center)
+                            
+                            
+                            Color.clear
+                                .aspectRatio(1, contentMode: .fit)
+                                .overlay(
+                                    KFImage.url(url)
+                                        .resizable()
+                                        .placeholder {
+                                            ZStack(alignment: .center) {
+                                                Color.gray50
+                                                // TODO: create from this: message object with emoji, text and subtext
+                                                VStack {
+                                                    Text("🚧")
+                                                        .font(bold60f)
+                                                    Text("Что то пошло не так во время загрузки картинки...\n")
+                                                        .foregroundColor(.gray900)
+                                                        .multilineTextAlignment(.center)
+                                                    
+                                                    Text("(Возможно у Вас медленная скорость интернета)")
+                                                        .font(light16f)
+                                                        .foregroundColor(.gray700)
+                                                        .multilineTextAlignment(.center)
+                                                }
+                                            }
                                         }
-                                    }
-                                @unknown default:
-                                    EmptyView()
-                                }
-                            }
+                                        .fade(duration: 1)
+                                        .cancelOnDisappear(true)
+                                )
+                                .clipShape(Rectangle())
+                                .matchedGeometryEffect(id: "avatar", in: animation)
+                            
+                            
+//                            CachedAsyncImage(url: url, urlCache: .imageCache) { phase in
+//                                
+//                                switch phase {
+//                                case .empty:
+//                                    ProgressView()
+//                                        .frame(minHeight: UIScreen.main.bounds.width)
+//                                case .success(let image):
+//                                    Color.clear
+//                                        .aspectRatio(1, contentMode: .fit)
+//                                        .overlay(
+//                                            image
+//                                                .resizable()
+//                                                .scaledToFill()
+//                                        )
+//                                        .clipShape(Rectangle())
+//                                        .matchedGeometryEffect(id: "avatar", in: animation)
+//                                    
+//                                case .failure:
+//                                    ZStack(alignment: .center) {
+//                                        Color.gray50
+//                                        // TODO: create from this: message object with emoji, text and subtext
+//                                        VStack {
+//                                            Text("🚧")
+//                                                .font(bold60f)
+//                                            Text("Что то пошло не так во время загрузки картинки...\n")
+//                                                .foregroundColor(.gray900)
+//                                                .multilineTextAlignment(.center)
+//                                            
+//                                            Text("(Возможно у Вас медленная скорость интернета)")
+//                                                .font(light16f)
+//                                                .foregroundColor(.gray700)
+//                                                .multilineTextAlignment(.center)
+//                                        }
+//                                    }
+//                                @unknown default:
+//                                    EmptyView()
+//                                }
+//                            }
                         } //else
                         LinearGradient(colors: [.clear, .gray1100.opacity(0.8)], startPoint: .bottom, endPoint: .top)
                             .frame(height: 120)

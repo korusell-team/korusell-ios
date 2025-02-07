@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import CachedAsyncImage
+import Kingfisher
 
 struct EditContactImageView: View {
     @EnvironmentObject var userManager: UserManager
@@ -25,9 +25,9 @@ struct EditContactImageView: View {
                         .resizable()
                         .scaledToFill()
                 } else {
-                    CachedAsyncImage(url: userManager.userImageUrl, urlCache: .imageCache) { phase in
-                        switch phase {
-                        case .empty:
+                    KFImage.url(userManager.userImageUrl)
+                        .resizable()
+                        .placeholder {
                             ZStack {
                                 VStack {
                                     Text("🫥")
@@ -38,28 +38,47 @@ struct EditContactImageView: View {
                                         .font(light16f)
                                 }
                             }.frame(width: Size.w(190), height: Size.w(190), alignment: .center)
-                        case .success(let image):
-                            ZStack(alignment: .top) {
-                                image
-                                    .resizable()
-                                    .scaledToFill()
-                                    .matchedGeometryEffect(id: "avatar", in: animation)
-                            }
-                        case .failure:
-                            ZStack {
-                                VStack {
-                                    Text("😖")
-                                        .font(bold60f)
-                                    Text("Что то пошло не так...")
-                                        .foregroundColor(.gray900)
-                                        .multilineTextAlignment(.center)
-                                        .font(light16f)
-                                }
-                            }.frame(width: Size.w(190), height: Size.w(190), alignment: .center)
-                        @unknown default:
-                            EmptyView()
                         }
-                    }
+                        .fade(duration: 1)
+                        .cancelOnDisappear(true)
+                        .aspectRatio(contentMode: .fill)
+                        .matchedGeometryEffect(id: "avatar", in: animation)
+                    
+//                    CachedAsyncImage(url: userManager.userImageUrl, urlCache: .imageCache) { phase in
+//                        switch phase {
+//                        case .empty:
+//                            ZStack {
+//                                VStack {
+//                                    Text("🫥")
+//                                        .font(bold60f)
+//                                    Text("нет фотографии...")
+//                                        .foregroundColor(.gray900)
+//                                        .multilineTextAlignment(.center)
+//                                        .font(light16f)
+//                                }
+//                            }.frame(width: Size.w(190), height: Size.w(190), alignment: .center)
+//                        case .success(let image):
+//                            ZStack(alignment: .top) {
+//                                image
+//                                    .resizable()
+//                                    .scaledToFill()
+//                                    .matchedGeometryEffect(id: "avatar", in: animation)
+//                            }
+//                        case .failure:
+//                            ZStack {
+//                                VStack {
+//                                    Text("😖")
+//                                        .font(bold60f)
+//                                    Text("Что то пошло не так...")
+//                                        .foregroundColor(.gray900)
+//                                        .multilineTextAlignment(.center)
+//                                        .font(light16f)
+//                                }
+//                            }.frame(width: Size.w(190), height: Size.w(190), alignment: .center)
+//                        @unknown default:
+//                            EmptyView()
+//                        }
+//                    }
                     .ignoresSafeArea()
                 } ///else
             }

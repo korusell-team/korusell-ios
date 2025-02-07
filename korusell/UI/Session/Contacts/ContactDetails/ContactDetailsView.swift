@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import CachedAsyncImage
 
 struct ContactDetailsView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>

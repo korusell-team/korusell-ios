@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import CachedAsyncImage
+import Kingfisher
 import UniformTypeIdentifiers
 
 struct PlaceSheet: View {
@@ -21,24 +21,35 @@ struct PlaceSheet: View {
         VStack {
             HStack(alignment: .top) {
                 let url = place.smallImages.first ?? ""
-                CachedAsyncImage(url: URL(string: url), urlCache: .imageCache) { phase in
-                    switch phase {
-                    case .empty:
-                        ProgressView()
-                    case .success(let image):
-                        image
-                            .resizable()
-                            .scaledToFill()
-                        //                                        .aspectRatio(contentMode: .fit)
-                            .frame(maxWidth: 65, maxHeight: 65)
-                            .transition(.scale(scale: 0.1, anchor: .center))
-                    case .failure:
+                KFImage.url(URL(string: url))
+                    .resizable()
+                    .placeholder {
                         Image(systemName: "💼")
                             .font(bold30f)
-                    @unknown default:
-                        EmptyView()
                     }
-                }
+                    .fade(duration: 1)
+                    .cancelOnDisappear(true)
+                    .frame(maxWidth: 65, maxHeight: 65)
+                    .transition(.scale(scale: 0.1, anchor: .center))
+                
+//                CachedAsyncImage(url: URL(string: url), urlCache: .imageCache) { phase in
+//                    switch phase {
+//                    case .empty:
+//                        ProgressView()
+//                    case .success(let image):
+//                        image
+//                            .resizable()
+//                            .scaledToFill()
+//                        //                                        .aspectRatio(contentMode: .fit)
+//                            .frame(maxWidth: 65, maxHeight: 65)
+//                            .transition(.scale(scale: 0.1, anchor: .center))
+//                    case .failure:
+//                        Image(systemName: "💼")
+//                            .font(bold30f)
+//                    @unknown default:
+//                        EmptyView()
+//                    }
+//                }
                 .frame(width: 65, height: 65)
                 .clipShape(RoundedRectangle(cornerRadius: 15))
                 .contentShape(ContentShapeKinds.contextMenuPreview, RoundedRectangle(cornerRadius: 15))

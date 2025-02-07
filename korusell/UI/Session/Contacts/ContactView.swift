@@ -47,7 +47,7 @@ struct ContactView: View {
                             }
                         }
 //                    }
-                    .padding(.bottom, 3)
+                    .padding(.bottom, 1)
                     
                     if let bio = contact.bio {
                         Text(bio)

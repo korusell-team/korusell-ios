@@ -8,7 +8,6 @@
 import SwiftUI
 import PopupView
 import PhotosUI
-import CachedAsyncImage
 
 struct EditContactView: View {
     @EnvironmentObject var userManager: UserManager

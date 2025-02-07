@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import CachedAsyncImage
+import Kingfisher
 
 struct CreateImageView: View {
     @EnvironmentObject var userManager: UserManager
@@ -24,9 +24,10 @@ struct CreateImageView: View {
                         .resizable()
                         .scaledToFill()
                 } else {
-                    CachedAsyncImage(url: imageUrl, urlCache: .imageCache) { phase in
-                        switch phase {
-                        case .empty:
+                    
+                    KFImage.url(imageUrl)
+                        .resizable()
+                        .placeholder {
                             ZStack {
                                 VStack {
                                     Text("🫥")
@@ -37,27 +38,45 @@ struct CreateImageView: View {
                                         .font(light16f)
                                 }
                             }.frame(width: Size.w(190), height: Size.w(190), alignment: .center)
-                        case .success(let image):
-                            ZStack(alignment: .top) {
-                                image
-                                    .resizable()
-                                    .scaledToFill()
-                            }
-                        case .failure:
-                            ZStack {
-                                VStack {
-                                    Text("😖")
-                                        .font(bold60f)
-                                    Text("Что то пошло не так...")
-                                        .foregroundColor(.gray900)
-                                        .multilineTextAlignment(.center)
-                                        .font(light16f)
-                                }
-                            }.frame(width: Size.w(190), height: Size.w(190), alignment: .center)
-                        @unknown default:
-                            EmptyView()
                         }
-                    }
+                        .fade(duration: 1)
+                        .cancelOnDisappear(true)
+          
+                    
+//                    CachedAsyncImage(url: imageUrl, urlCache: .imageCache) { phase in
+//                        switch phase {
+//                        case .empty:
+//                            ZStack {
+//                                VStack {
+//                                    Text("🫥")
+//                                        .font(bold60f)
+//                                    Text("нет фотографии...")
+//                                        .foregroundColor(.gray900)
+//                                        .multilineTextAlignment(.center)
+//                                        .font(light16f)
+//                                }
+//                            }.frame(width: Size.w(190), height: Size.w(190), alignment: .center)
+//                        case .success(let image):
+//                            ZStack(alignment: .top) {
+//                                image
+//                                    .resizable()
+//                                    .scaledToFill()
+//                            }
+//                        case .failure:
+//                            ZStack {
+//                                VStack {
+//                                    Text("😖")
+//                                        .font(bold60f)
+//                                    Text("Что то пошло не так...")
+//                                        .foregroundColor(.gray900)
+//                                        .multilineTextAlignment(.center)
+//                                        .font(light16f)
+//                                }
+//                            }.frame(width: Size.w(190), height: Size.w(190), alignment: .center)
+//                        @unknown default:
+//                            EmptyView()
+//                        }
+//                    }
                     .ignoresSafeArea()
                 } ///else
             }
