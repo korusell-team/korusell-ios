@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import Firebase
+import FirebaseAuth
 
 struct SignInView: View {
     @EnvironmentObject var userManager: UserManager
@@ -245,7 +245,7 @@ struct SignInView: View {
         
         self.isLoading = true
         self.phone = self.phone.starts(with: "010") ? self.phone.replacingOccurrences(of: "010", with: "+8210") : self.phone
-        PhoneAuthProvider.provider().verifyPhoneNumber(self.phone, uiDelegate: nil) { CODE, error in
+        PhoneAuthProvider.provider().verifyPhoneNumber(self.phone) { CODE, error in
             self.isLoading = false
             self.CODE = CODE ?? ""
             if let error {

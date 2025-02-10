@@ -78,7 +78,6 @@
 		2B2FAD8E2B7EEC52009CB2C6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2FAD8D2B7EEC52009CB2C6 /* Constants.swift */; };
 		2B345B702AB85A410025BF2C /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B345B6F2AB85A410025BF2C /* UserManager.swift */; };
 		2B345B722AB85C700025BF2C /* FirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B345B712AB85C700025BF2C /* FirestoreManager.swift */; };
-		2B345B752AB868B80025BF2C /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2B345B742AB868B80025BF2C /* FirebaseFirestoreSwift */; };
 		2B345B772ABB0C1E0025BF2C /* CategorySelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B345B762ABB0C1E0025BF2C /* CategorySelectionView.swift */; };
 		2B345B792ABB189A0025BF2C /* CitySelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B345B782ABB189A0025BF2C /* CitySelectionView.swift */; };
 		2B3A132C2B6A63CC003657A8 /* NewPlaceCreationSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3A132B2B6A63CB003657A8 /* NewPlaceCreationSheet.swift */; };
@@ -216,7 +215,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2B345B752AB868B80025BF2C /* FirebaseFirestoreSwift in Frameworks */,
 				256275AD2A7138B0006F0E39 /* PopupView in Frameworks */,
 				EDC4CEE62D549B26003E78EF /* Kingfisher in Frameworks */,
 				256276042A80F00C006F0E39 /* FirebaseFirestore in Frameworks */,
@@ -528,7 +526,6 @@
 				256275AC2A7138B0006F0E39 /* PopupView */,
 				256276012A80F00C006F0E39 /* FirebaseAuth */,
 				256276032A80F00C006F0E39 /* FirebaseFirestore */,
-				2B345B742AB868B80025BF2C /* FirebaseFirestoreSwift */,
 				2B2B66BC2B0B84BF003195E9 /* FirebaseStorage */,
 				EDC4CEE52D549B26003E78EF /* Kingfisher */,
 			);
@@ -694,6 +691,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -755,6 +753,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -832,7 +831,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.4;
+				MARKETING_VERSION = 0.5;
 				PRODUCT_BUNDLE_IDENTIFIER = co.alienminds.ethnogram;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -870,7 +869,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.4;
+				MARKETING_VERSION = 0.5;
 				PRODUCT_BUNDLE_IDENTIFIER = co.alienminds.ethnogram;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -919,7 +918,7 @@
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
 				kind = exactVersion;
-				version = 10.15.0;
+				version = 11.8.1;
 			};
 		};
 		EDC4CEE42D549B26003E78EF /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
@@ -952,11 +951,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 256276002A80F00C006F0E39 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
-		};
-		2B345B742AB868B80025BF2C /* FirebaseFirestoreSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 256276002A80F00C006F0E39 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseFirestoreSwift;
 		};
 		EDC4CEE52D549B26003E78EF /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;

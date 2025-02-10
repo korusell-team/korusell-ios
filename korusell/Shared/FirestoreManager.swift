@@ -7,7 +7,7 @@
 
 import SwiftUI
 import FirebaseFirestore
-import FirebaseFirestoreSwift
+//import FirebaseFirestoreSwift
 
 class FirestoreManager {
     let db = Firestore.firestore()

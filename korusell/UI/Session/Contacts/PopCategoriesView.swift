@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import FirebaseFirestoreSwift
+//import FirebaseFirestoreSwift
 
 struct PopCategoriesView: View {
     @EnvironmentObject var cc: ContactsController

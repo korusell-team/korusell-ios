@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import FirebaseFirestoreSwift
+import FirebaseFirestore
 import MapKit
 
 struct Place: Identifiable, Hashable, Codable {

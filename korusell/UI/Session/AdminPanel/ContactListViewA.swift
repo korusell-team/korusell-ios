@@ -13,7 +13,7 @@
 //
 
 import SwiftUI
-import FirebaseFirestoreSwift
+//import FirebaseFirestoreSwift
 
 struct ContactListViewA: View {
     @EnvironmentObject var cc: ContactsController

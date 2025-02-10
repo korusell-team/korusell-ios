@@ -7,7 +7,7 @@
 
 import SwiftUI
 import PopupView
-import FirebaseFirestoreSwift
+//import FirebaseFirestoreSwift
 import Kingfisher
 
 struct ContactsScreen: View {

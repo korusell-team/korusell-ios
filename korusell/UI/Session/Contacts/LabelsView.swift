@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import FirebaseFirestoreSwift
+//import FirebaseFirestoreSwift
 import PopupView
 
 struct LabelsView: View {

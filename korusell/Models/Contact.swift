@@ -6,8 +6,9 @@
 //
 
 import Foundation
+import FirebaseFirestore
 
-import FirebaseFirestoreSwift
+//import FirebaseFirestoreSwift
 
 struct Contact: Identifiable, Hashable, Codable {
     var id: String?

@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import FirebaseFirestoreSwift
+//import FirebaseFirestoreSwift
 
 struct CitySelectionView: View {
     @EnvironmentObject var userManager: UserManager

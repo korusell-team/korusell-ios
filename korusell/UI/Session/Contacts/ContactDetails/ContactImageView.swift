@@ -13,6 +13,7 @@ struct ContactImageView: View {
     @State var page: Int = 0
     
     @Binding var user: Contact
+    @State var inProgress: Bool = true
     
     let animation: Namespace.ID
     
@@ -41,33 +42,47 @@ struct ContactImageView: View {
                             KFImage.url(url)
                                 .resizable()
                                 .placeholder {
-                                    ZStack(alignment: .center) {
-                                        Color.gray50
-                                        // TODO: create from this: message object with emoji, text and subtext
-                                        VStack {
-                                            Text("🚧")
-                                                .font(bold60f)
-                                            Text("Что то пошло не так во время загрузки картинки...\n")
-                                                .foregroundColor(.gray900)
-                                                .multilineTextAlignment(.center)
-                                            
-                                            Text("(Возможно у Вас медленная скорость интернета)")
-                                                .font(light16f)
-                                                .foregroundColor(.gray700)
-                                                .multilineTextAlignment(.center)
+                                    if inProgress {
+                                        ProgressView()
+                                            .frame(minHeight: UIScreen.main.bounds.width, maxHeight: UIScreen.main.bounds.width)
+                                    } else {
+                                        ZStack(alignment: .center) {
+                                            Color.gray50
+                                            // TODO: create from this: message object with emoji, text and subtext
+                                            VStack {
+                                                Text("🚧")
+                                                    .font(bold60f)
+                                                Text("Что то пошло не так во время загрузки картинки...")
+                                                    .foregroundColor(.gray900)
+                                                    .multilineTextAlignment(.center)
+                                                    .padding(.bottom, 14)
+                                                    
+                                                Text("(Возможно у Вас медленная скорость интернета)")
+                                                    .font(light16f)
+                                                    .foregroundColor(.gray700)
+                                                    .multilineTextAlignment(.center)
+                                            }
                                         }
+                                        .frame(minHeight: UIScreen.main.bounds.width, maxHeight: UIScreen.main.bounds.width)
+                                      
                                     }
                                 }
-                                
+                                .onFailureImage(nil)
+                                .onProgress { current, total in
+                                    if current == total {
+                                        self.inProgress = false
+                                    } else {
+                                        self.inProgress = true
+                                    }
+                                }
                                 .fade(duration: 1)
                                 .cancelOnDisappear(true)
                                 .aspectRatio(contentMode: .fill)
                                 .frame(maxWidth: UIScreen.main.bounds.width, maxHeight: UIScreen.main.bounds.width)
                                 
                         }
-                    
-//                    .aspectRatio(1, contentMode: .fit)
-//                    .frame(maxWidth: .infinity, alignment: .center)
+                        
+
                     .clipShape(Rectangle())
                     .frame(minHeight: UIScreen.main.bounds.width, maxHeight: UIScreen.main.bounds.width)
                     .matchedGeometryEffect(id: "avatar", in: animation)

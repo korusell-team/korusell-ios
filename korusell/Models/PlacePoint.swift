@@ -7,7 +7,7 @@
 
 import Foundation
 import MapKit
-import FirebaseFirestoreSwift
+//import FirebaseFirestoreSwift
 
 class PlacePoint: NSObject, MKAnnotation, Identifiable {
     var pid: String
