@@ -9,7 +9,7 @@ import SwiftUI
 //import FirebaseFirestoreSwift
 
 struct PopCategoriesView: View {
-    @EnvironmentObject var cc: ContactsController
+    @ObservedObject var cc: ContactsController
     @Binding var popCategories: Bool
     @Binding var selectedCategory: Category?
     var reader: ScrollViewProxy? = nil
@@ -38,11 +38,13 @@ struct PopCategoriesView: View {
             
             FlexibleView(availableWidth: UIScreen.main.bounds.width - 30, data: cc.categories, spacing: 10, alignment: .leading) { category in
                 Button(action: {
-                    if let reader {
-                        cc.selectCategory(category: category, reader: reader)
-                    }
+//                    if let reader {
+                        cc.selectCategory(category: category)
+//                    }
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                        popCategories = false
+                        withAnimation {
+                            popCategories = false
+                        }
                     }
                 }) {
                     EmoLabelView(title: category.title, isSelected: selectedCategory == category, emo: category.emoji)
@@ -53,15 +55,15 @@ struct PopCategoriesView: View {
         .frame(maxWidth: .infinity)
         .background(Blur(style: .systemUltraThinMaterialDark, intensity: 0.6))
         .cornerRadius(30)
-        .padding(.horizontal, 22)
+//        .padding(.horizontal, 22)
     }
 }
 
 struct PopSubCategoriesView: View {
-    @EnvironmentObject var cc: ContactsController
+    @ObservedObject var cc: ContactsController
     @Binding var popCategories: Bool
     @Binding var selectedCategory: Category?
-    var reader: ScrollViewProxy
+//    var reader: ScrollViewProxy
     
     var body: some View {
         VStack(spacing: 0) {
@@ -87,9 +89,12 @@ struct PopSubCategoriesView: View {
             
             FlexibleView(availableWidth: UIScreen.main.bounds.width - 30, data: cc.subCategories, spacing: 10, alignment: .leading) { category in
                 Button(action: {
-                    cc.selectSubCategory(subCat: category, reader: reader)
+                    cc.selectSubCategory(subCat: category)
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                        popCategories = false
+                        withAnimation {
+                            popCategories = false
+                        }
+                        
                     }
                 }) {
                     EmoLabelView(title: category.title, isSelected: selectedCategory == category, emo: category.emoji)
@@ -101,7 +106,7 @@ struct PopSubCategoriesView: View {
         .frame(maxWidth: .infinity)
         .background(Blur(style: .systemUltraThinMaterialDark, intensity: 0.6))
         .cornerRadius(30)
-        .padding(.horizontal, 22)
+//        .padding(.horizontal, 22)
     }
 }
 

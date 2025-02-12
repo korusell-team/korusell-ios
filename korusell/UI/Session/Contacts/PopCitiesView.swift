@@ -74,7 +74,7 @@ struct PopCitiesView: View {
         .frame(maxWidth: .infinity)
         .background(Blur(style: .systemUltraThinMaterialDark, intensity: 0.6))
         .cornerRadius(30)
-        .padding(.horizontal, 22)
+//        .padding(.horizontal, 22)
     }
 }
 

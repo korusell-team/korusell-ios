@@ -54,7 +54,9 @@ struct ContactsScreen: View {
                         }
                     
                         Button(action: {
-                            popCities.toggle()
+                            withAnimation {
+                                popCities.toggle()
+                            }
                         }) {
                             Image(systemName: cc.selectedCities.isEmpty  ? "mappin.circle" : "mappin.circle.fill")
                                 .foregroundColor(.gray1100)
@@ -117,15 +119,26 @@ struct ContactsScreen: View {
             .padding(.top, 0.1)
             .animation(.easeOut, value: cc.selectedCategory)
             .background(Color.bg)
-            .popup(isPresented: $popCities) {
+//            .popup(isPresented: $popCities) {
+//                PopCitiesView(popCities: $popCities)
+//            } customize: {
+//                $0
+//                    .type (.floater())
+//                    .position(.top)
+//                    .dragToDismiss(true)
+//                    .closeOnTapOutside(true)
+//                    .backgroundColor(.black.opacity(0.2))
+//            }
+            
+            if popCategories {
+                PopCategoriesView(cc: cc, popCategories: $popCategories, selectedCategory: $cc.selectedCategory)
+            }
+            if popSubCategories {
+                PopSubCategoriesView(cc: cc, popCategories: $popSubCategories, selectedCategory: $cc.selectedSubcategory)
+            }
+            
+            if popCities {
                 PopCitiesView(popCities: $popCities)
-            } customize: {
-                $0
-                    .type (.floater())
-                    .position(.top)
-                    .dragToDismiss(true)
-                    .closeOnTapOutside(true)
-                    .backgroundColor(.black.opacity(0.2))
             }
         }
     }

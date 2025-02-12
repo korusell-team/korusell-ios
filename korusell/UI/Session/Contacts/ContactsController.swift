@@ -15,6 +15,10 @@ class ContactsController: ObservableObject {
     @Published var selectedCities: [Int] = []
     @Published var openAllCategories = false
     
+    
+    @Published var catReader: ScrollViewProxy? = nil
+    @Published var subCatReader: ScrollViewProxy? = nil
+    
     /// all categories
     @Published var cats: [Category] = []
     /// filtered categories
@@ -40,6 +44,7 @@ class ContactsController: ObservableObject {
     //    @Published var contacts: [Contact] = []
     
     @Published var cities: [City] = []
+    
     
     private var db = Firestore.firestore()
     
@@ -195,7 +200,7 @@ class ContactsController: ObservableObject {
             }
     }
     
-    func selectCategory(category: Category, reader: ScrollViewProxy) {
+    func selectCategory(category: Category) {
         withAnimation {
             //        withAnimation(.interpolatingSpring(stiffness: 200, damping: 20)) {
             if self.selectedCategory == category {
@@ -205,7 +210,7 @@ class ContactsController: ObservableObject {
                 //                    DispatchQueue.main.async {
                 //                        self.contacts = self.cityFilter(contacts: self.users)
                 //                    }
-                reader.scrollTo(self.categories.first?.id, anchor: .center)
+                catReader?.scrollTo(self.categories.first?.id, anchor: .center)
             } else {
                 self.selectedCategory = category
 //                self.subCategories = self.cats.filter({ $0.p_id == self.selectedCategory?.id })
@@ -213,7 +218,7 @@ class ContactsController: ObservableObject {
                 //                    DispatchQueue.main.async {
                 //                        self.contacts = self.cityFilter(contacts: self.users.filter({ $0.categories.contains(where: { $0.divider() == category.id.divider() }) }))
                 //                    }
-                reader.scrollTo(category.id, anchor: .center)
+                catReader?.scrollTo(category.id, anchor: .center)
             }
         }
     }
@@ -242,7 +247,7 @@ class ContactsController: ObservableObject {
 //        }
     }
     
-    func selectSubCategory(subCat: Category, reader: ScrollViewProxy) {
+    func selectSubCategory(subCat: Category) {
         withAnimation(.interpolatingSpring(stiffness: 200, damping: 20)) {
             if self.selectedSubcategory == subCat {
                 self.selectedSubcategory = nil
@@ -254,13 +259,13 @@ class ContactsController: ObservableObject {
                 //                } else {
                 //                    self.contacts = self.cityFilter(contacts: self.users)
                 //                }
-                reader.scrollTo(self.subCategories.first?.id, anchor: .center)
+                subCatReader?.scrollTo(self.subCategories.first?.id, anchor: .center)
             } else {
                 self.selectedSubcategory = subCat
                 //                DispatchQueue.main.async {
                 //                    self.contacts = self.cityFilter(contacts: self.users.filter({ $0.categories.contains(subCat.id) }))
                 //                }
-                reader.scrollTo(subCat.id, anchor: .center)
+                subCatReader?.scrollTo(subCat.id, anchor: .center)
             }
         }
     }

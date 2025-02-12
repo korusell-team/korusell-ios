@@ -196,18 +196,17 @@ struct ContactDetailsView: View {
                 return
             }
         }
+        self.isLoading = true
+        
         Task {
-            self.isLoading = true
             try await userManager.save(image: image, user: user)
+            self.isLoading = false
+            editMode = false
             // MARK: Applying changes inside contacts list
-            if let me = cc.users.firstIndex(where: { $0.uid == user.uid }) {
-                cc.users[me] = user
-            }
-            withAnimation {
-                //                self.url = URL(string: userManager.user?.image.first ?? "")
-                self.isLoading = false
-                editMode = false
-            }
+//            if let me = cc.users.firstIndex(where: { $0.uid == user.uid }) {
+//                cc.users[me].image = user.image
+//                cc.users[me].smallImage = user.smallImage
+//            }
         }
     }
     

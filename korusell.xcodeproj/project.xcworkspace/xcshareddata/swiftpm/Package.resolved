@@ -24,8 +24,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/firebase/firebase-ios-sdk.git",
       "state" : {
-        "revision" : "6318278e8e64d21f0fdcc69004395e4d34048aaf",
-        "version" : "11.8.1"
+        "revision" : "0d885d28250fb1196b614bc9455079b75c531f72",
+        "version" : "11.7.0"
       }
     },
     {
@@ -114,8 +114,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/exyte/PopupView.git",
       "state" : {
-        "revision" : "038f37d281a61842f96fffeb8903fa5c5e35ecf9",
-        "version" : "2.10.6"
+        "revision" : "e958d95620aff0227682cd8260c54cdbdfedc6c5",
+        "version" : "4.0.0"
       }
     },
     {

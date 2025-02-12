@@ -909,8 +909,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/exyte/PopupView.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.0;
+				kind = exactVersion;
+				version = 4.0.0;
 			};
 		};
 		256276002A80F00C006F0E39 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
@@ -918,7 +918,7 @@
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
 				kind = exactVersion;
-				version = 11.8.1;
+				version = 11.7.0;
 			};
 		};
 		EDC4CEE42D549B26003E78EF /* XCRemoteSwiftPackageReference "Kingfisher" */ = {

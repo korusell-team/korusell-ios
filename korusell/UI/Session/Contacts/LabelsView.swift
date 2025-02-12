@@ -18,7 +18,7 @@ struct LabelsView: View {
     @Binding var popSubCategories: Bool
 //    @Binding var searching: Bool
     
-    @State var reader: ScrollViewProxy? = nil
+
     @State var subReader: ScrollViewProxy? = nil
     
     
@@ -37,7 +37,7 @@ struct LabelsView: View {
                                 HambButton(isOpen: $popCategories)
                                 ForEach(cc.categories, id: \.self.id) { category in
                                     Button(action: {
-                                        cc.selectCategory(category: category, reader: reader)
+                                        cc.selectCategory(category: category)
                                     }) {
                                         EmoLabelView(title: category.title, isSelected: cc.selectedCategory == category, emo: category.emoji)
                                     }
@@ -47,7 +47,7 @@ struct LabelsView: View {
                             .padding(.horizontal)
                             .frame(height: 46)
                             .onAppear {
-                                self.reader = reader
+                                cc.catReader = reader
                             }
 //                            .popup(isPresented: $popCategories) {
 //                                CategorySearchView(popCategories: $popCategories, reader: reader, subReader: subReader)
@@ -59,19 +59,21 @@ struct LabelsView: View {
 //                                    .closeOnTapOutside(true)
 //                                    .backgroundColor(.black.opacity(0.4))
 //                            }
-                            .popup(isPresented: $popCategories) {
-                                PopCategoriesView(
-                                    popCategories: $popCategories,
-                                    selectedCategory: $cc.selectedCategory,
-                                    reader: reader)
-                            } customize: {
-                                $0
-                                    .type (.floater())
-                                    .position(.top)
-                                    .dragToDismiss(true)
-                                    .closeOnTapOutside(true)
-                                    .backgroundColor(.black.opacity(0.2))
-                            }
+//                            .popup(isPresented: $popCategories) {
+//                                PopCategoriesView(
+//                                    cc: cc,
+//                                    popCategories: $popCategories,
+//                                    selectedCategory: $cc.selectedCategory,
+//                                    reader: reader)
+//                                
+//                            } customize: {
+//                                $0
+//                                    .type (.floater())
+////                                    .position(.top)
+////                                    .dragToDismiss(true)
+////                                    .closeOnTapOutside(true)
+////                                    .backgroundColor(.black.opacity(0.2))
+//                            }
                         }
                     }
                    
@@ -91,7 +93,7 @@ struct LabelsView: View {
                                     }
                                     ForEach(cc.subCategories, id: \.self) { subCat in
                                         Button(action: {
-                                            cc.selectSubCategory(subCat: subCat, reader: reader)
+                                            cc.selectSubCategory(subCat: subCat)
                                         }) {
                                             EmoLabelView(title: subCat.title, isSelected: cc.selectedSubcategory == subCat, emo: subCat.emoji)
                                         }
@@ -101,21 +103,21 @@ struct LabelsView: View {
                                 .padding(.horizontal)
                                 .frame(height: 46)
                                 .onAppear {
-                                    self.subReader = reader
+                                    cc.subCatReader = reader
                                 }
-                                .popup(isPresented: $popSubCategories) {
-                                    PopSubCategoriesView(
-                                        popCategories: $popSubCategories,
-                                        selectedCategory: $cc.selectedSubcategory,
-                                        reader: reader)
-                                } customize: {
-                                    $0
-                                        .type (.floater())
-                                        .position(.top)
-                                        .dragToDismiss(true)
-                                        .closeOnTapOutside(true)
-                                        .backgroundColor(.black.opacity(0.2))
-                                }
+//                                .popup(isPresented: $popSubCategories) {
+//                                    PopSubCategoriesView(
+//                                        popCategories: $popSubCategories,
+//                                        selectedCategory: $cc.selectedSubcategory,
+//                                        reader: reader)
+//                                } customize: {
+//                                    $0
+//                                        .type (.floater())
+//                                        .position(.top)
+//                                        .dragToDismiss(true)
+//                                        .closeOnTapOutside(true)
+//                                        .backgroundColor(.black.opacity(0.2))
+//                                }
                             }
                         }
                         .padding(.top, 7)
